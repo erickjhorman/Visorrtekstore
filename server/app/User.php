@@ -32,7 +32,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -41,6 +41,11 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'nombre', 'email', 'password',
     ];
+
+    public function comentario()
+    {
+        return $this->hasMany('app\comentario');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -62,10 +67,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function setPasswordAttribute($value)
     {
-       
+
          $this->attributes ['password'] = bcrypt($value);
     }
 
-    
+
 
 }

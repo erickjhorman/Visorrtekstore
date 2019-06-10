@@ -15,6 +15,8 @@ https://www.youtube.com/results?search_query=comentario+en+laravel comments
 
 https://living-sun.com/es/angular/61294-angular2-shopping-cart-with-buy-now-button-angular-shopping-cart.html  cart shopping
 
+https://blog.angular-university.io/angular-material-dialog/
+
 
 
 

@@ -131,13 +131,13 @@ public function getProductos($id){
                  return $Productos;
 
 
-                 $Productos =  DB::table('productos')
-                 ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
-                 ->select('productos.*')
-                 ->where('marca_id', '=', $id)
-                 ->get();
+                //  $Productos =  DB::table('productos')
+                //  ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
+                //  ->select('productos.*')
+                //  ->where('marca_id', '=', $id)
+                //  ->get();
 
-                 return $Productos;
+                //  return $Productos;
 
 }
 

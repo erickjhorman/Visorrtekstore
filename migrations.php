@@ -19,7 +19,7 @@ php artisan make:model Venta --migration
 php artisan make:model Detalle_Venta --migration
 php artisan make:model factura --migration
 php artisan make:model recibo --migration
-
+php artisan make:model comentarios --migration
 php artisan migrate
 
 //To modify a migration
@@ -30,3 +30,5 @@ php artisan make:migration add_usuario_id_to_cliente
 
 
 php artisan make:request SignRequest
+
+php artisan make:migration create_comentarios_table 

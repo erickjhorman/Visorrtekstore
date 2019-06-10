@@ -26,3 +26,4 @@ Route::get('catalogos/{id}','HomeController@getMarcas');
 //Route::get('catalogos/{catalogo}/{marca}/{id}','HomeController@getProductos');
 Route::get('catalogos/marca/{id}','HomeController@getProductos');
 //Route::get('catalogos/{id}','HomeController@getProductos');
+Route::get('catalogos/marca/show/{id}','commentsController@comentarios');

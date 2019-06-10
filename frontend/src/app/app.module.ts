@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SlidebarComponent } from './components/partials/slidebar/slidebar.component';
 import {CatalogosComponent} from './components/catalogos/catalogos/catalogos.component';
 import {CorouselSlideCatalogosComponent} from './components/partials/corousel-slide-catalogos/corousel-slide-catalogos.component';
-
+import {MostrarDetalleProductoComponent} from './components/catalogos/mostrar-detalle-producto/mostrar-detalle-producto.component';
 
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
@@ -61,7 +61,8 @@ import {MateriaAngularCss } from '../app/material.module';
     CorouselSlideComponent,
     SlidebarComponent,
     CatalogosComponent,
-    CorouselSlideCatalogosComponent
+    CorouselSlideCatalogosComponent,
+    MostrarDetalleProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +72,7 @@ import {MateriaAngularCss } from '../app/material.module';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
+
 
     // MatSidenavModule,
     // MatMenuModule,
@@ -84,7 +86,8 @@ import {MateriaAngularCss } from '../app/material.module';
     BeforeLoginService,
 
     ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MostrarDetalleProductoComponent]
 
 })
 export class AppModule { }

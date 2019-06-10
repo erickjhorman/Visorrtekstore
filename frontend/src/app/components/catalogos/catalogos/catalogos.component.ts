@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {CatalogoServes} from '../../../services/Catalogos/catalogos.service';
 import {Marca} from '../../../models/marcas';
+import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
+import {MostrarDetalleProductoComponent} from '../mostrar-detalle-producto/mostrar-detalle-producto.component';
 
 
 @Component({
@@ -11,13 +13,15 @@ import {Marca} from '../../../models/marcas';
 })
 export class CatalogosComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute , private catalogoService: CatalogoServes) {
+  constructor(private route: ActivatedRoute , private catalogoService: CatalogoServes,
+   private dialog: MatDialog
+    ) {
 
    }
 
   marca: any;
   productos: any;
-
+  producto: any; //Variable to get the information of the current prouct to show
   ngOnInit() {
     this.route.paramMap
     .subscribe(params => {
@@ -39,6 +43,26 @@ export class CatalogosComponent implements OnInit {
     )
   }
 
+  getProducto(id:number){
+    this.catalogoService.getProducto(id).subscribe(
+      res =>{
+            console.log(res)
+
+      },
+      err => console.log(err)
+    )
+  }
+
+
+  onCreate(){
+
+    const dialogConfig = new  MatDialogConfig();
+    dialogConfig.disableClose = true;
+    //dialogConfig.autoFocus = true;
+    dialogConfig.width = "400px";
+    dialogConfig.height = "550px";
+    this.dialog.open(MostrarDetalleProductoComponent, dialogConfig)
+  }
 
 
 

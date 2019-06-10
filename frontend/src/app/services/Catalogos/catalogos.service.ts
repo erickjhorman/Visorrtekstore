@@ -27,5 +27,9 @@ export class CatalogoServes {
     return this.http.get(`${this.API_URI}/marca/${id}`);
   }
 
+  getProducto(id:number){
+    return this.http.get(`${this.API_URI}/marca/show/${id}`);
+  }
+
 }
 
