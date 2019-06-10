@@ -1,0 +1,33 @@
+.mat-sidenav-container{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  right: 50;;
+}
+
+mat-slidenav, mat-sidenav-content{
+padding: 16px;
+}
+
+mat-sidenav{
+   background-color:#007bff;
+   width: 100px;
+}
+
+.center {
+  position: absolute;
+
+}
+
+/* mat-grid-list{
+  background-color: aqua;
+} */
+
+mat-grid-list  {
+  background-color: aqua;
+}
+
+

@@ -1,0 +1,18 @@
+.producto-card{
+  width: 15rem;
+  height: auto;
+  text-align: center;
+}
+.card-img-top{
+  width: 15rem;
+}
+
+mat-card-title{
+  text-align: center;
+}
+
+.container{
+  padding-top: 75px;
+}
+
+

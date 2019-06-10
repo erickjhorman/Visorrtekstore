@@ -1,0 +1,169 @@
+<!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu> -->
+
+
+
+
+<!-- <mat-grid-list cols="4" >
+    <mat-grid-tile  rowspan="2">
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </mat-grid-tile>
+        <mat-grid-tile >
+
+
+
+      </mat-grid-tile>
+    <mat-grid-tile>Tile 2</mat-grid-tile>
+    <mat-grid-tile>Tile 3</mat-grid-tile>
+
+  </mat-grid-list> -->
+
+
+<!-- <mat-sidenav-container>
+  <mat-sidenav #sidenav (opened)="log('Opened')" (closed)="log('Closed')" mode="side" [(opened)]="opened">
+    <mat-nav-list  *ngFor="let catalogo of catalogos">
+      <a mat-list-item routerLink="visores">
+        <span class="badge">{{catalogo.id}}</span>{{ catalogo.categoria}}
+      </a>
+
+
+    </mat-nav-list>
+</mat-sidenav>
+  <mat-sidenav-content>Main
+    <button (click)="sidenav.toggle()">Toggle</button>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<!-- <mat-sidenav-container>
+  <mat-sidenav #sidenav  mode="side" [(opened)]="opened" >
+    <mat-nav-list  *ngFor="let catalogo of catalogos">
+      <a mat-list-item routerLinkActive="active current" [routerLink]="['/catalogos', catalogo.id]">
+        <span class="badge"></span>{{catalogo.categoria}}
+      </a>
+     </mat-nav-list>
+</mat-sidenav>
+  <mat-sidenav-content>Main
+    <button (click)="sidenav.toggle()">Toggle</button>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav  mode="side" [(opened)]="opened">
+    <mat-nav-list  *ngFor="let catalogo of catalogos">
+     <a mat-list-item routerLinkActive="active current" (click)="getMarcas(catalogo.id)">
+        <span class="badge"></span>{{catalogo.categoria}}
+    </a>
+
+
+      <!-- <a mat-list-item routerLinkActive="active current" [routerLink]="['/catalogos', catalogo.categoria,catalogo.id]">
+        <span class="badge"></span>{{catalogo.categoria}}
+      </a> -->
+     </mat-nav-list>
+
+</mat-sidenav>
+
+<mat-sidenav-content>
+
+    <mat-nav-list  *ngFor="let marca of marca">
+        <a mat-list-item routerLinkActive="active current" [routerLink]="['/catalogos',marca.categoria, marca.marca, marca.id]" >
+           <span class="badge"></span>{{marca.marca}}
+       </a>
+    </mat-nav-list>
+    <button (click)="sidenav.toggle()"><i class="fas fa-bars fa-spin"></i></button>
+
+</mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+<!-- <mat-menu #appMenu="matMenu" xPosition="after" yPosition="above">
+  <button mat-menu-item [matMenuTriggerFor]="subMenu">FrontEnd</button>
+  <button mat-menu-item>BackEnd</button>
+</mat-menu>
+
+<mat-menu #subMenu="matMenu">
+  <button mat-menu-item>Angular</button>
+  <button mat-menu-item>React</button>
+  <button mat-menu-item>Vue</button>
+</mat-menu>
+
+
+<button class="center" mat-flat-button [matMenuTriggerFor]="appMenu">Menu</button> -->
+
+
+
+<!-- <mat-list>
+            <mat-list-item> Pepper </mat-list-item>
+            <mat-list-item> Salt </mat-list-item>
+            <mat-list-item> Paprika </mat-list-item>
+           </mat-list> -->
+
+<!-- <mat-list-item [matMenuTriggerFor]="menu">
+              <mat-icon>unfold_more</mat-icon>
+              <a matline>Example</a>
+          </mat-list-item>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onSidenavClose()">View profile</button>
+            <button mat-menu-item (click)="onSidenavClose()">Add contact</button>
+          </mat-menu> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-sidenav-container class="navSide">
+    <mat-sidenav #sidenav (opened)="log('Opened')" (closed)="log('Closed')" mode="side"[(opened)]="opened">
+       <mat-nav-list>
+            <a mat-list-item href="..." *ngFor="let link of links">Erick</a>
+         </mat-nav-list>
+         <mat-nav-list>
+            <a mat-list-item href="..." *ngFor="let link of links">Erick</a>
+         </mat-nav-list>
+         <mat-nav-list>
+            <a mat-list-item href="..." *ngFor="let link of links">Erick</a>
+         </mat-nav-list> -->
+
+<!-- <mat-list>
+            <mat-list-item> Pepper </mat-list-item>
+            <mat-list-item> Salt </mat-list-item>
+            <mat-list-item> Paprika </mat-list-item>
+           </mat-list>
+
+    </mat-sidenav>
+  <mat-sidenav-content>Main
+     <button (click)="sidenav.toggle()">Toggle</button> -->
+
+
+ <!-- </mat-sidenav-content>
+
+</mat-sidenav-container> -->
+
+
+

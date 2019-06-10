@@ -1,0 +1,29 @@
+<div class="full-width">
+    <app-corousel-slide-catalogos></app-corousel-slide-catalogos>
+</div>
+
+<div class="container" pb-4 >
+  <div class="row">
+  <div class="col-md-3" *ngFor="let producto of productos">
+   <mat-card class="producto-card">
+  <mat-card-header>
+<mat-card-title>{{producto.Producto}}</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="producto.imagen"   class="card-img-top">
+  <mat-card-content>
+    <p>{{producto.Descripcion}}</p>
+    <p>$ {{producto.Valor_Venta}}</p>
+
+  </mat-card-content>
+
+  <mat-card-actions mt-4>
+    <button mat-button class="btn btn-info">Ver</button>
+    <button mat-button class="btn btn-success">Comprar</button>
+    <button mat-button class="btn btn-success" style="margin-top: 1em;">Añadir al carrito</button>
+  </mat-card-actions>
+
+</mat-card>
+</div>
+</div>
+</div>
