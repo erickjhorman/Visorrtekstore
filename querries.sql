@@ -151,3 +151,12 @@ on  marcas.id_marcas=Producto.marca
 GROUP BY Detalle_Venta2.id_detalle_Venta
 
 ;
+
+
+  $Productos =  DB::table('productos')
+                 ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
+                 ->select('productos.*')
+                 ->where('marca_id', '=', $id)
+                 ->get();
+
+                 return $Productos;

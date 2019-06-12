@@ -21,7 +21,8 @@ export class CatalogosComponent implements OnInit {
 
   marca: any;
   productos: any;
-  producto: any; //Variable to get the information of the current prouct to show
+  public  producto : any; //Variable to get the information of the current prouct to show in the patent component
+  //public product = "Erick"
   ngOnInit() {
     this.route.paramMap
     .subscribe(params => {
@@ -47,12 +48,11 @@ export class CatalogosComponent implements OnInit {
     this.catalogoService.getProducto(id).subscribe(
       res =>{
             console.log(res)
-
+            this.producto = res
       },
       err => console.log(err)
     )
   }
-
 
   onCreate(){
 
@@ -61,7 +61,11 @@ export class CatalogosComponent implements OnInit {
     //dialogConfig.autoFocus = true;
     dialogConfig.width = "400px";
     dialogConfig.height = "550px";
+    this.getProducto(this.producto)
     this.dialog.open(MostrarDetalleProductoComponent, dialogConfig)
+
+
+
   }
 
 

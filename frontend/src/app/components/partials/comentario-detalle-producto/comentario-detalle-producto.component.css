@@ -1,0 +1,8 @@
+.container-comentario {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-comentario > * {
+  width: 100%;
+}

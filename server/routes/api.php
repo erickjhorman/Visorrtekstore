@@ -27,3 +27,4 @@ Route::get('catalogos/{id}','HomeController@getMarcas');
 Route::get('catalogos/marca/{id}','HomeController@getProductos');
 //Route::get('catalogos/{id}','HomeController@getProductos');
 Route::get('catalogos/marca/show/{id}','commentsController@comentarios');
+Route::post('catalogos//marca/show/comentario','commentsController@SaveComentarios');

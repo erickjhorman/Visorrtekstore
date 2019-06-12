@@ -23,7 +23,8 @@ import { SlidebarComponent } from './components/partials/slidebar/slidebar.compo
 import {CatalogosComponent} from './components/catalogos/catalogos/catalogos.component';
 import {CorouselSlideCatalogosComponent} from './components/partials/corousel-slide-catalogos/corousel-slide-catalogos.component';
 import {MostrarDetalleProductoComponent} from './components/catalogos/mostrar-detalle-producto/mostrar-detalle-producto.component';
-
+import {ExtensionPanelDetalleProductoComponent} from './components/partials/extension-panel-detalle-producto/extension-panel-detalle-producto.component';
+import {ComentarioDetalleProductoComponent} from './components/partials/comentario-detalle-producto/comentario-detalle-producto.component';
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -62,7 +63,9 @@ import {MateriaAngularCss } from '../app/material.module';
     SlidebarComponent,
     CatalogosComponent,
     CorouselSlideCatalogosComponent,
-    MostrarDetalleProductoComponent
+    MostrarDetalleProductoComponent,
+    ExtensionPanelDetalleProductoComponent,
+    ComentarioDetalleProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ import {MateriaAngularCss } from '../app/material.module';
 
     ],
   bootstrap: [AppComponent],
-  entryComponents:[MostrarDetalleProductoComponent]
+  entryComponents:[MostrarDetalleProductoComponent,
+    ExtensionPanelDetalleProductoComponent]
 
 })
 export class AppModule { }

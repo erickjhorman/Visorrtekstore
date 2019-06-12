@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
 import  {Categoria} from "../../models/categoria";
+import {BehaviorSubject} from 'rxjs/';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +32,10 @@ export class CatalogoServes {
 
   getProducto(id:number){
     return this.http.get(`${this.API_URI}/marca/show/${id}`);
+  }
+
+  saveComentario(){
+    return this.http.get(`${this.API_URI}/marca/show/comentario`);
   }
 
 }

@@ -3,6 +3,7 @@
 namespace app\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
+use app\comentarios;
 
 class commentsController extends Controller
 {
@@ -23,5 +24,22 @@ class commentsController extends Controller
 
    }
 
+   public function SaveComentarios(request $request){
 
-}
+
+
+    $comentario = new comentarios;
+    $comentario->producto_id = '1';
+    $comentario->usuario_id = '2';
+    $comentario->comentario = $request->comentario;
+    $comentario->estado = $request->estado;
+
+    $comentario->save();
+    return "Guardado";
+   }
+
+   }
+
+
+
+
