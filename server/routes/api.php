@@ -21,10 +21,12 @@ Route::group([
 
 //My Rest API
 Route::get('catalogos', 'HomeController@index');
+Route::get('catalogos/productosDestacados','HomeController@productosDestacados');
 Route::get('imagenes', 'HomeController@getImagenes');
 Route::get('catalogos/{id}','HomeController@getMarcas');
 //Route::get('catalogos/{catalogo}/{marca}/{id}','HomeController@getProductos');
 Route::get('catalogos/marca/{id}','HomeController@getProductos');
 //Route::get('catalogos/{id}','HomeController@getProductos');
 Route::get('catalogos/marca/show/{id}','commentsController@comentarios');
-Route::post('catalogos//marca/show/comentario','commentsController@SaveComentarios');
+Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentarios');
+

@@ -55,20 +55,21 @@
 </mat-sidenav-container> -->
 
 
-<mat-sidenav-container>
+<mat-sidenav-container class="mt-4">
   <mat-sidenav #sidenav  mode="side" [(opened)]="opened">
     <mat-nav-list  *ngFor="let catalogo of catalogos">
      <a mat-list-item routerLinkActive="active current" (click)="getMarcas(catalogo.id)">
         <span class="badge"></span>{{catalogo.categoria}}
     </a>
-
-
       <!-- <a mat-list-item routerLinkActive="active current" [routerLink]="['/catalogos', catalogo.categoria,catalogo.id]">
         <span class="badge"></span>{{catalogo.categoria}}
       </a> -->
-     </mat-nav-list>
+      </mat-nav-list>
+    </mat-sidenav>
 
-</mat-sidenav>
+    <!-- <mat-sidenav #carritoCompra  mode="side" [(opened)]="closed">
+      <app-carrito-compra></app-carrito-compra>
+  </mat-sidenav> -->
 
 <mat-sidenav-content>
 
@@ -76,8 +77,12 @@
         <a mat-list-item routerLinkActive="active current" [routerLink]="['/catalogos',marca.categoria, marca.marca, marca.id]" >
            <span class="badge"></span>{{marca.marca}}
        </a>
-    </mat-nav-list>
-    <button (click)="sidenav.toggle()"><i class="fas fa-bars fa-spin"></i></button>
+   </mat-nav-list>
+
+  <div style="position:fixed">
+       <button (click)="sidenav.toggle()"><i class="fas fa-bars fa-spin fa-lg"></i></button>
+       <button class="carritoButton" (click)="sidenav.toggle()"><i class="fas fa-shopping-cart"></i></button>
+  </div>
 
 </mat-sidenav-content>
 </mat-sidenav-container>
@@ -85,6 +90,14 @@
 
 
 
+
+     <!--Seconnd content of the sidenav -->
+
+     <!-- <mat-sidenav #carritoCompra  mode="side" [(opened)]="closed">
+        <mat-sidenav-content>
+            <app-carrito-compra></app-carrito-compra>
+        </mat-sidenav-content>
+ </mat-sidenav> -->
 
 <!-- <mat-menu #appMenu="matMenu" xPosition="after" yPosition="above">
   <button mat-menu-item [matMenuTriggerFor]="subMenu">FrontEnd</button>

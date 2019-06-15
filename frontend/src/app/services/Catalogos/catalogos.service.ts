@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
 import  {Categoria} from "../../models/categoria";
 import {BehaviorSubject} from 'rxjs/';
+import {Comentario} from '../../models/comentario'
 
 
 @Injectable({
@@ -22,9 +23,15 @@ export class CatalogoServes {
 
   }
 
+  getProductosDestacados(){
+    return this.http.get(`${this.API_URI}/productosDestacados`);
+  }
+
   getMarcas(id:number){
     return this.http.get(`${this.API_URI}/${id}`);
   }
+
+
 
   getProductos(id:number){
     return this.http.get(`${this.API_URI}/marca/${id}`);
@@ -34,8 +41,10 @@ export class CatalogoServes {
     return this.http.get(`${this.API_URI}/marca/show/${id}`);
   }
 
-  saveComentario(){
-    return this.http.get(`${this.API_URI}/marca/show/comentario`);
+  saveComentario(comentario: Comentario){
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.post(`${this.API_URI}/marca/show/comentario` , comentario , {headers: headers});
+
   }
 
 }

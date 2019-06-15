@@ -4,6 +4,7 @@ namespace app\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use app\comentarios;
+use app\http\Requests\validateComentarioForm;
 
 class commentsController extends Controller
 {
@@ -24,7 +25,7 @@ class commentsController extends Controller
 
    }
 
-   public function SaveComentarios(request $request){
+   public function SaveComentarios(validateComentarioForm $request){
 
 
 
@@ -32,7 +33,7 @@ class commentsController extends Controller
     $comentario->producto_id = '1';
     $comentario->usuario_id = '2';
     $comentario->comentario = $request->comentario;
-    $comentario->estado = $request->estado;
+    $comentario->estado ='2';
 
     $comentario->save();
     return "Guardado";

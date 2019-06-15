@@ -25,6 +25,10 @@ import {CorouselSlideCatalogosComponent} from './components/partials/corousel-sl
 import {MostrarDetalleProductoComponent} from './components/catalogos/mostrar-detalle-producto/mostrar-detalle-producto.component';
 import {ExtensionPanelDetalleProductoComponent} from './components/partials/extension-panel-detalle-producto/extension-panel-detalle-producto.component';
 import {ComentarioDetalleProductoComponent} from './components/partials/comentario-detalle-producto/comentario-detalle-producto.component';
+import {CarritoCompraComponent} from './components/partials/carrito-compra/carrito-compra.component'
+import {FooterHomeComponent} from './components/partials/footer-home/footer-home.component';
+import {ProductosDestacadosComponent} from './components/partials/productos-destacados/productos-destacados.component';
+import {CategoriasComponent} from './components/partials/categorias/categorias.component';
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -65,7 +69,11 @@ import {MateriaAngularCss } from '../app/material.module';
     CorouselSlideCatalogosComponent,
     MostrarDetalleProductoComponent,
     ExtensionPanelDetalleProductoComponent,
-    ComentarioDetalleProductoComponent
+    ComentarioDetalleProductoComponent,
+    CarritoCompraComponent,
+    FooterHomeComponent,
+    ProductosDestacadosComponent,
+    CategoriasComponent,
   ],
   imports: [
     BrowserModule,

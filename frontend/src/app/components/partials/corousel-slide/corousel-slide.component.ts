@@ -21,10 +21,10 @@ export class CorouselSlideComponent implements OnInit {
     this.getImagenes();
 
     // customize default values of carousels used by this component tree
-    config.interval = 10000;
-    config.wrap = false;
-    config.keyboard = false;
-    config.pauseOnHover = false;
+    // config.interval = 1000;
+    // config.wrap = false;
+    // config.keyboard = false;
+    // config.pauseOnHover = true;
   }
 
 //To get images from database to the carousel
@@ -38,6 +38,7 @@ export class CorouselSlideComponent implements OnInit {
       alert('Querry faild');
     })
   }
+
 
 
   ngOnInit() {

@@ -6,15 +6,21 @@
   bottom: 0;
   left: 0;
   right: 50;;
+  height: 600px;
 }
 
+.mat-drawer-content{
+height: auto;
+}
 mat-slidenav, mat-sidenav-content{
-padding: 16px;
+padding: 0px;
 }
 
 mat-sidenav{
    background-color:#007bff;
-   width: 100px;
+   width: 250px;
+   height: 100%;
+
 }
 
 .center {
@@ -31,3 +37,15 @@ mat-grid-list  {
 }
 
 
+
+/* .fa-shopping-cart{
+color: #007bff;
+position: absolute;
+bottom: 5em;
+} */
+
+.carritoButton{
+position: absolute;
+right: 1px;
+top: 9mm;
+}

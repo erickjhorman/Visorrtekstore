@@ -9,12 +9,8 @@ import {Comentario} from '../../../models/comentario';
 })
 export class ComentarioDetalleProductoComponent implements OnInit {
 
-  comentario: Comentario = {
-
-    producto_id: null,
-    usuario_id: null,
-    comentario:  null,
-    estado:null,
+    comentario: Comentario = {
+    comentario: '',
     created_at: new Date(),
     update_at: new Date(),
   }
@@ -30,9 +26,22 @@ export class ComentarioDetalleProductoComponent implements OnInit {
 
 
   saveComentario(){
-    this.catalogoserve.saveComentario()
-   }
+    console.log(this.comentario);
+    this.catalogoserve.saveComentario(this.comentario)
+    .subscribe(
+      res => {
+        console.log(res);
+
+      },
+     err => console.log(err)
+    )
+    }
 
 
 
-}
+
+  }
+
+
+
+

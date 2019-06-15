@@ -1,0 +1,42 @@
+.body{
+  padding-top: 23px;
+}
+
+img{
+  height: 400px;
+}
+
+::ng-deep .mat-grid-tile .mat-figure {
+display: none;
+}
+
+.mat-grid-tile{
+  background-color: aquamarine;
+}
+
+/* #banner{
+  position: relative;
+  top: 67px;
+} */
+
+#formasPago{
+ padding-top: 23px;
+}
+
+h2{
+  font-size: 15px;
+}
+
+.container {
+  position: center;
+}
+img{
+  position: relative;
+  left:250px;
+}
+
+.row{
+  position: relative;
+  left:175px;
+  padding-top: 4px;
+}

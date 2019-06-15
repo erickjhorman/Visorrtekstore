@@ -7,6 +7,9 @@ ng g c components/home
 ng g c components/catalogos/catalogos 
 ng g c components/catalogos/cascos --skip-import
 ng g c components/partials/corousel-slide
+ng g c components/partials/productosDestacados --skip-import
+ng g c components/partials/categorias --skip-import
+
 ng g c components/catalogos/mostrarDetalleProducto  --skip-import
 
 
@@ -33,10 +36,13 @@ ng g c components/partials/slidebar
 ng g c components/partials/slid
  	
 ng g c components/partials/sidenav-list --skip-import
+ng g c components/partials/carrito_compra --skip-import
 ng g c components/partials/extension_panel_detalleProducto --skip-import
+ng g c components/partials/footer_home --skip-import
 
 https://forum.vuejs.org/t/v-for-and-router-link-how-do-i-insert-a-route-while-iterating-through-an-array-of-objects/33275
 http://localhost:8000/public/imagenes/1.jpg
 http://localhost:8000/public/imagenes/2.jpg
 
 http://angular-material.fusetheme.com/angular-material-elements/toolbar
+http://www.forosdelweb.com/f21/como-obtener-producto-mas-vendido-752874/

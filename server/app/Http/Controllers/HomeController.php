@@ -141,5 +141,16 @@ public function getProductos($id){
 
 }
 
+public function productosDestacados(){
+
+    $productoDestacados  = DB::table('ventas')
+    ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
+
+    ->select('valor_neto', DB::raw('MAX(cliente_id)'))
+    ->groupBy('valor_neto');
+
+   return  $productoDestacados;
+
+}
 
 }

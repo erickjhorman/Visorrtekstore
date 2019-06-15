@@ -1,6 +1,15 @@
-<div class="container-comentario">
-    <mat-form-field>
-    <textarea matInput placeholder="Textarea" name="comentario"></textarea>
-  </mat-form-field>
-  <button type="submit" mat-button onclick="saveComentario()" >Basic</button>
+<div class="">
+    <div class="card">
+      <div class="card-body">
+           <form  method="post" enctype="multipart/form-data">
+
+              <div class="form-group">
+              <input type="text" name="comentario" placeholder="comentario" [(ngModel)]="comentario.comentario" class="form-control" autofocus>
+              </div>
+            <button  class="btn btn-success btn-block" (click)="saveComentario()">
+              Save
+            </button>
+           </form>
+          </div>
+      </div>
 </div>

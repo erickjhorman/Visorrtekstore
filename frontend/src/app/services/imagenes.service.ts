@@ -23,6 +23,7 @@ export class ImagenesService {
     return this.http.get(this.API_URI);
 
 
+
   }
 }
 

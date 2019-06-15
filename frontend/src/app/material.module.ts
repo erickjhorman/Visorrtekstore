@@ -11,12 +11,15 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
   imports: [MatSidenavModule,MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
-    MatCardModule , MatDialogModule ,MatExpansionModule, MatFormFieldModule, TextFieldModule,MatDatepickerModule
+    MatCardModule , MatDialogModule ,MatExpansionModule, MatFormFieldModule, TextFieldModule,MatDatepickerModule,
+    MatToolbarModule
   ],
   exports: [MatSidenavModule, MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
-           MatCardModule, MatDialogModule , MatExpansionModule,MatFormFieldModule,TextFieldModule,MatDatepickerModule],
+           MatCardModule, MatDialogModule , MatExpansionModule,MatFormFieldModule,TextFieldModule,MatDatepickerModule,
+           MatToolbarModule],
 })
 export class MateriaAngularCss {
 
