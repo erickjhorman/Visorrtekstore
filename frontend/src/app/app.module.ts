@@ -36,6 +36,7 @@ import {CategoriasComponent} from './components/partials/categorias/categorias.c
 
 //Material
 import {MateriaAngularCss } from '../app/material.module';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // /** Routes */
 // const appRoutesAuth: Route [] = [

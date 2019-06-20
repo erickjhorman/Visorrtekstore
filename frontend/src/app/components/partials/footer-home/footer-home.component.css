@@ -1,0 +1,69 @@
+.footer{
+background-color: #007bff;
+height: 300px;
+}
+
+h2{
+  padding-left: 50px;
+  padding-top: 25px;
+  position: relative;
+  left: 100px;
+  font-size: 23px;
+}
+
+ul li a {
+  padding-top: 23px;
+  list-style: none;
+  color: white;
+  position: relative;
+  left: 115px;
+
+}
+
+
+ul li {
+ list-style: none;
+}
+
+ul li i{
+  margin: 15px;
+}
+
+.fa-motorcycle{
+  visibility: hidden;
+}
+
+
+ul li a.hoverCascos:hover  .fa-motorcycle{
+  visibility: visible;
+  transform: scale(1.1);
+  transition: all .1s
+}
+
+
+
+
+
+nav.redes-sociales a {
+  color: white;
+  margin-right: 20px;
+  position: relative;
+  left: 140px;
+}
+
+p{
+
+  list-style: none;
+  color: white;
+  position: relative;
+  left: 115px;
+}
+
+
+h2 span{
+  display: block;
+  font-size: 17px;
+  color: white;
+  margin-bottom: 5px;
+
+}

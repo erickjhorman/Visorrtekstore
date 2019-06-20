@@ -1,5 +1,5 @@
-.body{
-  padding-top: 23px;
+body{
+  padding-top: 100px;
 }
 
 img{
@@ -24,8 +24,14 @@ display: none;
 }
 
 h2{
-  font-size: 15px;
+  font-size: 13px;
 }
+
+p{
+  font-size: 14px;
+}
+
+
 
 .container {
   position: center;
@@ -37,6 +43,33 @@ img{
 
 .row{
   position: relative;
-  left:175px;
-  padding-top: 4px;
+  left:120px;
+
+}
+
+.fa-whatsapp{
+  position: relative;
+  left: 40px;
+}
+
+.fa-truck{
+  position: relative;
+  left: 130px;
+}
+
+.fa-store-alt{
+  position: relative;
+  left: 100px;
+}
+
+#contacto{
+ width: 10rem;
+}
+#tienda{
+  position: relative;
+  left: 250px;
+}
+#transporte{
+  position: relative;
+  left: 100px;
 }

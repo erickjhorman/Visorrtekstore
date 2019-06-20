@@ -1,11 +1,34 @@
 .producto-card{
   width: 15rem;
-  height: auto;
+  height: 260px;
   text-align: center;
+  margin-bottom: 27px;
 }
+
+.btn-info , .btn-success{
+  visibility: hidden;
+}
+
+.producto-card:hover{
+  height: auto;
+  transform: scale(1.1);
+  transition: all .1s;
+  visibility: visible;
+}
+
+.producto-card:hover .btn-success  {
+  visibility: visible;
+}
+
+.producto-card:hover  .btn-info {
+  visibility: visible;
+}
+
+
 .card-img-top{
-  width: 15rem;
+  width: 8rem;
 }
+
 
 mat-card-title{
   text-align: center;
@@ -13,6 +36,7 @@ mat-card-title{
 
 .container{
   padding-top: 75px;
+
 }
 
 

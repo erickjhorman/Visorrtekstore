@@ -1,4 +1,10 @@
-<div>
+<div class="container ">
+
+        <button class="btn-dialog-close"  mat-stroked-button (click)="onClose()" tabindex="-1"><span><i class="far fa-window-close fa-3x"></i></span></button>
+
+  <div class="row">
+    <div class="col-md-6">
+
 <mat-card class="card-detalleProducto">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -7,20 +13,26 @@
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
+     <p>Color</p>
+     <p>talla</p>
 
    </mat-card-content>
-   <mat-card-content>
-      <app-comentario-detalle-producto></app-comentario-detalle-producto>
-    </mat-card-content>
-
-   <mat-card-actions>
-    <button mat-button>Me gusta</button>
-    <button mat-button>Agregar al carrito</button>
-    <button mat-button>Comprar</button>
-    <button mat-button>Share</button>
+  <mat-card-actions mt-4>
+    <button mat-button  class="btn btn-info btn-sm">Me gusta</button>
+    <button mat-button  class="btn btn-success btn-sm">Agregar al carrito</button>
+    <button mat-button  class="btn btn-success btn-sm">Comprar</button>
+    <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button>
   </mat-card-actions>
 </mat-card>
 </div>
+<div class="col-md-6">
+    <mat-card-content>
+        <app-extension-panel-detalle-producto></app-extension-panel-detalle-producto>
+    </mat-card-content>
+</div>
+</div>
+</div>
+
 
 
 

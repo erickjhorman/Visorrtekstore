@@ -7,6 +7,7 @@ import {ComentarioDetalleProductoComponent} from '../comentario-detalle-producto
   styleUrls: ['./extension-panel-detalle-producto.component.css']
 })
 export class ExtensionPanelDetalleProductoComponent implements OnInit {
+  panelOpenState = false;
   step = 0;
 
   setStep(index: number) {

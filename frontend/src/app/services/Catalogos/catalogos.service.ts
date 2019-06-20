@@ -13,10 +13,13 @@ export class CatalogoServes {
 
   API_URI = 'http://localhost:8000/api/catalogos';
   //API_URIProductos = 'http://localhost:8000/api/catalogos/marca';
+  nombre: string = undefined
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+  }
 
   get() {
     return this.http.get(this.API_URI)
@@ -39,7 +42,10 @@ export class CatalogoServes {
 
   getProducto(id:number){
     return this.http.get(`${this.API_URI}/marca/show/${id}`);
-  }
+
+    }
+
+
 
   saveComentario(comentario: Comentario){
     const headers = new HttpHeaders({'content-type': 'application/json'});

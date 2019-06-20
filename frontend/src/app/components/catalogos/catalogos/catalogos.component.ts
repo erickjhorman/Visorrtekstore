@@ -6,6 +6,7 @@ import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog
 import {MostrarDetalleProductoComponent} from '../mostrar-detalle-producto/mostrar-detalle-producto.component';
 
 
+
 @Component({
   selector: 'app-catalogos',
   templateUrl: './catalogos.component.html',
@@ -21,6 +22,7 @@ export class CatalogosComponent implements OnInit {
 
   marca: any;
   productos: any;
+  public nombre: string = "Erick";
   public  producto : any; //Variable to get the information of the current prouct to show in the patent component
   //public product = "Erick"
   ngOnInit() {
@@ -44,6 +46,7 @@ export class CatalogosComponent implements OnInit {
     )
   }
 
+  //Function to get only one producto with comments as well.
   getProducto(id:number){
     this.catalogoService.getProducto(id).subscribe(
       res =>{
@@ -55,18 +58,13 @@ export class CatalogosComponent implements OnInit {
   }
 
   onCreate(){
-
     const dialogConfig = new  MatDialogConfig();
     dialogConfig.disableClose = true;
     //dialogConfig.autoFocus = true;
-    dialogConfig.width = "400px";
-    dialogConfig.height = "550px";
-    this.getProducto(this.producto)
-    this.dialog.open(MostrarDetalleProductoComponent, dialogConfig)
-
-
-
-  }
+    dialogConfig.width = "650px";
+    dialogConfig.height = "400px";
+    this.dialog.open(MostrarDetalleProductoComponent, dialogConfig,)
+   }
 
 
 

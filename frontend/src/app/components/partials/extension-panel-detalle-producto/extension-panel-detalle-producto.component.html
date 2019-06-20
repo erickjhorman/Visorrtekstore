@@ -1,4 +1,25 @@
-<p>Erick</p>
-<app-comentario-detalle-producto></app-comentario-detalle-producto>
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Caracteristicas
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <p>Base de datos</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Comentarios
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-comentario-detalle-producto></app-comentario-detalle-producto>
+    </mat-expansion-panel>
+  </mat-accordion>
 
 

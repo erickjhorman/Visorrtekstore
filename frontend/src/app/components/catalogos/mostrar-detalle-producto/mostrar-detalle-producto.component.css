@@ -8,4 +8,12 @@
   background-size: cover;
 }
 
+mat-card{
+  padding-top: 23px;
+}
 
+mat-card-actions{
+position: relative;
+bottom: 29px;
+padding-top: 40px;
+}
