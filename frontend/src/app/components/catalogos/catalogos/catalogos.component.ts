@@ -22,15 +22,18 @@ export class CatalogosComponent implements OnInit {
 
   marca: any;
   productos: any;
-  public nombre: string = "Erick";
-  public  producto : any; //Variable to get the information of the current prouct to show in the patent component
+
+  public  productoShow : any; //Variable to get the information of the current prouct to show in the patent component
+  public producto: any
   //public product = "Erick"
+
   ngOnInit() {
     this.route.paramMap
     .subscribe(params => {
       let id = +params.get('id')
-         console.log(id);
+         console.log("Catalogo" + id);
        this.getproductos(id);
+
 
     })
 
@@ -46,26 +49,34 @@ export class CatalogosComponent implements OnInit {
     )
   }
 
-  //Function to get only one producto with comments as well.
-  getProducto(id:number){
-    this.catalogoService.getProducto(id).subscribe(
-      res =>{
-            console.log(res)
-            this.producto = res
-      },
-      err => console.log(err)
-    )
-  }
-
-  onCreate(){
+   onCreate(productoShow:any){
     const dialogConfig = new  MatDialogConfig();
+    console.log("1 paso" + productoShow)
+    let showProductos = productoShow
+    console.log("Create productos" + showProductos)
     dialogConfig.disableClose = true;
     //dialogConfig.autoFocus = true;
     dialogConfig.width = "650px";
     dialogConfig.height = "400px";
+   // dialogConfig.data = {name : 'Erick'}
+    dialogConfig.data = showProductos;
     this.dialog.open(MostrarDetalleProductoComponent, dialogConfig,)
    }
 
+   //Function to get only one producto with comments as well.
+  getProductoShow(id:number){
+    this.catalogoService.getProducto(id).subscribe(
+      res =>{
 
+            this.productoShow = res
+            console.log(this.productoShow)
+            this.onCreate(this.productoShow);
+      },
+      err => console.log(err)
+    );
+
+  }
 
 }
+
+

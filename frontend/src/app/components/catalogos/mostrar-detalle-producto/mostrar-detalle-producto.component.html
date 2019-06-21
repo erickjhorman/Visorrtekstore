@@ -3,7 +3,7 @@
         <button class="btn-dialog-close"  mat-stroked-button (click)="onClose()" tabindex="-1"><span><i class="far fa-window-close fa-3x"></i></span></button>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" *ngFor="let d of data" >
 
 <mat-card class="card-detalleProducto">
   <mat-card-header>
@@ -13,7 +13,8 @@
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
-     <p>Color</p>
+
+      <p>{{d.comentario}}</p>
      <p>talla</p>
 
    </mat-card-content>

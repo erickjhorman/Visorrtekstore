@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import {CatalogoServes} from '../../../services/Catalogos/catalogos.service';
 import { BehaviorSubject } from 'rxjs';
-import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-mostrar-detalle-producto',
@@ -11,21 +11,19 @@ import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog
 export class MostrarDetalleProductoComponent implements OnInit {
   panelOpenState = false;
   nombre: any;
-  constructor  (private catalogoService: CatalogoServes ,
+
+
+   @Input() producto:any;
+  constructor  (@Inject(MAT_DIALOG_DATA) public data: any , private catalogoService: CatalogoServes ,
       public dialogRef: MatDialogRef<MostrarDetalleProductoComponent>) {
 
-    this.nombre
-    console.log(this.nombre)
+    console.log("My array " + this.data);
 
   }
 
 
 
-  ngOnInit()
-
-  {
-
-  }
+  ngOnInit(){}
 
   onClose(){
   this.dialogRef.close();
