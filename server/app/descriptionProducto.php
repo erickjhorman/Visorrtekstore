@@ -17,14 +17,29 @@ class descriptionProducto extends Model
         'iva_porcentaje',
         'updated_at',
         'created_at',
-       
+
     ];
 
-   
-      //Relationship HasOne (Reverted)
+
+      //Relationship HasOne
       public function producto()
       {
           return $this->belongsTo('app\producto');
       }
+
+      public function catalogoColoresProducto()
+      {
+          return $this->belongsTo('app\CatalogoColoresProducto');
+      }
+
+      public function catalogoEstilos()
+      {
+          return $this->belongsTo('app\CatalogoEstilos');
+      }
+
+      public function catalogoTallas()
+    {
+        return $this->belongsTo('app\CatalogoTallas');
+    }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {ComentarioDetalleProductoComponent} from '../comentario-detalle-producto/comentario-detalle-producto.component';
 
 @Component({
@@ -7,6 +7,8 @@ import {ComentarioDetalleProductoComponent} from '../comentario-detalle-producto
   styleUrls: ['./extension-panel-detalle-producto.component.css']
 })
 export class ExtensionPanelDetalleProductoComponent implements OnInit {
+  @Input() d: any
+
   panelOpenState = false;
   step = 0;
 
@@ -21,7 +23,12 @@ export class ExtensionPanelDetalleProductoComponent implements OnInit {
   prevStep() {
     this.step--;
   }
+
+
+
+
   constructor() { }
+
 
   ngOnInit() {
   }

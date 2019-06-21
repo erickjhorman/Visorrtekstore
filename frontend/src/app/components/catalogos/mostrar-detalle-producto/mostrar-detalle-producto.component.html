@@ -2,33 +2,37 @@
 
         <button class="btn-dialog-close"  mat-stroked-button (click)="onClose()" tabindex="-1"><span><i class="far fa-window-close fa-3x"></i></span></button>
 
-  <div class="row">
-    <div class="col-md-6" *ngFor="let d of data" >
+  <div class="row" *ngFor="let d of data" >
+    <div class="col-md-6" >
 
 <mat-card class="card-detalleProducto">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title></mat-card-title>
+
+    <mat-card-title><p>{{d.Producto}}</p></mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img [src]="d.imagen"  class="card-img-top">
   <mat-card-content>
 
-      <p>{{d.comentario}}</p>
-     <p>talla</p>
+      <p><span>Descripcion:</span>{{d.Descripcion}}</p>
+      <p><span>Color:</span>{{d.Descripcion}}</p>
+      <p><span>Talla:</span>{{d.Descripcion}}</p>
+      <p><span>Existencia:</span>{{d.Descripcion}}</p>
+
 
    </mat-card-content>
-  <mat-card-actions mt-4>
+  <mat-card-actions mt-12>
     <button mat-button  class="btn btn-info btn-sm">Me gusta</button>
     <button mat-button  class="btn btn-success btn-sm">Agregar al carrito</button>
     <button mat-button  class="btn btn-success btn-sm">Comprar</button>
     <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button>
   </mat-card-actions>
 </mat-card>
+
 </div>
 <div class="col-md-6">
     <mat-card-content>
-        <app-extension-panel-detalle-producto></app-extension-panel-detalle-producto>
+        <app-extension-panel-detalle-producto [d]="d"></app-extension-panel-detalle-producto>
     </mat-card-content>
 </div>
 </div>

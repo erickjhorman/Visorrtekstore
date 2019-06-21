@@ -13,9 +13,16 @@ class CatalogoColoresProducto extends Model
         'updated_at',
     ];
 
-      //Relationship HasOne (Reverted)
-      public function producto()
-      {
-          return $this->belongsTo('app\producto');
-      }
+       //Relationship HasOne (Reverted)
+       public function descripcionProducto()
+       {
+           return $this->belongsTo('app\descriptionProducto');
+       }
+
+        //Relationship One to many
+
+        public function descriptionProductos()
+        {
+            return $this->hasOne('app\descriptionProducto');
+        }
 }

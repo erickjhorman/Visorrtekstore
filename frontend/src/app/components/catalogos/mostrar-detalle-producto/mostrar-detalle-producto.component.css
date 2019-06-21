@@ -1,6 +1,6 @@
 .card-detalleProducto {
   max-width: 400px;
-  max-height: 200px;
+  max-height: 390px;
 }
 
 .example-header-image {
@@ -16,4 +16,8 @@ mat-card-actions{
 position: relative;
 bottom: 29px;
 padding-top: 40px;
+}
+
+.card-img-top{
+  width: 15rem;
 }

@@ -14,8 +14,13 @@ class CatalogoTallas extends Model
     ];
 
      //Relationship HasOne (Reverted)
-     public function producto()
+     public function descripcionProducto()
      {
-         return $this->belongsTo('app\producto');
+         return $this->belongsTo('app\descriptionProducto');
      }
+
+       public function descriptionProductos()
+        {
+            return $this->hasOne('app\descriptionProducto');
+        }
 }

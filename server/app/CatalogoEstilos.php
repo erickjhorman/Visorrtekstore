@@ -13,9 +13,14 @@ class CatalogoEstilos extends Model
         'updated_at',
     ];
 
-      //Relationship HasOne (Reverted)
-      public function producto()
-      {
-          return $this->belongsTo('app\producto');
-      }
+       //Relationship HasOne (Reverted)
+       public function descripcionProducto()
+       {
+           return $this->belongsTo('app\descriptionProducto');
+       }
+
+       public function descriptionProductos()
+        {
+            return $this->hasOne('app\descriptionProducto');
+        }
 }

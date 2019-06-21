@@ -19,6 +19,7 @@ class CreateDescriptionProductosTable extends Migration
             $table->integer('color_id')->unsigned();
             $table->integer('talla_id')->unsigned();
             $table->integer('Forma_id')->unsigned();
+            $table->text('caracteristicas');
             $table->integer('Existencia');
             $table->integer('Valor_Venta');
             $table->integer('ValorMin');
