@@ -19,8 +19,5 @@ class CatalogoEstilos extends Model
            return $this->belongsTo('app\descriptionProducto');
        }
 
-       public function descriptionProductos()
-        {
-            return $this->hasOne('app\descriptionProducto');
-        }
+
 }

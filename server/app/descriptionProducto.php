@@ -21,25 +21,25 @@ class descriptionProducto extends Model
     ];
 
 
-      //Relationship HasOne
       public function producto()
       {
-          return $this->belongsTo('app\producto');
+        return $this->hasOne('app\producto');
       }
 
+        //Relationship HasOne
       public function catalogoColoresProducto()
       {
-          return $this->belongsTo('app\CatalogoColoresProducto');
+        return $this->hasOne('app\CatalogoColoresProducto');
       }
 
       public function catalogoEstilos()
       {
-          return $this->belongsTo('app\CatalogoEstilos');
+        return $this->hasOne('app\CatalogoEstilos');
       }
 
       public function catalogoTallas()
     {
-        return $this->belongsTo('app\CatalogoTallas');
+        return $this->hasOne('app\CatalogoTallas');
     }
 
 }

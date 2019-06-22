@@ -2,9 +2,15 @@
 
 namespace app\Http\Controllers;
 
+use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use app\Http\Controllers\Controller;
 use app\User;
+use app\model\Cliente;
+
+
+
 //use app\Http\Controllers\User;
 use app\Http\Requests\SignRequest;
 
@@ -37,12 +43,32 @@ class AuthController extends Controller
     }
 
 
-   
+
 
 
     public function signup(SignRequest $request)
     {
        User::create($request->all());
+
+       //I get the id of the use to save it in the cliente table
+       $arrayUserId = DB::select('select id from Users
+       where id =(SELECT max(id) FROM Users)');
+
+         //Foreach para convertir consulta en integer
+         foreach ($arrayUserId as  $value) {
+            $User_get = $value->id;
+        }
+        //  $User_get = DB::table('Users')
+        //  ->select('id', DB::raw('MAX(created_at)'))->get()
+        //  ->where('id', $user->id;
+
+        //  $User_get = DB::table('Users')->select('id')
+        //  ->where('id','=','id')
+        //  ->max('id');
+        $cliente = new Cliente();  /** Se hace una instancia del modelo solicitante*/
+        $cliente->usuario_id = $User_get;
+        $cliente->save();
+
        return $this->login($request);
     }
 

@@ -20,7 +20,7 @@ class producto extends Model
     ];
 
 
-    //Relationship One to many
+       //Relationship One to many
 
        public function descriptionProductos()
        {

@@ -19,10 +19,6 @@ class CatalogoColoresProducto extends Model
            return $this->belongsTo('app\descriptionProducto');
        }
 
-        //Relationship One to many
 
-        public function descriptionProductos()
-        {
-            return $this->hasOne('app\descriptionProducto');
-        }
+
 }
