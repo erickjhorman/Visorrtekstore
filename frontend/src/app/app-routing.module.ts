@@ -22,7 +22,7 @@ const routes: Routes = [
   {path:'request-password-reset',component:RequestResetComponent , canActivate : [BeforeLoginService]},
   {path:'response-password-reset',component:ResponseResetComponent, canActivate : [BeforeLoginService]},
   {path: 'catalogos/:categoria/:marca/:id', component: CatalogosComponent},
-  {path: 'catalogos/:categoria/comentario', component: ComentarioDetalleProductoComponent},
+  {path: 'catalogos/:categoria/comentario', component: ComentarioDetalleProductoComponent, canActivate : [BeforeLoginService]},
 
 ];
 
