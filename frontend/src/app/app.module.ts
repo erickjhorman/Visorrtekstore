@@ -29,6 +29,7 @@ import {CarritoCompraComponent} from './components/partials/carrito-compra/carri
 import {FooterHomeComponent} from './components/partials/footer-home/footer-home.component';
 import {ProductosDestacadosComponent} from './components/partials/productos-destacados/productos-destacados.component';
 import {CategoriasComponent} from './components/partials/categorias/categorias.component';
+import {DashboardAdminComponent} from './components/auth/dashboard-admin/dashboard-admin.component'
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -75,6 +76,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     FooterHomeComponent,
     ProductosDestacadosComponent,
     CategoriasComponent,
+    DashboardAdminComponent,
+
   ],
   imports: [
     BrowserModule,

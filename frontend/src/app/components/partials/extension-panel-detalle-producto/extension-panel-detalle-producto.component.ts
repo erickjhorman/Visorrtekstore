@@ -9,6 +9,7 @@ import {ComentarioDetalleProductoComponent} from '../comentario-detalle-producto
 export class ExtensionPanelDetalleProductoComponent implements OnInit {
   @Input() d: any
 
+
   panelOpenState = false;
   step = 0;
 

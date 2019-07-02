@@ -14,7 +14,7 @@ class AddUsuarioToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('user')->default(0);
+            $table->integer('user')->default(0)->after('id');
         });
     }
 

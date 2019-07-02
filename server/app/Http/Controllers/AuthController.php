@@ -111,13 +111,20 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+
+     protected function respondWithToken($token)
     {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()->name
+            'id' => auth()->user()->id,
+            'user' => auth()->user()->user,
+            'email' => auth()->user()->email,
+            'nombre' => auth()->user()->nombre,
+            'created_at' => auth()->user()->created_at,
         ]);
+
+        //Here i get the information from the backend using an API
     }
-}
+    }

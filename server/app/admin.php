@@ -3,9 +3,11 @@
 namespace app\model;
 
 use Illuminate\Database\Eloquent\Model;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class admin extends Model
+class admin extends Authenticatable implements JWTSubject
 {
+    use Notifiable;
 
     protected $fillable = [
         'id',

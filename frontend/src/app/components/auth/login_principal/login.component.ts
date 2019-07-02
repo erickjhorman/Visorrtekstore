@@ -8,6 +8,7 @@ import { TokenService } from '../../../services/token.service';
 import { AuthService } from '../../../services/auth.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,8 +27,9 @@ export class LoginComponent implements OnInit {
 
    };
 
-
-
+   user : any;
+   admin : any;
+   p: any;
   constructor(private loginService :LoginService,
      private activateRoute: ActivatedRoute, private router:Router , private Token : TokenService,
      private Auth: AuthService) {}
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+
   }
 
    LoginIn(){
@@ -54,7 +57,8 @@ export class LoginComponent implements OnInit {
       data => {
 
       this.handlResponse(data);
-
+      //Here i get the data from login page and i send to a function to hand it
+      console.log(data);
       }, (error) => {
       this.handleError(error)
       //alert('Querry faild');
@@ -62,13 +66,33 @@ export class LoginComponent implements OnInit {
    }
 
    handlResponse(data){
+    this.user = data
+
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStaus(true);
-    this.router.navigateByUrl('/dashboard');  //To redirect to another component
+    sessionStorage.setItem('userAuth',JSON.stringify(this.user));
+
+    var admin = sessionStorage.getItem('userAuth');
+    this.admin =  JSON.parse(admin);
+
+          if (this.admin.user == 1 ) {
+
+            this.router.navigateByUrl('/admin') ;  //To redirect to another component
+
+          } else {
+            console.log("No admin ")
+            this.router.navigateByUrl('/dashboard') ;  //To redirect to another component
+          }
+   // console.log(localStorage.getItem('userAuth'));
+
+    //this.router.navigateByUrl('/dashboard') ;  //To redirect to another component
 
   }
 
-   handleError(error){
+
+
+
+    handleError(error){
     this.error = error.error.error;
   }
 

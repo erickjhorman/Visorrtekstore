@@ -1,7 +1,3 @@
-.body{
-  padding-top: 23px;
-}
-
 #slider-home{
   padding-top: 95px
 }
@@ -22,6 +18,4 @@ div.container{
 
 }
 
-ngb-carousel{
-  padding-top: 95px
-}
+

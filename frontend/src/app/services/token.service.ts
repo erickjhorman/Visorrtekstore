@@ -13,14 +13,14 @@ export class TokenService {
   constructor() { }
 
   handle(token){
-  
+
     this.set(token);
-   
+
   }
 
-  //To set the token to authenticate user 
+  //To set the token to authenticate user
   set(token: any) {
-    
+
     localStorage.setItem('token' , token)
     console.log(token);
   }
@@ -33,7 +33,11 @@ export class TokenService {
     return localStorage.removeItem('token');
   }
 
- 
+  removeSessionStorage(){
+    return sessionStorage.removeItem('userAuth');
+  }
+
+
   isValid(){
     const Token = this.get();
     console.log(Token);

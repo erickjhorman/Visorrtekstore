@@ -56,7 +56,7 @@ export class CatalogosComponent implements OnInit {
     console.log("Create productos" + showProductos)
     dialogConfig.disableClose = true;
     //dialogConfig.autoFocus = true;
-    dialogConfig.width = "700px";
+    dialogConfig.width = "900px";
     dialogConfig.height = "400px";
    // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = showProductos;

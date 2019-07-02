@@ -21,8 +21,6 @@ export class MostrarDetalleProductoComponent implements OnInit {
 
   }
 
-
-
   ngOnInit(){}
 
   onClose(){

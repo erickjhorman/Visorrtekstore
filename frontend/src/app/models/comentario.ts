@@ -1,15 +1,13 @@
-export interface Comentario {
-    id?: number;
-//   producto_id: number;
-//   usuario_id: number;
+export class Comentario {
 
-//   estado:number;
-  created_at?:Date;
-  update_at?:Date;
- comentario:  string;
+  constructor (
+  public id: number,
+  public producto_id: number,
+  public  usuario_id: number,
+  public comentario?: string,
+  public created_at?:Date,
+  public update_at?:Date
 
-
-
-
+  ){ }
 
 }

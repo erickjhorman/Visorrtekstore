@@ -20,6 +20,8 @@ export class SignupComponent implements OnInit {
    password_confirmation: null,
    resetToken: null
   };
+
+  user : any;
   public error = [];
 
 
@@ -39,8 +41,10 @@ export class SignupComponent implements OnInit {
    }
 
    handlResponse(data){
+    this.user = data
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStaus(true);
+    sessionStorage.setItem('userAuth',JSON.stringify(this.user));
     this.router.navigateByUrl('/dashboard');  //To redirect to another component
   }
 

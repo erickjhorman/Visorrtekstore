@@ -16,8 +16,11 @@ mat-card-actions{
 position: relative;
 bottom: 29px;
 padding-top: 40px;
+text-align: center;
 }
 
 .card-img-top{
   width: 15rem;
+  position: relative;
+  left: 50px;
 }

@@ -9,6 +9,7 @@ Route::group([
 
 ], function ($router) {
 
+    Route::post('admin/login', 'AuthController@login');
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
     Route::post('logout', 'AuthController@logout');
@@ -27,6 +28,8 @@ Route::get('catalogos/{id}','HomeController@getMarcas');
 //Route::get('catalogos/{catalogo}/{marca}/{id}','HomeController@getProductos');
 Route::get('catalogos/marca/{id}','HomeController@getProductos');
 //Route::get('catalogos/{id}','HomeController@getProductos');
+//Route::get('catalogos/marca/show/{id}','commentsController@comentarios');
 Route::get('catalogos/marca/show/{id}','commentsController@comentarios');
+Route::get('catalogos/marca/show/comentario/{id}','commentsController@getComentarios');
 Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentarios');
 

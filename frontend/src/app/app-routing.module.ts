@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/auth/login_principal/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { DashboardComponent } from './components/auth/dashboard/dashboard.component';
+import {DashboardAdminComponent} from './components/auth/dashboard-admin/dashboard-admin.component';
 import { RequestResetComponent } from './components/auth/password-reset/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/auth/password-reset/response-reset/response-reset.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,13 +13,16 @@ import {CatalogosComponent} from './components/catalogos/catalogos/catalogos.com
 import {ComentarioDetalleProductoComponent}  from './components/partials/comentario-detalle-producto/comentario-detalle-producto.component';
 
 
-const routes: Routes = [
+
+  const routes: Routes = [
   {path: '', component: HomeComponent},
   //{path: '', component: ComentarioDetalleProductoComponent},
   //{ path: '**', component: NotFoundComponent},
   {path:'login',component:LoginComponent, canActivate : [BeforeLoginService]},
   {path:'signup',component:SignupComponent, canActivate : [BeforeLoginService]},
-  {path:'dashboard',component:DashboardComponent , canActivate : [AfterLoginService]},
+  //{path:'admin/dashboard',component:DashboardComponent , canActivate : [AfterLoginService]},
+  {path:'dashboard' , component:DashboardComponent , canActivate : [AfterLoginService]},
+  {path:'admin' , component:DashboardAdminComponent , canActivate : [AfterLoginService]},
   {path:'request-password-reset',component:RequestResetComponent , canActivate : [BeforeLoginService]},
   {path:'response-password-reset',component:ResponseResetComponent, canActivate : [BeforeLoginService]},
   {path: 'catalogos/:categoria/:marca/:id', component: CatalogosComponent},

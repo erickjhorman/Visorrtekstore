@@ -40,8 +40,15 @@ export class CatalogoServes {
     return this.http.get(`${this.API_URI}/marca/${id}`);
   }
 
+
   getProducto(id:number){
     return this.http.get(`${this.API_URI}/marca/show/${id}`);
+
+    }
+
+    //To get the all comments
+ getComentarios(id:number){
+    return this.http.get(`${this.API_URI}/marca/show/comentario/${id}`);
 
     }
 
@@ -52,6 +59,8 @@ export class CatalogoServes {
     return this.http.post(`${this.API_URI}/marca/show/comentario` , comentario , {headers: headers});
 
   }
+
+
 
 }
 
