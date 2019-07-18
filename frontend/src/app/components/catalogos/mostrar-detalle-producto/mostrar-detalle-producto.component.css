@@ -1,6 +1,6 @@
 .card-detalleProducto {
   max-width: 400px;
-  max-height: 390px;
+  max-height: 480px;
 }
 
 .example-header-image {
@@ -23,4 +23,15 @@ text-align: center;
   width: 15rem;
   position: relative;
   left: 50px;
+}
+
+.form-cantidadProducto {
+  min-width: 150px;
+  max-width: 500px;
+  height: 65px;
+  width: 100%;
+}
+
+input .example-full-width {
+  width: 100%;
 }

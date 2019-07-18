@@ -52,7 +52,7 @@ export class ComentarioDetalleProductoComponent implements OnInit {
    }
 
   saveComentario(form){
-    console.log("Hola" + form);
+    console.log("Hola" + form.value);
     this.catalogoserve.saveComentario(form.value)
     .subscribe(res => {
         this.getComentario(this.d.id);

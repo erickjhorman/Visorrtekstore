@@ -25,7 +25,7 @@
       </li>
       <li class="nav-item">
           <a class="nav-link" href="#">Acerca de nosotros</a>
-        </li>
+      </li>
 
     </ul>
   </div>
@@ -48,10 +48,10 @@
 
       </li>
       <li class="nav-item" style="font-size: 15px">
-        <a class="nav-link" routerLink="/" *ngIf="loggedin" ><span><i class="fas fa-shopping-cart"></i></span></a>
+        <a class="nav-link"  *ngIf="loggedin"  (click)=openModel() ><span><i class="fas fa-shopping-cart"></i></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/" *ngIf="loggedin" ><span><i class="far fa-bell"></i></span></a>
+        <a class="nav-link"  *ngIf="loggedin" ><span><i class="far fa-bell"></i></span></a>
       </li>
 
     </ul>

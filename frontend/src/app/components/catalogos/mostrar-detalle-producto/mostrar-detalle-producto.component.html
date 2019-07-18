@@ -14,19 +14,37 @@
   <img [src]="d.imagen"  class="card-img-top">
   <mat-card-content>
 
+
       <p><span>Descripcion:</span>{{d.Descripcion}}</p>
-      <p><span>Color:</span>{{d.Descripcion}}</p>
-      <p><span>Talla:</span>{{d.Descripcion}}</p>
-      <p><span>Existencia:</span>{{d.Descripcion}}</p>
+      <p><span>Color:</span>{{d.color}}</p>
+      <p><span>Talla:</span>{{d.talla}}</p>
+      <p><span>Cantidades disponibles:</span>{{d.Existencia}}</p>
+      <p><span>Precio: $ </span>{{d.Valor_Venta}}</p>
+      <form class="form-cantidadProducto"  (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)" #createPseleccionadoForm="ngForm">
+            <input  name="idProducto" type="hidden"  [(ngModel)]="d.Producto">
+            <input  name="valorventa" type="hidden"  [(ngModel)]="d.Valor_Venta" >
+            <mat-form-field  class="example-full-width">
+            <input matInput name="cantidad"  placeholder="Ingrese la cantidad" type="text"  ngModel >
+            </mat-form-field>
+
+            <!--<h1>Mensaje</h1> -->
+             <!--{{message}} -->
 
 
-   </mat-card-content>
-  <mat-card-actions mt-12>
-    <button mat-button  class="btn btn-info btn-sm">Me gusta</button>
-    <button mat-button  class="btn btn-success btn-sm">Agregar al carrito</button>
-    <button mat-button  class="btn btn-success btn-sm">Comprar</button>
-    <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button>
-  </mat-card-actions>
+            <mat-card-actions mt-12>
+                <button mat-button  class="btn btn-info btn-sm">Me gusta</button>
+                <button mat-button style="position: relative; right: 58px ; left: 1px; "  class="btn btn-success btn-sm">Agregar al carrito</button>
+                <button mat-button  class="btn btn-success btn-sm">Comprar</button>
+                <!-- <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button> -->
+                <!-- <button mat-button (click)="newMessage()"  class="btn btn-info btn-sm">New Message</button> -->
+              </mat-card-actions>
+        </form>
+
+
+
+      </mat-card-content>
+
+
 </mat-card>
 
 </div>
@@ -36,7 +54,9 @@
     </mat-card-content>
 </div>
 </div>
+
 </div>
+
 
 
 

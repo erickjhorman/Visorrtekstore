@@ -7,10 +7,15 @@ h2{
   padding-left: 50px;
   padding-top: 25px;
   position: relative;
-  left: 100px;
+  left: 130px;
   font-size: 23px;
+
 }
 
+.contactenos{
+  position: relative;
+  left: 23px;
+}
 ul li a {
   padding-top: 23px;
   list-style: none;
@@ -29,9 +34,11 @@ ul li i{
   margin: 15px;
 }
 
-.fa-motorcycle{
+.fa-motorcycle , .fa-tshirt, .fa-tripadvisor,
+.fa-mitten, .fa-broadcast-tower{
   visibility: hidden;
 }
+
 
 
 ul li a.hoverCascos:hover  .fa-motorcycle{
@@ -40,15 +47,36 @@ ul li a.hoverCascos:hover  .fa-motorcycle{
   transition: all .1s
 }
 
+ul li a.hoverChalecos:hover  .fa-tshirt{
+  visibility: visible;
+  transform: scale(1.1);
+  transition: all .1s
+}
 
+ul li a.hoverVisores:hover  .fa-tripadvisor{
+  visibility: visible;
+  transform: scale(1.1);
+  transition: all .1s
+}
 
+ul li a.hoverGuantes:hover  .fa-mitten{
+  visibility: visible;
+  transform: scale(1.1);
+  transition: all .1s
+}
 
+ul li a.hoverAcesorios:hover  .fa-broadcast-tower{
+  visibility: visible;
+  transform: scale(1.1);
+  transition: all .1s
+}
 
 nav.redes-sociales a {
   color: white;
   margin-right: 20px;
   position: relative;
   left: 140px;
+  background-size: 500px;
 }
 
 p{
@@ -65,5 +93,7 @@ h2 span{
   font-size: 17px;
   color: white;
   margin-bottom: 5px;
+ }
 
-}
+position: relative;
+left: 23px;

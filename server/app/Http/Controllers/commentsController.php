@@ -11,7 +11,7 @@ class commentsController extends Controller
 
    public function comentarios($id){
 
-
+    //return $id;
 
 
     // $Producto =  DB::table('description_productos')
@@ -35,23 +35,36 @@ class commentsController extends Controller
     // ->where('description_productos.producto_id', '=', $id)
     // ->get();
 
+    //  $Producto =  DB::table('description_productos')
+    // ->join('productos', 'productos.id', '=', 'description_productos.producto_id')
+    // ->join('catalogo_colores_productos', 'catalogo_colores_productos.id', '=', 'description_productos.color_id')
+    // ->join('catalogo_tallas', 'catalogo_tallas.id', '=', 'description_productos.talla_id')
+    // ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
+    // ->join('comentarios', 'comentarios.id', '=', 'productos.id')
+    // ->select('productos.*','description_productos.*',
+    // 'catalogo_colores_productos.color','catalogo_tallas.talla','marcas.Marca')
+    // ->where('description_productos.Producto_id', '=', $id)
+    // ->get();
+
      $Producto =  DB::table('description_productos')
     ->join('productos', 'productos.id', '=', 'description_productos.producto_id')
     ->join('catalogo_colores_productos', 'catalogo_colores_productos.id', '=', 'description_productos.color_id')
     ->join('catalogo_tallas', 'catalogo_tallas.id', '=', 'description_productos.talla_id')
     ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
-    ->join('comentarios', 'comentarios.id', '=', 'productos.id')
     ->select('productos.*','description_productos.*',
     'catalogo_colores_productos.color','catalogo_tallas.talla','marcas.Marca')
-
-    ->where('description_productos.producto_id', '=', $id)
+    ->where('description_productos.Producto_id', '=', $id)
     ->get();
+
+
+
 
     //  $Producto =  DB::table('comentarios')
     //  ->select('comentarios.*')
     //  ->where('comentarios.producto_id', '=', $id)
     //  ->get();
-     return $Producto;
+
+    return $Producto;
 
   }
 

@@ -30,6 +30,8 @@ import {FooterHomeComponent} from './components/partials/footer-home/footer-home
 import {ProductosDestacadosComponent} from './components/partials/productos-destacados/productos-destacados.component';
 import {CategoriasComponent} from './components/partials/categorias/categorias.component';
 import {DashboardAdminComponent} from './components/auth/dashboard-admin/dashboard-admin.component'
+import {TestomonialesComponent} from "./components/testomoniales/testomoniales.component";
+import {ComprasListaComponent} from "./components/partials/carrito-compra/compras-lista/compras-lista.component";
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -77,6 +79,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     ProductosDestacadosComponent,
     CategoriasComponent,
     DashboardAdminComponent,
+    TestomonialesComponent,
+    ComprasListaComponent
 
   ],
   imports: [
@@ -103,6 +107,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     ],
   bootstrap: [AppComponent],
   entryComponents:[MostrarDetalleProductoComponent,
+    CarritoCompraComponent,
     ExtensionPanelDetalleProductoComponent]
 
 })

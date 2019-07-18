@@ -12,3 +12,16 @@ where id_Producto="1"
 GROUP BY producto.id_Producto
 ;
 
+
+select DISTINCT 
+productos.id,
+description_productos.color_id,
+description_productos.caracteristicas
+
+from description_productos
+inner join productos 
+on description_productos.Producto_id=productos.id
+
+where description_productos.Producto_id="5"
+GROUP BY productos.id
+;
