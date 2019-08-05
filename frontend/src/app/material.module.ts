@@ -14,15 +14,18 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 @NgModule({
   imports: [MatSidenavModule,MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
     MatCardModule , MatDialogModule ,MatExpansionModule, MatFormFieldModule, TextFieldModule,MatDatepickerModule,
-    MatToolbarModule, MatInputModule,MatTableModule
+    MatToolbarModule, MatInputModule,MatTableModule,MatStepperModule
   ],
   exports: [MatSidenavModule, MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
            MatCardModule, MatDialogModule , MatExpansionModule,MatFormFieldModule,TextFieldModule,MatDatepickerModule,
-           MatToolbarModule,MatInputModule,MatTableModule],
+           MatToolbarModule,MatInputModule,MatTableModule,MatStepperModule
+          ],
 })
 export class MateriaAngularCss {
 

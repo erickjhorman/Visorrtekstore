@@ -15,6 +15,8 @@ import {SharedService} from '../../../services/shared/shared.service'
 export class NavbarComponent implements OnInit {
 
   public loggedin :boolean;
+  listadoCompras: string[] = [];
+  producto: string;
 
   constructor(
     private Auth: AuthService,
@@ -27,8 +29,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.Auth.authStatus.subscribe(value => this.loggedin = value);
-
-
 }
 
   logout(event: MouseEvent ){
@@ -41,20 +41,40 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-    openModel(){
-    const dialogConfig = new  MatDialogConfig();
+  //   openModel(productos:string){
+  //   const dialogConfig = new  MatDialogConfig();
+  //   dialogConfig.disableClose = true;
+  //   //dialogConfig.autoFocus = true;
+  //   dialogConfig.width = "400px";
+  //   dialogConfig.height = "400px";
+  //   let arrayProductos = productos;
+  //   dialogConfig.data = arrayProductos;
+  //   //dialogConfig.data = productoSeleccionado;
+  //   this.dialog.open(CarritoCompraComponent, dialogConfig,)
+  //  }
 
+  //  openModel(event: MouseEvent ){
+  //   event.preventDefault();
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.disableClose = true;
+  //   //dialogConfig.autoFocus = true;
+  //   dialogConfig.width = "400px";
+  //   dialogConfig.height = "400px";
 
-    dialogConfig.disableClose = true;
-    //dialogConfig.autoFocus = true;
-    dialogConfig.width = "400px";
-    dialogConfig.height = "400px";
+  //  //dialogConfig.data = productoSeleccionado;
+  //   this.dialog.open(CarritoCompraComponent, dialogConfig,)
 
-    dialogConfig.data = {name : 'Erick'}
-    //dialogConfig.data = productoSeleccionado;
-    this.dialog.open(CarritoCompraComponent, dialogConfig,)
+  //  }
+
+   addCarrito(productos : any){
+    this.listadoCompras.push(productos);
+    console.log("Compras desde navbar" + this.listadoCompras);
+
    }
 
-
+   toogleHidden(event: MouseEvent ){
+    event.preventDefault();
+    this.sharedService.getValorMostraComponente(false)
+  }
 
 }

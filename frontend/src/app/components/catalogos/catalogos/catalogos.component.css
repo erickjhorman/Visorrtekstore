@@ -39,4 +39,10 @@ mat-card-title{
 
 }
 
+#carrito{
+  position: absolute;
+  left: 500px;
+  top: 130px;
+   opacity: 0.8;
+  }
 

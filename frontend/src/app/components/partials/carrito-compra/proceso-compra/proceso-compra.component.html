@@ -1,0 +1,87 @@
+<div>
+  <button class="btn-dialog-close"  mat-stroked-button (click)="onClose()" tabindex="-1"><span><i class="far fa-window-close fa-3x"></i></span></button>
+</div>
+
+<div class="container">
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Resumen de compra</ng-template>
+       <h2>Esta es tu compra final</h2>
+      <div id="resumenCompra">
+
+      <!-- Table to show the purchase summary -->
+
+      <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="listData">
+          <!-- Item Column -->
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.producto}} </td>
+            <td mat-footer-cell *matFooterCellDef> Total </td>
+          </ng-container>
+           <!-- quantity Column -->
+           <ng-container matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef> Cantidad</th>
+            <td mat-cell *matCellDef="let element">{{element.cantidad}}</td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <!-- Cost Column -->
+          <ng-container matColumnDef="valorventa">
+            <th mat-header-cell *matHeaderCellDef> valorventa </th>
+            <td mat-cell *matCellDef="let element"> {{element.valorventa}}</td>
+            <td mat-footer-cell *matFooterCellDef="let element"></td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+        </table>
+      </div>
+     </div>
+     <div class="actionsResumenCompraButtons">
+      <button mat-raised-button color="primary" (click)=" getTransportadora()">Añadir transportadora</button>
+      <button mat-raised-button color="primary" (click)="getDepartamentos()">Añadir Dirreccion </button>
+  </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Metodo de pago</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>¿Como quieres pagar?</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Revisa y confirma tu compra</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+</div>

@@ -1,6 +1,5 @@
 <?php
-
-
+use Illuminate\Support\Facades\Route;
 
 Route::group([
 
@@ -18,6 +17,17 @@ Route::group([
     Route::post('sendPasswordResetLink', 'ResetPasswordController@sendEmail');
     Route::post('resetPassword', 'ChangePasswordController@process');
 
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'user'],
+    function ($router) {
+
+        Route::get('transportadora', 'ProcesoCompraController@getCatalogosTransportadora');
+        Route::get('direcciones/{id}', 'ProcesoCompraController@getCatalogosDirecciones');
+        Route::get('departamentos', 'ProcesoCompraController@getCatalogosDepartamentos');
+        Route::get('departamentos/ciudades/{id}', 'ProcesoCompraController@getCatalogosCiudades');
 });
 
 //My Rest API

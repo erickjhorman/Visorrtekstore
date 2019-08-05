@@ -20,9 +20,12 @@ productoSeleccionado: any;
 // private productoAddSource = new Subject<any>();
 // productoSel = this.productoAddSource.asObservable();
 
-private productoAddSource = new BehaviorSubject<string>('Default Producto');
+// private productoAddSource = new BehaviorSubject<string>('');
+private productoAddSource = new Subject();
 productoSel = this.productoAddSource.asObservable();
 
+private carritoTogggleAddsource = new Subject();
+mostrarComponente = this.carritoTogggleAddsource.asObservable();
 
 //  private productoSele = new BehaviorSubject(0);
 //  productoActual = this.productoSele.asObservable();
@@ -36,10 +39,22 @@ productoSel = this.productoAddSource.asObservable();
   // console.log("Mensaje recivido" + message)
   // }
 
-  getProductoSeleccionado(producto:string){
+  // getProductoSeleccionado(producto:string){
+  //   this.productoAddSource.next(producto)
+  //   console.log("getProducto ya recivido" + producto);
+  // }
+
+  getProductoSeleccionado(producto:any){
     this.productoAddSource.next(producto)
     console.log("getProducto ya recivido" + producto);
   }
+
+  getValorMostraComponente(valor:any){
+    this.carritoTogggleAddsource.next(valor)
+    console.log("get valor " + valor);
+  }
+
+
 
 }
 

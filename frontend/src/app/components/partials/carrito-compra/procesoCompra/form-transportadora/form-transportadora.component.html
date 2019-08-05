@@ -1,0 +1,28 @@
+<div>
+<button class="btn-dialog-close"  mat-stroked-button (click)="onClose()" tabindex="-1"><span><i class="far fa-window-close fa-3x"></i></span></button>
+</div>
+<form (ngSubmit)="saveTransportadora(transportadoraForm)" #transportadoraForm="ngForm" novalidate="">
+  <div class="form-group" >
+    <div>
+     <h2>Nuestros precios</h2>
+      <ul *ngFor="let t of data">
+      <li>{{t.transportadora}}   {{t.valor_envio}}</li>
+   </ul>
+  </div>
+    <label for="nombre">Nombre de la transportadora*</label>
+    <select class="form-control" id="nombre" required [(ngModel)]="t.nombre" name="nombre" #nombre="ngModel">
+       <option *ngFor="let t of data" [value]="t.id">{{t.transportadora}}</option>
+       <label for="nombre">Valor envio</label>
+       <span>{{t.id}}</span>
+    </select>
+
+    <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+      <div *ngIf="nombre.errors?.required">
+        Este campo es requerido.
+      </div>
+      <div *ngIf="nombre.errors?.minlength">
+        Por lo menos  caracteres.
+      </div>
+    </div>
+    <button type="submit" style="margin-top: 20px; margin-left: 100px;" class="btn btn-success">Guardar</button>
+  </div>

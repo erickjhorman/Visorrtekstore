@@ -3,3 +3,4 @@ php artisan make:controller ResetPasswordController
 php artisan make:controller ChangePasswordController
 
 php artisan make:controller commentsController
+php artisan make:controller ProcesoCompraController

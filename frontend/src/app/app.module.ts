@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/partials/navbar/navbar.component';
@@ -32,6 +32,9 @@ import {CategoriasComponent} from './components/partials/categorias/categorias.c
 import {DashboardAdminComponent} from './components/auth/dashboard-admin/dashboard-admin.component'
 import {TestomonialesComponent} from "./components/testomoniales/testomoniales.component";
 import {ComprasListaComponent} from "./components/partials/carrito-compra/compras-lista/compras-lista.component";
+import {ProcesoCompraComponent} from "./components/partials/carrito-compra/proceso-compra/proceso-compra.component";
+import {FormTransportadoraComponent} from "./components/partials/carrito-compra/procesoCompra/form-transportadora/form-transportadora.component";
+import {FormDireccioneUsuarioComponent} from "./components/partials/carrito-compra/procesoCompra/form-direccione-usuario/form-direccione-usuario.component";
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -80,7 +83,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     CategoriasComponent,
     DashboardAdminComponent,
     TestomonialesComponent,
-    ComprasListaComponent
+    ComprasListaComponent,
+    ProcesoCompraComponent,
+    FormTransportadoraComponent,
+    FormDireccioneUsuarioComponent
 
   ],
   imports: [
@@ -91,6 +97,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule
 
 
     // MatSidenavModule,
@@ -107,8 +114,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     ],
   bootstrap: [AppComponent],
   entryComponents:[MostrarDetalleProductoComponent,
-    CarritoCompraComponent,
-    ExtensionPanelDetalleProductoComponent]
+    ExtensionPanelDetalleProductoComponent, ProcesoCompraComponent,
+    FormDireccioneUsuarioComponent, FormTransportadoraComponent
+  ]
 
 })
 export class AppModule { }

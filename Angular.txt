@@ -13,7 +13,10 @@ ng g c components/partials/productosDestacados --skip-import
 ng g c components/partials/categorias --skip-import
 ng g c components/partials/categorias --skip-import
 ng g c components/partials/carrito-compra/compras-lista --skip-import
+ng g c components/partials/carrito-compra/compras-lista --skip-import
 
+ng g c components/partials/carrito-compra/procesoCompra/formTransportadora --skip-import
+ng g c components/partials/carrito-compra/procesoCompra/formDireccioneUsuario --skip-import
 
 ng g c components/catalogos/mostrarDetalleProducto  --skip-import
 
@@ -34,6 +37,7 @@ ng g s services/auth/authGuards --module=app
 ng g s services/Auth --module=app
 ng g s services/response-reset --module=app
 ng g s services/shared/shared 
+ng g s services/testimonios --module=app
 ng g s services/testimonios --module=app
 
 To creare a guard

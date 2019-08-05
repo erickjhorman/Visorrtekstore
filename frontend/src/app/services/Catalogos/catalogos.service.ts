@@ -12,6 +12,8 @@ import {Comentario} from '../../models/comentario'
 export class CatalogoServes {
 
   API_URI = 'http://localhost:8000/api/catalogos';
+  API_URIUser = 'http://localhost:8000/api/user';
+
   //API_URIProductos = 'http://localhost:8000/api/catalogos/marca';
   nombre: string = undefined
 
@@ -25,6 +27,8 @@ export class CatalogoServes {
     return this.http.get(this.API_URI)
 
   }
+
+
 
   getProductosDestacados(){
     return this.http.get(`${this.API_URI}/productosDestacados`);
@@ -52,6 +56,17 @@ export class CatalogoServes {
 
     }
 
+    getTransportadoras(){
+      return this.http.get(`${this.API_URIUser}/transportadora`);
+    }
+
+    getDepartamentos(){
+      return this.http.get(`${this.API_URIUser}/departamentos`);
+    }
+
+    getCiudades(id:number){
+      return this.http.get(`${this.API_URIUser}/departamentos/ciudades/${id}`);
+    }
 
 
   saveComentario(comentario: Comentario){

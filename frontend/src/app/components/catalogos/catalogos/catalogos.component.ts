@@ -5,6 +5,7 @@ import {Marca} from '../../../models/marcas';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 import {MostrarDetalleProductoComponent} from '../mostrar-detalle-producto/mostrar-detalle-producto.component';
 import {CarritoCompraComponent} from '../../partials/carrito-compra/carrito-compra.component';
+import {SharedService} from '../../../services/shared/shared.service';
 
 
 @Component({
@@ -15,16 +16,20 @@ import {CarritoCompraComponent} from '../../partials/carrito-compra/carrito-comp
 export class CatalogosComponent implements OnInit {
 
   constructor(private route: ActivatedRoute , private catalogoService: CatalogoServes,
-   private dialog: MatDialog
+   private dialog: MatDialog,  private sharedService: SharedService
     ) {
 
    }
 
+  show = false;
+  hidden = true;
   marca: any;
   productos: any;
+  ocultarItemSelleccionado: boolean;
   //productoAdd: any
   public  productoShow : any; //Variable to get the information of the current prouct to show in the patent component
   public producto: any
+
   //public product = "Erick"
 
   ngOnInit() {
@@ -37,7 +42,20 @@ export class CatalogosComponent implements OnInit {
 
     })
 
+
+    //Get the value from shared.service
+    this.sharedService.mostrarComponente.subscribe(hidden2 => {
+        console.log(hidden2)
+        this.toogleHidden(hidden2)
+
+
+    });
+
+
+
   }
+
+
 
   getproductos(id:number){
     this.catalogoService.getProductos(id).subscribe(
@@ -62,6 +80,11 @@ export class CatalogosComponent implements OnInit {
    // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = showProductos;
     this.dialog.open(MostrarDetalleProductoComponent, dialogConfig,)
+    this.dialog.afterAllClosed.subscribe(res => {
+     this.ocultarItemSelleccionado = true;
+    console.log("Respuesta" + this.ocultarItemSelleccionado);
+    });
+
    }
 
    //Function to get only one producto with comments as well.
@@ -105,6 +128,19 @@ export class CatalogosComponent implements OnInit {
      //this.productoAdd = producto;
    }
 
-}
+  //  toogleHidden(){
+  //    this.show = !this.show;
+  //  }
+
+      toogleHidden(hidden){
+      console.log("Variable" + hidden)
+      this.hidden = !this.hidden;
+   }
+
+   ocultarItemSeleccionado(){
+     this.ocultarItemSelleccionado
+   }
+
+  }
 
 

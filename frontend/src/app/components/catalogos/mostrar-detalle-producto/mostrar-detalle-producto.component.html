@@ -21,7 +21,9 @@
       <p><span>Cantidades disponibles:</span>{{d.Existencia}}</p>
       <p><span>Precio: $ </span>{{d.Valor_Venta}}</p>
       <form class="form-cantidadProducto"  (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)" #createPseleccionadoForm="ngForm">
-            <input  name="idProducto" type="hidden"  [(ngModel)]="d.Producto">
+
+            <input  name="idproducto" type="hidden"  [(ngModel)]="d.Producto_id">
+            <input  name="producto" type="hidden"  [(ngModel)]="d.Producto">
             <input  name="valorventa" type="hidden"  [(ngModel)]="d.Valor_Venta" >
             <mat-form-field  class="example-full-width">
             <input matInput name="cantidad"  placeholder="Ingrese la cantidad" type="text"  ngModel >

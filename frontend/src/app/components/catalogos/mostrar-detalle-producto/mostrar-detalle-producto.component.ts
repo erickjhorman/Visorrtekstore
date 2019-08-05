@@ -27,7 +27,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
       public dialogRef: MatDialogRef<MostrarDetalleProductoComponent> ,   private dialog: MatDialog , private sharedService:
       SharedService) {
 
-    console.log("My array " + this.data);
+    console.log( this.data);
 
     //this.productoAdd;
   }
@@ -46,6 +46,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
     addPseleccionado(form:NgForm){
     console.log(form);
     this.addproducto = form;
+
     this.sharedService.getProductoSeleccionado(this.addproducto);
     console.log("detalle producto" + this.addproducto);
     this.sharedService.sharingData.emit(this.addproducto);

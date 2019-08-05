@@ -1,5 +1,8 @@
 <div class="full-width">
     <app-corousel-slide-catalogos></app-corousel-slide-catalogos>
+    <div id="carrito" style="width: 500px; height: 100%;">
+      <app-carrito-compra [hidden]="hidden"></app-carrito-compra>
+    </div>
 </div>
 
 <div class="container" pb-4 >
@@ -13,7 +16,7 @@
   <img mat-card-image [src]="producto.imagen"   class="card-img-top justify-content-around">
   <mat-card-content>
     <p>{{producto.Descripcion}}</p>
-    <p>$ {{producto.Valor_Venta}}</p>
+    <p>${{producto.Valor_Venta}}</p>
 
   </mat-card-content>
 
@@ -21,7 +24,7 @@
     <!-- <button mat-button class="btn btn-info"  (click)="onCreate()">Ver</button> -->
 
     <button mat-button class="btn btn-info" (click)="getProductoShow(producto.id)">Ver</button>
-    <button mat-button class="btn btn-success">Comprar</button>
+
     <!-- <button mat-button class="btn btn-success" (click)="addProducto(producto.id)" style="margin-top: 1em;">Añadir al carrito</button> -->
   </mat-card-actions>
 
@@ -42,6 +45,7 @@
 <p>{{productoAdd}}</p>
 
 </div>
+
 
 <!-- This is the child component to share a variable-->
 

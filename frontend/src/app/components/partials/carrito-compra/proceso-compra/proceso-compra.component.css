@@ -1,14 +1,6 @@
-table {
-  width: 100%;
-}
-
-#carritoCompra{
-background-color: white;
-
-}
-
-h2{
-  text-align: center;
+.actionsResumenCompraButtons button{
+  margin-right: 8px;
+  margin-top:  8px;
 }
 
 /* Style for table */
@@ -30,3 +22,6 @@ tr.mat-footer-row {
 }
 
 /* End of  Style for table */
+
+
+
