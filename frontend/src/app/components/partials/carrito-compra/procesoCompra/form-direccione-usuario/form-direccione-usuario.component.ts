@@ -1,8 +1,9 @@
-import { Component, OnInit , Inject} from '@angular/core';
+import { Component, OnInit , Inject, Output , EventEmitter} from '@angular/core';
 import {MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {CatalogoServes} from '../../../../../services/Catalogos/catalogos.service';
+import{SharedService} from '../../../../../services/shared/shared.service';
 
 
 
@@ -15,13 +16,16 @@ export class FormDireccioneUsuarioComponent implements OnInit {
 
 private departamentos: any;
 private ciudades: any;
+@Output() enviarFormularioDirecciones =  new EventEmitter();
+
+infoDireccionesForm: any;
+valuesFormDireccione: any;
   //Form
   FormDireccionesUsuario: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<FormDireccioneUsuarioComponent>,
-    private cataloServe   :CatalogoServes ) {
+    private cataloServe :CatalogoServes , private sharedService: SharedService ) {
 
- console.log(data)
 
     this.FormDireccionesUsuario = new FormGroup({
       'departamento': new FormControl(),
@@ -66,6 +70,11 @@ private ciudades: any;
       },
       err => console.log(err)
     )
+
+  }
+
+  guardarDirecciones(event){
+    this.sharedService.getFormDirecciones(event)
 
   }
 }

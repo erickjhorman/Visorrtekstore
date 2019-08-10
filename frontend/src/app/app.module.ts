@@ -35,6 +35,7 @@ import {ComprasListaComponent} from "./components/partials/carrito-compra/compra
 import {ProcesoCompraComponent} from "./components/partials/carrito-compra/proceso-compra/proceso-compra.component";
 import {FormTransportadoraComponent} from "./components/partials/carrito-compra/procesoCompra/form-transportadora/form-transportadora.component";
 import {FormDireccioneUsuarioComponent} from "./components/partials/carrito-compra/procesoCompra/form-direccione-usuario/form-direccione-usuario.component";
+import {PagosComponent} from "./components/partials/carrito-compra/procesoCompra/pagos/pagos.component";
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -86,7 +87,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     ComprasListaComponent,
     ProcesoCompraComponent,
     FormTransportadoraComponent,
-    FormDireccioneUsuarioComponent
+    FormDireccioneUsuarioComponent,
+    PagosComponent
 
   ],
   imports: [

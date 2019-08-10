@@ -62,7 +62,7 @@ export class CarritoCompraComponent implements OnInit {
 
     // this.listadoCompras.push(this.producto);
     // console.log(this.listadoCompras);
-
+  this.loadStripe();
   this.FinallistadoCompras;
 //array to add objects
 
@@ -93,6 +93,17 @@ export class CarritoCompraComponent implements OnInit {
 
 
   }
+
+  loadStripe() {
+
+    if(!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement("script");
+      s.id = "stripe-script";
+      s.type = "text/javascript";
+      s.src = "https://checkout.stripe.com/checkout.js";
+      window.document.body.appendChild(s);
+    }
+}
 
    /** Gets the total cost of all transactions. */
     getTotalCost() {

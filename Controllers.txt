@@ -4,3 +4,5 @@ php artisan make:controller ChangePasswordController
 
 php artisan make:controller commentsController
 php artisan make:controller ProcesoCompraController
+
+php artisan make:controller stripePaymentController

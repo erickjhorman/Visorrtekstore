@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Comentario } from '../../models/comentario';
-import { BehaviorSubject , Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,14 @@ mostrarComponente = this.carritoTogggleAddsource.asObservable();
 //  private productoSele = new BehaviorSubject(0);
 //  productoActual = this.productoSele.asObservable();
 
+//To share the values of the form from direccion form
+private formDireccionAddSource = new Subject();
+formValues = this.formDireccionAddSource.asObservable();
+
+//To share the values of the form from Transportadora form
+private formTransportadoraAddSource = new Subject();
+formValuesTransportadora = this.formTransportadoraAddSource.asObservable();
+
   constructor(private http: HttpClient ) {}
 
   sharingData: EventEmitter<any> = new EventEmitter();
@@ -54,7 +62,15 @@ mostrarComponente = this.carritoTogggleAddsource.asObservable();
     console.log("get valor " + valor);
   }
 
+  getFormDirecciones(values:any){
+    this.formDireccionAddSource.next(values)
+    console.log("Formulario ya recivido" + values);
+  }
 
+  getFormTransportadora(values:any){
+    this.formTransportadoraAddSource.next(values)
+    console.log("Formulario ya recivido transportadora" + values);
+  }
 
 }
 

@@ -1,7 +1,7 @@
 <div>
 <button class="btn-dialog-close"  mat-stroked-button (click)="onClose()" tabindex="-1"><span><i class="far fa-window-close fa-3x"></i></span></button>
 </div>
-<form (ngSubmit)="saveTransportadora(transportadoraForm)" #transportadoraForm="ngForm" novalidate="">
+<form (ngSubmit)="guardarTransportadora(transportadoraForm.value)" #transportadoraForm="ngForm" novalidate="">
   <div class="form-group" >
     <div>
      <h2>Nuestros precios</h2>

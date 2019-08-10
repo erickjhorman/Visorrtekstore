@@ -6,6 +6,8 @@ import {CatalogoServes} from '../../../../services/Catalogos/catalogos.service';
 import {FormDireccioneUsuarioComponent} from '../procesoCompra/form-direccione-usuario/form-direccione-usuario.component';
 import {FormTransportadoraComponent} from '../procesoCompra/form-transportadora/form-transportadora.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {SharedService} from '../../../../services/shared/shared.service';
+
 
 @Component({
   selector: 'app-proceso-compra',
@@ -15,19 +17,44 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 
 export class ProcesoCompraComponent implements OnInit {
 
+  precio_total: number;
+  valuesFormDireccione: any;
+  valuesFormTransportadora: any;
+
   private transportadora: any;
   private departamentos: any;
   private ciudades: any;
   isLinear = false;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   forthFormGroup: FormGroup;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any , private _formBuilder: FormBuilder,private dialogRef: MatDialogRef<ProcesoCompraComponent>,
-  private  cataServes: CatalogoServes , private dialog: MatDialog) {
+  private  cataServes: CatalogoServes , private dialog: MatDialog , private sharedService: SharedService) {
+  console.log(data);
 
-  }
+  //To share the form in preceso compra componenet
+ this.sharedService.formValues.subscribe(valuesForm => {
+  this.valuesFormDireccione = valuesForm
+  console.log(this.valuesFormDireccione);
+
+  });
+
+   //To share the form in preceso compra componenet
+ this.sharedService.formValuesTransportadora.subscribe(valuesForm => {
+  this.valuesFormTransportadora = valuesForm
+  console.log(this.valuesFormTransportadora);
+
+  });
+
+
+}
+
+
+
+
 
   //Code for create the table with information
   listData :  MatTableDataSource<any>;
@@ -50,6 +77,14 @@ export class ProcesoCompraComponent implements OnInit {
   createTableToshow(){
     const finalArrayTotalItem =this.data
     this.listData = new MatTableDataSource(finalArrayTotalItem);
+
+  }
+
+  getTotalPrice(){
+  for (let i = 0; i <this.data.length; i++) {
+     this.precio_total = this.data[i].Total;
+    return this.precio_total;
+  }
 
   }
 
@@ -131,6 +166,8 @@ export class ProcesoCompraComponent implements OnInit {
     onClose(){
     this.dialogRef.close();
    }
+
+
 
 }
 

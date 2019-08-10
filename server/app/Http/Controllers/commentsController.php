@@ -82,8 +82,6 @@ class commentsController extends Controller
 
    public function SaveComentarios(validateComentarioForm $request){
 
-
-
     $comentario = new comentarios;
     $comentario->producto_id = $request->producto_id;
     $comentario->usuario_id = $request->usuario_id;

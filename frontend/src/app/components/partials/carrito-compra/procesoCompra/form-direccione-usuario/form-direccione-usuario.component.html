@@ -3,7 +3,7 @@
 </div>
 
 
-<form [formGroup]="FormDireccionesUsuario" (ngSubmit)="guardarDirecciones()" novalidate="">
+<form [formGroup]="FormDireccionesUsuario" (ngSubmit)="guardarDirecciones(FormDireccionesUsuario.value)" novalidate="">
   <div class="form-row">
   <div class=" form-group  col">
   <label for="">Nombre</label>

@@ -42,4 +42,4 @@ Route::get('catalogos/marca/{id}','HomeController@getProductos');
 Route::get('catalogos/marca/show/{id}','commentsController@comentarios');
 Route::get('catalogos/marca/show/comentario/{id}','commentsController@getComentarios');
 Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentarios');
-
+Route::post('v1/charges','stripePaymentController@saveCharges');

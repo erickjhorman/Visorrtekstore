@@ -17,6 +17,7 @@ ng g c components/partials/carrito-compra/compras-lista --skip-import
 
 ng g c components/partials/carrito-compra/procesoCompra/formTransportadora --skip-import
 ng g c components/partials/carrito-compra/procesoCompra/formDireccioneUsuario --skip-import
+ng g c components/partials/carrito-compra/procesoCompra/pagos --skip-import
 
 ng g c components/catalogos/mostrarDetalleProducto  --skip-import
 
@@ -48,6 +49,7 @@ ng g c components/partials/slid
  	
 ng g c components/partials/sidenav-list --skip-import
 ng g c components/partials/carrito_compra --skip-import
+ng g c components/partials/carrito_compra --skip-import
 ng g c components/partials/extension_panel_detalleProducto --skip-import
 ng g c components/partials/footer_home --skip-import
 ng g c components/testomoniales --skip-import
@@ -58,3 +60,11 @@ http://localhost:8000/public/imagenes/2.jpg
 
 http://angular-material.fusetheme.com/angular-material-elements/toolbar
 http://www.forosdelweb.com/f21/como-obtener-producto-mas-vendido-752874/
+
+Fireship
+
+
+To create a module 
+ng g module pagos/pago
+ng g service 
+ng g s services/pagos/pago
