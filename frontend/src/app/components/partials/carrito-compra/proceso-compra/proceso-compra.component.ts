@@ -7,6 +7,7 @@ import {FormDireccioneUsuarioComponent} from '../procesoCompra/form-direccione-u
 import {FormTransportadoraComponent} from '../procesoCompra/form-transportadora/form-transportadora.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {SharedService} from '../../../../services/shared/shared.service';
+import {PagoService} from '../../../../services/pagos/pago.service';
 
 
 @Component({
@@ -17,6 +18,8 @@ import {SharedService} from '../../../../services/shared/shared.service';
 
 export class ProcesoCompraComponent implements OnInit {
 
+  private user : any;
+  valuesArrayCompras: any;
   precio_total: number;
   valuesFormDireccione: any;
   valuesFormTransportadora: any;
@@ -32,7 +35,7 @@ export class ProcesoCompraComponent implements OnInit {
   forthFormGroup: FormGroup;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any , private _formBuilder: FormBuilder,private dialogRef: MatDialogRef<ProcesoCompraComponent>,
-  private  cataServes: CatalogoServes , private dialog: MatDialog , private sharedService: SharedService) {
+  private  cataServes: CatalogoServes , private dialog: MatDialog , private sharedService: SharedService, private pagosServices: PagoService )  {
   console.log(data);
 
   //To share the form in preceso compra componenet
@@ -46,6 +49,10 @@ export class ProcesoCompraComponent implements OnInit {
  this.sharedService.formValuesTransportadora.subscribe(valuesForm => {
   this.valuesFormTransportadora = valuesForm
   console.log(this.valuesFormTransportadora);
+
+
+
+
 
   });
 
@@ -72,7 +79,15 @@ export class ProcesoCompraComponent implements OnInit {
 
     this.createTableToshow();
 
+
+    //To get the information from  a sessionStorage
+    var user = sessionStorage.getItem('userAuth');
+    this.user =  JSON.parse(user);
+    console.log(this.user);
+
   }
+
+
 
   createTableToshow(){
     const finalArrayTotalItem =this.data
@@ -166,6 +181,7 @@ export class ProcesoCompraComponent implements OnInit {
     onClose(){
     this.dialogRef.close();
    }
+
 
 
 

@@ -10,6 +10,7 @@ class Detalle_Venta extends Model
         'id',
         'venta_id',
         'producto_id',
+        'nombre',
         'cantidad',
         'valor_neto',
         'valor_iva',

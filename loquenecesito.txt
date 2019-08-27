@@ -1,0 +1,7 @@
+cliente_id
+domicilio_id
+valor_total 
+forma_de_pago
+
+
+compras_cliente 

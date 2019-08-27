@@ -17,6 +17,7 @@ class CreateDetalleVentasTable extends Migration
             $table->Increments('id');
             $table->integer('venta_id')->unsigned();
             $table->integer('Producto_id')->unsigned();
+            $table->string('nombre');
             $table->integer('Cantidad');
             $table->integer('Valor_Neto');
             $table->integer('Valor_Iva')->nullable();

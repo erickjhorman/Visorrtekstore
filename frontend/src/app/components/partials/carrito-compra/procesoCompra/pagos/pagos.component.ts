@@ -1,7 +1,8 @@
 import { Component, OnInit , HostListener ,Input} from '@angular/core';
 import { PagoService } from '../../../../../services/pagos/pago.service';
 import {environment} from '../../../../../../environments/environment';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
+import {SharedService} from '../../../../../services/shared/shared.service';
 
 @Component ({
   selector: 'app-pagos',
@@ -10,8 +11,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class PagosComponent implements OnInit {
 
-  // @Input() amount: number;
-  amount = 500;
+  valuesFormDireccione: any;
+  valuesFormTransportadora: any;
+  valuesArrayCompras: any;
+
+
+  private user: any;
+  formArray: any[] = [];
+  formFinal: any[] = [];
+  direcciones: any[] = [];
+  transportadora: any[] = [];
+  dataObjectPagoFinal: any[] = [];
+
+  @Input() amount: number;
 
   customStripeForm: FormGroup;
   submitted: any;
@@ -20,15 +32,42 @@ export class PagosComponent implements OnInit {
   message:any;
   token: any;
 
-  constructor(private pagosService: PagoService) {
+  constructor(private pagosService: PagoService , private sharedService: SharedService) {
 
     this.customStripeForm = new FormGroup({
+      'name': new FormControl(),
+      'lastname': new FormControl(),
       'cardNumber': new FormControl(),
+      'email': new FormControl(),
       'expMonth': new FormControl(),
       'expYear': new FormControl(),
       'cvv': new FormControl(),
       'amount': new FormControl(),
        });
+
+
+        //To share the form in preceso compra componenet
+  this.sharedService.formValues.subscribe(valuesForm => {
+  this.valuesFormDireccione = valuesForm
+  console.log(this.valuesFormDireccione);
+
+  });
+
+   //To share the form in preceso compra componenet
+  this.sharedService.formValuesTransportadora.subscribe(valuesForm => {
+  this.valuesFormTransportadora = valuesForm
+  console.log(this.valuesFormTransportadora);
+
+  });
+
+
+ //To share the form in preceso compra componenet
+  this.sharedService.arrayValuesCompras.subscribe(valuesArray => {
+  this.valuesArrayCompras = valuesArray
+  console.log(this.valuesArrayCompras);
+
+  });
+
 
   }
 
@@ -39,7 +78,19 @@ export class PagosComponent implements OnInit {
 
     this.loadStripe();
 
+    //To get the information from  a sessionStorage
+    var user = sessionStorage.getItem('userAuth');
+    this.user =  JSON.parse(user);
+    console.log(this.user);
+
+
+
+
   }
+
+
+
+
 
   loadStripe() {
 
@@ -109,22 +160,70 @@ pay(form) {
     if (status === 200) {
       this.message = `Success! Card token ${response.card.id}.`;
       console.log("Toke generado" + this.message)
-      this.token = response
+      this.token = response.id;
       console.log("Token server " + this.token);
 
-      this.chargeMoney(this.token)
+      this.formArray.push(form)
+      console.log(this.formArray);
+
+       this.agregarTokenCardForm()
+       this.chargeMoney(this.formFinal)
 
     } else {
       this.message = response.error.message;
     }
     });
-
    }
 
-   chargeMoney(token:any){
-    this.pagosService.chargeMoney(token).subscribe(
+  agregarTokenCardForm(){
+    const f = this.formArray
+    const tc = this.token
+    const amount = this.amount;
+    console.log(amount);
+
+    for (let index = 0; index<f.length; index++) {
+
+
+        this.formFinal.push({
+        clienteId : this.user.id,
+        domicilioId : 1,
+        name : f[index].name,
+        lastname : f[index].lastname,
+        email : f[index].email,
+        tokenCard : tc,
+        amount: amount,
+
+
+      });
+
+
+    console.log(this.valuesArrayCompras)
+    console.log(this.formFinal)
+}
+
+    // this.direcciones.push(this.valuesFormTransportadora , this.direcciones, this.formFinal);
+    // console.log( "Direcine y tranpso" + this.direcciones);
+
+
+
+
+
+
+    this.dataObjectPagoFinal = ["Erick" , "Javier"];
+
+    this.formFinal.push(this.valuesFormDireccione, this.valuesFormTransportadora,this.valuesArrayCompras);
+
+    //console.log(this.formFinal);
+    return this.formFinal;
+  }
+
+
+
+
+   chargeMoney(formFinal:any){
+    this.pagosService.chargeMoney(formFinal).subscribe(
         data => {
-         console.log(data);
+        const  charge = data;
         }, (error) => {
         console.log(error);
          alert('Querry faild');
@@ -132,6 +231,8 @@ pay(form) {
       }
 
   }
+
+
 
 
 

@@ -111,7 +111,7 @@ export class CarritoCompraComponent implements OnInit {
 
       //  return this.costototal;
 
-      this.costototal = this.listadoCompras.map(l => l.valorventa * l.cantidad  ).reduce((acc , value) => acc + value, 0);
+      this.costototal = this.listadoCompras.map(l => l.valorventa * l.cantidad).reduce((acc , value) => acc + value, 0);
       return this.costototal;
 
 
@@ -162,8 +162,9 @@ export class CarritoCompraComponent implements OnInit {
 
 
   procesoComprar(event){
-     console.log("Hice click aqui" + event);
+     console.log("Comprar");
      this.onCreateDialogProcesoCompra();
+
   }
 
   // onCreateDialogProcesoCompra(){
@@ -192,7 +193,9 @@ export class CarritoCompraComponent implements OnInit {
     dialogConfig.width = "1600px";
     dialogConfig.height = "400px";
     dialogConfig.data = finalArrayTotalItem
+
     this.dialog.open(ProcesoCompraComponent, dialogConfig,)
+    this.sharedService.getArrayCompras(finalArrayTotalItem);
    }
 
 
@@ -215,6 +218,9 @@ export class CarritoCompraComponent implements OnInit {
 
     return this.FinallistadoCompras;
    }
+
+
+
 
 
 }

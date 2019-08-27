@@ -31,7 +31,7 @@
           <ng-container matColumnDef="valorventa">
             <th mat-header-cell *matHeaderCellDef> valorventa </th>
             <td mat-cell *matCellDef="let element"> {{element.valorventa}}</td>
-            <td mat-footer-cell *matFooterCellDef="let element">{{getTotalPrice() | currency }}</td>
+            <td mat-footer-cell *matFooterCellDef="let element">{{getTotalPrice()}}</td>
           </ng-container>
 
 
@@ -42,7 +42,7 @@
       </div>
      </div>
      <div class="actionsResumenCompraButtons">
-      <button mat-raised-button color="primary" (click)=" getTransportadora()">Añadir transportadora</button>
+      <!--<button mat-raised-button color="primary" (click)=" getTransportadora()">Añadir transportadora</button> -->
       <button mat-raised-button color="primary" (click)="getDepartamentos()">Añadir Dirreccion </button>
   </div>
 
@@ -53,12 +53,12 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Metodo de pago</ng-template>
+      <ng-template matStepLabel>Pagar</ng-template>
       <!-- <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>
       </mat-form-field> -->
-      <!-- <app-pagos [amount]="precio_total"></app-pagos> -->
-        <app-pagos ></app-pagos>
+      <app-pagos [amount]="precio_total"></app-pagos>
+      <!-- <app-pagos ></app-pagos>-->
       <div>
 
         <button mat-button matStepperPrevious>Back</button>
@@ -68,9 +68,14 @@
   </mat-step>
 
   <mat-step>
-    <ng-template matStepLabel>Revisa y confirma tu compra</ng-template>
-    You are now done.
-    <div>
+    <ng-template matStepLabel>Datos compra final</ng-template>
+     <h1>Gracias por confira en nosotros</h1>
+
+     <span>Su compra ha sido  </span>
+     <br>
+     <span>Productos adquiridos </span>
+
+     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>

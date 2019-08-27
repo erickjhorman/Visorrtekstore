@@ -38,6 +38,10 @@ formValues = this.formDireccionAddSource.asObservable();
 private formTransportadoraAddSource = new Subject();
 formValuesTransportadora = this.formTransportadoraAddSource.asObservable();
 
+//To share the values of the purchase
+private arrayComprasAddSource = new Subject();
+arrayValuesCompras = this.arrayComprasAddSource.asObservable();
+
   constructor(private http: HttpClient ) {}
 
   sharingData: EventEmitter<any> = new EventEmitter();
@@ -71,6 +75,14 @@ formValuesTransportadora = this.formTransportadoraAddSource.asObservable();
     this.formTransportadoraAddSource.next(values)
     console.log("Formulario ya recivido transportadora" + values);
   }
+
+  getArrayCompras(values:any){
+    this.arrayComprasAddSource.next(values)
+    console.log("Formulario ya recivido compras" + values);
+  }
+
+
+
 
 }
 

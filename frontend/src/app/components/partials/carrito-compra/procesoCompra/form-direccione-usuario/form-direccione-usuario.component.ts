@@ -75,6 +75,5 @@ valuesFormDireccione: any;
 
   guardarDirecciones(event){
     this.sharedService.getFormDirecciones(event)
-
   }
 }
