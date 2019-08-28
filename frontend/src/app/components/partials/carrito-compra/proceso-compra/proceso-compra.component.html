@@ -76,8 +76,14 @@
      <span>Productos adquiridos </span>
 
      <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="enviarMensajeVendedor()">Enviar mensaje a vendedor </button>
+      <button mat-button (click)="redirigeDashboard()">Ir a dashboard</button>
+
+    </div>
+    <div>
+      <mat-form-field class="mensajeVendedor" *ngIf="show">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

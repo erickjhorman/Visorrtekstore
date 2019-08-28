@@ -115,6 +115,7 @@ class stripePaymentController extends Controller
 
 
 
+
         //To get the purchases of the array
 
             // for ($i=0; $i<count($input) ; $i++) {
@@ -132,14 +133,28 @@ class stripePaymentController extends Controller
             //     $dt->Valor_Neto = $valorventa;
 
             //     $dt->save();
+}
 
+public function getCompras($id){
 
+    // $compras =   DB::table('ventas')
+    //               ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
+    //               ->select('detalle__ventas.Producto_id','detalle__ventas.nombre' , 'detalle__ventas.cantidad',
+    //               'detalle__ventas.Valor_Neto','detalle__ventas.created_at','ventas.Cliente_id')
+    //               ->where('ventas.Cliente_id', '=', $id)
+    //               ->get();
 
+    // return  $compras;
 
+       $compras =   DB::table('ventas')
+                  ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
+                  ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
+                  ->select('detalle__ventas.Producto_id','detalle__ventas.nombre' , 'detalle__ventas.cantidad',
+                  'detalle__ventas.Valor_Neto','detalle__ventas.created_at','ventas.Cliente_id','productos.imagen')
+                  ->where('ventas.Cliente_id', '=', $id)
+                  ->get();
 
-
-
-
+    return  $compras;
 
 }
 

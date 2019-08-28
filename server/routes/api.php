@@ -43,3 +43,4 @@ Route::get('catalogos/marca/show/{id}','commentsController@comentarios');
 Route::get('catalogos/marca/show/comentario/{id}','commentsController@getComentarios');
 Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentarios');
 Route::post('v1/charges','stripePaymentController@saveToken');
+Route::get('dashboard/compras/{id}','stripePaymentController@getCompras');

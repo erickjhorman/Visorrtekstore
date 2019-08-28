@@ -8,6 +8,7 @@ import {FormTransportadoraComponent} from '../procesoCompra/form-transportadora/
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {SharedService} from '../../../../services/shared/shared.service';
 import {PagoService} from '../../../../services/pagos/pago.service';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -28,6 +29,7 @@ export class ProcesoCompraComponent implements OnInit {
   private departamentos: any;
   private ciudades: any;
   isLinear = false;
+  show = false;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -35,7 +37,7 @@ export class ProcesoCompraComponent implements OnInit {
   forthFormGroup: FormGroup;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any , private _formBuilder: FormBuilder,private dialogRef: MatDialogRef<ProcesoCompraComponent>,
-  private  cataServes: CatalogoServes , private dialog: MatDialog , private sharedService: SharedService, private pagosServices: PagoService )  {
+  private  cataServes: CatalogoServes , private dialog: MatDialog , private sharedService: SharedService, private pagosServices: PagoService,private router:Router )  {
   console.log(data);
 
   //To share the form in preceso compra componenet
@@ -183,6 +185,14 @@ export class ProcesoCompraComponent implements OnInit {
    }
 
 
+   redirigeDashboard(){
+   this.dialogRef.close();
+   this.router.navigateByUrl('/dashboard');  //To redirect to another component
+   }
+
+   enviarMensajeVendedor(){
+   this.show = !this.show;
+   }
 
 
 }

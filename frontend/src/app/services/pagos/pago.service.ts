@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module m
 export class PagoService {
 
   API_URI = 'http://localhost:8000/api/v1/charges';
+  API_URICompras = 'http://localhost:8000/api/dashboard/compras';
+
+
 
   //I instanced the module httpClient
 
@@ -18,7 +21,10 @@ export class PagoService {
     return this.http.post(`${this.API_URI}`, token, {headers: headers});
   }
 
+  getCompras(id:number){
+    return this.http.get(`${this.API_URICompras}/${id}`);
 
+  }
 
 
 }

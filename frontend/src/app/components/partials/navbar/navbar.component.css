@@ -13,13 +13,14 @@ nav{
    position: relative;
    top: 23px;
    right: 480px;
-   font-size: 15px
+   font-size: 13px
 }
 
 .navbar-right{
   position: relative;
   top: 23px;
-  right: 1rem;
+  right: 4rem;
+
 }
 .form-control {
  width: 400px;
@@ -30,4 +31,11 @@ nav{
   left: 17px;
 }
 
+
+.avatar-header-image{
+  background-image: url('https://res.cloudinary.com/dequvdgav/image/upload/v1558927931/ozgtye9pgab5k6q9l3ps.jpg');
+  background-size: cover;
+  position: absolute;
+  bottom: 2px;
+}
 

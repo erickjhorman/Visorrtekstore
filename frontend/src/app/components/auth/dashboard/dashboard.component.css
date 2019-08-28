@@ -1,3 +1,30 @@
 body{
   background-color: red;
 }
+
+.producto-card{
+    width: 10rem;
+    height: 260px;
+    text-align: center;
+    margin-bottom: 35px;
+    margin-right: 28px;
+
+
+}
+
+h2{
+  font-size: 2rem;
+  position: relative;
+  left: 551px;
+  padding-top: 2px;
+}
+
+.example-header-image {
+  background-image: url('https://res.cloudinary.com/dequvdgav/image/upload/v1558927931/ozgtye9pgab5k6q9l3ps.jpg');
+  background-size: cover;
+}
+
+.container{
+  padding-top: 75px;
+  padding-left: 200px;
+}

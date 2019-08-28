@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PagoService} from '../../../services/pagos/pago.service';
 
 
 @Component({
@@ -9,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   private user : any;
-
-  constructor() { }
+  compras: any;
+  constructor(private pagosService: PagoService) {   }
 
   ngOnInit() {
 
@@ -18,9 +19,20 @@ export class DashboardComponent implements OnInit {
     var user = sessionStorage.getItem('userAuth');
     this.user =  JSON.parse(user);
     console.log(this.user);
+    this.getCompras(this.user.id);
   }
 
+  getCompras(id:number){
+    this.pagosService.getCompras(id).subscribe(
+      res =>{
 
+            this.compras= res
+            console.log(this.compras);
+
+      },
+      err => console.log(err)
+    )
+  }
 
 
 }
