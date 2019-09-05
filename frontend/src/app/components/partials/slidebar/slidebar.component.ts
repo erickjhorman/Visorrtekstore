@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SlidebarComponent implements OnInit {
 
-  opened = false
+
   catalogos: Categoria[];
   marca: any;
 
@@ -43,9 +43,6 @@ export class SlidebarComponent implements OnInit {
      },
      err => console.log(err)
    )
-
-
-
   }
 
 

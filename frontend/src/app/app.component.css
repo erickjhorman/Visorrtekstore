@@ -1,0 +1,18 @@
+.container-principal #carrito{
+  position: absolute;
+  left: 150px;
+  top: 100px;
+  opacity: 0.8;
+  background-color: gray;
+  }
+
+  mat-sidenav-cotainer{
+    padding: 0px;
+  }
+
+
+
+
+
+
+

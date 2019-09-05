@@ -47,9 +47,7 @@ export class CatalogosComponent implements OnInit {
     this.sharedService.mostrarComponente.subscribe(hidden2 => {
         console.log(hidden2)
         this.toogleHidden(hidden2)
-
-
-    });
+   });
 
 
 

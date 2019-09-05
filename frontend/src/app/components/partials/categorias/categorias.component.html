@@ -1,3 +1,57 @@
-<p>
-  categorias works!
-</p>
+<mat-sidenav-container>
+  <mat-sidenav  [(opened)]="opened">
+    <mat-nav-list  *ngFor="let catalogo of catalogos">
+      <a mat-list-item routerLink="visores">
+        <span class="badge">{{catalogo.id}}</span>{{ catalogo.categoria}}
+      </a>
+
+
+    </mat-nav-list>
+</mat-sidenav>
+  <mat-sidenav-content>Main
+    <button (click)="sidenav.toggle()">Toggle</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+ <mat-sidenav-container>
+  <mat-sidenav #sidenav  mode="side" [(opened)]="opened" >
+    <mat-nav-list  *ngFor="let catalogo of catalogos">
+      <a mat-list-item routerLinkActive="active current" [routerLink]="['/catalogos', catalogo.id]">
+        <span class="badge"></span>{{catalogo.categoria}}
+      </a>
+     </mat-nav-list>
+</mat-sidenav>
+  <mat-sidenav-content>Main
+    <button (click)="sidenav.toggle()">Erick</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<mat-sidenav-container class="mt-4">
+  <mat-sidenav #sidenav  mode="side" [(opened)]="opened">
+    <mat-nav-list  *ngFor="let catalogo of catalogos">
+     <a mat-list-item routerLinkActive="active current" (click)="getMarcas(catalogo.id)">
+        <span class="badge"></span>{{catalogo.categoria}}
+    </a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+
+
+ <mat-sidenav-content class="marcaContenido">
+
+    <mat-nav-list  *ngFor="let marca of marca">
+        <a mat-list-item routerLinkActive="active current" [routerLink]="['/catalogos',marca.categoria, marca.marca, marca.id]" >
+           <span class="badge"></span>{{marca.marca}}
+       </a>
+   </mat-nav-list>
+
+  <div style="position:fixed">
+       <button (click)="sidenav.toggle()"><i class="fas fa-bars fa-spin fa-lg"></i></button>
+       <button class="carritoButton" (click)="sidenav.toggle()"><i class="fas fa-shopping-cart"></i></button>
+  </div>
+
+</mat-sidenav-content>
+</mat-sidenav-container>
+

@@ -36,6 +36,11 @@ import {ProcesoCompraComponent} from "./components/partials/carrito-compra/proce
 import {FormTransportadoraComponent} from "./components/partials/carrito-compra/procesoCompra/form-transportadora/form-transportadora.component";
 import {FormDireccioneUsuarioComponent} from "./components/partials/carrito-compra/procesoCompra/form-direccione-usuario/form-direccione-usuario.component";
 import {PagosComponent} from "./components/partials/carrito-compra/procesoCompra/pagos/pagos.component";
+import {SidenavUserComponent} from "./components/auth/dashboard/sidenav-user/sidenav-user.component";
+import {DatosPersonalesComponent} from "./components/auth/dashboard/pages/datos-personales/datos-personales.component"
+import {DatosPersonalesSidebarComponent} from "./components/auth/dashboard/pages/sidebar/datos-personales-sidebar/datos-personales-sidebar.component"
+import {PersonalizacionSiteComponent} from "./components/auth/dashboard/pages/personalizacion-site/personalizacion-site.component";
+
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -88,8 +93,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     ProcesoCompraComponent,
     FormTransportadoraComponent,
     FormDireccioneUsuarioComponent,
-    PagosComponent
-
+    PagosComponent,
+    SidenavUserComponent,
+    DatosPersonalesComponent,
+    DatosPersonalesSidebarComponent,
+    PersonalizacionSiteComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +123,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
     ],
   bootstrap: [AppComponent],
-  entryComponents:[MostrarDetalleProductoComponent,
+    entryComponents:[MostrarDetalleProductoComponent,
     ExtensionPanelDetalleProductoComponent, ProcesoCompraComponent,
     FormDireccioneUsuarioComponent, FormTransportadoraComponent
   ]

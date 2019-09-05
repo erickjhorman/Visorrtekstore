@@ -1,3 +1,18 @@
+mat-sidenav-container {
+  height: auto;
+
+}
+
+mat-sidenav{
+  padding: 16px;
+  width: 250px;
+}
+
+.mat-drawer{
+  background-color: gray;
+}
+
+
 body{
   padding-top: 100px;
 }
@@ -14,7 +29,10 @@ display: none;
   background-color: aquamarine;
 }
 
-
+/* #banner{
+  position: relative;
+  top: 67px;
+} */
 
 #formasPago{
  padding-top: 23px;
@@ -70,5 +88,3 @@ img{
   position: relative;
   left: 100px;
 }
-
-

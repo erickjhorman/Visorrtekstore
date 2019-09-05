@@ -27,6 +27,13 @@ productoSel = this.productoAddSource.asObservable();
 private carritoTogggleAddsource = new Subject();
 mostrarComponente = this.carritoTogggleAddsource.asObservable();
 
+private categoriasTogggleAddsource = new Subject();
+mostrarSideNavCategorias = this.categoriasTogggleAddsource.asObservable();
+
+
+private UserTogggleAddsource = new Subject();
+mostrarSideNavUsuario = this.UserTogggleAddsource.asObservable();
+
 //  private productoSele = new BehaviorSubject(0);
 //  productoActual = this.productoSele.asObservable();
 
@@ -64,6 +71,16 @@ arrayValuesCompras = this.arrayComprasAddSource.asObservable();
   getValorMostraComponente(valor:any){
     this.carritoTogggleAddsource.next(valor)
     console.log("get valor " + valor);
+  }
+
+  getValorMostraCatalogoSidebar(valor:any){
+    this.categoriasTogggleAddsource.next(valor)
+    console.log("get valor desde navbar para categoria" + valor);
+  }
+
+  getValorMostraUserSidebar(valor:any){
+    this.UserTogggleAddsource.next(valor)
+    console.log("get valor desde navbar para usuario" + valor);
   }
 
   getFormDirecciones(values:any){

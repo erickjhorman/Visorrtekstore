@@ -77,4 +77,18 @@ export class NavbarComponent implements OnInit {
     this.sharedService.getValorMostraComponente(false)
   }
 
+  toogleShowCatalogosComponent(event: MouseEvent){
+    event.preventDefault();
+    this.sharedService.getValorMostraCatalogoSidebar(false)
+
+  }
+
+    toogleShowUserSidenav(event: MouseEvent){
+    event.preventDefault();
+    this.sharedService.getValorMostraUserSidebar(false)
+  }
+
+
+
+
 }

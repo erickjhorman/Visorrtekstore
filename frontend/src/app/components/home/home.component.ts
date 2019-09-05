@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import  {Categoria} from "../../models/categoria";
 import {CatalogoServes} from "../../services/Catalogos/catalogos.service";
+import  {SharedService} from ".././../services/shared/shared.service";
 
 @Component({
   selector: 'app-home',
@@ -14,28 +15,16 @@ export class HomeComponent implements OnInit {
 
   catalogos: Categoria[];
 
-constructor( private catalogoService: CatalogoServes) {
+
+constructor( private catalogoService: CatalogoServes , private sharedService: SharedService) {
 
 }
 
 
-// getCatalogos(){
-//   this.catalogoService.get().subscribe((data: Categoria[]) => {
-//     this.catalogos = data;
-
-//     console.log(data);
-//   }, error => {
-//     console.log(error);
-//     alert('Querry faild');
-//   })
-// }
-
-//To pass the information to the view
-
-
- //lista:string[]=["hola","que","tal","estas"];
   ngOnInit() {
   }
+
+
 
 }
 
