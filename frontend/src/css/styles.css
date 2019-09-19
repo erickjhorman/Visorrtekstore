@@ -63,3 +63,16 @@ formUser.normal-form {
 .form-container>* {
     width: 100%;
 }
+
+
+/* notificacion*/
+
+snack-bar-container.success {
+    background-color: aqua;
+    color: #fff;
+}
+
+snack-bar-container.notification simple-snack-bar {
+    font-size: 15px !important;
+    font-weight: bold;
+}

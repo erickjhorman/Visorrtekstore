@@ -47,18 +47,22 @@
                     <mat-select (selectionChange)="ChangeId($event.value)" placeholder="Departamento*" [(value)]="selectedDep" formControlName="departamento_id">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let d of departamentos" [value]="d.id">{{d.departamento}}</mat-option>
+
                     </mat-select>
+                    <mat-error *ngIf="formAddress.controls['departamento_id'].errors?.required">Este campo es requerido</mat-error>
                     <p>You selected: {{selectedDep}}</p>
 
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label>Seleccione una opcion</mat-label>
-                    <mat-select placeholder="ciudad" [(value)]="selectedCiu" formControlName="ciudad_id">
+                    <mat-select placeholder="ciudad*" [(value)]="selectedCiu" formControlName="ciudad_id">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let c of ciudades" [value]="c.id">{{c.ciudad}}</mat-option>
-                    </mat-select>
-                    <p>You selected: {{selectedCiu}}</p>
 
+                    </mat-select>
+
+                    <p>You selected: {{selectedCiu}}</p>
+                    <mat-error *ngIf="formAddress.controls['ciudad_id'].errors?.required">Este campo es requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {CatalogoServes} from '../../../../../services/Catalogos/catalogos.service';
-
+import {NotificationService} from '../../../../../services/shared/notification.service';
 import {DashboardService} from "../../../../../services/shared/dashboard.service";
 @Component({
   selector: 'app-add-direccion',
@@ -22,25 +22,27 @@ export class AddDireccionComponent implements OnInit {
     datos_adicionales: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(60)]),
     celular: new FormControl('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]),
     direccion: new FormControl('', [Validators.required, Validators.minLength(13), Validators.maxLength(20)]),
-    departamento_id: new FormControl('', Validators.required),
-    ciudad_id: new FormControl('', Validators.required),
+    departamento_id: new FormControl('', [Validators.required]),
+    ciudad_id: new FormControl('', [Validators.required]),
   });
 
   restartFormGroup(){
     this.formAddress.setValue({
-      avatar: '',
-      nombre: 'E',
-      apellido: 'F',
-      telefono: '212',
-      celular: 0,
-      identificacion_id: 0,
-      departamento_id: 0,
-      ciudad_id: 0,
+
+      nombre: '',
+      apellido: '',
+      celular: '',
+      departamento_id: '',
+      ciudad_id: '',
+      cliente_id: 0,
+      barrio:'',
+      datos_adicionales:'',
+      direccion:'',
     })
   }
 
 
-  constructor(private cataloServe :CatalogoServes,private dashboardService:DashboardService) { }
+  constructor(private cataloServe :CatalogoServes,private dashboardService:DashboardService, private notificacion: NotificationService) { }
 
 
 
@@ -103,6 +105,7 @@ onAddAdress(){
 
         this.formAddress.reset();
         this.restartFormGroup();
+        this.notificacion.success('Direccion  guardada satisfactoriamente');
       },
       err => console.log(err)
      )

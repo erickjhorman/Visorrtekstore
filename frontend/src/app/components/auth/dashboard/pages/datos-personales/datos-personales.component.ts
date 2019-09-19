@@ -19,21 +19,22 @@ export class DatosPersonalesComponent implements OnInit {
     telefono: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     celular: new FormControl('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]),
     identificacion: new FormControl('', [Validators.required]),
-    identificacion_id: new FormControl('', Validators.required),
-    departamento_id: new FormControl('', Validators.required),
-    ciudad_id: new  FormControl('', Validators.required),
+    identificacion_id: new FormControl('', [Validators.required]),
+    departamento_id: new FormControl('', [Validators.required]),
+    ciudad_id: new  FormControl('', [Validators.required]),
   });
 
   restartFormGroup(){
     this.formUser.setValue({
       avatar: '',
-      nombre: 'E',
-      apellido: 'F',
-      telefono: '212',
-      celular: 0,
-      identificacion_id: 0,
-      departamento_id: 0,
-      ciudad_id: 0,
+      nombre: '',
+      apellido: '',
+      telefono: '',
+      celular: '',
+      identificacion:'',
+      identificacion_id: '',
+      departamento_id: '',
+      ciudad_id: '',
     })
   }
 
@@ -81,7 +82,8 @@ export class DatosPersonalesComponent implements OnInit {
   onClear(){
     this.formUser.reset();
     this.restartFormGroup();
-    this.notificacion.success('Usuario actualizado satisfactoriamente');
+
+
    }
 
   ChangeId(selectedId:number){

@@ -59,7 +59,7 @@ class dashboarUsuarioControlador extends Controller
         $domicilio->datos_adicionales = $request->datos_adicionales;
 
         $domicilio->save();
-        return "Guardado";
+        return $domicilio;
     }
 
     /**
