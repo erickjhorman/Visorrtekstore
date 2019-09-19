@@ -52,9 +52,9 @@ valuesFormDireccione: any;
   }
 
     //To get the value of the selected
-    ChangeId(selectedId:number){
+    ChangeId($event){
 
-      this.getCiudades(selectedId);
+      this.getCiudades($event);
     }
 
   onClose(){

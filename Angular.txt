@@ -23,6 +23,7 @@ ng g c components/partials/carrito-compra/procesoCompra/pagos --skip-import
 
 
 ng g c components/auth/dashboard/pages/datosPersonales  --spec false --skip-import
+ng g c components/auth/dashboard/pages/addDireccion  --spec false --skip-import
 ng g c components/auth/dashboard/pages/personalizacionSite  --spec false --skip-import
 ng g c components/auth/dashboard/pages/datosPersonales  skipTests --skip-import 
 ng g c components/auth/dashboard/pages/sidebar/datosPersonales  skipTests --skip-import 
@@ -46,6 +47,7 @@ ng g s services/auth/authGuards --module=app
 ng g s services/Auth --module=app
 ng g s services/response-reset --module=app
 ng g s services/shared/dashboard  --spec false
+ng g s services/shared/notification  --spec false
 ng g s services/testimonios --module=app
 ng g s services/testimonios --module=app
 
@@ -61,6 +63,8 @@ ng g c components/partials/carrito_compra --skip-import
 ng g c components/partials/extension_panel_detalleProducto --skip-import
 ng g c components/partials/footer_home --skip-import
 ng g c components/testomoniales --skip-import
+
+>ng new NameOfProject --skip-tests --skip-git 
 
 https://forum.vuejs.org/t/v-for-and-router-link-how-do-i-insert-a-route-while-iterating-through-an-array-of-objects/33275
 http://localhost:8000/public/imagenes/1.jpg

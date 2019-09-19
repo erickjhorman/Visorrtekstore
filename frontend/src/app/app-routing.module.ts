@@ -14,6 +14,7 @@ import {ComentarioDetalleProductoComponent}  from './components/partials/comenta
 import {AppComponent} from '../app/app.component';
 import {DatosPersonalesComponent} from './components/auth/dashboard/pages/datos-personales/datos-personales.component'
 import {PersonalizacionSiteComponent} from './components/auth/dashboard/pages/personalizacion-site/personalizacion-site.component';
+import {AddDireccionComponent} from "./components/auth/dashboard/pages/add-direccion/add-direccion.component";
 
   const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +27,7 @@ import {PersonalizacionSiteComponent} from './components/auth/dashboard/pages/pe
   {path:'dashboard' , component:DashboardComponent , canActivate : [AfterLoginService]},
   {path:'dashboard/datos-personales' , component:DatosPersonalesComponent , canActivate : [AfterLoginService]},
   {path:'dashboard/personalizacion' , component:PersonalizacionSiteComponent , canActivate : [AfterLoginService]},
+  {path:'dashboard/addDireccion' , component:AddDireccionComponent , canActivate : [AfterLoginService]},
   {path:'admin' , component:DashboardAdminComponent , canActivate : [AfterLoginService]},
   {path:'request-password-reset',component:RequestResetComponent , canActivate : [BeforeLoginService]},
   {path:'response-password-reset',component:ResponseResetComponent, canActivate : [BeforeLoginService]},

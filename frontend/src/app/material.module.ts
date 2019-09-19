@@ -15,17 +15,19 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
 @NgModule({
   imports: [MatSidenavModule,MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
     MatCardModule , MatDialogModule ,MatExpansionModule, MatFormFieldModule, TextFieldModule,MatDatepickerModule,
-    MatToolbarModule, MatInputModule,MatTableModule,MatStepperModule
+    MatToolbarModule, MatInputModule,MatTableModule,MatStepperModule, MatSelectModule,MatSnackBarModule
   ],
   exports: [MatSidenavModule, MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
            MatCardModule, MatDialogModule , MatExpansionModule,MatFormFieldModule,TextFieldModule,MatDatepickerModule,
-           MatToolbarModule,MatInputModule,MatTableModule,MatStepperModule
+           MatToolbarModule,MatInputModule,MatTableModule,MatStepperModule,MatSelectModule,MatSnackBarModule
           ],
 })
 export class MateriaAngularCss {

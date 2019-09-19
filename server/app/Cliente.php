@@ -9,15 +9,15 @@ class Cliente extends Model
     protected $fillable = [
         'id',
         'usuario_id',
-        'identificacion_id',
+        'tipoIdentificacion_id',
         'departamento_id',
         'tarjeta_id',
         'ciudad_id',
         'avatar',
         'nombre',
+        'apellido',
         'telefono',
         'celular',
-        'correo',
         'updated_at',
         'created_at',
 

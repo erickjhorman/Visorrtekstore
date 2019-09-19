@@ -10,7 +10,8 @@ https://www.solvetic.com/tutoriales/article/2481-almacenar-archivos-en-campos-bl
 Se creo la vista para crear el solicitante llamada cSolicitante 
 
 Se creo controlador solicitante 
-php artisan make:controller SolicitanteControlador --resource
+php artisan make:controller dashboarUsuarioControlador --resource
+
 
 23/08/2018
 php artisan make:model estadoCivil --migration  ok

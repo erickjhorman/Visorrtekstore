@@ -40,7 +40,8 @@ import {SidenavUserComponent} from "./components/auth/dashboard/sidenav-user/sid
 import {DatosPersonalesComponent} from "./components/auth/dashboard/pages/datos-personales/datos-personales.component"
 import {DatosPersonalesSidebarComponent} from "./components/auth/dashboard/pages/sidebar/datos-personales-sidebar/datos-personales-sidebar.component"
 import {PersonalizacionSiteComponent} from "./components/auth/dashboard/pages/personalizacion-site/personalizacion-site.component";
-
+import {DashboardService} from "./services/shared/dashboard.service";
+import {AddDireccionComponent} from "./components/auth/dashboard/pages/add-direccion/add-direccion.component";
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -97,7 +98,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     SidenavUserComponent,
     DatosPersonalesComponent,
     DatosPersonalesSidebarComponent,
-    PersonalizacionSiteComponent
+    PersonalizacionSiteComponent,
+    AddDireccionComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
 
 
     // MatSidenavModule,
@@ -120,7 +123,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     SignupService,
     AfterLoginService,
     BeforeLoginService,
-
+    DashboardService
     ],
   bootstrap: [AppComponent],
     entryComponents:[MostrarDetalleProductoComponent,

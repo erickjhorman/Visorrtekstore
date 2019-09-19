@@ -13,6 +13,7 @@ export class CatalogoServes {
 
   API_URI = 'http://localhost:8000/api/catalogos';
   API_URIUser = 'http://localhost:8000/api/user';
+  API_URICliente = 'http://localhost:8000/api/dashboard';
 
   //API_URIProductos = 'http://localhost:8000/api/catalogos/marca';
   nombre: string = undefined
@@ -68,8 +69,17 @@ export class CatalogoServes {
       return this.http.get(`${this.API_URIUser}/departamentos/ciudades/${id}`);
     }
 
+    getCliente(id: number){
+      return this.http.get(`${this.API_URICliente}/datos-personales/${id}`);
+    }
 
-  saveComentario(comentario: Comentario){
+
+    updateCliente(id: number,updatedCliente){
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.put(`${this.API_URICliente}/datos-personales/${id}`, updatedCliente, {headers: headers});
+    }
+
+    saveComentario(comentario: Comentario){
     const headers = new HttpHeaders({'content-type': 'application/json'});
     return this.http.post(`${this.API_URI}/marca/show/comentario` , comentario , {headers: headers});
 

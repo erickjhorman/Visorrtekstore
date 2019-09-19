@@ -14,9 +14,10 @@ class Domicilio extends Model
         'nombre',
         'apellido',
         'barrio',
-        'via',
+        'direccion',
         'numero',
         'celular',
+        'datos_adicionales',
 
     ];
 

@@ -30,6 +30,16 @@ Route::group([
         Route::get('departamentos/ciudades/{id}', 'ProcesoCompraController@getCatalogosCiudades');
 });
 
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'dashboard'], function ($router) {
+    Route::get('/datos-personales/{id}', 'dashboarUsuarioControlador@index');
+    Route::put('/datos-personales/{id}', 'dashboarUsuarioControlador@update');
+    Route::post('/datos-personales/addDireccion', 'dashboarUsuarioControlador@store');
+});
+
+
+
 //My Rest API
 Route::get('catalogos', 'HomeController@index');
 Route::get('catalogos/productosDestacados','HomeController@productosDestacados');
