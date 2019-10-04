@@ -42,6 +42,8 @@ import {DatosPersonalesSidebarComponent} from "./components/auth/dashboard/pages
 import {PersonalizacionSiteComponent} from "./components/auth/dashboard/pages/personalizacion-site/personalizacion-site.component";
 import {DashboardService} from "./services/shared/dashboard.service";
 import {AddDireccionComponent} from "./components/auth/dashboard/pages/add-direccion/add-direccion.component";
+import {SidenavAdminComponent} from "./components/auth/dashboard/sidenav-admin/sidenav-admin.component";
+
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatMenuModule} from '@angular/material/menu';
@@ -99,7 +101,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     DatosPersonalesComponent,
     DatosPersonalesSidebarComponent,
     PersonalizacionSiteComponent,
-    AddDireccionComponent
+    AddDireccionComponent,
+    SidenavAdminComponent
   ],
   imports: [
     BrowserModule,

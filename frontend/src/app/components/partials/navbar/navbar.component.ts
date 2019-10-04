@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
   public loggedin :boolean;
   listadoCompras: string[] = [];
   producto: string;
+  public loggedinAdmin: true;
 
   constructor(
     private Auth: AuthService,
@@ -29,7 +30,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.Auth.authStatus.subscribe(value => this.loggedin = value);
-}
+
+    //To get the information from  a sessionStorage
+    var tipo_user = localStorage.getItem('tipo_usuario');
+    console.log(tipo_user);
+    console.log(this.loggedinAdmin);
+   }
+
+
 
   logout(event: MouseEvent ){
     // this.sharedService.sharingData.emit("this.addproducto");

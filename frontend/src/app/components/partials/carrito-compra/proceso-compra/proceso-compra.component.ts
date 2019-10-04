@@ -9,6 +9,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {SharedService} from '../../../../services/shared/shared.service';
 import {PagoService} from '../../../../services/pagos/pago.service';
 import {Router} from "@angular/router";
+import {DashboardService} from "../../../../services/shared/dashboard.service";
 
 
 @Component({
@@ -24,6 +25,8 @@ export class ProcesoCompraComponent implements OnInit {
   precio_total: number;
   valuesFormDireccione: any;
   valuesFormTransportadora: any;
+  domicilio : any;
+  ocultarBtnDomicilio = false;
 
   private transportadora: any;
   private departamentos: any;
@@ -37,7 +40,7 @@ export class ProcesoCompraComponent implements OnInit {
   forthFormGroup: FormGroup;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any , private _formBuilder: FormBuilder,private dialogRef: MatDialogRef<ProcesoCompraComponent>,
-  private  cataServes: CatalogoServes , private dialog: MatDialog , private sharedService: SharedService, private pagosServices: PagoService,private router:Router )  {
+  private  cataServes: CatalogoServes , private dashboardService:DashboardService , private dialog: MatDialog , private sharedService: SharedService, private pagosServices: PagoService,private router:Router )  {
   console.log(data);
 
   //To share the form in preceso compra componenet
@@ -85,8 +88,8 @@ export class ProcesoCompraComponent implements OnInit {
     //To get the information from  a sessionStorage
     var user = sessionStorage.getItem('userAuth');
     this.user =  JSON.parse(user);
-    console.log(this.user);
-
+     console.log(this.user);
+     this.getDireccionCliente(this.user.id);
   }
 
 
@@ -193,6 +196,22 @@ export class ProcesoCompraComponent implements OnInit {
    enviarMensajeVendedor(){
    this.show = !this.show;
    }
+
+   getDireccionCliente(id:number){
+     this.dashboardService.getDomiciliosCleinte(id).subscribe(
+
+      res =>{
+
+            this.domicilio = res
+            this.ocultarBtnDomicilio = false;
+            console.log(this.domicilio)
+          },
+      err => console.log(err)
+    );
+
+  }
+
+
 
 
 }

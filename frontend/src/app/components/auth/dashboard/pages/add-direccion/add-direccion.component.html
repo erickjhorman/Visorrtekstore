@@ -1,10 +1,16 @@
-<div class="row">
+<!-- <div class="row">
     <app-datos-personales-sidebar></app-datos-personales-sidebar>
-</div>
+</div> -->
 
 <form [formGroup]="formAddress" (ngSubmit)="onAddAdress()" class="normal-form">
     <mat-grid-list cols="2" rowHeight="500px">
+
         <mat-grid-tile>
+            <app-datos-personales-sidebar></app-datos-personales-sidebar>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+
             <div class="form-container">
 
                 <input type="text" id="cliente_id" value={{user.id}} formControlName="cliente_id">

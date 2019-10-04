@@ -6,6 +6,7 @@ ng g c components/auth/signup
 ng g c components/auth/profile 
 ng g c components/auth/dashboard_admin  --skip-import
 ng g c components/auth/dashboard/sidenav_user  --skip-import
+ng g c components/auth/dashboard/sidenav_admin  --skip-import
 ng g c components/home
 ng g c components/catalogos/catalogos 
 ng g c components/catalogos/cascos --skip-import
@@ -48,6 +49,7 @@ ng g s services/Auth --module=app
 ng g s services/response-reset --module=app
 ng g s services/shared/dashboard  --spec false
 ng g s services/shared/notification  --spec false
+ng g s services/shared/dashboardAdmin --spec false
 ng g s services/testimonios --module=app
 ng g s services/testimonios --module=app
 

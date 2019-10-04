@@ -1,8 +1,61 @@
-<p>
-  dashboard-admin works!
-</p>
+<mat-grid-list cols="4">
+    <mat-grid-tile colspan="1 " rowspan="2">
+        <app-sidenav-admin></app-sidenav-admin>
+    </mat-grid-tile>
+    <!-- <mat-grid-tile colspan="3" rowspan="3">
 
-<p>Email : {{user.email}}</p>
-<p>ID : {{user.id}}</p>
-<p>Nombre : {{user.nombre}}</p>
-<p>Created At : {{user.created_at}}</p>
+        <div class="container">
+            <div class="row pt-3" *ngFor="let v of allVentas">
+                <mat-card class="card-ventas">
+                    <mat-divider></mat-divider>
+                    <mat-card-header>
+                        <div mat-card-avatar class="imagen-oroducto-header-image"></div>
+                        <mat-card-title>{{v.nombre}}</mat-card-title>
+                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <p>cantidada {{v.cantidad}}sddddddddddddddddddddddddddddddddddddddddddd
+                        </p>
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                        <button mat-button>LIKE</button>
+                        <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+
+    </mat-grid-tile> -->
+
+    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
+
+        <div class="container">
+            <cdk-virtual-scroll-viewport itemSize="100" class="scroll">
+                <div class="row pt-4" *cdkVirtualFor="let v of allVentas">
+                    <mat-card class="card-ventas">
+                        <mat-divider></mat-divider>
+                        <mat-card-header>
+                            <div mat-card-avatar class="imagen-oroducto-header-image"></div>
+                            <mat-card-title>{{v.nombre}}</mat-card-title>
+                            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                        </mat-card-header>
+
+                        <mat-card-content>
+                            <p>cantidad {{v.cantidad}}
+                            </p>
+                        </mat-card-content>
+
+                        <mat-card-actions>
+                            <button mat-button>LIKE</button>
+                            <button mat-button>SHARE</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </div>
+
+    </mat-grid-tile>
+
+</mat-grid-list>

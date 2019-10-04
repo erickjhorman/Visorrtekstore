@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA} from '@angula
 import {SharedService} from '../../../services/shared/shared.service'
 import { MatTableDataSource } from '@angular/material'; //To get the information to store in the table
 import {ProcesoCompraComponent}  from '../../../components/partials/carrito-compra/proceso-compra/proceso-compra.component';
+import {NotificationService} from "../../../services/shared/notification.service";
 
 
 
@@ -23,7 +24,10 @@ export class CarritoCompraComponent implements OnInit {
   getTotalCompras : number;
   costototal: number;
 
-  constructor ( private sharedService: SharedService , private dialog: MatDialog,
+
+  show: boolean = true;
+
+  constructor ( private sharedService: SharedService , private dialog: MatDialog, private notificacionServive:NotificationService
     ) {
 
     //this.sharedService.productoSel.subscribe(producto => this.producto = producto)
@@ -53,28 +57,33 @@ export class CarritoCompraComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.sharedService.currentMessage.subscribe(message => this.message = message)
-    // console.log("Mensaje enviado" + this.message);
+   this.loadStripe();
+   this.FinallistadoCompras;
+   this.isProductos();
 
-    //console.log("Producto Carrito de compra" + this.producto);
+}
 
+isProductos(){
+  var  shoppingKartEmpty = document.getElementById('imagenShopingCartEmpty');
+  var  tbtKrt =  document.getElementById('tbtCarrito_Compras');
+  if (this.listadoCompras.length > 0) {
+        this.show = true;
+        shoppingKartEmpty.style.removeProperty('background-image')
 
-
-    // this.listadoCompras.push(this.producto);
-    // console.log(this.listadoCompras);
-  this.loadStripe();
-  this.FinallistadoCompras;
-//array to add objects
-
-
-    // this.sharedService.sharingData.subscribe(res =>{
-    //   console.log("Events Get Subscribe");
-    //   this.producto = res;
-    //   console.log(res);
-    //   console.log(this.producto);
-    // })
+  } else {
+    //this.hide_productos = true
+    shoppingKartEmpty.style.backgroundImage = "url('http://woodwork.be/media/wysiwyg/empty-cart.jpg')";
+    shoppingKartEmpty.style.backgroundSize = "180px 180px";
+    shoppingKartEmpty.style.backgroundRepeat  = "repeat-y";
+    shoppingKartEmpty.style.backgroundPosition = "center center";
+    //tbtKrt.style.visibility = 'hidden';
+    this.show = !this.show;
   }
+
+ }
     addCarrito(productos : any){
+
+
 
   //   if(this.listadoCompras.length){
   //     this.listadoCompras.push(productos);
@@ -91,7 +100,7 @@ export class CarritoCompraComponent implements OnInit {
         console.log(this.listadoCompras);
         console.log("Dta table " + this.listData);
 
-
+        this.isProductos()
   }
 
   loadStripe() {
@@ -146,6 +155,7 @@ export class CarritoCompraComponent implements OnInit {
           console.log("pocisiosn " + indice);
           console.log("eliminado")
           this.eliminaProducto(indice);
+
         }
 
    }
@@ -157,13 +167,24 @@ export class CarritoCompraComponent implements OnInit {
       this.listData = new MatTableDataSource(this.listadoCompras);
         console.log(this.listadoCompras);
         console.log("Dta table " + this.listData);
-    console.log(this.listadoCompras);
+        console.log(this.listadoCompras);
+        this.isProductos()
   }
 
 
   procesoComprar(event){
+
      console.log("Comprar");
-     this.onCreateDialogProcesoCompra();
+
+     if (this.listadoCompras.length > 0) {
+
+
+      this.onCreateDialogProcesoCompra();
+     } else {
+       this.notificacionServive.success("Debes añadir un producto primero");
+
+     }
+
 
   }
 

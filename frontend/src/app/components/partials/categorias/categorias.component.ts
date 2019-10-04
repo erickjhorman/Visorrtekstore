@@ -16,7 +16,7 @@ export class CategoriasComponent implements OnInit {
     //To share the form in preceso compra componenet
      this.sharedService.mostrarSideNavCategorias.subscribe(mostrar => {
       console.log(mostrar)
-      this.toogleHidden(mostrar)
+      //this.toogleHidden(mostrar)
 
       });
    }

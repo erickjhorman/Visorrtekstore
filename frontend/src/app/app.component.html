@@ -4,8 +4,8 @@
 
 <div class="container-principal">
     <router-outlet></router-outlet>
-    <!--<div  class="carritoHover" id="carrito"  (mouseleave)="leaveToogleShowCatalogosComponent($event)" [hidden]="hidden" style="width: 260px; height: auto;"> -->
-    <div class="carritoHover" id="carrito" (mouseleave)="leaveToogleShowCatalogosComponent($event)" [hidden]="hidden" style="width: 200px; height: auto;">
+    <!--<div  class="carritoHover" id="carrito"   *ngIf="hidden"  (mouseleave)="leaveToogleShowCatalogosComponent($event)" [hidden]="hidden" style="width: 260px; height: auto;"> -->
+    <div class="carritoHover" id="carrito" [hidden]="hidden" (mouseleave)="leaveToogleShowCatalogosComponent($event)" style="width: 200px; height: auto; ">
         <app-slidebar></app-slidebar>
     </div>
 </div>

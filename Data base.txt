@@ -1,0 +1,2 @@
+id tipo_producto  es igual a 1
+tipoProductoId  se pone 1  tomo la id de marca 

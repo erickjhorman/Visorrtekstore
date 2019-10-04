@@ -15,9 +15,10 @@ authStatus = this.loggeIn.asObservable();
 
 changeAuthStaus(value: boolean){
   this.loggeIn.next(value)
-  
-  
-  }
+
+}
+
+
 
   constructor( private Token:TokenService) { }
 }

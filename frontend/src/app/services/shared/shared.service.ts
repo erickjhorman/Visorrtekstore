@@ -49,6 +49,13 @@ formValuesTransportadora = this.formTransportadoraAddSource.asObservable();
 private arrayComprasAddSource = new Subject();
 arrayValuesCompras = this.arrayComprasAddSource.asObservable();
 
+
+private getDeshabilitarBtnVerAddSource = new Subject();
+valorDeshabilitarBtnVerCatalogos = this.getDeshabilitarBtnVerAddSource.asObservable();
+
+private emitIdproDesdeCatalogosAddSource = new Subject();
+idProductosCatalogos = this.emitIdproDesdeCatalogosAddSource.asObservable();
+
   constructor(private http: HttpClient ) {}
 
   sharingData: EventEmitter<any> = new EventEmitter();
@@ -98,8 +105,15 @@ arrayValuesCompras = this.arrayComprasAddSource.asObservable();
     console.log("Formulario ya recivido compras" + values);
   }
 
+  getDeshabilitarBtnVer(valor:boolean){
+      this.getDeshabilitarBtnVerAddSource.next(valor)
+      console.log("Variable deshabilitar btn boton " + valor)
+  }
 
-
+  EmitIdproducto(id:number){
+    this.emitIdproDesdeCatalogosAddSource.next(id)
+    console.log("Variable id btn boton " + id)
+}
 
 }
 

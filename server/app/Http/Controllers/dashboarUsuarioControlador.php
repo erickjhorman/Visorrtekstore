@@ -24,6 +24,17 @@ class dashboarUsuarioControlador extends Controller
         return $Clientes;
     }
 
+    public function getDireccion($id){
+
+        $direccion = DB::table('domicilios')
+       ->select('domicilios.*')
+       ->where('cliente_id', '=', $id)
+       ->get();
+
+       return $direccion;
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -96,29 +107,29 @@ class dashboarUsuarioControlador extends Controller
 
         $cliente = Cliente::where('usuario_id','=',$id)->firstOrFail();
         // $cliente = Cliente::find($id);
-        $input = $request->all();
-        return $input;
+        return  $request;
 
 
-        for ($i=0; $i<count($input) ; $i++) {
-            $tipoIdentificacion_id = $input['tipoIdentificacion_id'];
-            $departamento_id = $input['departamento_id'];
-            $ciudad_id = $input['ciudad_id'];
-            $nombre = $input['nombre'];
-            $apellido =  $input['apellido'];
-            $telefono = $input['telefono'];
-            $celular = $input['celular'];
-           }
+
+        // for ($i=0; $i<count($input) ; $i++) {
+        //     $tipoIdentificacion_id = $input['tipoIdentificacion_id'];
+        //     $departamento_id = $input['departamento_id'];
+        //     $ciudad_id = $input['ciudad_id'];
+        //     $nombre = $input['nombre'];
+        //     $apellido =  $input['apellido'];
+        //     $telefono = $input['telefono'];
+        //     $celular = $input['celular'];
+        //    }
 
 
-        $cliente->tipoIdentificacion_id = $tipoIdentificacion_id;
-        $cliente->departamento_id = $departamento_id;
-        $cliente->ciudad_id =  $ciudad_id;
-        $cliente->nombre =   $nombre;
-        $cliente->apellido =  $apellido;
-        $cliente->telefono = $telefono;
-        $cliente->celular =  $celular;
-        $cliente->save();
+        // $cliente->tipoIdentificacion_id = $tipoIdentificacion_id;
+        // $cliente->departamento_id = $departamento_id;
+        // $cliente->ciudad_id =  $ciudad_id;
+        // $cliente->nombre =   $nombre;
+        // $cliente->apellido =  $apellido;
+        // $cliente->telefono = $telefono;
+        // $cliente->celular =  $celular;
+        // $cliente->save();
 
 
 

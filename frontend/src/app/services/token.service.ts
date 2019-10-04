@@ -18,12 +18,15 @@ export class TokenService {
 
   }
 
+
+
+
   //To set the token to authenticate user
-  set(token: any) {
+  set(token: any ) {
 
     localStorage.setItem('token' , token)
     console.log(token);
-  }
+   }
 
   get(){
     return localStorage.getItem('token');
@@ -59,8 +62,17 @@ export class TokenService {
     return JSON.parse(atob(payload));
   }
 
-  loggedIn(){
+  // loggedIn(){
+  //   if(localStorage.getItem('token') != null )
+  //     return true;
+  //    }
+
+    loggedIn(){
     if(localStorage.getItem('token') != null )
-      return true;
+     return true;
      }
+
+
+
+
   }

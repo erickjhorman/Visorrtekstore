@@ -53,4 +53,9 @@ export class DashboardService {
     return this.http.post(`${this.API_URICliente}/datos-personales/addDireccion` , direccion , {headers: headers});
   }
 
+  getDomiciliosCleinte(id:number){
+    return this.http.get(`${this. API_URICliente}/datos-personales/getDireccion/${id}`);
+  }
+
+
 }

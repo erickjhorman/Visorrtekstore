@@ -71,9 +71,11 @@ export class LoginComponent implements OnInit {
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStaus(true);
     sessionStorage.setItem('userAuth',JSON.stringify(this.user));
+    localStorage.setItem('tipo_usuario', this.user.user );
 
     var admin = sessionStorage.getItem('userAuth');
     this.admin =  JSON.parse(admin);
+
 
           if (this.admin.user == 1 ) {
 

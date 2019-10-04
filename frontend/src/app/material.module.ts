@@ -17,17 +17,22 @@ import {MatTableModule} from '@angular/material/table';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDividerModule} from '@angular/material/divider';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatTreeModule} from '@angular/material/tree';
 
 
 
 @NgModule({
   imports: [MatSidenavModule,MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
     MatCardModule , MatDialogModule ,MatExpansionModule, MatFormFieldModule, TextFieldModule,MatDatepickerModule,
-    MatToolbarModule, MatInputModule,MatTableModule,MatStepperModule, MatSelectModule,MatSnackBarModule
+    MatToolbarModule, MatInputModule,MatTableModule,MatStepperModule, MatSelectModule,MatSnackBarModule,MatDividerModule,
+    ScrollingModule,MatTreeModule
   ],
   exports: [MatSidenavModule, MatMenuModule , MatListModule,MatButtonModule,MatIconModule,MatGridListModule,
            MatCardModule, MatDialogModule , MatExpansionModule,MatFormFieldModule,TextFieldModule,MatDatepickerModule,
-           MatToolbarModule,MatInputModule,MatTableModule,MatStepperModule,MatSelectModule,MatSnackBarModule
+           MatToolbarModule,MatInputModule,MatTableModule,MatStepperModule,MatSelectModule,MatSnackBarModule,MatDividerModule,
+           ScrollingModule,MatTreeModule
           ],
 })
 export class MateriaAngularCss {

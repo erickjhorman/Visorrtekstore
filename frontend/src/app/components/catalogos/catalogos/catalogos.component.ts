@@ -8,6 +8,7 @@ import {CarritoCompraComponent} from '../../partials/carrito-compra/carrito-comp
 import {SharedService} from '../../../services/shared/shared.service';
 
 
+
 @Component({
   selector: 'app-catalogos',
   templateUrl: './catalogos.component.html',
@@ -25,7 +26,10 @@ export class CatalogosComponent implements OnInit {
   hidden = true;
   marca: any;
   productos: any;
-  ocultarItemSelleccionado: boolean;
+  ocultarItemSelleccionado: any;
+  deshabilitar = false;
+  idProducto: boolean;
+
   //productoAdd: any
   public  productoShow : any; //Variable to get the information of the current prouct to show in the patent component
   public producto: any
@@ -42,6 +46,12 @@ export class CatalogosComponent implements OnInit {
 
     })
 
+   //get the value to disable the button ver in this html
+       this.sharedService.valorDeshabilitarBtnVerCatalogos.subscribe(valor => {
+       this.deshabilitar = true
+    })
+
+
 
     //Get the value from shared.service
     this.sharedService.mostrarComponente.subscribe(hidden2 => {
@@ -53,13 +63,12 @@ export class CatalogosComponent implements OnInit {
 
   }
 
-
-
   getproductos(id:number){
     this.catalogoService.getProductos(id).subscribe(
       res =>{
 
             this.productos= res
+
 
       },
       err => console.log(err)
@@ -87,15 +96,19 @@ export class CatalogosComponent implements OnInit {
 
    //Function to get only one producto with comments as well.
   getProductoShow(id:number){
+    this.sharedService.EmitIdproducto(id);
 
-
-    this.catalogoService.getProducto(id).subscribe(
+this.catalogoService.getProducto(id).subscribe(
 
       res =>{
 
             this.productoShow = res
             console.log("Erick " + this.productoShow)
+
             this.onCreate(this.productoShow);
+
+
+
       },
       err => console.log(err)
     );
@@ -109,6 +122,7 @@ export class CatalogosComponent implements OnInit {
   }
 
   addProductoModel(id:any){
+
     const dialogConfig = new  MatDialogConfig();
     console.log("1 paso" + id)
     let productoSeleccionado = id
@@ -119,6 +133,7 @@ export class CatalogosComponent implements OnInit {
     dialogConfig.height = "400px";
    // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = productoSeleccionado;
+
     this.dialog.open(CarritoCompraComponent, dialogConfig,)
    }
 
@@ -134,6 +149,9 @@ export class CatalogosComponent implements OnInit {
       console.log("Variable" + hidden)
       this.hidden = !this.hidden;
    }
+
+
+
 
    ocultarItemSeleccionado(){
      this.ocultarItemSelleccionado

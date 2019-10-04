@@ -19,7 +19,8 @@
                 <!-- <a class="nav-link" id="categorias" (click)="toogleShowCatalogosComponent($event)">Categorias</a>-->
 
                 <!-- <a class="nav-link" id="categorias" (mouseenter)="toogleShowCatalogosComponent($event)"  (mouseleave)="leaveToogleShowCatalogosComponent($event)"   (mouseout)="toogleShowCatalogosComponent($event)"  >Categorias</a> -->
-                <a class="nav-link" id="categorias" (mouseover)="toogleShowCatalogosComponent($event)">Categorias</a>
+
+                <a class="nav-link" id="categorias" (click)="toogleShowCatalogosComponent($event)">Categorias</a>
             </li>
 
             <li class="nav-item">
@@ -45,10 +46,14 @@
                 <a class="nav-link" routerLink="/signup" *ngIf="!loggedin">Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="dashboard" *ngIf="loggedin">Dashboard</a>
-
+                <a class="nav-link" routerLink="admin" *ngIf="loggedin && loggedinAdmin; else notAdmin">Dashboard</a>
             </li>
 
+            <ng-template #notAdmin>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="dashboard" *ngIf="loggedin">Dashboard</a>
+                </li>
+            </ng-template>
 
             <li class="nav-item" style="font-size: 15px">
                 <a class="nav-link" *ngIf="loggedin" (click)="toogleHidden($event)"><span><i

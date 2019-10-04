@@ -1,0 +1,56 @@
+.card-ventas {
+    max-width: 950px;
+}
+
+.row {
+    max-width: 950px;
+}
+
+.imagen-oroducto-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.scroll {
+    height: 500px;
+    width: 998px;
+    border: 1px solid black;
+}
+
+.example-item {
+    height: 50px;
+}
+
+cdk-virtual-scroll-viewport {
+    height: 100vh;
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+}
+
+
+/* width */
+
+.container::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Track */
+
+.container::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+}
+
+
+/* Handle */
+
+.container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}

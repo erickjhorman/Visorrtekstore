@@ -1,32 +1,38 @@
 table {
-  width: 100%;
+    width: 100%;
 }
 
-#carritoCompra{
-background-color: white;
-
+#carritoCompra {
+    background-color: white;
 }
 
-h2{
-  text-align: center;
+h2 {
+    text-align: center;
 }
+
 
 /* Style for table */
+
 .example-container {
-  height: 170px;
-  overflow: auto;
+    height: 170px;
+    overflow: auto;
 }
 
 table {
-  width: 100%;
+    width: 100%;
 }
 
 tr.mat-footer-row {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .mat-table-sticky {
-  border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
 }
 
+
 /* End of  Style for table */
+
+.noFiles {
+    text-align: center;
+}
