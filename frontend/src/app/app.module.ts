@@ -43,6 +43,7 @@ import {PersonalizacionSiteComponent} from "./components/auth/dashboard/pages/pe
 import {DashboardService} from "./services/shared/dashboard.service";
 import {AddDireccionComponent} from "./components/auth/dashboard/pages/add-direccion/add-direccion.component";
 import {SidenavAdminComponent} from "./components/auth/dashboard/sidenav-admin/sidenav-admin.component";
+import {FormDireccioneUsuarioShowComponent} from "./components/partials/carrito-compra/procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component";
 
 //Angular Material
 // import {MatSidenavModule} from '@angular/material/sidenav';
@@ -102,7 +103,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     DatosPersonalesSidebarComponent,
     PersonalizacionSiteComponent,
     AddDireccionComponent,
-    SidenavAdminComponent
+    SidenavAdminComponent,
+    FormDireccioneUsuarioShowComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +133,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   bootstrap: [AppComponent],
     entryComponents:[MostrarDetalleProductoComponent,
     ExtensionPanelDetalleProductoComponent, ProcesoCompraComponent,
-    FormDireccioneUsuarioComponent, FormTransportadoraComponent
+    FormDireccioneUsuarioComponent, FormTransportadoraComponent,
+    FormDireccioneUsuarioShowComponent
   ]
 
 })

@@ -18,22 +18,26 @@
 
         <div class="form-row">
             <div class="form-group col">
-                <label for="">Departamento</label>
-                <select (selectionChange)="ChangeId($event.value)" class="form-control" id="departamento" formControlName="departamento">
-        <option value="o" disabled="true" selected>Selecione un Departamento</option>
-        <option *ngFor="let  d of data" [value]="d.id">{{d.departamento}}</option>
-
-          </select>
+                <mat-label>Departamento</mat-label>
+                <mat-select (selectionChange)="changeId($event.value)" placeholder="Departamento*" formControlName="departamento">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let d of departamentos" [value]="d.id">{{d.departamento}}</mat-option>
+                </mat-select>
             </div>
 
-            <div class="form-group col">
-                <label for="">ciudad</label>
-                <select class="form-control" id="ciudad" formControlName="ciudad">
-     <option *ngFor="let c of ciudades" [value]="c.id">{{c.ciudad}}</option>
-   </select>
-            </div>
+
+
+<div class="form-group col">
+  <mat-label>Ciudad</mat-label>
+  <mat-select placeholder="ciudad" formControlName="ciudad">
+
+    <mat-option *ngFor="let c of ciudades" [value]="c.id">{{c.ciudad}}</mat-option>
+  </mat-select>
+
+</div>
+
         </div>
-        <div class="col">
+        <div class="form-group col">
             <label for="">Barrio</label>
             <input class="form-control" type="text" placeholder="Barrio" formControlName="barrio">
         </div>

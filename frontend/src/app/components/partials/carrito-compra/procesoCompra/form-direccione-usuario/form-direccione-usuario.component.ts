@@ -16,15 +16,22 @@ export class FormDireccioneUsuarioComponent implements OnInit {
 
 private departamentos: any;
 private ciudades: any;
-@Output() enviarFormularioDirecciones =  new EventEmitter();
+private domicilio: any;
+
 
 infoDireccionesForm: any;
 valuesFormDireccione: any;
-  //Form
+show: boolean = false;
+
+//Form
   FormDireccionesUsuario: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<FormDireccioneUsuarioComponent>,
     private cataloServe :CatalogoServes , private sharedService: SharedService ) {
+
+  this.departamentos = data;
+
+
 
 
     this.FormDireccionesUsuario = new FormGroup({
@@ -52,8 +59,8 @@ valuesFormDireccione: any;
   }
 
     //To get the value of the selected
-    ChangeId($event){
-
+    changeId($event){
+      console.log($event)
       this.getCiudades($event);
     }
 
@@ -74,6 +81,7 @@ valuesFormDireccione: any;
   }
 
   guardarDirecciones(event){
+
     this.sharedService.getFormDirecciones(event)
   }
 }

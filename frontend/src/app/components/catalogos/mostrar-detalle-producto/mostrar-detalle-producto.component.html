@@ -22,14 +22,14 @@
                     <p><span>Talla disponibles:</span>{{d.talla}}</p>
                     <p><span>Cantidades disponibles:</span>{{d.Existencia}}</p>
                     <p><span>Precio: $ </span>{{d.Valor_Venta}}</p>
-                    <form class="form-cantidadProducto" (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)" #createPseleccionadoForm="ngForm">
+                    <form class="form-cantidadProducto" (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)" #createPseleccionadoForm="ngForm" novalidate="">
 
                         <input name="idproducto" type="hidden" [(ngModel)]="d.Producto_id">
                         <input name="producto" type="hidden" [(ngModel)]="d.Producto">
                         <input name="valorventa" type="hidden" [(ngModel)]="d.Valor_Venta">
 
                         <mat-form-field class="example-full-width">
-                            <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" ngModel>
+                            <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
                         </mat-form-field>
 
 
@@ -38,12 +38,13 @@
 
 
                         <mat-card-actions mt-12>
-                            <button mat-button class="btn btn-info btn-sm">Me gusta</button>
-                            <button mat-button id="addCar" style="position: relative; right: 58px ; left: 1px; " class="btn btn-success btn-sm">Agregar al carrito</button>
-                            <button mat-button class="btn btn-success btn-sm">Comprar</button>
+                            <button mat-button class="btn btn-info btn-sm" (click)="meGusta($event)"> Me gusta</button>
+                            <button mat-button [disabled]="createPseleccionadoForm.invalid" id="addCar" style="position: relative; right: 58px ; left: 1px; " class="btn btn-success btn-sm">Agregar al carrito</button>
+                            <button mat-button [disabled]="createPseleccionadoForm.invalid" class="btn btn-success btn-sm">Comprar</button>
                             <!-- <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button> -->
                             <!-- <button mat-button (click)="newMessage()"  class="btn btn-info btn-sm">New Message</button> -->
                         </mat-card-actions>
+
                     </form>
 
 

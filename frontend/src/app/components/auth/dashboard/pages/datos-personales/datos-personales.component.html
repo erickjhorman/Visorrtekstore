@@ -1,15 +1,109 @@
-<!-- <div class="row">
-    <app-datos-personales-sidebar></app-datos-personales-sidebar>
-</div> -->
+<mat-grid-list cols="8">
+    <mat-grid-tile colspan="1" rowspan="3">
+        <app-datos-personales-sidebar style="position: absolute; top: 35px; left: 35px; "></app-datos-personales-sidebar>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
 
-<form [formGroup]="formUser" (ngSubmit)="onSubmit()" class="normal-form">
+        <form [formGroup]="formUser" (ngSubmit)="onSubmit()" class="normal-form">
+            <mat-grid-list cols="2" rowHeight="500px">
+                <mat-grid-tile>
+                    <div class="controles-container">
+
+                        <input type="file">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" placeholder="Nombre*" value="" formControlName="nombre" matInput>
+                            <mat-error *ngIf="formUser.controls['nombre'].errors?.required">Este campo es requerido</mat-error>
+                            <mat-error *ngIf="formUser.controls['nombre'].errors?.minLength">Minimo caracteres requeridos 3</mat-error>
+                            <mat-error *ngIf="formUser.controls['nombre'].errors?.maxLength">Maximo caracteres requeridos 30</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input type="text" placeholder="apellido*" value="" formControlName="apellido" matInput>
+                            <mat-error *ngIf="formUser.controls['apellido'].errors?.required">Este campo es requerido</mat-error>
+                            <mat-error *ngIf="formUser.controls['apellido'].errors?.minLength">Minimo caracteres requeridos 3</mat-error>
+                            <mat-error *ngIf="formUser.controls['apellido'].errors?.maxLength">Maximo caracteres requeridos 30</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input type="text" placeholder="telefono*" value="" formControlName="telefono" matInput>
+                            <mat-error *ngIf="formUser.controls['telefono'].errors?.required">Este campo es requerido</mat-error>
+                            <mat-error *ngIf="formUser.controls['telefono'].errors?.minLength">Minimo caracteres requeridos 10</mat-error>
+                            <mat-error *ngIf="formUser.controls['telefono'].errors?.maxLength">Maximo caracteres requeridos 10</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input type="text" placeholder="celular*" value="" formControlName="celular" matInput>
+                            <mat-error *ngIf="formUser.controls['celular'].errors?.required">Este campo es requerido</mat-error>
+                            <mat-error *ngIf="formUser.controls['celular'].errors?.minLength">Minimo caracteres requeridos 13</mat-error>
+                            <mat-error *ngIf="formUser.controls['celular'].errors?.maxLength">Maximo caracteres requeridos 13</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="controles-container">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Identificacion</mat-label>
+                            <mat-select placeholder="Identificacion*" formControlName="identificacion_id" [(value)]="selectedId">
+                                <mat-option>No seleccion</mat-option>
+                                <mat-option *ngFor="let identificacion of identificaciones" [value]="identificacion.value">{{identificacion.value}}</mat-option>
+
+                            </mat-select>
+                            <mat-error *ngIf="formUser.controls['identificacion_id'].errors?.required">Este campo es requerido</mat-error>
+                        </mat-form-field>
+                        <p>You selected: {{selectedId}}</p>
+                        <mat-form-field class="example-full-width">
+                            <input type="text" placeholder="identificacion*" formControlName="identificacion" matInput>
+                            <mat-error *ngIf="formUser.controls['identificacion'].errors?.required">Este campo es requerido</mat-error>
+
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Departamento</mat-label>
+                            <mat-select (selectionChange)="ChangeId($event.value)" placeholder="Departamento*" [(value)]="selectedDep" formControlName="departamento_id">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let d of departamentos" [value]="d.id">{{d.departamento}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formUser.controls['departamento_id'].errors?.required">Este campo es requerido</mat-error>
+                            <p>You selected: {{selectedDep}}</p>
+
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Ciudad</mat-label>
+                            <mat-select placeholder="ciudad" [(value)]="selectedCiu" formControlName="ciudad_id">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let c of ciudades" [value]="c.ciudad">{{c.ciudad}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formUser.controls['ciudad_id'].errors?.required">Este campo es requerido</mat-error>
+                            <p>You selected: {{selectedCiu}}</p>
+
+                        </mat-form-field>
+                        <div class="button-row">
+                            <button mat-raised-button type="submit" [disabled]="formUser.invalid">Submit</button>
+                            <button mat-raised-button color="warn" (click)="onClear()">Limpiar</button>
+                        </div>
+                    </div>
+
+                </mat-grid-tile>
+
+            </mat-grid-list>
+
+        </form>
+
+
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+
+
+
+
+
+<!-- <form [formGroup]="formUser" (ngSubmit)="onSubmit()" class="normal-form">
     <mat-grid-list cols="2" rowHeight="500px">
         <mat-grid-tile>
             <div class="controles-container">
 
                 <input type="file">
 
-                <!-- <input type="hidden" placeholder="Favorite food" value="Sushi" formControlName="id">-->
+                <input type="hidden" placeholder="Favorite food" value="Sushi" formControlName="id">
 
                 <mat-form-field class="example-full-width">
                     <input type="text" placeholder="Nombre*" value="" formControlName="nombre" matInput>
@@ -85,4 +179,4 @@
 
     </mat-grid-list>
 
-</form>
+</form>  -->

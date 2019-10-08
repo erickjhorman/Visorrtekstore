@@ -10,7 +10,7 @@ import {SharedService} from '../../../../services/shared/shared.service';
 import {PagoService} from '../../../../services/pagos/pago.service';
 import {Router} from "@angular/router";
 import {DashboardService} from "../../../../services/shared/dashboard.service";
-
+import {FormDireccioneUsuarioShowComponent} from "../procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component";
 
 @Component({
   selector: 'app-proceso-compra',
@@ -26,7 +26,7 @@ export class ProcesoCompraComponent implements OnInit {
   valuesFormDireccione: any;
   valuesFormTransportadora: any;
   domicilio : any;
-  ocultarBtnDomicilio = false;
+  showBtnDomicilio = true;
 
   private transportadora: any;
   private departamentos: any;
@@ -122,20 +122,55 @@ export class ProcesoCompraComponent implements OnInit {
   )
   }
 
+  getDireccionCliente(id:number){
+    this.dashboardService.getDomiciliosCleinte(id).subscribe(
+
+     res =>{
+
+           this.domicilio = res
+
+          if (this.domicilio.length) {
+           this.showBtnDomicilio = true;
+
+          } else{
+           this.showBtnDomicilio = !this.showBtnDomicilio;
+          }
+
+         console.log(this.domicilio)
+         },
+     err => console.log(err)
+   );
+
+ }
+
   //To get the deparment for direccion Form
-  getDepartamentos(){
+  // showDomicilio(){
+  //   this.cataServes.getDepartamentos().subscribe(
+  //     res =>{
+
+  //           this.departamentos= res
+  //           this.onCreateDialogDireccionUsuario(this.departamentos,this.domicilio)
+  //        },
+  //     err => console.log(err)
+  //   )
+  // }
+
+   showDomicilio(){
+    console.log("Show domicilio" + this.domicilio)
+    this.onCreateShow(this.domicilio)
+  }
+
+  addDomicilio(){
     this.cataServes.getDepartamentos().subscribe(
       res =>{
 
             this.departamentos= res
-            this.onCreateDialogDireccionUsuario(this.departamentos);
+            this.onCreateDomicilio(this.departamentos)
 
-
-      },
+         },
       err => console.log(err)
     )
   }
-
   getCiudades(id:number){
     this.cataServes.getCiudades(id).subscribe(
       res =>{
@@ -167,9 +202,24 @@ export class ProcesoCompraComponent implements OnInit {
   }
 
     //Dialog para direccion usuario
-    onCreateDialogDireccionUsuario(departamentos:any){
+    onCreateShow(data){
+
       const dialogConfig = new  MatDialogConfig();
-      let  d  = departamentos;
+      let  d  = data;
+      dialogConfig.disableClose = true;
+      //dialogConfig.autoFocus = true;
+      dialogConfig.width = "600px";
+      dialogConfig.height = "400px";
+     // dialogConfig.data = {name : 'Erick'}
+      dialogConfig.data = d;
+      this.dialog.open(FormDireccioneUsuarioShowComponent, dialogConfig,)
+      console.log("Ver domicilio");
+
+    }
+
+    onCreateDomicilio(data){
+      const dialogConfig = new  MatDialogConfig();
+      let  d  = data;
       dialogConfig.disableClose = true;
       //dialogConfig.autoFocus = true;
       dialogConfig.width = "600px";
@@ -177,10 +227,7 @@ export class ProcesoCompraComponent implements OnInit {
      // dialogConfig.data = {name : 'Erick'}
       dialogConfig.data = d;
       this.dialog.open(FormDireccioneUsuarioComponent, dialogConfig,)
-      this.dialog.afterAllClosed.subscribe(res => {
-       //this.ocultarItemSelleccionado = true;
-      //console.log("Respuesta" + this.ocultarItemSelleccionado);
-      });
+      console.log("Añadir direccion");
     }
 
     onClose(){
@@ -197,19 +244,7 @@ export class ProcesoCompraComponent implements OnInit {
    this.show = !this.show;
    }
 
-   getDireccionCliente(id:number){
-     this.dashboardService.getDomiciliosCleinte(id).subscribe(
 
-      res =>{
-
-            this.domicilio = res
-            this.ocultarBtnDomicilio = false;
-            console.log(this.domicilio)
-          },
-      err => console.log(err)
-    );
-
-  }
 
 
 

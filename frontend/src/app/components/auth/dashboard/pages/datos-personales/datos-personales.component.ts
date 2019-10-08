@@ -4,12 +4,28 @@ import {DashboardService} from "../../../../../services/shared/dashboard.service
 import { Identifiers } from '@angular/compiler/src/render3/r3_identifiers';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NotificationService} from "../../../../../services/shared/notification.service";
+
+export interface Tile {
+  cols: number;
+  rows: number;
+  text: string;
+}
+
+
 @Component({
   selector: 'app-datos-personales',
   templateUrl: './datos-personales.component.html',
   styleUrls: ['./datos-personales.component.css']
 })
+
+
+
 export class DatosPersonalesComponent implements OnInit {
+
+  tiles: Tile[] = [
+    {text: 'One', cols: 7, rows: 3 },
+   ];
+
 
    formUser: FormGroup = new FormGroup({
 

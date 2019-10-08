@@ -117,6 +117,9 @@ export class MostrarDetalleProductoComponent implements OnInit {
      console.log("variable enviada producto")
    }
 
+   meGusta(event){
+     console.log(event)
+   }
 
 
 

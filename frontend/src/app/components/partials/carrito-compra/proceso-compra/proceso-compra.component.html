@@ -46,7 +46,11 @@
                 </div>
                 <div class="actionsResumenCompraButtons">
                     <!--<button mat-raised-button color="primary" (click)=" getTransportadora()">Añadir transportadora</button> -->
-                    <button mat-raised-button color="primary" *ngIf="ocultarBtnDomicilio" (click)="getDepartamentos()">Añadir Dirreccion </button>
+
+                    <button mat-raised-button color="primary" *ngIf="showBtnDomicilio; else Show" (click)="showDomicilio()">Ver direccion</button>
+                    <ng-template #Show>
+                        <button mat-raised-button color="primary" (click)="addDomicilio()">Añadir Dirreccion</button>
+                    </ng-template>
                 </div>
 
                 <div>

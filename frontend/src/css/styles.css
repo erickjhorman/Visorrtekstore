@@ -34,6 +34,10 @@ body {
     display: none;
 }
 
+.mat-figure {
+    display: inline;
+}
+
 formUser.normal-form {
     margin: 50px;
     width: 500px;
@@ -62,6 +66,10 @@ formUser.normal-form {
 
 .form-container>* {
     width: 100%;
+}
+
+mat-grid-tile.ng-star-inserted>figure:nth-child(1) {
+    display: block;
 }
 
 
