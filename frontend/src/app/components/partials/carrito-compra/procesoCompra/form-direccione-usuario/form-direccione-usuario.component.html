@@ -1,47 +1,142 @@
 <div>
-    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><span><i class="far fa-window-close fa-3x"></i></span></button>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><span><i
+        class="far fa-window-close fa-3x"></i></span></button>
 </div>
 
 
-<form [formGroup]="FormDireccionesUsuario" (ngSubmit)="guardarDirecciones(FormDireccionesUsuario.value)" novalidate="">
-    <div class="form-row">
-        <div class=" form-group  col">
-            <label for="">Nombre</label>
-            <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
-        </div>
-        <div class="form-group col">
-            <label for="">Apellido</label>
-            <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
-        </div>
-
-        <input class="form-control" type="text" placeholder="Celular" formControlName="celular">
-
-        <div class="form-row">
-            <div class="form-group col">
-                <mat-label>Departamento</mat-label>
-                <mat-select (selectionChange)="changeId($event.value)" placeholder="Departamento*" formControlName="departamento">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let d of departamentos" [value]="d.id">{{d.departamento}}</mat-option>
-                </mat-select>
-            </div>
+<form class="form-direccion" [formGroup]="FormDireccionesUsuario" (ngSubmit)="onSubmit(FormDireccionesUsuario.value)"
+  novalidate="">
 
 
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field hintLabel="Max 30 characters">
 
-<div class="form-group col">
-  <mat-label>Ciudad</mat-label>
-  <mat-select placeholder="ciudad" formControlName="ciudad">
+          <input matInput #input maxlength="30" placeholder="Nombre" formControlName="nombre" type="text">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
 
-    <mat-option *ngFor="let c of ciudades" [value]="c.id">{{c.ciudad}}</mat-option>
-  </mat-select>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.required">Este campo es
+            <strong>requerido</strong></mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.minLength">Minimo caracteres requeridos 3
+          </mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.maxLength">Maximo caracteres requeridos 30
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field hintLabel="Max 30 characters">
+          <input matInput #input maxlength="30" placeholder="Apellido" formControlName="apellido" type="text">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['apellido'].errors?.required">Este campo es <strong>
+              requerido</strong></mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['apellido'].errors?.minLength">Minimo caracteres requeridos
+            3
+          </mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['apellido'].errors?.maxLength">Maximo caracteres requeridos
+            30
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field hintLabel="Max 13 characters">
+          <span matPrefix>+1 &nbsp;</span>
+          <input matInput #input maxlength="13" placeholder="celular" formControlName="celular" type="text">
 
-</div>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['celular'].errors?.required"> Nº de celular is
+            <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.minLength">Minimo caracteres
+            <strong>requerido</strong> 13</mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.maxLength">Maximo caracteres
+            <strong>requerido</strong></mat-error>
 
-        </div>
-        <div class="form-group col">
-            <label for="">Barrio</label>
-            <input class="form-control" type="text" placeholder="Barrio" formControlName="barrio">
-        </div>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-hint align="end">{{input.value?.length || 0}}/13</mat-hint>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Departamento</mat-label>
+          <mat-select (selectionChange)="changeId($event.value)" placeholder="Departamento*"
+            formControlName="departamento">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let d of departamentos" [value]="d.id">{{d.departamento}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['departamento'].errors?.required">Este campo es
+            <strong>requerido</strong></mat-error>
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Ciudad</mat-label>
+          <mat-select placeholder="ciudad" formControlName="ciudad">
+            <mat-option *ngFor="let c of ciudades" [value]="c.id">{{c.ciudad}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['ciudad'].errors?.required">Este campo es
+            <strong>requerido</strong></mat-error>
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+      </td>
 
-        <textarea class="form-control" type="text" placeholder="Datos Adicionales" formControlName="datosadicionales"></textarea>
-        <button mat-raised-button color="primary">Guardar</button>
-    </div>
+
+      <td>
+        <mat-form-field hintLabel="Max 30 characters">
+          <input matInput #input maxlength="30" placeholder="Barrio" formControlName="barrio" type="text">
+          <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['barrio'].errors?.required">Este campo es <strong>
+              requerido</strong></mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['barrio'].errors?.minLength">Minimo caracteres requeridos 3
+          </mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['barrio'].errors?.maxLength">Maximo caracteres requeridos 30
+          </mat-error>
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+
+        <mat-form-field hintLabel="Max 13 characters">
+          <input matInput #input maxlength="13" placeholder="Direccion" formControlName="direccion" type="text">
+          <mat-hint align="end">{{input.value?.length || 0}}/13</mat-hint>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.required">Este campo es <strong>
+              requerido</strong></mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.minLength">Minimo caracteres requeridos
+            13</mat-error>
+          <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.maxLength">Maximo caracteres requeridos
+            13</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <p>
+    <mat-form-field class="example-full-width">
+      <textarea type="text" #message maxlength="75" matInput placeholder="Textarea"
+        formControlName="datosadicionales"></textarea>
+      <mat-hint align="start"><strong>No suministre informacion personal</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 75</mat-hint>
+      <mat-error *ngIf="FormDireccionesUsuario.controls['datosadicionales'].errors?.required">Este campo es
+        <strong> requerido</strong></mat-error>
+      <mat-error *ngIf="FormDireccionesUsuario.controls['datosadicionales'].errors?.minLength">Minimo caracteres
+        requeridos 13</mat-error>
+      <mat-error *ngIf="FormDireccionesUsuario.controls['datosadicionales'].errors?.maxLength">Maximo caracteres
+        requeridos 13</mat-error>
+      <mat-icon matSuffix>post_add</mat-icon>
+    </mat-form-field>
+  </p>
+
+
+  <div class="button-form">
+    <button mat-raised-button type="submit" [disabled]="FormDireccionesUsuario.invalid">Guardar</button>
+    <button mat-raised-button color="warn" (click)="onClear()">Limpiar</button>
+  </div>

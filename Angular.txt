@@ -18,7 +18,7 @@ ng g c components/partials/carrito-compra/compras-lista --skip-import
 ng g c components/partials/carrito-compra/compras-lista --skip-import
 
 ng g c components/partials/carrito-compra/procesoCompra/formTransportadora --skip-import
-ng g c components/partials/carrito-compra/procesoCompra/formDireccioneUsuario --skip-import
+ng g c components/partials/carrito-compra/procesoCompra/formDireccioneUsuarioShow --skip-import
 ng g c components/partials/carrito-compra/procesoCompra/pagos --skip-import
 
 

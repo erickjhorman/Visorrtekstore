@@ -7,36 +7,41 @@
   <div class="form-row" *ngFor="let d of data">
     <div class=" form-group  col">
       <label for="">Nombre</label>
-      <input class="form-control" type="text" [value]="d.nombre"   placeholder="Nombre" formControlName="nombre"  readonly>
+      <input class="form-control" type="text" [value]="d.nombre" placeholder="Nombre" formControlName="nombre" readonly>
     </div>
     <div class="form-group col">
       <label for="">Apellido</label>
-      <input class="form-control" type="text"  [value]="d.apellido" placeholder="Apellido" formControlName="apellido"  readonly>
+      <input class="form-control" type="text" [value]="d.apellido" placeholder="Apellido" formControlName="apellido"
+        readonly>
     </div>
 
-    <input class="form-control" type="text"  [value]="d.celular" placeholder="Celular" formControlName="celular"  readonly>
+    <input class="form-control" type="text" [value]="d.celular" placeholder="Celular" formControlName="celular"
+      readonly>
 
     <div class="form-row">
       <div class="form-group col">
         <mat-label>Departamento</mat-label>
-        <input class="form-control" type="text"  [value]="d.departamento_id" placeholder="Celular" formControlName="departamento"  readonly>
+        <input class="form-control" type="text" [value]="d.departamento" placeholder="Celular"
+          formControlName="departamento" readonly>
       </div>
-     <div class="form-group col">
+      <div class="form-group col">
         <mat-label>Ciudad</mat-label>
-        <input class="form-control" type="text"  [value]="d.ciudad_id" placeholder="Celular" formControlName="ciudad"  readonly>
+        <input class="form-control" type="text" [value]="d.ciudad" placeholder="Celular" formControlName="ciudad"
+          readonly>
 
       </div>
 
     </div>
     <div class="form-group col">
       <label for="">Direccion</label>
-      <input class="form-control" type="text"  [value]="d.direccion" formControlName="direccion"  readonly>
+      <input class="form-control" type="text" [value]="d.direccion" formControlName="direccion" readonly>
     </div>
     <div class="form-group col">
       <label for="">Barrio</label>
-      <input class="form-control" type="text"  [value]="d.barrio" placeholder="Barrio" formControlName="barrio"  readonly>
+      <input class="form-control" type="text" [value]="d.barrio" placeholder="Barrio" formControlName="barrio" readonly>
     </div>
 
-    <textarea class="form-control" type="text" [value]="d.datos_adicionales" placeholder="Datos Adicionales"formControlName="datosadicionales"  readonly ></textarea>
+    <textarea class="form-control" type="text" [value]="d.datos_adicionales" placeholder="Datos Adicionales"
+      formControlName="datosadicionales" readonly></textarea>
 
   </div>

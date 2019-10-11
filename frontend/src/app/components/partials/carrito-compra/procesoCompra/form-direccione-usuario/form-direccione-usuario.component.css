@@ -1,4 +1,37 @@
-.mat-raised-button{
+.mat-raised-button {
   margin-top: 18px;
-  margin-left: 229px;
+  margin-left: 25px;
+  width: 25px;
+}
+
+.button-form {
+  position: absolute;
+  left: 400px;
+  display: flex;
+  bottom: 25px;
+  width: 50px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.form-container {
+  min-width: 150px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 15px;
 }

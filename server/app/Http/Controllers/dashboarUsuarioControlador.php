@@ -7,6 +7,7 @@ use DB;
 use app\model\Cliente;
 use app\model\Domicilio;
 use Illuminate\Support\Facades\Input;
+
 class dashboarUsuarioControlador extends Controller
 {
     /**
@@ -16,23 +17,25 @@ class dashboarUsuarioControlador extends Controller
      */
     public function index($id)
     {
-         $Clientes =  DB::table('clientes')
-        ->select('clientes.*')
-        ->where('usuario_id', '=', $id)
-        ->get();
+        $Clientes =  DB::table('clientes')
+            ->select('clientes.*')
+            ->where('usuario_id', '=', $id)
+            ->get();
 
         return $Clientes;
     }
 
-    public function getDireccion($id){
+    public function getDireccion($id)
+    {
 
         $direccion = DB::table('domicilios')
-       ->select('domicilios.*')
-       ->where('cliente_id', '=', $id)
-       ->get();
+            ->join('departamentos', 'departamentos.id', '=', 'domicilios.departamento_id')
+            ->join('ciudads', 'ciudads.id', '=', 'domicilios.ciudad_id')
+            ->select('domicilios.*', 'departamentos.departamento', 'ciudads.ciudad')
+            ->where('cliente_id', '=', $id)
+            ->get();
 
-       return $direccion;
-
+        return $direccion;
     }
 
     /**
@@ -41,9 +44,7 @@ class dashboarUsuarioControlador extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-
-    }
+    { }
 
     /**
      * Store a newly created resource in storage.
@@ -105,7 +106,7 @@ class dashboarUsuarioControlador extends Controller
     public function update(Request $request, $id)
     {
 
-        $cliente = Cliente::where('usuario_id','=',$id)->firstOrFail();
+        $cliente = Cliente::where('usuario_id', '=', $id)->firstOrFail();
         // $cliente = Cliente::find($id);
         return  $request;
 
