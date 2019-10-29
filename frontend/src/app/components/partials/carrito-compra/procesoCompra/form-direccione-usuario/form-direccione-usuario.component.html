@@ -4,18 +4,17 @@
 </div>
 
 
-<form class="form-direccion" [formGroup]="FormDireccionesUsuario" (ngSubmit)="onSubmit(FormDireccionesUsuario.value)"
+<form class="form-direccion" [formGroup]="FormDireccionesUsuario" (ngSubmit)="onSave(FormDireccionesUsuario.value)"
   novalidate="">
-
-
+  <input type="hidden" formControlName="idCliente" [value]="user.id">
   <table class="example-full-width" cellspacing="0">
     <tr>
       <td>
         <mat-form-field hintLabel="Max 30 characters">
 
-          <input matInput #input maxlength="30" placeholder="Nombre" formControlName="nombre" type="text">
+          <input matInput #nombre maxlength="30" placeholder="Nombre" formControlName="nombre" type="text">
           <mat-icon matSuffix>person</mat-icon>
-          <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+          <mat-hint align="end">{{nombre.value?.length || 0}}/30</mat-hint>
 
           <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.required">Este campo es
             <strong>requerido</strong></mat-error>
@@ -27,9 +26,9 @@
       </td>
       <td>
         <mat-form-field hintLabel="Max 30 characters">
-          <input matInput #input maxlength="30" placeholder="Apellido" formControlName="apellido" type="text">
+          <input matInput #apellido maxlength="30" placeholder="Apellido" formControlName="apellido" type="text">
           <mat-icon matSuffix>person</mat-icon>
-          <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+          <mat-hint align="end">{{apellido.value?.length || 0}}/30</mat-hint>
           <mat-error *ngIf="FormDireccionesUsuario.controls['apellido'].errors?.required">Este campo es <strong>
               requerido</strong></mat-error>
           <mat-error *ngIf="FormDireccionesUsuario.controls['apellido'].errors?.minLength">Minimo caracteres requeridos
@@ -43,18 +42,18 @@
       <td>
         <mat-form-field hintLabel="Max 13 characters">
           <span matPrefix>+1 &nbsp;</span>
-          <input matInput #input maxlength="13" placeholder="celular" formControlName="celular" type="text">
+          <input matInput #celular maxlength="13" placeholder="celular" formControlName="celular" type="tel">
 
           <mat-error *ngIf="FormDireccionesUsuario.controls['celular'].errors?.required"> Nº de celular is
             <strong>required</strong>
           </mat-error>
-          <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.minLength">Minimo caracteres
+          <mat-error *ngIf="FormDireccionesUsuario.controls['celular'].errors?.minLength">Minimo caracteres
             <strong>requerido</strong> 13</mat-error>
-          <mat-error *ngIf="FormDireccionesUsuario.controls['nombre'].errors?.maxLength">Maximo caracteres
+          <mat-error *ngIf="FormDireccionesUsuario.controls['celular'].errors?.maxLength">Maximo caracteres
             <strong>requerido</strong></mat-error>
 
           <mat-icon matSuffix>phone</mat-icon>
-          <mat-hint align="end">{{input.value?.length || 0}}/13</mat-hint>
+          <mat-hint align="end">{{celular.value?.length || 0}}/13</mat-hint>
         </mat-form-field>
       </td>
     </tr>
@@ -89,8 +88,8 @@
 
       <td>
         <mat-form-field hintLabel="Max 30 characters">
-          <input matInput #input maxlength="30" placeholder="Barrio" formControlName="barrio" type="text">
-          <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+          <input matInput #barrio maxlength="30" placeholder="Barrio" formControlName="barrio" type="text">
+          <mat-hint align="end">{{barrio.value?.length || 0}}/30</mat-hint>
           <mat-error *ngIf="FormDireccionesUsuario.controls['barrio'].errors?.required">Este campo es <strong>
               requerido</strong></mat-error>
           <mat-error *ngIf="FormDireccionesUsuario.controls['barrio'].errors?.minLength">Minimo caracteres requeridos 3
@@ -107,8 +106,8 @@
       <td>
 
         <mat-form-field hintLabel="Max 13 characters">
-          <input matInput #input maxlength="13" placeholder="Direccion" formControlName="direccion" type="text">
-          <mat-hint align="end">{{input.value?.length || 0}}/13</mat-hint>
+          <input matInput #direccion maxlength="13" placeholder="Direccion" formControlName="direccion" type="text">
+          <mat-hint align="end">{{direccion.value?.length || 0}}/13</mat-hint>
           <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.required">Este campo es <strong>
               requerido</strong></mat-error>
           <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.minLength">Minimo caracteres requeridos
@@ -121,10 +120,10 @@
   </table>
   <p>
     <mat-form-field class="example-full-width">
-      <textarea type="text" #message maxlength="75" matInput placeholder="Textarea"
+      <textarea type="text" #datosadicionales maxlength="75" matInput placeholder="Textarea"
         formControlName="datosadicionales"></textarea>
-      <mat-hint align="start"><strong>No suministre informacion personal</strong> </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 75</mat-hint>
+      <mat-hint align="start"><strong>No suministre informacion personal</strong></mat-hint>
+      <mat-hint align="end">{{datosadicionales.value.length}} / 75</mat-hint>
       <mat-error *ngIf="FormDireccionesUsuario.controls['datosadicionales'].errors?.required">Este campo es
         <strong> requerido</strong></mat-error>
       <mat-error *ngIf="FormDireccionesUsuario.controls['datosadicionales'].errors?.minLength">Minimo caracteres

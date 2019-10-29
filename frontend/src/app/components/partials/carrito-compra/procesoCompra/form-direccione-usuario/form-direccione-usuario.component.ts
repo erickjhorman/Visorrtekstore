@@ -4,6 +4,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { CatalogoServes } from "../../../../../services/Catalogos/catalogos.service";
 import { SharedService } from "../../../../../services/shared/shared.service";
+import { ProcesoCompra } from "../../../../../services/procesoCompra.service";
+import { NotificationService } from "../../../../../services/shared/notification.service";
+import { DashboardService } from "../../../../../services/shared/dashboard.service";
+import { ProcesoCompraComponent } from "../../proceso-compra/proceso-compra.component";
 
 @Component({
   selector: "app-form-direccione-usuario",
@@ -14,11 +18,14 @@ export class FormDireccioneUsuarioComponent implements OnInit {
   private departamentos: any;
   private ciudades: any;
   private domicilio: any;
+  private user: any;
 
   infoDireccionesForm: any;
   valuesFormDireccione: any;
   show: boolean = false;
 
+  @Output() viewAdress = new EventEmitter<boolean>();
+  activateButtonView = false;
   //Form
   FormDireccionesUsuario: FormGroup;
 
@@ -26,9 +33,17 @@ export class FormDireccioneUsuarioComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<FormDireccioneUsuarioComponent>,
     private cataloServe: CatalogoServes,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private procesoCompra: ProcesoCompra,
+    private notificationService: NotificationService,
+    private dashboardService: DashboardService
   ) {
     this.departamentos = data;
+
+    //To get the information from  a sessionStorage
+    var user = sessionStorage.getItem("userAuth");
+    this.user = JSON.parse(user);
+    console.log(this.user.id);
 
     this.FormDireccionesUsuario = new FormGroup({
       departamento: new FormControl("", [Validators.required]),
@@ -38,6 +53,8 @@ export class FormDireccioneUsuarioComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(30)
       ]),
+
+      idCliente: new FormControl(this.user.id),
       apellido: new FormControl("", [
         Validators.required,
         Validators.minLength(3),
@@ -103,22 +120,20 @@ export class FormDireccioneUsuarioComponent implements OnInit {
     );
   }
 
-  onSubmit(event) {
-    console.log(this.FormDireccionesUsuario.value);
-    this.sharedService.getFormDirecciones(event);
+  onSave() {
+    if (this.FormDireccionesUsuario.valid) {
+      this.procesoCompra
+        .saveDireccion(this.FormDireccionesUsuario.value)
+        .subscribe(res => {}, err => {});
+      this.sharedService.EmitVer(true);
+      this.notificationService.success("Direccion almacenada");
+      this.onClose();
+    }
+  }
 
-    // if(this.formUser.valid){
-    //   this.dashboardService.updateCliente(this.formUser.value, this.user.id).subscribe(
-    //     res =>{
-
-    //       this.formUser.reset();
-    //       this.restartFormGroup();
-    //       this.notificacion.success('Usuario actualizado satisfactoriamente');
-    //     },
-    //     err => console.log(err)
-    //   )
-
-    // }
+  viewDireccion(value: boolean) {
+    this.viewAdress.emit(value);
+    this.activateButtonView = true;
   }
 
   onClear() {

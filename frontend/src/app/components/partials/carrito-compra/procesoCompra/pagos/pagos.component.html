@@ -18,7 +18,7 @@
 
 
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-8 mr-auto ml-auto">
       <div class="panel panel-default">
@@ -142,4 +142,120 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+
+<form class="form-direccion" [formGroup]="customStripeForm" (ngSubmit)="pay(customStripeForm.value)" novalidate="">
+  <h4>Stripe - Custom form demo</h4>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field hintLabel="Max 18 characters">
+
+          <input matInput #name maxlength="18" placeholder="Nombre" formControlName="name" type="text">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint align="end">{{name.value?.length || 0}}/18</mat-hint>
+
+          <mat-error *ngIf="customStripeForm.controls['name'].errors?.required">Este campo es
+            <strong>requerido</strong></mat-error>
+          <mat-error *ngIf="customStripeForm.controls['name'].errors?.minLength">Minimo caracteres requeridos 3
+          </mat-error>
+          <mat-error *ngIf="customStripeForm.controls['name'].errors?.maxLength">Maximo caracteres requeridos 18
+          </mat-error>
+        </mat-form-field>
+      </td>
+
+      <td>
+        <mat-form-field hintLabel="Max 18 characters">
+          <input matInput #lastname maxlength="18" placeholder="Apellido" formControlName="lastname" type="text">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint align="end">{{lastname.value?.length || 0}}/18</mat-hint>
+          <mat-error *ngIf="customStripeForm.controls['lastname'].errors?.required">Este campo es <strong>
+              requerido</strong></mat-error>
+          <mat-error *ngIf="customStripeForm.controls['lastname'].errors?.minLength">Minimo caracteres requeridos
+            3
+          </mat-error>
+          <mat-error *ngIf="customStripeForm.controls['lastname'].errors?.maxLength">Maximo caracteres requeridos
+            30
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="customStripeForm.controls['email'].errors?.email">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="customStripeForm.controls['email'].errors?.required">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field hintLabel="Max 18 characters">
+          <input matInput #cardNumber maxlength="18" placeholder="Valid Card Number" formControlName="cardNumber"
+            type="text">
+          <mat-icon matSuffix>credit_card</mat-icon>
+          <mat-hint align="end">{{cardNumber.value?.length || 0}}/18</mat-hint>
+          <mat-error *ngIf="customStripeForm.controls['cardNumber'].errors?.required">Este campo es <strong>
+              requerido</strong></mat-error>
+          <mat-error *ngIf="customStripeForm.controls['cardNumber'].errors?.minLength">Minimo caracteres requeridos
+            3
+          </mat-error>
+          <mat-error *ngIf="customStripeForm.controls['cardNumber'].errors?.maxLength">Maximo caracteres requeridos
+            18
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label><span>Expiation</span> Date</mat-label>
+          <mat-select placeholder="Expiation date*" formControlName="expMonth">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let month of months" [value]="month.id">{{month.value}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="customStripeForm.controls['expMonth'].errors?.required">Este campo es
+            <strong>requerido</strong></mat-error>
+          <mat-icon matSuffix>date_range</mat-icon>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Year</mat-label>
+          <mat-select placeholder="year" formControlName="expYear">
+            <mat-option *ngFor="let exp of expYears" [value]="exp.id">{{exp.value}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="customStripeForm.controls['expYear'].errors?.required">Este campo es
+            <strong>requerido</strong></mat-error>
+          <mat-icon matSuffix>date_range</mat-icon>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field hintLabel="Max 3 characters">
+          <input matInput #cvv maxlength="3" placeholder="Cv code" formControlName="cvv" type="text">
+          <mat-icon matSuffix>code</mat-icon>
+          <mat-hint align="end">{{cvv.value?.length || 0}}/3</mat-hint>
+          <mat-error *ngIf="customStripeForm.controls['cvv'].errors?.required">Este campo es <strong>
+              requerido</strong></mat-error>
+          <mat-error *ngIf="customStripeForm.controls['cvv'].errors?.minLength">Minimo caracteres requeridos
+            3
+          </mat-error>
+          <mat-error *ngIf="customStripeForm.controls['cvv'].errors?.maxLength">Maximo caracteres requeridos
+            3
+          </mat-error>
+        </mat-form-field>
+      </td>
+
+
+    </tr>
+  </table>
+  <div class="button-form">
+    <button mat-raised-button type="submit" [disabled]="customStripeForm.invalid">Process payment</button>
+
+  </div>

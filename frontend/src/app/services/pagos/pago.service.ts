@@ -1,30 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http"; // this module makes the petition HTTP TO ASK FOR INFO
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class PagoService {
-
-  API_URI = 'http://localhost:8000/api/v1/charges';
-  API_URICompras = 'http://localhost:8000/api/dashboard/compras';
-
-
+  API_URI = "http://localhost:8000/api/v1/charges";
+  API_URICompras = "http://localhost:8000/api/dashboard/compras";
 
   //I instanced the module httpClient
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  chargeMoney(token:any){
+  chargeMoney(token: any) {
     console.log("Service " + token);
-    const headers = new HttpHeaders({'content-type': 'application/json'});
-    return this.http.post(`${this.API_URI}`, token, {headers: headers});
+    const headers = new HttpHeaders({ "content-type": "application/json" });
+    return this.http.post(`${this.API_URI}`, token, { headers: headers });
   }
 
-  getCompras(id:number){
+  getCompras(id: number) {
     return this.http.get(`${this.API_URICompras}/${id}`);
-
   }
-
-
 }

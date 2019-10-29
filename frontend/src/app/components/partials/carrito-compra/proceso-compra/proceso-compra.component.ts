@@ -31,11 +31,13 @@ export class ProcesoCompraComponent implements OnInit {
   valuesFormTransportadora: any;
   domicilio: any;
   showBtnDomicilio = true;
+  btnverFlag: any;
 
   private transportadora: any;
   private departamentos: any;
   private ciudades: any;
-  isLinear = false;
+  isLinear = true;
+
   show = false;
 
   firstFormGroup: FormGroup;
@@ -60,12 +62,23 @@ export class ProcesoCompraComponent implements OnInit {
     this.sharedService.formValues.subscribe(valuesForm => {
       this.valuesFormDireccione = valuesForm;
       console.log(this.valuesFormDireccione);
+      this.isLinear = true;
     });
 
     //To share the form in preceso compra componenet
     this.sharedService.formValuesTransportadora.subscribe(valuesForm => {
       this.valuesFormTransportadora = valuesForm;
       console.log(this.valuesFormTransportadora);
+    });
+
+    //To share a variable from form-direccione to call a method  in here
+    this.sharedService.btnver.subscribe(value => {
+      this.btnverFlag = value;
+      if (this.btnverFlag) {
+        this.getDireccionCliente(this.user.id);
+      } else {
+        console.log("I'm not true");
+      }
     });
   }
 
@@ -102,15 +115,8 @@ export class ProcesoCompraComponent implements OnInit {
     }
   }
 
-  //Get nombre transportadora
-  getTransportadora() {
-    this.cataServes.getTransportadoras().subscribe(
-      res => {
-        this.transportadora = res;
-        this.onCreateDialogTransportadora(this.transportadora);
-      },
-      err => console.log(err)
-    );
+  onView(value: boolean) {
+    console.log(value);
   }
 
   getDireccionCliente(id: number) {
