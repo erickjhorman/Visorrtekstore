@@ -144,10 +144,13 @@
   </div>
 </div> -->
 
-
-
+<div class="loading-indicator">
+  <mat-progress-spinner mode="indeterminate" *ngIf="showSpinner"></mat-progress-spinner>
+</div>
+<!-- <mat-spinner *ngIf="showSpinner"></mat-spinner>-->
 <form class="form-direccion" [formGroup]="customStripeForm" (ngSubmit)="pay(customStripeForm.value)" novalidate="">
   <h4>Stripe - Custom form demo</h4>
+
   <table class="example-full-width" cellspacing="0">
     <tr>
       <td>

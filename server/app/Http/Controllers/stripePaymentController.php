@@ -17,70 +17,70 @@ class stripePaymentController extends Controller
     {
 
 
-    Stripe\Stripe::setApiKey('sk_test_pgKB4yy4Tugr2oPpXwePQTTo00aYwgWTtp');
+        Stripe\Stripe::setApiKey('sk_test_pgKB4yy4Tugr2oPpXwePQTTo00aYwgWTtp');
 
-    $input = $request->all();
-    //return $request;
+        $input = $request->all();
+        //return $request;
 
-   for ($i=0; $i<count($input) ; $i++) {
-        $name = $input[0]['name'];
-        $token = $input[0]['tokenCard'];
-        $email = $input[0]['email'];
-        $amount =  $input[0]['amount'];
-        $clienteId = $input[0]['clienteId'];
-        $domicilioId = $input[0]['domicilioId'];
-
-    }
-
-
-
-    // foreach ($input as  $value) {
-    //     $name = $value['name'];
-    //     $token = $value['tokenCard'];
-    //     $email = $value['email'];
-    //     $amount =  $value['amount'];
-    //     $clienteId = $value['clienteId'];
-    //     $domicilioId = $value['domicilioId'];
-
-    // }
+        for ($i = 0; $i < count($input); $i++) {
+            $name = $input[0]['name'];
+            $token = $input[0]['tokenCard'];
+            $email = $input[0]['email'];
+            $amount =  $input[0]['amount'];
+            $clienteId = $input[0]['clienteId'];
+            $domicilioId = $input[0]['domicilioId'];
+        }
 
 
 
+        // foreach ($input as  $value) {
+        //     $name = $value['name'];
+        //     $token = $value['tokenCard'];
+        //     $email = $value['email'];
+        //     $amount =  $value['amount'];
+        //     $clienteId = $value['clienteId'];
+        //     $domicilioId = $value['domicilioId'];
 
-    //this.createCustomer($email,$token);
-    $customer = \Stripe\Customer::create(array(
-        "name" => $name,
-        "email" => $email,
-        "source" => $token,
+        // }
 
-      ));
 
-      //Stripe\Stripe::setApiKey(env('pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC'));
-      //Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-     $charge =  Stripe\Charge::create(array(
 
-              "amount" => $amount * 100,
-              "currency" => "COP",
-              "description" => "Compras de cascos desde VisorTek.com",
-              "customer" => $customer->id
+        //this.createCustomer($email,$token);
+        $customer = \Stripe\Customer::create(array(
+            "name" => $name,
+            "email" => $email,
+            "source" => $token,
 
-          ));
+        ));
 
-           //return $charge;
+        //Stripe\Stripe::setApiKey(env('pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC'));
+        //Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-          $venta = new Venta(); /** Se hace una instancia del modelo solicitante*/
+        $charge =  Stripe\Charge::create(array(
 
-          $venta->cliente_id  = $clienteId;
-          $venta->domicilio_id =  $domicilioId;
-          $venta->forma_pago_id = "Efectivo";
-          $venta->valor_neto =  $charge->amount/10;
-          $venta->valor_iva = '';
-          $venta->valor_a_pagar = $charge->amount/100;
+            "amount" => $amount * 100,
+            "currency" => "COP",
+            "description" => "Compras de cascos desde VisorTek.com",
+            "customer" => $customer->id
 
-          $venta->save();
+        ));
 
-          //$ventaId = DB::table('ventas')->select('id')->get();
+        //return $charge;
+
+        $venta = new Venta();
+        /** Se hace una instancia del modelo solicitante*/
+
+        $venta->cliente_id  = $clienteId;
+        $venta->domicilio_id =  $domicilioId;
+        $venta->forma_pago_id = "Efectivo";
+        $venta->valor_neto =  $charge->amount / 10;
+        $venta->valor_iva = '';
+        $venta->valor_a_pagar = $charge->amount / 100;
+
+        $venta->save();
+
+        //$ventaId = DB::table('ventas')->select('id')->get();
         $ventaId =  DB::select('select id from ventas where id =(SELECT max(id) FROM ventas)');
 
         foreach ($ventaId as  $value) {
@@ -88,25 +88,25 @@ class stripePaymentController extends Controller
         }
 
 
-         //To get the purchases of the array
+        //To get the purchases of the array
 
-            for ($i=0; $i<count($input[3]) ; $i++) {
+        for ($i = 0; $i < count($input[3]); $i++) {
 
 
-                $id = $input[3][$i]['id'];
-                $producto = $input[3][$i]['producto'];
-                $cantidad = $input[3][$i]['cantidad'];
-                $valorventa =  $input[3][$i]['valorventa'];
+            $id = $input[3][$i]['id'];
+            $producto = $input[3][$i]['producto'];
+            $cantidad = $input[3][$i]['cantidad'];
+            $valorventa =  $input[3][$i]['valorventa'];
 
-                $dt = new Detalle_Venta();
-                $dt->venta_id = $idVenta;
-                $dt->Producto_id = $id;
-                $dt->nombre = $producto;
-                $dt->Cantidad = $cantidad;
-                $dt->Valor_Neto = $valorventa;
+            $dt = new Detalle_Venta();
+            $dt->venta_id = $idVenta;
+            $dt->Producto_id = $id;
+            $dt->nombre = $producto;
+            $dt->Cantidad = $cantidad;
+            $dt->Valor_Neto = $valorventa;
 
-                $dt->save();
-            }
+            $dt->save();
+        }
 
 
 
@@ -118,73 +118,81 @@ class stripePaymentController extends Controller
 
         //To get the purchases of the array
 
-            // for ($i=0; $i<count($input) ; $i++) {
-            //     $id = $input[3][0]['id'];
-            //     $producto = $input[3][0]['producto'];
-            //     $cantidad = $input[3][0]['cantidad'];
-            //     $valorventa =  $input[3][0]['valorventa'];
-            // }
+        // for ($i=0; $i<count($input) ; $i++) {
+        //     $id = $input[3][0]['id'];
+        //     $producto = $input[3][0]['producto'];
+        //     $cantidad = $input[3][0]['cantidad'];
+        //     $valorventa =  $input[3][0]['valorventa'];
+        // }
 
-            //     $dt = new Detalle_Venta();
-            //     $dt->venta_id = $idVenta;
-            //     $dt->Producto_id = $id;
-            //     $dt->nombre = $producto;
-            //     $dt->Cantidad = $cantidad;
-            //     $dt->Valor_Neto = $valorventa;
+        //     $dt = new Detalle_Venta();
+        //     $dt->venta_id = $idVenta;
+        //     $dt->Producto_id = $id;
+        //     $dt->nombre = $producto;
+        //     $dt->Cantidad = $cantidad;
+        //     $dt->Valor_Neto = $valorventa;
 
-            //     $dt->save();
-}
+        //     $dt->save();
+        return $charge;
+    }
 
-public function getCompras($id){
+    public function getCompras($id)
+    {
 
-    // $compras =   DB::table('ventas')
-    //               ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
-    //               ->select('detalle__ventas.Producto_id','detalle__ventas.nombre' , 'detalle__ventas.cantidad',
-    //               'detalle__ventas.Valor_Neto','detalle__ventas.created_at','ventas.Cliente_id')
-    //               ->where('ventas.Cliente_id', '=', $id)
-    //               ->get();
+        // $compras =   DB::table('ventas')
+        //               ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
+        //               ->select('detalle__ventas.Producto_id','detalle__ventas.nombre' , 'detalle__ventas.cantidad',
+        //               'detalle__ventas.Valor_Neto','detalle__ventas.created_at','ventas.Cliente_id')
+        //               ->where('ventas.Cliente_id', '=', $id)
+        //               ->get();
 
-    // return  $compras;
+        // return  $compras;
 
-       $compras =   DB::table('ventas')
-                  ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
-                  ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
-                  ->select('detalle__ventas.Producto_id','detalle__ventas.nombre' , 'detalle__ventas.cantidad',
-                  'detalle__ventas.Valor_Neto','detalle__ventas.created_at','ventas.Cliente_id','productos.imagen')
-                  ->where('ventas.Cliente_id', '=', $id)
-                  ->get();
+        $compras =   DB::table('ventas')
+            ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
+            ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
+            ->select(
+                'detalle__ventas.Producto_id',
+                'detalle__ventas.nombre',
+                'detalle__ventas.cantidad',
+                'detalle__ventas.Valor_Neto',
+                'detalle__ventas.created_at',
+                'ventas.Cliente_id',
+                'productos.imagen'
+            )
+            ->where('ventas.Cliente_id', '=', $id)
+            ->get();
 
-    return  $compras;
-
-}
-
-
-
-// public function createCustomer($token,$email,$amount){
-//     $customer = \Stripe\Customer::create(array(
-//     "email" => $email,
-//     "source" => $token
-
-//   ));
-
-//   saveChargeCustomer($token,$amount,$customer);
-// }
+        return  $compras;
+    }
 
 
-// public function saveChargeCustomer($token,$amount,$customer){
-//     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-//         Stripe\Charge::create(array(
+    // public function createCustomer($token,$email,$amount){
+    //     $customer = \Stripe\Customer::create(array(
+    //     "email" => $email,
+    //     "source" => $token
 
-//                 "amount" => $amount,
-//                 "currency" => "COP",
-//                 "source" => $token,
-//                 "description" => "Test payment from itsolutionstuff.com.",
-//                 "customer" => $customer->id
+    //   ));
 
-//             ));
-//             return charge;
-//         }
+    //   saveChargeCustomer($token,$amount,$customer);
+    // }
+
+
+    // public function saveChargeCustomer($token,$amount,$customer){
+    //     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+    //         Stripe\Charge::create(array(
+
+    //                 "amount" => $amount,
+    //                 "currency" => "COP",
+    //                 "source" => $token,
+    //                 "description" => "Test payment from itsolutionstuff.com.",
+    //                 "customer" => $customer->id
+
+    //             ));
+    //             return charge;
+    //         }
 
 
 }

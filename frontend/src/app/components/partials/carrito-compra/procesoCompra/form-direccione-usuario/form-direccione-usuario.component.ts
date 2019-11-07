@@ -125,6 +125,7 @@ export class FormDireccioneUsuarioComponent implements OnInit {
       this.procesoCompra
         .saveDireccion(this.FormDireccionesUsuario.value)
         .subscribe(res => {}, err => {});
+      this.sharedService.getFormDirecciones(this.FormDireccionesUsuario.value);
       this.sharedService.EmitVer(true);
       this.notificationService.success("Direccion almacenada");
       this.onClose();

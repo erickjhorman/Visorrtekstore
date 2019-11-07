@@ -7,8 +7,8 @@
   <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
         {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
       </button> -->
-  <mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [completed]="stepCompleted">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Resumen de compra</ng-template>
         <h2>Esta es tu compra final</h2>
@@ -55,26 +55,21 @@
           </ng-template>
         </div>
 
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Pagar</ng-template>
-        <!-- <mat-form-field>
+    <mat-step [completed]="step2Completed">
+
+      <ng-template matStepLabel>Pagar</ng-template>
+      <!-- <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>
       </mat-form-field> -->
-        <app-pagos [amount]="precio_total"></app-pagos>
-        <!-- <app-pagos ></app-pagos>-->
-        <div>
+      <app-pagos [amount]="precio_total"></app-pagos>
+      <!-- <app-pagos ></app-pagos>-->
 
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+
     </mat-step>
+
 
     <mat-step>
       <ng-template matStepLabel>Datos compra final</ng-template>
@@ -95,5 +90,11 @@
         </mat-form-field>
       </div>
     </mat-step>
+
   </mat-horizontal-stepper>
+  <div>
+    <button mat-button (click)="goBack() "
+      [disabled]="stepper.selectedIndex === 0 || stepper.selectedIndex  === totalStepsCount-1">Back</button>
+    <button mat-button (click)="goForward()" [disabled]="stepper.selectedIndex === totalStepsCount-1">Next</button>
+  </div>
 </div>

@@ -1,4 +1,12 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Inject,
+  ViewChild,
+  AfterViewInit,
+  NgZone,
+  ViewEncapsulation
+} from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -17,13 +25,15 @@ import { PagoService } from "../../../../services/pagos/pago.service";
 import { Router } from "@angular/router";
 import { DashboardService } from "../../../../services/shared/dashboard.service";
 import { FormDireccioneUsuarioShowComponent } from "../procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component";
+import { NotificationService } from "../../../../services/shared/notification.service";
 
 @Component({
   selector: "app-proceso-compra",
   templateUrl: "./proceso-compra.component.html",
-  styleUrls: ["./proceso-compra.component.css"]
+  styleUrls: ["./proceso-compra.component.css"],
+  encapsulation: ViewEncapsulation.None
 })
-export class ProcesoCompraComponent implements OnInit {
+export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   private user: any;
   valuesArrayCompras: any;
   precio_total: number;
@@ -32,11 +42,15 @@ export class ProcesoCompraComponent implements OnInit {
   domicilio: any;
   showBtnDomicilio = true;
   btnverFlag: any;
+  charges: any;
 
   private transportadora: any;
   private departamentos: any;
   private ciudades: any;
   isLinear = true;
+  stepCompleted = false;
+  step2Completed = false;
+  stepperIndex: number;
 
   show = false;
 
@@ -44,6 +58,9 @@ export class ProcesoCompraComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   forthFormGroup: FormGroup;
+
+  @ViewChild("stepper", { static: false }) stepper: any;
+  totalStepsCount: number;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -54,21 +71,32 @@ export class ProcesoCompraComponent implements OnInit {
     private dialog: MatDialog,
     private sharedService: SharedService,
     private pagosServices: PagoService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone,
+    private notificacion: NotificationService
   ) {
     console.log(data);
 
     //To share the form in preceso compra componenet
     this.sharedService.formValues.subscribe(valuesForm => {
       this.valuesFormDireccione = valuesForm;
-      console.log(this.valuesFormDireccione);
-      this.isLinear = true;
+      console.log("Formulario" + this.valuesFormDireccione);
+      this.stepCompleted = true;
+    });
+
+    //To share the response of the payment in preceso compra componenet
+    this.sharedService.payCharge.subscribe(res => {
+      this.charges = res;
+      console.log("Payment" + this.charges);
     });
 
     //To share the form in preceso compra componenet
-    this.sharedService.formValuesTransportadora.subscribe(valuesForm => {
-      this.valuesFormTransportadora = valuesForm;
-      console.log(this.valuesFormTransportadora);
+    this.sharedService.stepComplared.subscribe(value => {
+      this.step2Completed = true;
+      console.log("True step 2 ");
+      this.stepper.linear = false;
+      this.stepper.selectedIndex = 2;
+      this.notificacion.success("Compra Satisfactoria");
     });
 
     //To share a variable from form-direccione to call a method  in here
@@ -101,6 +129,21 @@ export class ProcesoCompraComponent implements OnInit {
     this.user = JSON.parse(user);
     console.log(this.user);
     this.getDireccionCliente(this.user.id);
+
+    console.log(this.stepper);
+  }
+
+  ngAfterViewInit() {
+    //To share the form in preceso compra componenet
+    //   this.sharedService.stepComplared.subscribe(value => {
+    //   this.step2Completed = true;
+    //   this.ngZone.run(() => {
+    //     this.stepper.next();
+    //   });
+    // });
+
+    this.totalStepsCount = this.stepper._steps.length;
+    console.log("TOtal steps" + this.totalStepsCount);
   }
 
   createTableToshow() {
@@ -126,6 +169,7 @@ export class ProcesoCompraComponent implements OnInit {
 
         if (this.domicilio.length) {
           this.showBtnDomicilio = true;
+          this.stepCompleted = true;
         } else {
           this.showBtnDomicilio = !this.showBtnDomicilio;
         }
@@ -228,5 +272,13 @@ export class ProcesoCompraComponent implements OnInit {
 
   enviarMensajeVendedor() {
     this.show = !this.show;
+  }
+
+  goBack() {
+    this.stepper.previous();
+  }
+  goForward() {
+    //console.log(this.stepper);
+    this.stepper.next();
   }
 }

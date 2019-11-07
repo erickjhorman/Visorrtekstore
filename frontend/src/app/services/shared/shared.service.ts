@@ -56,6 +56,12 @@ export class SharedService {
   private enableBtnVerAddSource = new Subject();
   btnver = this.enableBtnVerAddSource.asObservable();
 
+  private step2ComplaredAddSource = new Subject();
+  stepComplared = this.step2ComplaredAddSource.asObservable();
+
+  private payChargeAddSource = new Subject();
+  payCharge = this.payChargeAddSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   sharingData: EventEmitter<any> = new EventEmitter();
@@ -118,5 +124,15 @@ export class SharedService {
   EmitVer(valor: boolean) {
     this.enableBtnVerAddSource.next(valor);
     console.log("Variable valor " + valor);
+  }
+
+  stepcompleted(valor: boolean) {
+    this.step2ComplaredAddSource.next(valor);
+    console.log("Variable pago " + valor);
+  }
+
+  paymentCharge(valor: any) {
+    this.payChargeAddSource.next(valor);
+    console.log("Objeto pago " + valor);
   }
 }

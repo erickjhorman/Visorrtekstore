@@ -1,6 +1,6 @@
-.actionsResumenCompraButtons button{
+.actionsResumenCompraButtons button {
   margin-right: 8px;
-  margin-top:  8px;
+  margin-top: 8px;
 }
 
 /* Style for table */
@@ -23,5 +23,11 @@ tr.mat-footer-row {
 
 /* End of  Style for table */
 
+/* Style for Stepper */
+/* ::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+} */
 
-
+.mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}

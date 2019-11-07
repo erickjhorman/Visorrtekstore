@@ -3,6 +3,7 @@ import { PagoService } from "../../../../../services/pagos/pago.service";
 import { environment } from "../../../../../../environments/environment";
 import { FormGroup, FormControl, Validators, Form } from "@angular/forms";
 import { SharedService } from "../../../../../services/shared/shared.service";
+import { NotificationService } from "../../../../../services/shared/notification.service";
 
 @Component({
   selector: "app-pagos",
@@ -20,15 +21,38 @@ export class PagosComponent implements OnInit {
   direcciones: any[] = [];
   transportadora: any[] = [];
   dataObjectPagoFinal: any[] = [];
+  charge: any;
 
   @Input() amount: number;
 
-  customStripeForm: FormGroup;
   submitted: any;
   formProcess: any;
   manejador: any;
   message: any;
   token: any;
+
+  showSpinner = false;
+
+  customStripeForm = new FormGroup({
+    name: new FormControl("", [Validators.required, Validators.maxLength(18)]),
+    lastname: new FormControl("", [
+      Validators.required,
+      Validators.maxLength(18)
+    ]),
+    cardNumber: new FormControl("", [
+      Validators.required,
+      Validators.maxLength(18)
+    ]),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    expMonth: new FormControl("", [Validators.required]),
+    expYear: new FormControl("", [Validators.required]),
+    cvv: new FormControl("", [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(3)
+    ]),
+    amount: new FormControl()
+  });
 
   months = [
     { id: "1", value: "01" },
@@ -59,34 +83,23 @@ export class PagosComponent implements OnInit {
     { id: "30", value: "11" }
   ];
 
+  restartFormGroup() {
+    this.customStripeForm.setValue({
+      name: "",
+      lastname: "",
+      cardNumber: "",
+      email: "",
+      expMonth: "",
+      expYear: "",
+      cvv: ""
+    });
+  }
+
   constructor(
     private pagosService: PagoService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private notificacion: NotificationService
   ) {
-    this.customStripeForm = new FormGroup({
-      name: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(18)
-      ]),
-      lastname: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(18)
-      ]),
-      cardNumber: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(18)
-      ]),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      expMonth: new FormControl("", [Validators.required]),
-      expYear: new FormControl("", [Validators.required]),
-      cvv: new FormControl("", [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(3)
-      ]),
-      amount: new FormControl()
-    });
-
     //To share the form in preceso compra componenet
     this.sharedService.formValues.subscribe(valuesForm => {
       this.valuesFormDireccione = valuesForm;
@@ -131,6 +144,11 @@ export class PagosComponent implements OnInit {
     }
   }
 
+  onClear() {
+    this.customStripeForm.reset();
+    this.restartFormGroup();
+  }
+
   // pay(amount) {
 
   //   var handler = (<any>window).StripeCheckout.configure({
@@ -157,6 +175,12 @@ export class PagosComponent implements OnInit {
       alert("Oops! Stripe did not initialize properly.");
       return;
     }
+
+    this.showSpinner = true;
+
+    setTimeout(() => {
+      this.showSpinner = false;
+    }, 5000);
 
     this.submitted = true;
 
@@ -236,7 +260,8 @@ export class PagosComponent implements OnInit {
   chargeMoney(formFinal: any) {
     this.pagosService.chargeMoney(formFinal).subscribe(
       data => {
-        const charge = data;
+        this.sharedService.paymentCharge(data);
+        this.sharedService.stepcompleted(true);
       },
       error => {
         console.log(error);
