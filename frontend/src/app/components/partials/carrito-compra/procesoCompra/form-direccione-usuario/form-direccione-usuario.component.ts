@@ -63,8 +63,8 @@ export class FormDireccioneUsuarioComponent implements OnInit {
       celular: new FormControl("", [
         Validators.required,
 
-        Validators.minLength(13),
-        Validators.maxLength(13)
+        Validators.minLength(10),
+        Validators.maxLength(10)
       ]),
       barrio: new FormControl("", [
         Validators.required,
@@ -74,7 +74,7 @@ export class FormDireccioneUsuarioComponent implements OnInit {
       direccion: new FormControl("", [
         Validators.required,
         Validators.minLength(13),
-        Validators.maxLength(13)
+        Validators.maxLength(25)
       ]),
       datosadicionales: new FormControl("", [
         Validators.required,

@@ -41,19 +41,19 @@
       </td>
       <td>
         <mat-form-field hintLabel="Max 13 characters">
-          <span matPrefix>+1 &nbsp;</span>
-          <input matInput #celular maxlength="13" placeholder="celular" formControlName="celular" type="tel">
+          <span matPrefix>+57 &nbsp;</span>
+          <input matInput #celular maxlength="10" placeholder="celular" formControlName="celular" type="tel">
 
           <mat-error *ngIf="FormDireccionesUsuario.controls['celular'].errors?.required"> Nº de celular is
             <strong>required</strong>
           </mat-error>
           <mat-error *ngIf="FormDireccionesUsuario.controls['celular'].errors?.minLength">Minimo caracteres
-            <strong>requerido</strong> 13</mat-error>
+            <strong>requerido</strong> 10</mat-error>
           <mat-error *ngIf="FormDireccionesUsuario.controls['celular'].errors?.maxLength">Maximo caracteres
             <strong>requerido</strong></mat-error>
 
           <mat-icon matSuffix>phone</mat-icon>
-          <mat-hint align="end">{{celular.value?.length || 0}}/13</mat-hint>
+          <mat-hint align="end">{{celular.value?.length || 0}}/10</mat-hint>
         </mat-form-field>
       </td>
     </tr>
@@ -105,15 +105,15 @@
     <tr>
       <td>
 
-        <mat-form-field hintLabel="Max 13 characters">
-          <input matInput #direccion maxlength="13" placeholder="Direccion" formControlName="direccion" type="text">
-          <mat-hint align="end">{{direccion.value?.length || 0}}/13</mat-hint>
+        <mat-form-field hintLabel="Max 25 characters">
+          <input matInput #direccion maxlength="25" placeholder="Direccion" formControlName="direccion" type="text">
+          <mat-hint align="end">{{direccion.value?.length || 0}}/25</mat-hint>
           <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.required">Este campo es <strong>
               requerido</strong></mat-error>
           <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.minLength">Minimo caracteres requeridos
             13</mat-error>
           <mat-error *ngIf="FormDireccionesUsuario.controls['direccion'].errors?.maxLength">Maximo caracteres requeridos
-            13</mat-error>
+            25</mat-error>
         </mat-form-field>
       </td>
     </tr>

@@ -7,13 +7,7 @@ import {
   NgZone,
   ViewEncapsulation
 } from "@angular/core";
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { MatTableDataSource } from "@angular/material"; //To get the information to store in the table
 import { CatalogoServes } from "../../../../services/Catalogos/catalogos.service";
@@ -26,6 +20,7 @@ import { Router } from "@angular/router";
 import { DashboardService } from "../../../../services/shared/dashboard.service";
 import { FormDireccioneUsuarioShowComponent } from "../procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component";
 import { NotificationService } from "../../../../services/shared/notification.service";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-proceso-compra",
@@ -87,7 +82,7 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     //To share the response of the payment in preceso compra componenet
     this.sharedService.payCharge.subscribe(res => {
       this.charges = res;
-      console.log("Payment" + this.charges);
+      console.log(this.charges);
     });
 
     //To share the form in preceso compra componenet

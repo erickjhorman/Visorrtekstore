@@ -75,9 +75,11 @@
       <ng-template matStepLabel>Datos compra final</ng-template>
       <h1>Gracias por confira en nosotros</h1>
 
-      <span>Su compra ha sido </span>
+      <span *ngIf="charges">Su compra ha sido {{charges?.status}}</span>
       <br>
-      <span>Productos adquiridos </span>
+      <span>Productos adquiridos</span>
+      <br>
+      <span>Valor total de la transaccion {{charges?.amount | currency: 'COP'}}</span>
 
       <div>
         <button mat-button (click)="enviarMensajeVendedor()">Enviar mensaje a vendedor </button>
