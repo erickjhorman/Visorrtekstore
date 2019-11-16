@@ -60,4 +60,9 @@ class ProcesoCompraController extends Controller
 
         return $domicilio;
     }
+
+    public function mensaje(Request $request)
+    {
+        return "Mensaje";
+    }
 }

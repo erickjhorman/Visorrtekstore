@@ -22,6 +22,15 @@ php artisan make:model recibo --migration
 php artisan make:model comentarios --migration
 php artisan migrate
 
+
+New models for chat  
+php artisan make:model TipoSala --migration
+php artisan make:model TipoMensaje --migration
+php artisan make:model Sala --migration
+php artisan make:model Mensaje --migration
+php artisan make:model UsuarioSala --migration
+
+
 //To modify a migration
 php artisan make:migration create_profiles_table --create=profiles
 

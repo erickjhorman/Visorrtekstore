@@ -67,3 +67,12 @@ Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentari
 Route::post('v1/charges', 'stripePaymentController@saveToken');
 Route::get('dashboard/compras/{id}', 'stripePaymentController@getCompras');
 Route::post('procesoCompra/addDireccion', 'ProcesoCompraController@addDireccion');
+Route::post('procesoCompra/addDireccion/mensaje', 'ProcesoCompraController@mensaje');
+//Api for Chat
+// Route::resources([
+// 'chat' => 'ChatController',
+// ]);
+
+Route::resource('mensaje', 'ChatController')->only([
+    'index', 'create', 'store', 'store'
+]);

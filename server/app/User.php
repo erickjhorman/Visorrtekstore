@@ -11,7 +11,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-     // Rest omitted for brevity
+    // Rest omitted for brevity
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -47,6 +47,26 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('app\comentario');
     }
 
+
+    public function usuario_sala()
+    {
+        return $this->hasOne('app\UsuarioSala', 'foreign_key');
+    }
+
+
+    public function mensaje()
+    {
+        return $this->hasOne('app\Mensaje', 'foreign_key');
+    }
+
+    public function Salas()
+    {
+        return $this->belongsToMany('app\Sala', 'usuario_salas', 'usuario_id', 'Sala_id');
+    }
+
+
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -68,9 +88,6 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value)
     {
 
-         $this->attributes ['password'] = bcrypt($value);
+        $this->attributes['password'] = bcrypt($value);
     }
-
-
-
 }

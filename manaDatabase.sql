@@ -42,6 +42,14 @@ marca_id  int(5) not null references marcas(id_marcas),
 Descripcion varchar(30) not null);
 
 
+Create table tipoSala
+(id int(5) not null auto_increment primary key,
+nombre varchar(20) not null);
+
+Create table tipoMensaje
+(id int(5) not null auto_increment primary key,
+tipo_mensaje varchar(20) not null);
+
 
 Create table descriptionProducto
 (id_descriptionProducto int(5) not null auto_increment primary key,
@@ -145,6 +153,29 @@ Valor_Neto int(20) not null,
 Valor_Iva int(20),
 Valor_Pagar int(20) not null);
 
+
+Create table sala
+(id  int(5) not null auto_increment primary key,
+tipoSala_id int(5) references not null tipoSala(id)
+Fecha dateTime  DEFAULT CURRENT_TIMESTAMP );
+
+
+Create table usuario_sala
+(id  int(5) not null auto_increment primary key,
+sala_id int(5) references not null sala(id),
+usuario_id int(5) references not null usuario(id_usuario),
+Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+Create table mensaje
+(id  int(5) not null auto_increment primary key,
+sala_id int(5) references not null sala(id),
+usuario_id int(5) references not null usuario(id_usuario)
+tipoMensaje_id int(5) references not null tipoMensaje(id)
+mensaje text(500) not null,
+url varchar(2000) not null,
+Hora time  DEFAULT CURRENT_TIME);
+
+
 Create table factura
 (id_factura int(5) not null auto_increment primary key,
 Vendedor_id int(3) references not null Vendedor(id_Vendedor),
@@ -152,8 +183,7 @@ Cliente_id int(3) references  Cliente(id_Cliente),
 detalleVenta_id int(3) references not null Detalle_Venta(id_detalleVenta),
 nombre varchar(30) not null,
 nit varchar(30) not null,
-Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-);
+Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
 Create table recibo
 (id_recibo int(5) not null auto_increment primary key,
@@ -161,5 +191,4 @@ Vendedor_id int(3) references not null Vendedor(id_Vendedor),
 Cliente_id int(3) references  Cliente(id_Cliente),
 detalleVenta_id int(3) references not null Detalle_Venta(id_detalleVenta),
 nombre varchar(30) not null,
-Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-);
+Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
