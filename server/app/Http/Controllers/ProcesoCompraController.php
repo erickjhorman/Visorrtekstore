@@ -63,6 +63,6 @@ class ProcesoCompraController extends Controller
 
     public function mensaje(Request $request)
     {
-        return "Mensaje";
+        return $request;
     }
 }

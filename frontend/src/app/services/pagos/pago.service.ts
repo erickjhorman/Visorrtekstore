@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http"; // this module m
 export class PagoService {
   API_URI = "http://localhost:8000/api/v1/charges";
   API_URICompras = "http://localhost:8000/api/dashboard/compras";
+  API_SAVE_MENSAJE = "http://localhost:8000/api/procesoCompra/mensaje";
 
   //I instanced the module httpClient
 
@@ -20,5 +21,12 @@ export class PagoService {
 
   getCompras(id: number) {
     return this.http.get(`${this.API_URICompras}/${id}`);
+  }
+
+  saveMensaje(form: any) {
+    const headers = new HttpHeaders({ "content-type": "application/json" });
+    return this.http.post(`${this.API_SAVE_MENSAJE}`, form, {
+      headers: headers
+    });
   }
 }

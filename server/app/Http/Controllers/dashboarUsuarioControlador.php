@@ -28,6 +28,7 @@ class dashboarUsuarioControlador extends Controller
     public function getDireccion($id)
     {
 
+
         $direccion = DB::table('domicilios')
             ->join('departamentos', 'departamentos.id', '=', 'domicilios.departamento_id')
             ->join('ciudads', 'ciudads.id', '=', 'domicilios.ciudad_id')

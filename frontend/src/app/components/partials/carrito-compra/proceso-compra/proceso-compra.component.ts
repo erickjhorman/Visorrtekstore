@@ -7,7 +7,12 @@ import {
   NgZone,
   ViewEncapsulation
 } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl
+} from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { MatTableDataSource } from "@angular/material"; //To get the information to store in the table
 import { CatalogoServes } from "../../../../services/Catalogos/catalogos.service";
@@ -48,11 +53,13 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   stepperIndex: number;
 
   show = false;
+  disableMessageBtn = false;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   forthFormGroup: FormGroup;
+  formMensaje: FormGroup;
 
   @ViewChild("stepper", { static: false }) stepper: any;
   totalStepsCount: number;
@@ -71,6 +78,16 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     private notificacion: NotificationService
   ) {
     console.log(data);
+
+    //To get the information from  a sessionStorage
+    var user = sessionStorage.getItem("userAuth");
+    this.user = JSON.parse(user);
+    console.log(this.user);
+
+    this.formMensaje = new FormGroup({
+      idCliente: new FormControl(this.user.id),
+      mensaje: new FormControl("", [Validators.required])
+    });
 
     //To share the form in preceso compra componenet
     this.sharedService.formValues.subscribe(valuesForm => {
@@ -119,10 +136,6 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
 
     this.createTableToshow();
 
-    //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem("userAuth");
-    this.user = JSON.parse(user);
-    console.log(this.user);
     this.getDireccionCliente(this.user.id);
 
     console.log(this.stepper);
@@ -275,5 +288,18 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   goForward() {
     //console.log(this.stepper);
     this.stepper.next();
+  }
+
+  onSubmit() {
+    if (this.formMensaje.valid) {
+      this.pagosServices.saveMensaje(this.formMensaje.value).subscribe(
+        res => {
+          this.notificacion.success("Mensaje enviado satisfactoriamente");
+        },
+        err => console.log(err)
+      );
+      this.show = !this.show;
+      this.disableMessageBtn = !this.disableMessageBtn;
+    }
   }
 }
