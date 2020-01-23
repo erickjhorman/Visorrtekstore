@@ -96,3 +96,12 @@ Schema::create('users', function (Blueprint $table) {
         $table->rememberToken();
         $table->timestamps();
         });
+
+add fiel to the database
+php artisan make:migration add_column_venta_id_to_salas_table 
+
+drop column in the database
+php artisan make:migration drop_column_hora_to_mensajes_table 
+
+Form Request Validation
+php artisan make:request StoreMensajeChat

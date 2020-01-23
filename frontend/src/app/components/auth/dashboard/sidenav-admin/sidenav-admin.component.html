@@ -1,24 +1,15 @@
-<div id="menu-usuario" (mouseover)="MostrarDiv($event)" (mouseleave)="ocultarDiv($event)">
-    <ul>
-        <li>
-            <i class="fas fa-bars fa-lg"></i>
-        </li>
-        <li><a routerLink="/dashboard"><i class="fas fa-home fa-lg"></i></a><span id="inicio">Inicio</span></li>
-        <li><i class="fas fa-clipboard-list fa-lg"></i><span id="resume">Resumen</span></li>
-        <li><i class="fas fa-sms fa-lg"></i><span id="mensaje">Mensajes</span></li>
-        <li><i class="fas fa-hands fa-lg"></i><span id="operacion">Operaciones</span>
-            <ul>
-                <li class="addProducto"><i class="fas fa-plus fa-lg"></i><span id="addProducto">Añadir producto</span></li>
+<div id="menu-usuario">
+  <ul>
+    <li>
+      <i class="fas fa-bars fa-lg"></i>
+    </li>
+    <li><a routerLink="/dashboard"><i class="fas fa-home fa-lg"></i></a><span id="inicio">Inicio</span></li>
+    <li><i class="fas fa-clipboard-list fa-lg"></i><span id="resume">Resumen</span></li>
+    <li><i class="fas fa-sms fa-lg"></i><span id="mensaje">Mensajes</span></li>
+    <li><i class="far fa-save fa-lg"></i><span id="operacion">Operaciones</span></li>
+    <li><i class="fas fa-store fa-lg"></i><span id="ventas">Ventas</span>
+    <li><i class="fas fa-question fa-lg"></i><span id="pregunta">Preguntas</span></li>
 
-            </ul>
-        </li>
-        <li><i class="fas fa-store fa-lg"></i><span id="ventas">Ventas</span>
-            <ul>
-
-                <li><i class="fas fa-question fa-lg"></i><span id="pregunta">Preguntas</span></li>
-
-            </ul>
-        </li>
-        <li><i class="fas fa-cog fa-lg"></i><span id="Configuraciones">Configuraciones</span></li>
-    </ul>
+    <li><i class="fas fa-cog fa-lg"></i><span id="Configuraciones">Configuraciones</span></li>
+  </ul>
 </div>

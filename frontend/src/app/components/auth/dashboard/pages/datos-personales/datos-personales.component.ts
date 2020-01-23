@@ -107,7 +107,7 @@ export class DatosPersonalesComponent implements OnInit {
     this.cataloServe.getCliente(id).subscribe(
       res => {
         this.cliente = res;
-        //console.log(this.cliente);
+        console.log(this.cliente);
       },
       err => console.log(err)
     );

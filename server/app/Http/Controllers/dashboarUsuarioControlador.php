@@ -20,9 +20,10 @@ class dashboarUsuarioControlador extends Controller
         $Clientes =  DB::table('clientes')
             ->select('clientes.*')
             ->where('usuario_id', '=', $id)
-            ->get();
+            ->first();
+            
 
-        return $Clientes;
+        return response()->json($Clientes);
     }
 
     public function getDireccion($id)

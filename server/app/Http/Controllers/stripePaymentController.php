@@ -152,6 +152,7 @@ class stripePaymentController extends Controller
             ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
             ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
             ->select(
+                'ventas.id as venta_id',
                 'detalle__ventas.Producto_id',
                 'detalle__ventas.nombre',
                 'detalle__ventas.cantidad',

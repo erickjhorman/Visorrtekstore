@@ -41,6 +41,8 @@ Route::group([
     Route::put('/datos-personales/{id}', 'dashboarUsuarioControlador@update');
     Route::post('/datos-personales/addDireccion', 'dashboarUsuarioControlador@store');
     Route::get('/datos-personales/getDireccion/{id}', 'dashboarUsuarioControlador@getDireccion');
+   
+
 });
 
 Route::group([
@@ -48,6 +50,9 @@ Route::group([
     'prefix' => 'admin'
 ], function ($router) {
     Route::get('/list-ventas', 'dashboarAdminControlador@index');
+    Route::get('/get-mensaje-usuario/{id}', 'ProcesoCompraController@getMensajeUsuario');
+    Route::get('/get-all-mensaje-usuarios/{id}', 'ProcesoCompraController@getAllMensajeUsuarios');
+    Route::post('/mensaje', 'ChatController@enviarMensaje');
 });
 
 
@@ -67,12 +72,16 @@ Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentari
 Route::post('v1/charges', 'stripePaymentController@saveToken');
 Route::get('dashboard/compras/{id}', 'stripePaymentController@getCompras');
 Route::post('procesoCompra/addDireccion', 'ProcesoCompraController@addDireccion');
-Route::post('procesoCompra/mensaje', 'ProcesoCompraController@mensaje');
+Route::post('procesoCompra/mensaje', 'ProcesoCompraController@storeFirstMensaje');
+
 //Api for Chat
 // Route::resources([
 // 'chat' => 'ChatController',
 // ]);
 
 Route::resource('mensaje', 'ChatController')->only([
-    'index', 'create', 'store', 'store'
+    'index', 'create', 'store'
 ]);
+
+
+

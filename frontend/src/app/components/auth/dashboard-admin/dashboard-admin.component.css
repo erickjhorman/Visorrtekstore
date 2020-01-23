@@ -1,56 +1,167 @@
+h2 {
+  text-align: center;
+  padding-top: 15px;
+}
+
+#datos-cliente {
+  position: relative;
+  height: 110px;
+  left: 725px;
+  bottom: 40px;
+  font-size: medium;
+}
+
+#avatar_user {
+  position: fixed;
+  left: 700px;
+  top: 25px;
+}
+
+.mat-raised-button {
+  position: fixed;
+  right: 40%;
+  top: 35px;
+}
+
+p {
+  display: inline;
+  position: relative;
+  right: 80%;
+  top: 35px;
+}
 .card-ventas {
-    max-width: 950px;
+  padding-top: 25px;
+  width: 950px;
+  background-color: aliceblue;
+  margin-top: 23px;
+  padding-left: 15px;
 }
 
 .row {
-    max-width: 950px;
+  max-width: 950px;
 }
 
-.imagen-oroducto-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+.mat-card-image {
+  width: 50px;
+  position: relative;
+  left: 60px;
+  top: 45px;
 }
 
 .scroll {
-    height: 500px;
-    width: 998px;
-    border: 1px solid black;
+  height: 500px;
+  width: 998px;
+  border: 1px solid black;
 }
 
 .example-item {
-    height: 50px;
+  height: 50px;
+}
+
+mat-card-content {
+  padding-left: 125px;
+  padding-bottom: 20px;
+}
+
+span {
+  margin-right: 100px;
+}
+
+.virtual-scroll-wrap {
+  width: 50%;
+  margin: auto;
+  min-width: 380px;
 }
 
 cdk-virtual-scroll-viewport {
-    height: 100vh;
-    width: 80vw;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    list-style: none;
+  height: 100vh;
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
 }
-
 
 /* width */
 
 .container::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
-
 
 /* Track */
 
 .container::-webkit-scrollbar-track {
-    background: #e1e1e1;
-    border-radius: 4px;
+  background: #e1e1e1;
+  border-radius: 4px;
 }
-
 
 /* Handle */
 
 .container::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
+  background: #ccc;
+  border-radius: 4px;
+}
+
+@-webkit-keyframes lightSpeedIn {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+    transform: translate3d(100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+
+  60% {
+    -webkit-transform: skewX(20deg);
+    transform: skewX(20deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: skewX(-5deg);
+    transform: skewX(-5deg);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes lightSpeedIn {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+    transform: translate3d(100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+
+  60% {
+    -webkit-transform: skewX(20deg);
+    transform: skewX(20deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: skewX(-5deg);
+    transform: skewX(-5deg);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.lightSpeedIn {
+  -webkit-animation-name: lightSpeedIn;
+  animation-name: lightSpeedIn;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }

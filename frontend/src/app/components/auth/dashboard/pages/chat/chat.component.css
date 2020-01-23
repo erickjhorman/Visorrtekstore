@@ -1,0 +1,93 @@
+.main-chat {
+  width: 450px;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  bottom: 5px;
+}
+
+/* Chat containers */
+.admin {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.user {
+  border-color: #ccc;
+  background-color: #ddd;
+  left: 125px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.container-chat-options {
+  position: absolute;
+  bottom: 25px;
+  left: 150px;
+}
+
+#button-mensaje {
+  position: relative;
+  left: 275px;
+  bottom: 60px;
+}
+/* Virtual scrolling   */
+.viewport {
+  height: 400px;
+  width: 600px;
+  position: absolute;
+  top: 45px;
+  right: 25px;
+  font-size: small;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}

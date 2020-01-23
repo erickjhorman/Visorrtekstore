@@ -20,7 +20,8 @@ ng g c components/partials/carrito-compra/compras-lista --skip-import
 ng g c components/partials/carrito-compra/procesoCompra/formTransportadora --skip-import
 ng g c components/partials/carrito-compra/procesoCompra/formDireccioneUsuarioShow --skip-import
 ng g c components/partials/carrito-compra/procesoCompra/pagos --skip-import
-
+ng generate component page-not-found
+ng generate component page-not-found --module app
 
 
 ng g c components/auth/dashboard/pages/datosPersonales  --spec false --skip-import
@@ -28,8 +29,11 @@ ng g c components/auth/dashboard/pages/addDireccion  --spec false --skip-import
 ng g c components/auth/dashboard/pages/personalizacionSite  --spec false --skip-import
 ng g c components/auth/dashboard/pages/datosPersonales  skipTests --skip-import 
 ng g c components/auth/dashboard/pages/sidebar/datosPersonales  skipTests --skip-import 
+ng g c components/auth/dashboard/pages/chat  --skipTests --skip-import 
+ng g c components/auth/dashboard/pages/chat  --skipTests  --module app
 
 ng g c components/catalogos/mostrarDetalleProducto  --skip-import
+
 
 
 To create routing
@@ -81,4 +85,9 @@ Fireship
 To create a module 
 ng g module pagos/pago
 ng g service 
-ng g s services/pagos/pago
+ng g s services/pagos/pago 
+
+
+Pipes
+ng g p pipes/isAdmin --module=app
+ng g p pipes/isUser --module=app

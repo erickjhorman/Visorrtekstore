@@ -8,6 +8,15 @@ class Mensaje extends Model
 {
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'Sala_id',
+        'usuario_id',
+        'tipoMensaje_id',
+        'mensaje',
+        'url',
+        'hora',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User', 'foreign_key');

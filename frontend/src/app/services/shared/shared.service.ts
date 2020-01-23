@@ -62,6 +62,9 @@ export class SharedService {
   private payChargeAddSource = new Subject();
   payCharge = this.payChargeAddSource.asObservable();
 
+  private refreshMessagesAddSource = new Subject();
+  refreshMessages = this.refreshMessagesAddSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   sharingData: EventEmitter<any> = new EventEmitter();
@@ -134,5 +137,10 @@ export class SharedService {
   paymentCharge(valor: any) {
     this.payChargeAddSource.next(valor);
     console.log("Objeto pago " + valor);
+  }
+
+  refreshMessage(valor: boolean) {
+    this.refreshMessagesAddSource.next(valor);
+    console.log("Mensaje refrrescado " + valor);
   }
 }

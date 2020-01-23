@@ -21,8 +21,9 @@ class dashboarAdminControlador extends Controller
         $ventas = DB::table('ventas')
         ->join('detalle__ventas', 'detalle__ventas.venta_id', '=', 'ventas.id')
         ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
-        ->select('detalle__ventas.Producto_id','detalle__ventas.nombre' , 'detalle__ventas.cantidad',
-        'detalle__ventas.Valor_Neto','detalle__ventas.created_at','ventas.Cliente_id','productos.imagen')
+        ->join('clientes', 'clientes.id', '=', 'ventas.Cliente_id')
+        ->select('detalle__ventas.Producto_id','detalle__ventas.venta_id','detalle__ventas.nombre' , 'detalle__ventas.cantidad',
+        'detalle__ventas.Valor_Neto','detalle__ventas.created_at','ventas.Cliente_id','productos.imagen','clientes.avatar')
         ->get();
 
 

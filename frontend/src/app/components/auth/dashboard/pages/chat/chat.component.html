@@ -1,0 +1,60 @@
+<!-- <cdk-virtual-scroll-viewport itemSize="100" class="viewport">
+  <div *cdkVirtualFor="let mensaje of mensajes">
+    <div role="main" class="main-chat">
+      <div class="container admin">
+        <img mat-card-image [src]="mensaje?.avatar" alt="Avatar">
+        <p>Admin message</p>
+        <p>{{mensaje.mensaje}}</p>
+        <span class="time-right">{{mensaje.created_at}}</span>
+      </div>
+
+      <div class="container user">
+        <p>User message</p>
+        <img mat-card-image [src]="mensaje?.avatar" class="card-img-top rounded-circle right" alt="Avatar of the user">
+        <p>{{mensaje.mensaje}}</p>
+        <span class="time-left">{{mensaje.created_at}}</span>
+      </div>
+    </div>
+  </div>
+
+</cdk-virtual-scroll-viewport> -->
+
+<cdk-virtual-scroll-viewport itemSize="100" class="viewport">
+  <div>
+    <div role="main" class="main-chat">
+      <div class="container admin" *ngFor="let mensaje of mensajes">
+        <img mat-card-image [src]="mensaje?.avatar" alt="Avatar">
+
+        <p>{{mensaje.mensaje}}</p>
+        <span class="time-right">{{mensaje.created_at}}</span>
+      </div>
+
+
+    </div>
+  </div>
+
+</cdk-virtual-scroll-viewport>
+
+<mat-divider></mat-divider>
+<div class="container-chat-options">
+
+  <form (ngSubmit)="enviarMensaje(formMensaje); formMensaje.reset()" #formMensaje="ngForm" novalidate="">
+    <div class="form-group">
+      <input type="hidden" class="form-control" [(ngModel)]="user.id" name="usuario_id" required>
+    </div>
+    <div class="form-group">
+      <input type="hidden" class="form-control" [(ngModel)]="sala" name="sala_id" required>
+    </div>
+    <div class="form-group">
+      <textarea type="text" class="form-control" required [(ngModel)]="Mensaje.mensaje" name="mensaje"
+        placeholder="Escribe mensaje" #mensaje="ngModel" rows="1"></textarea>
+    </div>
+    <div [hidden]="mensaje.valid || mensaje.pristine" class="alert alert-danger">
+      <div *ngIf="mensaje.errors?.required">
+        Este campo es requerido.
+      </div>
+    </div>
+    <button mat-raised-button color="primary" id="button-mensaje" [disabled]="!formMensaje.form.valid">Enviar
+      mensaje</button>
+  </form>
+</div>

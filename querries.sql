@@ -160,3 +160,43 @@ GROUP BY Detalle_Venta2.id_detalle_Venta
                  ->get();
 
                  return $Productos;
+
+
+                 select imagenes.imagen,evento.id,evento.titulo,evento.description FROM evento 
+         inner join imagenes  
+         on imagenes.id=evento.imagen_id 
+     ORDER BY evento.id desc
+         LIMIT 5;
+       
+
+       select * from (
+    SELECT id_hr, hrs_ini, hrs_ter, lunes, martes, miercoles, jueves, viernes, sabado, 
+    fecha_registro
+    FROM horario
+    INNER JOIN usuarios ON horario.rut_usu = usuarios.rut_usu
+    WHERE fecha_registro = (SELECT MAX(fecha_registro) FROM horario) ORDER BY id_hr DESC LIMIT 14
+) tmp order by tmp.id_hr asc
+
+
+
+       
+select mensajes.* 
+from mensajes
+where mensajes.Sala_id = (
+select DISTINCT 
+salas.id
+from salas 
+where salas.venta_id = '4'
+GROUP BY salas.venta_id)
+;
+
+
+select mensajes.* 
+from mensajes
+where mensajes.Sala_id = (
+select DISTINCT 
+salas.id
+from salas 
+where salas.venta_id = '4'
+GROUP BY salas.venta_id)
+;

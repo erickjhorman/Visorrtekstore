@@ -1,8 +1,9 @@
 <mat-grid-list cols="4">
-    <mat-grid-tile colspan="1 " rowspan="2">
-        <app-sidenav-admin></app-sidenav-admin>
-    </mat-grid-tile>
-    <!-- <mat-grid-tile colspan="3" rowspan="3">
+  <mat-grid-tile colspan="1 " rowspan="2">
+    <app-sidenav-admin></app-sidenav-admin>
+  </mat-grid-tile>
+  <h2>Mis ventas</h2>
+  <!-- <mat-grid-tile colspan="3" rowspan="3">
 
         <div class="container">
             <div class="row pt-3" *ngFor="let v of allVentas">
@@ -29,33 +30,49 @@
 
     </mat-grid-tile> -->
 
-    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
+  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
 
-        <div class="container">
-            <cdk-virtual-scroll-viewport itemSize="100" class="scroll">
-                <div class="row pt-4" *cdkVirtualFor="let v of allVentas">
-                    <mat-card class="card-ventas">
-                        <mat-divider></mat-divider>
-                        <mat-card-header>
-                            <div mat-card-avatar class="imagen-oroducto-header-image"></div>
-                            <mat-card-title>{{v.nombre}}</mat-card-title>
-                            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                        </mat-card-header>
+    <div class="container">
+      <cdk-virtual-scroll-viewport itemSize="100">
+        <div class="row pt-4" *cdkVirtualFor="let v of allVentas" class="animated lightSpeedIn item-wrap">
+          <mat-card class="card-ventas">
+            <div id="datos-cliente">
+              <p>Etiqueta lista para imprimir</p>
+              <button mat-raised-button color="accent">Imprimir etiqueta</button>
 
-                        <mat-card-content>
-                            <p>cantidad {{v.cantidad}}
-                            </p>
-                        </mat-card-content>
+              <img mat-card-image [src]="v?.avatar" id="avatar_user" class="card-img-top rounded-circle">
+              <mat-card-header>
+                <mat-card-title>Marvin Romero </mat-card-title>
+                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-actions>
+                <button mat-button [routerLink]="['/admin/mensaje' , v.venta_id]" routerLinkActive="active">Enviar
+                  mensaje</button>
 
-                        <mat-card-actions>
-                            <button mat-button>LIKE</button>
-                            <button mat-button>SHARE</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-            </cdk-virtual-scroll-viewport>
+              </mat-card-actions>
+
+
+            </div>
+
+
+            <mat-divider></mat-divider>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+              alt="Photo of a Shiba Inu">
+            <mat-card-content>
+              <span>{{v.nombre}}</span>
+              <span>cantidad {{v.cantidad}}</span>
+              <span>Precio: {{v.Valor_Neto  | currency : "COP"}}</span>
+              <span>Color : Amarillo</span>
+
+            </mat-card-content>
+
+
+          </mat-card>
+
         </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
 
-    </mat-grid-tile>
+  </mat-grid-tile>
 
 </mat-grid-list>

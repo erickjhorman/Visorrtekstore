@@ -8,6 +8,12 @@ class Sala extends Model
 {
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'venta_id',
+        'tipoSala_id',
+
+    ];
+
     public function mensaje()
     {
         return $this->hasOne('app\Mensaje', 'foreign_key');

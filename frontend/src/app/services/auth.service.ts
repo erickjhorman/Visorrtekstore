@@ -1,24 +1,27 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/';
-import { TokenService } from './token.service';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs/";
+import { TokenService } from "./token.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
+  private loggeIn = new BehaviorSubject<boolean>(this.Token.loggedIn());
 
+  private typeUser = new BehaviorSubject<boolean>(this.Token.isAdmin());
 
+  authStatus = this.loggeIn.asObservable();
+  typeUserStatus = this.typeUser.asObservable();
 
-private loggeIn = new  BehaviorSubject<boolean>(this.Token.loggedIn())
+  changeAuthStaus(value: boolean) {
+    this.loggeIn.next(value);
+    console.log(this.typeUser);
+  }
 
-authStatus = this.loggeIn.asObservable();
+  changeTypeUserStatus(value: boolean) {
+    this.typeUser.next(value);
+    console.log("changeTypeUserStatus" + value);
+  }
 
-changeAuthStaus(value: boolean){
-  this.loggeIn.next(value)
-
-}
-
-
-
-  constructor( private Token:TokenService) { }
+  constructor(private Token: TokenService) {}
 }

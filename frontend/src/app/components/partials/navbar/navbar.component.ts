@@ -1,52 +1,82 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TokenService } from '../../../services/token.service';
-import { AuthService } from '../../../services/auth.service';
-import {CatalogosComponent} from '../../catalogos/catalogos/catalogos.component';
-import {MatDialog, MatDialogRef, MatDialogConfig, } from '@angular/material/dialog';
-import {CarritoCompraComponent} from '../../partials/carrito-compra/carrito-compra.component';
-import {SharedService} from '../../../services/shared/shared.service'
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { TokenService } from "../../../services/token.service";
+import { AuthService } from "../../../services/auth.service";
+import { CatalogoServes } from "./../../../services/Catalogos/catalogos.service";
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogConfig
+} from "@angular/material/dialog";
+import { CarritoCompraComponent } from "../../partials/carrito-compra/carrito-compra.component";
+import { SharedService } from "../../../services/shared/shared.service";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
-
-  public loggedin :boolean;
+  public loggedin: boolean;
   listadoCompras: string[] = [];
   producto: string;
-  public loggedinAdmin: true;
+  public loggedinAdmin: boolean;
+  private user: any;
+  // cliente: any[] = [];
+  private cliente: any;
 
   constructor(
     private Auth: AuthService,
     private router: Router,
     private Token: TokenService,
     private dialog: MatDialog,
-    private sharedService:
-    SharedService
-  ) { }
+    private sharedService: SharedService,
+    private cataloServe: CatalogoServes
+  ) {}
 
   ngOnInit() {
-    this.Auth.authStatus.subscribe(value => this.loggedin = value);
-
     //To get the information from  a sessionStorage
-    var tipo_user = localStorage.getItem('tipo_usuario');
-    console.log(tipo_user);
-    console.log(this.loggedinAdmin);
-   }
+    var user = sessionStorage.getItem("userAuth");
+    this.user = JSON.parse(user);
+    console.log(this.user);
+    this.getClientes(this.user.id);
+    this.Auth.authStatus.subscribe(value => (this.loggedin = value));
+    if (this.loggedin != null) {
+      this.getClientes(this.user.id);
+      console.log("No null" + this.loggedin);
+    }
 
+    this.Auth.typeUserStatus.subscribe(value => (this.loggedinAdmin = value));
+    // console.log("Login " + this.loggedin);
+    // console.log("Login admin" + this.loggedinAdmin);
+  }
 
+  getClientes(id: number) {
+    this.cataloServe.getCliente(id).subscribe(
+      res => {
+        this.cliente = res;
 
-  logout(event: MouseEvent ){
+        // this.cliente.reduce((prev , current) => {prev[current] =  current; return prev;}, {});
+
+        // this.cliente = JSON.parse(this.cliente);
+      },
+      err => {}
+    );
+  }
+
+  logout(event: MouseEvent) {
     // this.sharedService.sharingData.emit("this.addproducto");
     // console.log("THis. ")
     event.preventDefault();
     this.Token.remove();
     this.Token.removeSessionStorage();
+    this.Token.removeUser();
+    this.Token.removeSessionStorageUser();
     this.Auth.changeAuthStaus(false);
-    this.router.navigateByUrl('/login');
+    this.Auth.changeTypeUserStatus(false);
+    this.router.navigateByUrl("/login");
+    this.loggedin = false;
+    this.loggedinAdmin = false;
   }
 
   //   openModel(productos:string){
@@ -74,29 +104,23 @@ export class NavbarComponent implements OnInit {
 
   //  }
 
-   addCarrito(productos : any){
+  addCarrito(productos: any) {
     this.listadoCompras.push(productos);
     console.log("Compras desde navbar" + this.listadoCompras);
-
-   }
-
-   toogleHidden(event: MouseEvent ){
-    event.preventDefault();
-    this.sharedService.getValorMostraComponente(false)
   }
 
-  toogleShowCatalogosComponent(event: MouseEvent){
+  toogleHidden(event: MouseEvent) {
     event.preventDefault();
-    this.sharedService.getValorMostraCatalogoSidebar(false)
-
+    this.sharedService.getValorMostraComponente(false);
   }
 
-    toogleShowUserSidenav(event: MouseEvent){
+  toogleShowCatalogosComponent(event: MouseEvent) {
     event.preventDefault();
-    this.sharedService.getValorMostraUserSidebar(false)
+    this.sharedService.getValorMostraCatalogoSidebar(false);
   }
 
-
-
-
+  toogleShowUserSidenav(event: MouseEvent) {
+    event.preventDefault();
+    this.sharedService.getValorMostraUserSidebar(false);
+  }
 }

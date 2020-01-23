@@ -1,42 +1,50 @@
-nav{
- height: 100px;
-
+nav {
+  height: 100px;
 }
 
-.navbar-brand, .form-inline {
+.navbar-brand,
+.form-inline {
   position: relative;
   bottom: 23px;
-
 }
 
-.navbar-nav{
-   position: relative;
-   top: 23px;
-   right: 480px;
-   font-size: 13px
+.navbar-nav {
+  position: relative;
+  top: 23px;
+  right: 480px;
+  font-size: 13px;
 }
 
-.navbar-right{
+.navbar-right {
   position: relative;
   top: 23px;
   right: 4rem;
-
 }
 .form-control {
- width: 400px;
-
+  width: 400px;
 }
-.btn-outline-success{
+.btn-outline-success {
   position: relative;
   left: 17px;
 }
 
-
-.avatar-header-image{
-  background-image: url('https://res.cloudinary.com/dequvdgav/image/upload/v1558927931/ozgtye9pgab5k6q9l3ps.jpg');
+.avatar-header-image {
   background-size: cover;
   position: absolute;
   bottom: 2px;
 }
 
+/* .avatar-header-image{
+  background-image: url('https://res.cloudinary.com/dequvdgav/image/upload/v1558927931/ozgtye9pgab5k6q9l3ps.jpg');
+  background-size: cover;
+  position: absolute;
+  bottom: 2px;
+} */
 
+.card-img-top {
+  position: absolute;
+  left: 210px;
+  width: 2.5rem;
+  background-size: cover;
+  top: 5px;
+}
