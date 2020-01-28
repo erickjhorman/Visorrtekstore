@@ -200,3 +200,33 @@ from salas
 where salas.venta_id = '4'
 GROUP BY salas.venta_id)
 ;
+
+ $mensajeSala = DB::table('salas')
+                       ->select('salas.id')
+                       ->where('salas.venta_id', '=', $id)
+                       ->groupBy('salas.venta_id')
+                       ->distinct()
+                       ->get();
+        
+        
+        $mensajes = DB::table('mensajes')
+            ->select('*')
+            ->joinSub()
+            ->where('mensajes.Sala_id', '=', $mensajeSala)
+            ->get();
+
+       return  $mensajes;
+
+
+         $mensajeSala = DB::table('mensajes')
+        ->whereExists(function ($query) {
+            $query->select(DB::raw('salas.id'))
+                  ->from('salas')
+                  ->WhereIn('salas.venta_id', '=', $id);
+        })
+        ->get();
+
+        return $mensajeSala;
+
+
+ 

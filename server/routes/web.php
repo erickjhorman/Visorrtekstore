@@ -23,12 +23,20 @@ Route::get('/', function () {
     // $salas->Users()->attach(1);
 
     //To remove a record
-    $salas = app\Sala::findOrfail(1);
-    $salas->Users()->detach(1);
+    // $salas = app\Sala::findOrfail(1);
+    // $salas->Users()->detach(1);
 
     //To insert only one record
-    $salas = app\Sala::findOrfail(1);
-    $salas->Users()->sync(1);
+    // $salas = app\Sala::findOrfail(1);
+    // $salas->Users()->sync(1);
+
+    // $colores =  DB::table('catalogo_colores_productos')
+    // ->leftJoin('productos', 'productos.id', '=', 'catalogo_colores_productos.id')
+    // ->select('catalogo_colores_productos.color')
+    // ->distinct()
+    // ->get();
+
+    // return $colores;
 });
 
 Auth::routes();

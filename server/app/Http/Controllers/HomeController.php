@@ -130,6 +130,8 @@ public function getProductos($id){
 
                  return $Productos;
 
+                 
+
 
                 //  $Productos =  DB::table('productos')
                 //  ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
@@ -150,6 +152,19 @@ public function productosDestacados(){
     ->groupBy('valor_neto');
 
    return  $productoDestacados;
+
+}
+
+public function getColorsProducts($id){
+     
+    $colores =  DB::table('catalogo_colores_productos')
+    ->leftJoin('productos', 'productos.id', '=', 'catalogo_colores_productos.id')
+    ->select('catalogo_colores_productos.color')
+    ->distinct()
+    ->where('catalogo_colores_productos.producto_id', '=', $id)
+    ->get();
+
+    return $colores;
 
 }
 

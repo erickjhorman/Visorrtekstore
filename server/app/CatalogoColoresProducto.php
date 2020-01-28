@@ -1,13 +1,13 @@
 <?php
 
 namespace app\model;
-
 use Illuminate\Database\Eloquent\Model;
 
 class CatalogoColoresProducto extends Model
 {
     protected $fillable = [
         'id',
+        'producto_id',
         'color',
         'created_at',
         'updated_at',
@@ -19,6 +19,10 @@ class CatalogoColoresProducto extends Model
            return $this->belongsTo('app\descriptionProducto');
        }
 
+       public function productos()
+       {
+           return $this->belongsTo('app\producto');
+       }
 
 
 }

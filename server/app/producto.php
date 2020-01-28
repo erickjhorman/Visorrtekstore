@@ -27,6 +27,11 @@ class producto extends Model
            return $this->hasMany('app\descriptionProducto');
        }
 
+       public function producto()
+       {
+           return $this->hasMany('app\CatalogoColoresProductos');
+       }
+
 
        public function marcas()
        {

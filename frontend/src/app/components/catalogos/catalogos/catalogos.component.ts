@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import {CatalogoServes} from '../../../services/Catalogos/catalogos.service';
-import {Marca} from '../../../models/marcas';
-import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
-import {MostrarDetalleProductoComponent} from '../mostrar-detalle-producto/mostrar-detalle-producto.component';
-import {CarritoCompraComponent} from '../../partials/carrito-compra/carrito-compra.component';
-import {SharedService} from '../../../services/shared/shared.service';
-
-
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { CatalogoServes } from "../../../services/Catalogos/catalogos.service";
+import { Marca } from "../../../models/marcas";
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogConfig
+} from "@angular/material/dialog";
+import { MostrarDetalleProductoComponent } from "../mostrar-detalle-producto/mostrar-detalle-producto.component";
+import { CarritoCompraComponent } from "../../partials/carrito-compra/carrito-compra.component";
+import { SharedService } from "../../../services/shared/shared.service";
 
 @Component({
-  selector: 'app-catalogos',
-  templateUrl: './catalogos.component.html',
-  styleUrls: ['./catalogos.component.css']
+  selector: "app-catalogos",
+  templateUrl: "./catalogos.component.html",
+  styleUrls: ["./catalogos.component.css"]
 })
 export class CatalogosComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute , private catalogoService: CatalogoServes,
-   private dialog: MatDialog,  private sharedService: SharedService
-    ) {
-
-   }
+  constructor(
+    private route: ActivatedRoute,
+    private catalogoService: CatalogoServes,
+    private dialog: MatDialog,
+    private sharedService: SharedService
+  ) {}
 
   show = false;
   hidden = true;
@@ -31,132 +33,107 @@ export class CatalogosComponent implements OnInit {
   idProducto: boolean;
 
   //productoAdd: any
-  public  productoShow : any; //Variable to get the information of the current prouct to show in the patent component
-  public producto: any
+  public productoShow: any; //Variable to get the information of the current prouct to show in the patent component
+  public producto: any;
+  public colores_productos: any;
 
   //public product = "Erick"
 
   ngOnInit() {
-    this.route.paramMap
-    .subscribe(params => {
-      let id = +params.get('id')
-         console.log("Catalogo" + id);
-       this.getproductos(id);
+    this.route.paramMap.subscribe(params => {
+      let id = +params.get("id");
+      console.log("Catalogo" + id);
+      this.getproductos(id);
+    });
 
-
-    })
-
-   //get the value to disable the button ver in this html
-       this.sharedService.valorDeshabilitarBtnVerCatalogos.subscribe(valor => {
-       this.deshabilitar = true
-    })
-
-
+    //get the value to disable the button ver in this html
+    this.sharedService.valorDeshabilitarBtnVerCatalogos.subscribe(valor => {
+      this.deshabilitar = true;
+    });
 
     //Get the value from shared.service
     this.sharedService.mostrarComponente.subscribe(hidden2 => {
-        console.log(hidden2)
-        this.toogleHidden(hidden2)
-   });
-
-
-
+      console.log(hidden2);
+      this.toogleHidden(hidden2);
+    });
   }
 
-  getproductos(id:number){
+  getproductos(id: number) {
     this.catalogoService.getProductos(id).subscribe(
-      res =>{
-
-            this.productos= res
-
-
+      res => {
+        this.productos = res;
       },
       err => console.log(err)
-    )
+    );
   }
 
-   onCreate(productoShow:any){
-    const dialogConfig = new  MatDialogConfig();
-    console.log("1 paso" + productoShow)
-    let showProductos = productoShow
-    console.log("Create productos" + showProductos)
+  onCreate(productoShow: any) {
+    const dialogConfig = new MatDialogConfig();
+    console.log("1 paso" + productoShow);
+    let showProductos = productoShow;
+    console.log("Create productos" + showProductos);
     dialogConfig.disableClose = true;
     //dialogConfig.autoFocus = true;
     dialogConfig.width = "900px";
     dialogConfig.height = "400px";
-   // dialogConfig.data = {name : 'Erick'}
+    // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = showProductos;
-    this.dialog.open(MostrarDetalleProductoComponent, dialogConfig,)
+    this.dialog.open(MostrarDetalleProductoComponent, dialogConfig);
     this.dialog.afterAllClosed.subscribe(res => {
-     this.ocultarItemSelleccionado = true;
-    console.log("Respuesta" + this.ocultarItemSelleccionado);
+      this.ocultarItemSelleccionado = true;
+      console.log("Respuesta" + this.ocultarItemSelleccionado);
     });
+  }
 
-   }
-
-   //Function to get only one producto with comments as well.
-  getProductoShow(id:number){
+  //Function to get only one producto with comments as well.
+  getProductoShow(id: number) {
     this.sharedService.EmitIdproducto(id);
 
-this.catalogoService.getProducto(id).subscribe(
+    this.catalogoService.getProducto(id).subscribe(
+      res => {
+        this.productoShow = res;
+        console.log("Erick " + this.productoShow);
 
-      res =>{
-
-            this.productoShow = res
-            console.log("Erick " + this.productoShow)
-
-            this.onCreate(this.productoShow);
-
-
-
+        this.onCreate(this.productoShow);
       },
       err => console.log(err)
     );
-
   }
 
-//Añadir producto
-  addProducto(id:number){
-
+  //Añadir producto
+  addProducto(id: number) {
     this.addProductoModel(id);
   }
 
-  addProductoModel(id:any){
-
-    const dialogConfig = new  MatDialogConfig();
-    console.log("1 paso" + id)
-    let productoSeleccionado = id
-    console.log("Producto seleccionado" + productoSeleccionado)
+  addProductoModel(id: any) {
+    const dialogConfig = new MatDialogConfig();
+    console.log("1 paso" + id);
+    let productoSeleccionado = id;
+    console.log("Producto seleccionado" + productoSeleccionado);
     dialogConfig.disableClose = true;
     //dialogConfig.autoFocus = true;
     dialogConfig.width = "400px";
     dialogConfig.height = "400px";
-   // dialogConfig.data = {name : 'Erick'}
+    // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = productoSeleccionado;
 
-    this.dialog.open(CarritoCompraComponent, dialogConfig,)
-   }
+    this.dialog.open(CarritoCompraComponent, dialogConfig);
+  }
 
-   recibirProducto(producto:any){
-     //this.productoAdd = producto;
-   }
+  recibirProducto(producto: any) {
+    //this.productoAdd = producto;
+  }
 
   //  toogleHidden(){
   //    this.show = !this.show;
   //  }
 
-      toogleHidden(hidden){
-      console.log("Variable" + hidden)
-      this.hidden = !this.hidden;
-   }
-
-
-
-
-   ocultarItemSeleccionado(){
-     this.ocultarItemSelleccionado
-   }
-
+  toogleHidden(hidden) {
+    console.log("Variable" + hidden);
+    this.hidden = !this.hidden;
   }
 
-
+  ocultarItemSeleccionado() {
+    this.ocultarItemSelleccionado;
+  }
+}

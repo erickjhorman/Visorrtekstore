@@ -88,6 +88,7 @@ const routes: Routes = [
     canActivate: [BeforeLoginService]
   },
   { path: "catalogos/:categoria/:marca/:id", component: CatalogosComponent },
+  { path: "catalogos/:categoria/:marca/:id", component: CatalogosComponent },
   {
     path: "catalogos/:categoria/comentario",
     component: ComentarioDetalleProductoComponent,
