@@ -19,7 +19,7 @@ import { ChatComponent } from "./components/auth/dashboard/pages/chat/chat.compo
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { AdminMensajeComponent } from "../app/components/auth/dashboard/pages/admin-mensaje/admin-mensaje.component";
 import { UserMensajeComponent } from "../app/components/auth/dashboard/pages/user-mensaje/user-mensaje.component";
-
+import { MostrarDetalleProductoComponent } from "../app/components/catalogos/mostrar-detalle-producto/mostrar-detalle-producto.component";
 const routes: Routes = [
   //{path: '', component: AppComponent},
   //{path: '', component: ComentarioDetalleProductoComponent},
@@ -88,7 +88,10 @@ const routes: Routes = [
     canActivate: [BeforeLoginService]
   },
   { path: "catalogos/:categoria/:marca/:id", component: CatalogosComponent },
-  { path: "catalogos/:categoria/:marca/:id", component: CatalogosComponent },
+  {
+    path: "catalogos/show/:id",
+    component: MostrarDetalleProductoComponent
+  },
   {
     path: "catalogos/:categoria/comentario",
     component: ComentarioDetalleProductoComponent,

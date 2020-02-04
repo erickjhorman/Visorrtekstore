@@ -92,9 +92,9 @@ export class CatalogosComponent implements OnInit {
     this.catalogoService.getProducto(id).subscribe(
       res => {
         this.productoShow = res;
-        console.log("Erick " + this.productoShow);
+        console.log("Producto a mostrar " + this.productoShow);
 
-        this.onCreate(this.productoShow);
+        //this.onCreate(this.productoShow);
       },
       err => console.log(err)
     );

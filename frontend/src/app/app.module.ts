@@ -128,10 +128,7 @@ import * as Cloudinary from "cloudinary-core";
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    CloudinaryModule.forRoot(Cloudinary, {
-      cloud_name: "dequvdgav"
-    })
+    ReactiveFormsModule
 
     // MatSidenavModule,
     // MatMenuModule,
@@ -146,8 +143,6 @@ import * as Cloudinary from "cloudinary-core";
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    MostrarDetalleProductoComponent,
-    ExtensionPanelDetalleProductoComponent,
     ProcesoCompraComponent,
     FormDireccioneUsuarioComponent,
     FormTransportadoraComponent,

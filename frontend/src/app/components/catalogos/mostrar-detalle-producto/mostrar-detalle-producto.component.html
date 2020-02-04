@@ -1,76 +1,112 @@
-<div class="container ">
+<div *ngFor="let producto of productos">
+  <header id="header">
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="header-content-left animated lightSpeedIn item-wrap">
+            <img [src]="producto.imagen" class="card-img-top">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="header-content-right">
+            <h1 class="ml-5">Descripcion del producto</h1>
+            <mat-card class="card-detalleProducto">
+              <mat-card-header>
 
-  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><span><i
-        class="far fa-window-close fa-3x"></i></span></button>
+                <mat-card-title>
+                  <p>{{producto.Producto}}</p>
+                </mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+              </mat-card-header>
 
-  <div class="row" *ngFor="let d of data">
-    <div class="col-md-6">
-
-      <mat-card class="card-detalleProducto">
-        <mat-card-header>
-
-          <mat-card-title>
-            <p>{{d.Producto}}</p>
-          </mat-card-title>
-          <mat-card-subtitle></mat-card-subtitle>
-        </mat-card-header>
-        <img [src]="d.imagen" class="card-img-top">
-        <mat-card-content>
-
-
-          <p><span>Descripcion:</span>{{d.Descripcion}}</p>
-
-          <mat-radio-group>
-            <mat-radio-button value="">{{d.color}}</mat-radio-button>
-
-          </mat-radio-group>
-
-          <p><span>Color disponibles:</span>{{d.color}}</p>
-          <p><span>Talla disponibles:</span>{{d.talla}}</p>
-          <p><span>Cantidades disponibles:</span>{{d.Existencia}}</p>
-          <p><span>Precio: $ </span>{{d.Valor_Venta | currency  :  "COP"}}</p>
-          <form class="form-cantidadProducto" (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)"
-            #createPseleccionadoForm="ngForm" novalidate="">
-
-            <input name="idproducto" type="hidden" [(ngModel)]="d.Producto_id">
-            <input name="producto" type="hidden" [(ngModel)]="d.Producto">
-            <input name="valorventa" type="hidden" [(ngModel)]="d.Valor_Venta">
-
-            <mat-form-field class="example-full-width">
-              <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
-            </mat-form-field>
+              <mat-card-content>
 
 
-            <!--<h1>Mensaje</h1> -->
-            <!--{{message}} -->
+                <p><span>Descripcion:</span>{{producto.Descripcion}}</p>
+
+                <mat-radio-group>
+                  <mat-radio-button value="">{{producto.color}}</mat-radio-button>
+
+                </mat-radio-group>
+
+                <p><span>Color disponibles:</span>{{producto.color}}</p>
+                <p><span>Talla disponibles:</span>{{producto.talla}}</p>
+                <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
+                <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
+                <form class="form-cantidadProducto" (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)"
+                  #createPseleccionadoForm="ngForm" novalidate="">
+
+                  <input name="idproducto" type="hidden" [(ngModel)]="producto.Producto_id">
+                  <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
+                  <input name="valorventa" type="hidden" [(ngModel)]="producto.Valor_Venta">
+
+                  <mat-form-field class="example-full-width">
+                    <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
+                  </mat-form-field>
 
 
-            <mat-card-actions mt-12>
-              <button mat-button class="btn btn-info btn-sm" (click)="meGusta($event)"> Me gusta</button>
-              <button mat-button [disabled]="createPseleccionadoForm.invalid" id="addCar"
-                style="position: relative; right: 58px ; left: 1px; " class="btn btn-success btn-sm">Agregar al
-                carrito</button>
-              <button mat-button [disabled]="createPseleccionadoForm.invalid"
-                class="btn btn-success btn-sm">Comprar</button>
-              <!-- <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button> -->
-              <!-- <button mat-button (click)="newMessage()"  class="btn btn-info btn-sm">New Message</button> -->
-            </mat-card-actions>
-
-          </form>
+                  <!--<h1>Mensaje</h1> -->
+                  <!--{{message}} -->
 
 
+                  <mat-card-actions mt-12>
+                    <button mat-button class="btn btn-info btn-sm" (click)="meGusta($event)"> Me gusta</button>
+                    <button mat-button [disabled]="createPseleccionadoForm.invalid" id="addCar"
+                      style="position: relative; right: 58px ; left: 1px; " class="btn btn-success btn-sm">Agregar al
+                      carrito</button>
+                    <button mat-button [disabled]="createPseleccionadoForm.invalid"
+                      class="btn btn-success btn-sm">Comprar</button>
+                    <!-- <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button> -->
+                    <!-- <button mat-button (click)="newMessage()"  class="btn btn-info btn-sm">New Message</button> -->
+                  </mat-card-actions>
 
-        </mat-card-content>
+                </form>
 
 
-      </mat-card>
+
+              </mat-card-content>
+
+
+            </mat-card>
+          </div>
+        </div>
+      </div>
 
     </div>
-    <div class="col-md-6">
-      <mat-card-content>
-        <app-extension-panel-detalle-producto [d]="d"></app-extension-panel-detalle-producto>
-      </mat-card-content>
+  </header>
+
+
+
+  <!-- Caracteristics-->
+  <section id="caractertics">
+    <div class="row pt-5">
+      <div class="container">
+        <p class="mb-2">{{producto.caracteristicas}} </p>
+      </div>
     </div>
-  </div>
+
+  </section>
+
+  <!-- Opinions-->
+  <section id="opinion">
+    <div class="row pt-2">
+      <div class="container">
+        <p class="mb-2">Opiniones</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Questions and Anwsers-->
+  <section id="question-answers">
+    <div class="row pt-2">
+      <div class="container">
+        <p class="mb-2">Comments</p>
+      </div>
+    </div>
+
+  </section>
+
+
 
 </div>

@@ -23,7 +23,9 @@
         <mat-card-actions mt-4>
           <!-- <button mat-button class="btn btn-info"  (click)="onCreate()">Ver</button> -->
 
-          <button mat-button class="btn btn-info" (click)="getProductoShow(producto.id)">Ver</button>
+          <button mat-button class="btn btn-info" routerLinkActive="active current"
+            [routerLink]="['/catalogos/show' , producto.id]">Ver</button>
+
 
           <!-- <button mat-button class="btn btn-success" (click)="addProducto(producto.id)" style="margin-top: 1em;">Añadir al carrito</button> -->
         </mat-card-actions>
