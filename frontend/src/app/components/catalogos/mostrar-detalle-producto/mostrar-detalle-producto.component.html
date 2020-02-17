@@ -23,18 +23,20 @@
 
 
                 <p><span>Descripcion:</span>{{producto.Descripcion}}</p>
-
-                <mat-radio-group>
-                  <mat-radio-button value="">{{producto.color}}</mat-radio-button>
-
-                </mat-radio-group>
-
-                <p><span>Color disponibles:</span>{{producto.color}}</p>
-                <p><span>Talla disponibles:</span>{{producto.talla}}</p>
-                <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
-                <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
                 <form class="form-cantidadProducto" (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)"
                   #createPseleccionadoForm="ngForm" novalidate="">
+                  <label id="radio-group-label">Color</label>
+                  <div *ngFor="let cproducto of coloresProductos">
+                    <mat-radio-group name="color" [(ngModel)]="cproducto.id">
+                      <mat-radio-button>{{cproducto.color}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+
+                  <p><span>Talla disponibles:</span>{{producto.talla}}</p>
+                  <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
+                  <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
+
 
                   <input name="idproducto" type="hidden" [(ngModel)]="producto.Producto_id">
                   <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
@@ -50,15 +52,23 @@
 
 
                   <mat-card-actions mt-12>
-                    <button mat-button class="btn btn-info btn-sm" (click)="meGusta($event)"> Me gusta</button>
+
                     <button mat-button [disabled]="createPseleccionadoForm.invalid" id="addCar"
                       style="position: relative; right: 58px ; left: 1px; " class="btn btn-success btn-sm">Agregar al
                       carrito</button>
+
+
+                  </mat-card-actions>
+
+                  <mat-card-actions mt-12>
+                    <button mat-button class="btn btn-info btn-sm" (click)="meGusta($event)"> Me gusta</button>
+
                     <button mat-button [disabled]="createPseleccionadoForm.invalid"
                       class="btn btn-success btn-sm">Comprar</button>
                     <!-- <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button> -->
                     <!-- <button mat-button (click)="newMessage()"  class="btn btn-info btn-sm">New Message</button> -->
                   </mat-card-actions>
+
 
                 </form>
 

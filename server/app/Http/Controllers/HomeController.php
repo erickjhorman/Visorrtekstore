@@ -130,7 +130,7 @@ public function getProductos($id){
 
                  return $Productos;
 
-                 
+
 
 
                 //  $Productos =  DB::table('productos')
@@ -156,10 +156,10 @@ public function productosDestacados(){
 }
 
 public function getColorsProducts($id){
-     
-    $colores =  DB::table('catalogo_colores_productos')
+
+     $colores =  DB::table('catalogo_colores_productos')
     ->leftJoin('productos', 'productos.id', '=', 'catalogo_colores_productos.id')
-    ->select('catalogo_colores_productos.color')
+    ->select('catalogo_colores_productos.color','catalogo_colores_productos.id')
     ->distinct()
     ->where('catalogo_colores_productos.producto_id', '=', $id)
     ->get();

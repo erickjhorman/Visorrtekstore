@@ -1,14 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Inject,
-  AfterViewInit,
-  Output,
-  EventEmitter,
-  ElementRef,
-  ViewChild
-} from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { CatalogoServes } from "../../../services/Catalogos/catalogos.service";
 import { BehaviorSubject } from "rxjs";
 import {
@@ -33,6 +23,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
   panelOpenState = false;
   nombre: any;
   productoAdd: any;
+  coloresProductos: any;
   productSeleccionado: null;
   message: string;
   id_producto: number;
@@ -59,6 +50,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
       let id = +params.get("id");
       console.log("Tomando la id desde Url " + id);
       this.getProductoShow(id);
+      this.getProductoColores(id);
     });
   }
 
@@ -72,6 +64,16 @@ export class MostrarDetalleProductoComponent implements OnInit {
         console.log(this.productos);
 
         //this.onCreate(this.productoShow);
+      },
+      err => console.log(err)
+    );
+  }
+
+  getProductoColores(id: number) {
+    this.catalogoService.getColoresProductos(id).subscribe(
+      res => {
+        this.coloresProductos = res;
+        console.log(this.coloresProductos);
       },
       err => console.log(err)
     );
