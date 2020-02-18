@@ -22,6 +22,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatTreeModule } from "@angular/material/tree";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatRadioModule } from "@angular/material/radio";
+import { MatTabsModule } from "@angular/material/tabs";
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { MatRadioModule } from "@angular/material/radio";
     ScrollingModule,
     MatTreeModule,
     MatProgressSpinnerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTabsModule
   ],
   exports: [
     MatSidenavModule,
@@ -72,7 +74,8 @@ import { MatRadioModule } from "@angular/material/radio";
     ScrollingModule,
     MatTreeModule,
     MatProgressSpinnerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTabsModule
   ]
 })
 export class MateriaAngularCss {}

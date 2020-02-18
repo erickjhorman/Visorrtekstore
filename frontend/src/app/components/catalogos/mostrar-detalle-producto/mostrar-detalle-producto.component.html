@@ -1,122 +1,21 @@
-<div *ngFor="let producto of productos">
-  <header id="header">
-    <div class="container mt-5 mb-5">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="header-content-left animated lightSpeedIn item-wrap">
-            <img [src]="producto.imagen" class="card-img-top">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="header-content-right">
-            <h1 class="ml-5">Descripcion del producto</h1>
-            <mat-card class="card-detalleProducto">
-              <mat-card-header>
+<body *ngFor="let producto of productos">
+  <div class="row" style="height: 600px;">
+    <div class="col-md-6">
+      <img [src]="producto.imagen" class="img-fluid" id="producto-imagen">
+    </div>
+    <div class="col-md-6" style="background-color: yellow;">
+      <mat-tab-group>
+        <mat-tab label="DESCRIPCIÓN"> </mat-tab>
+        <mat-tab label="+INFO"> </mat-tab>
+        <mat-tab label="PREGUNTAS"> </mat-tab>
+        <mat-tab label="COMENTARIOS"></mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-md-12" style="background-color:blue; height: 500px;">
 
-                <mat-card-title>
-                  <p>{{producto.Producto}}</p>
-                </mat-card-title>
-                <mat-card-subtitle></mat-card-subtitle>
-              </mat-card-header>
-
-              <mat-card-content>
-
-
-                <p><span>Descripcion:</span>{{producto.Descripcion}}</p>
-                <form class="form-cantidadProducto" (ngSubmit)="addPseleccionado(createPseleccionadoForm.value)"
-                  #createPseleccionadoForm="ngForm" novalidate="">
-                  <label id="radio-group-label">Color</label>
-                  <div *ngFor="let cproducto of coloresProductos">
-                    <mat-radio-group name="color" [(ngModel)]="cproducto.id">
-                      <mat-radio-button>{{cproducto.color}}
-                      </mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-
-                  <p><span>Talla disponibles:</span>{{producto.talla}}</p>
-                  <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
-                  <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
-
-
-                  <input name="idproducto" type="hidden" [(ngModel)]="producto.Producto_id">
-                  <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
-                  <input name="valorventa" type="hidden" [(ngModel)]="producto.Valor_Venta">
-
-                  <mat-form-field class="example-full-width">
-                    <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
-                  </mat-form-field>
-
-
-                  <!--<h1>Mensaje</h1> -->
-                  <!--{{message}} -->
-
-
-                  <mat-card-actions mt-12>
-
-                    <button mat-button [disabled]="createPseleccionadoForm.invalid" id="addCar"
-                      style="position: relative; right: 58px ; left: 1px; " class="btn btn-success btn-sm">Agregar al
-                      carrito</button>
-
-
-                  </mat-card-actions>
-
-                  <mat-card-actions mt-12>
-                    <button mat-button class="btn btn-info btn-sm" (click)="meGusta($event)"> Me gusta</button>
-
-                    <button mat-button [disabled]="createPseleccionadoForm.invalid"
-                      class="btn btn-success btn-sm">Comprar</button>
-                    <!-- <button mat-button  class="btn btn-secondary btn-sm" style="margin-top: 1em;">Share</button> -->
-                    <!-- <button mat-button (click)="newMessage()"  class="btn btn-info btn-sm">New Message</button> -->
-                  </mat-card-actions>
-
-
-                </form>
-
-
-
-              </mat-card-content>
-
-
-            </mat-card>
-          </div>
-        </div>
-      </div>
 
     </div>
-  </header>
-
-
-
-  <!-- Caracteristics-->
-  <section id="caractertics">
-    <div class="row pt-5">
-      <div class="container">
-        <p class="mb-2">{{producto.caracteristicas}} </p>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Opinions-->
-  <section id="opinion">
-    <div class="row pt-2">
-      <div class="container">
-        <p class="mb-2">Opiniones</p>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Questions and Anwsers-->
-  <section id="question-answers">
-    <div class="row pt-2">
-      <div class="container">
-        <p class="mb-2">Comments</p>
-      </div>
-    </div>
-
-  </section>
-
-
-
-</div>
+  </div>
+</body>
