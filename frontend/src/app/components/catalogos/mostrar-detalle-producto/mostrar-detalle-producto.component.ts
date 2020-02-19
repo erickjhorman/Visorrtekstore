@@ -13,6 +13,7 @@ import { ThrowStmt } from "@angular/compiler";
 import { SharedService } from "../../../services/shared/shared.service";
 import { NotificationService } from "../../../services/shared/notification.service";
 import { ActivatedRoute } from "@angular/router";
+import { CarroCompra } from "../../../models/carroCompra";
 
 @Component({
   selector: "app-mostrar-detalle-producto",
@@ -41,6 +42,18 @@ export class MostrarDetalleProductoComponent implements OnInit {
   ) {
     //this.productoAdd;
   }
+
+  carroCompra: CarroCompra = {
+    producto: "",
+    color: 0,
+    existencia: 0,
+    precio: 0,
+    talla: 0,
+    producto_id: 0,
+    valorVenta: 0,
+    cantidad: 0,
+    created_at: new Date()
+  };
 
   ngOnInit() {
     // this.sharedService.currentMessage.subscribe(message => this.message = message)
@@ -80,7 +93,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
   }
 
   addPseleccionado(form: NgForm) {
-    console.log(form);
+    console.log(form.value);
 
     this.sharedService.idProductosCatalogos.subscribe(id => {
       this.idProduCata = id;

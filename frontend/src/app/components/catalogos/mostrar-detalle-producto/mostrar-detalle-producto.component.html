@@ -3,10 +3,46 @@
     <div class="col-md-6">
       <img [src]="producto.imagen" class="img-fluid" id="producto-imagen">
     </div>
-    <div class="col-md-6" style="background-color: yellow;">
-      <mat-tab-group>
-        <mat-tab label="DESCRIPCIÓN"> </mat-tab>
-        <mat-tab label="+INFO"> </mat-tab>
+    <div class="col-md-6">
+      <mat-tab-group dynamicHeight>
+        <mat-tab label="DESCRIPCIÓN">
+
+          <form (ngSubmit)="addPseleccionado(carroCompraForm)" #carroCompraForm="ngForm">
+
+            <mat-card>
+              <mat-card-title>{{producto.Producto}}</mat-card-title>
+              <input name="id" type="hidden" [(ngModel)]="producto.Producto_id">
+              <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
+              <mat-card-content>
+
+                <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
+                <input name="valorVenta" type="hidden" [(ngModel)]="producto.Valor_Venta">
+                <label id="radio-group-label">Color</label>
+                <div>
+                  <div *ngFor="let cproducto of coloresProductos">
+                    <mat-radio-group name="color" [(ngModel)]="cproducto.id">
+                      <mat-radio-button>{{cproducto.color}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
+                <mat-form-field class="example-full-width">
+                  <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
+                </mat-form-field>
+              </mat-card-content>
+            </mat-card>
+            <button type="submit" class="btn btn-success">Agregar al
+              carrito</button>
+          </form>
+
+        </mat-tab>
+        <mat-tab label="+INFO">
+          <p><span>Descripcion: </span>{{producto.Descripcion}}</p>
+          <p>{{producto.caracteristicas}}</p>
+        </mat-tab>
+
+
         <mat-tab label="PREGUNTAS"> </mat-tab>
         <mat-tab label="COMENTARIOS"></mat-tab>
       </mat-tab-group>
