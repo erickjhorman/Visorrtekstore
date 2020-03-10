@@ -1,18 +1,18 @@
-.container-principal #carrito{
+.container-principal #carrito {
   position: absolute;
   left: 150px;
   top: 100px;
   opacity: 0.8;
   background-color: gray;
-  }
+}
 
-  mat-sidenav-cotainer{
-    padding: 0px;
-  }
+mat-sidenav-cotainer {
+  padding: 0px;
+}
 
-
-
-
-
-
-
+#carrito_compra {
+  position: absolute;
+  left: 500px;
+  top: 130px;
+  opacity: 0.8;
+}

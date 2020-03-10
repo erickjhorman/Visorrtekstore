@@ -1,0 +1,14 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="push" [(opened)]="opened" position="end">
+    Sidenav content
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <app-navbar></app-navbar>
+
+    <router-outlet></router-outlet>
+
+    <button (click)="opened=!opened">Toggle</button>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

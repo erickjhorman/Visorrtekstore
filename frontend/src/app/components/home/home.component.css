@@ -1,74 +1,67 @@
-body{
+body {
   padding-top: 100px;
 }
 
-img{
+img {
   height: 400px;
 }
 
 ::ng-deep .mat-grid-tile .mat-figure {
-display: none;
+  display: none;
 }
 
-.mat-grid-tile{
+.mat-grid-tile {
   background-color: aquamarine;
 }
 
-
-
-#formasPago{
- padding-top: 23px;
+#formasPago {
+  padding-top: 23px;
 }
 
-h2{
+h2 {
   font-size: 13px;
 }
 
-p{
+p {
   font-size: 14px;
 }
-
-
 
 .container {
   position: center;
 }
-img{
+img {
   position: relative;
-  left:250px;
+  left: 250px;
 }
 
-.row{
+.row {
   position: relative;
-  left:120px;
-
+  left: 120px;
 }
 
-.fa-whatsapp{
+.fa-whatsapp {
   position: relative;
   left: 40px;
 }
 
-.fa-truck{
+.fa-truck {
   position: relative;
   left: 130px;
 }
 
-.fa-store-alt{
+.fa-store-alt {
   position: relative;
   left: 100px;
 }
 
-#contacto{
- width: 10rem;
+#contacto {
+  width: 10rem;
 }
-#tienda{
+#tienda {
   position: relative;
   left: 250px;
 }
-#transporte{
+#transporte {
   position: relative;
   left: 100px;
 }
-
-

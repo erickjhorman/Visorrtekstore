@@ -1,20 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { TokenService } from "../../../services/token.service";
-import { AuthService } from "../../../services/auth.service";
-import { CatalogoServes } from "./../../../services/Catalogos/catalogos.service";
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogConfig
-} from "@angular/material/dialog";
-import { CarritoCompraComponent } from "../../partials/carrito-compra/carrito-compra.component";
-import { SharedService } from "../../../services/shared/shared.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from '../../../services/token.service';
+import { AuthService } from '../../../services/auth.service';
+import { CatalogoServes } from './../../../services/Catalogos/catalogos.service';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.css"]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   public loggedin: boolean;
@@ -29,21 +23,20 @@ export class NavbarComponent implements OnInit {
     private Auth: AuthService,
     private router: Router,
     private Token: TokenService,
-    private dialog: MatDialog,
     private sharedService: SharedService,
     private cataloServe: CatalogoServes
-  ) {}
+  ) { }
 
   ngOnInit() {
-    //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem("userAuth");
+    // o get the information from  a sessionStorage
+    const user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
     console.log(this.user);
-    this.getClientes(this.user.id);
+    // this.getClientes(this.user.id);
     this.Auth.authStatus.subscribe(value => (this.loggedin = value));
     if (this.loggedin != null) {
       this.getClientes(this.user.id);
-      console.log("No null" + this.loggedin);
+      console.log('No null' + this.loggedin);
     }
 
     this.Auth.typeUserStatus.subscribe(value => (this.loggedinAdmin = value));
@@ -60,7 +53,7 @@ export class NavbarComponent implements OnInit {
 
         // this.cliente = JSON.parse(this.cliente);
       },
-      err => {}
+      err => { }
     );
   }
 
@@ -74,7 +67,7 @@ export class NavbarComponent implements OnInit {
     this.Token.removeSessionStorageUser();
     this.Auth.changeAuthStaus(false);
     this.Auth.changeTypeUserStatus(false);
-    this.router.navigateByUrl("/login");
+    this.router.navigateByUrl('/login');
     this.loggedin = false;
     this.loggedinAdmin = false;
   }
@@ -106,7 +99,7 @@ export class NavbarComponent implements OnInit {
 
   addCarrito(productos: any) {
     this.listadoCompras.push(productos);
-    console.log("Compras desde navbar" + this.listadoCompras);
+    console.log('Compras desde navbar' + this.listadoCompras);
   }
 
   toogleHidden(event: MouseEvent) {

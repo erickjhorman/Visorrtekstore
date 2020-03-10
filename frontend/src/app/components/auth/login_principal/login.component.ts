@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-//import { HttpClient } from 'selenium-webdriver/http';
-import { HttpClient } from "@angular/common/http"; //To import the service
-import { Login } from "../../../models/login";
-import { LoginService } from "../../../services/login.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { TokenService } from "../../../services/token.service";
-import { AuthService } from "../../../services/auth.service";
+import { Component, OnInit } from '@angular/core';
+// import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClient } from '@angular/common/http'; // To import the service
+import { Login } from '../../../models/login';
+import { LoginService } from '../../../services/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TokenService } from '../../../services/token.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   // public form = {
@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private Token: TokenService,
     private Auth: AuthService
-  ) {}
+  ) { }
 
-  //To create methods
+  // To create methods
   // onSubmit(){
   //      //console.log(this.form);
   //     return this.http.post('url', this.form).subscribe(
@@ -47,10 +47,10 @@ export class LoginComponent implements OnInit {
 
   public error = null;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   LoginIn() {
-    var data = this.login;
+    let data = this.login;
     const email = data.email;
     const password = data.password;
 
@@ -74,17 +74,17 @@ export class LoginComponent implements OnInit {
     this.user = data;
 
     this.Token.handle(data.access_token);
-    sessionStorage.setItem("userAuth", JSON.stringify(this.user));
-    localStorage.setItem("tipo_usuario", this.user.user);
+    sessionStorage.setItem('userAuth', JSON.stringify(this.user));
+    localStorage.setItem('tipo_usuario', this.user.user);
     this.Auth.changeAuthStaus(true);
-    var admin = sessionStorage.getItem("userAuth");
+    var admin = sessionStorage.getItem('userAuth');
     this.admin = JSON.parse(admin);
 
     if (this.admin.user == 1) {
-      this.router.navigateByUrl("/admin"); //To redirect to another component
+      this.router.navigateByUrl('/admin'); //To redirect to another component
       this.Auth.changeTypeUserStatus(true);
     } else {
-      this.router.navigateByUrl("/dashboard"); //To redirect to another component
+      this.router.navigateByUrl('/dashboard'); //To redirect to another component
       this.Auth.changeTypeUserStatus(false);
     }
     // console.log(localStorage.getItem('userAuth'));

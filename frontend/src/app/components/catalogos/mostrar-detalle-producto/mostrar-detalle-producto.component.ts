@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { AuthService } from "./../../../services/auth.service";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+
 import { CatalogoServes } from "../../../services/Catalogos/catalogos.service";
 import { BehaviorSubject } from "rxjs";
 import {
@@ -11,9 +13,11 @@ import { NgForm } from "@angular/forms";
 import { CarritoCompraComponent } from "../../partials/carrito-compra/carrito-compra.component";
 import { ThrowStmt } from "@angular/compiler";
 import { SharedService } from "../../../services/shared/shared.service";
+
 import { NotificationService } from "../../../services/shared/notification.service";
 import { ActivatedRoute } from "@angular/router";
 import { CarroCompra } from "../../../models/carroCompra";
+import { MatRadioChange, MatRadioButton } from "@angular/material/radio";
 
 @Component({
   selector: "app-mostrar-detalle-producto",
@@ -30,17 +34,22 @@ export class MostrarDetalleProductoComponent implements OnInit {
   id_producto: number;
   idProduCata: any;
   public productos: any;
+  public loggedin: boolean;
 
   @Input() producto: any;
   addproducto: any;
+
+  @Input()
+  required: boolean;
 
   constructor(
     private catalogoService: CatalogoServes,
     private sharedService: SharedService,
     private notificacion: NotificationService,
+    private authService: AuthService,
     private route: ActivatedRoute
   ) {
-    //this.productoAdd;
+    // this.productoAdd;
   }
 
   carroCompra: CarroCompra = {
@@ -57,17 +66,22 @@ export class MostrarDetalleProductoComponent implements OnInit {
 
   ngOnInit() {
     // this.sharedService.currentMessage.subscribe(message => this.message = message)
-    //get the value to disable the button ver in this html
+    // get the value to disable the button ver in this html
 
     this.route.paramMap.subscribe(params => {
-      let id = +params.get("id");
+      const id = +params.get("id");
       console.log("Tomando la id desde Url " + id);
       this.getProductoShow(id);
       this.getProductoColores(id);
     });
+
+    // To get the value of the login
+
+    this.authService.authStatus.subscribe(value => (this.loggedin = value));
+    console.log(this.loggedin);
   }
 
-  //Function to get only one producto with comments as well.
+  // Function to get only one producto with comments as well.
   getProductoShow(id: number) {
     this.sharedService.EmitIdproducto(id);
 
@@ -76,7 +90,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
         this.productos = res;
         console.log(this.productos);
 
-        //this.onCreate(this.productoShow);
+        // this.onCreate(this.productoShow);
       },
       err => console.log(err)
     );
@@ -92,37 +106,50 @@ export class MostrarDetalleProductoComponent implements OnInit {
     );
   }
 
+  onChangeColor($event: MatRadioChange) {
+    // console.log($event.source.name, $event.value);
+    const color_id = $event.value;
+  }
+
   addPseleccionado(form: NgForm) {
     console.log(form.value);
 
-    this.sharedService.idProductosCatalogos.subscribe(id => {
-      this.idProduCata = id;
-      console.log(this.idProduCata);
-    });
+    if (form.valid) {
+      console.log("Valid");
 
-    //const inputTag = document.getElementsByName('idproducto') as HTMLInputElement;
-    var id_producto = (<HTMLScriptElement[]>(
-      (<any>document.getElementsByName("idproducto"))
-    ))[0];
+      if (this.loggedin) {
+        this.sharedService.idProductosCatalogos.subscribe(id => {
+          this.idProduCata = id;
+          console.log(this.idProduCata);
+        });
 
-    //const value = inputTag.value;
+        // const inputTag = document.getElementsByName('idproducto') as HTMLInputElement;
+        const id_producto = (<HTMLScriptElement[]>(
+          (<any>document.getElementsByName("idproducto"))
+        ))[0];
 
-    this.addproducto = form;
-    this.sharedService.getProductoSeleccionado(this.addproducto);
-    console.log("detalle producto" + this.addproducto);
-    this.sharedService.sharingData.emit(this.addproducto);
-    this.notificacion.success("Añadiste un producto");
+        // const value = inputTag.value;
 
-    console.log(this.idProduCata);
-    console.log(id_producto);
+        this.addproducto = form;
+        this.sharedService.getProductoSeleccionado(this.addproducto);
+        console.log("detalle producto" + this.addproducto);
+        this.sharedService.sharingData.emit(this.addproducto);
+        this.notificacion.success("Añadiste un producto");
 
-    this.sharedService.getDeshabilitarBtnVer(true);
+        console.log(this.idProduCata);
+        console.log(id_producto);
 
-    //sessionStorage.setItem('productos',JSON.stringify(this.productoAdd));
-    //this.addProductoModel(this.productoAdd)
+        this.sharedService.getDeshabilitarBtnVer(true);
+      } else {
+        this.notificacion.warning("Debes loguerate para añadir productos");
+      }
+    }
 
-    //To pass an array to the data variable
-    //this.productoSeleccinado.emit({data: this.nombre})
+    // sessionStorage.setItem('productos',JSON.stringify(this.productoAdd));
+    // this.addProductoModel(this.productoAdd)
+
+    // To pass an array to the data variable
+    // this.productoSeleccinado.emit({data: this.nombre})
   }
 
   // addProductoModel(producto:any){

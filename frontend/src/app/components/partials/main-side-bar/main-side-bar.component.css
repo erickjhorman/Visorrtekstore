@@ -1,0 +1,8 @@
+.mat-drawer{
+  width: 250px;
+  position: fixed;
+}
+
+#container-principal{
+  height:500px
+}

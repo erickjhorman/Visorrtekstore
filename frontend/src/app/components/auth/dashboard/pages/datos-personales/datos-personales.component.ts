@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { CatalogoServes } from "../../../../../services/Catalogos/catalogos.service";
-import { DashboardService } from "../../../../../services/shared/dashboard.service";
-import { Identifiers } from "@angular/compiler/src/render3/r3_identifiers";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { NotificationService } from "../../../../../services/shared/notification.service";
+import { Component, OnInit } from '@angular/core';
+import { CatalogoServes } from '../../../../../services/Catalogos/catalogos.service';
+import { DashboardService } from '../../../../../services/shared/dashboard.service';
+import { Identifiers } from '@angular/compiler/src/render3/r3_identifiers';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NotificationService } from '../../../../../services/shared/notification.service';
 
 export interface Tile {
   cols: number;
@@ -12,75 +12,82 @@ export interface Tile {
 }
 
 @Component({
-  selector: "app-datos-personales",
-  templateUrl: "./datos-personales.component.html",
-  styleUrls: ["./datos-personales.component.css"]
+  selector: 'app-datos-personales',
+  templateUrl: './datos-personales.component.html',
+  styleUrls: ['./datos-personales.component.css']
 })
 export class DatosPersonalesComponent implements OnInit {
-  tiles: Tile[] = [{ text: "One", cols: 7, rows: 3 }];
+  tiles: Tile[] = [{ text: 'One', cols: 7, rows: 3 }];
 
-  formUser: FormGroup = new FormGroup({
-    avatar: new FormControl(""),
-    nombre: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(30)
-    ]),
-    apellido: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(30)
-    ]),
-    telefono: new FormControl("", [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(10)
-    ]),
-    celular: new FormControl("", [
-      Validators.required,
-      Validators.minLength(13),
-      Validators.maxLength(13)
-    ]),
-    identificacion: new FormControl("", [Validators.required]),
-    identificacion_id: new FormControl("", [Validators.required]),
-    departamento_id: new FormControl("", [Validators.required]),
-    ciudad_id: new FormControl("", [Validators.required])
-  });
-
-  restartFormGroup() {
-    this.formUser.setValue({
-      avatar: "",
-      nombre: "",
-      apellido: "",
-      telefono: "",
-      celular: "",
-      identificacion: "",
-      identificacion_id: "",
-      departamento_id: "",
-      ciudad_id: ""
-    });
-  }
 
   private departamentos: any;
   private ciudades: any;
   private id: number;
   private user: any;
-  private cliente: any;
+  public cliente: any;
+
+
+  identificaciones = [
+    { id: 3, value: 'CC' },
+    { id: 2, value: 'Tarjeta de identidad' },
+    { id: 3, value: 'PP' }
+  ];
+
+  formUser: FormGroup = new FormGroup({
+    avatar: new FormControl(''),
+    nombre: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(30)
+    ]),
+    apellido: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(30)
+    ]),
+    telefono: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(10)
+    ]),
+    celular: new FormControl('', [
+      Validators.required,
+      Validators.minLength(13),
+      Validators.maxLength(13)
+    ]),
+    identificacion: new FormControl('', [Validators.required]),
+    identificacion_id: new FormControl('', [Validators.required]),
+    departamento_id: new FormControl('', [Validators.required]),
+    ciudad_id: new FormControl('', [Validators.required])
+  });
+
+  restartFormGroup() {
+    this.formUser.setValue({
+      avatar: '',
+      nombre: '',
+      apellido: '',
+      telefono: '',
+      celular: '',
+      identificacion: '',
+      identificacion_id: '',
+      departamento_id: '',
+      ciudad_id: ''
+    });
+  }
+
+
+
   constructor(
     private dashboardService: DashboardService,
     private cataloServe: CatalogoServes,
     private notificacion: NotificationService
-  ) {}
+  ) { }
 
-  identificaciones = [
-    { id: 3, value: "CC" },
-    { id: 2, value: "Tarjeta de identidad" },
-    { id: 3, value: "PP" }
-  ];
+
 
   ngOnInit() {
-    //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem("userAuth");
+    // To get the information from  a sessionStorage
+    const user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
     console.log(this.user);
     this.getDepartamentos();
@@ -96,7 +103,7 @@ export class DatosPersonalesComponent implements OnInit {
           res => {
             this.formUser.reset();
             this.restartFormGroup();
-            this.notificacion.success("Usuario actualizado satisfactoriamente");
+            this.notificacion.success('Usuario actualizado satisfactoriamente');
           },
           err => console.log(err)
         );
@@ -133,7 +140,7 @@ export class DatosPersonalesComponent implements OnInit {
     );
   }
 
-  //To get the ciudades for direccion Form
+  // To get the ciudades for direccion Form
   getCiudades(id: number) {
     this.cataloServe.getCiudades(id).subscribe(
       res => {
