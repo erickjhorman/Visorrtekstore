@@ -1,13 +1,16 @@
 <mat-sidenav-container>
   <mat-sidenav mode="push" [(opened)]="opened" position="end">
-    Sidenav content
+
+    <app-carrito-compra></app-carrito-compra>
+  </mat-sidenav>
+  <mat-sidenav id="side-bar-catalogos" mode="over" [(opened)]="sideBarCata" position="rigth">
+
   </mat-sidenav>
   <mat-sidenav-content>
 
     <app-navbar></app-navbar>
-
     <router-outlet></router-outlet>
-
+    <button (click)="sideBarCata=!sideBarCata">Toggle</button>
     <button (click)="opened=!opened">Toggle</button>
   </mat-sidenav-content>
 

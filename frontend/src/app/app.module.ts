@@ -46,6 +46,7 @@ import { SidenavAdminComponent } from './components/auth/dashboard/sidenav-admin
 import { FormDireccioneUsuarioShowComponent } from './components/partials/carrito-compra/procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component';
 import { ChatComponent } from './components/auth/dashboard/pages/chat/chat.component';
 import { MainSideBarComponent } from './components/partials/main-side-bar/main-side-bar.component';
+import { SideNavCatalogosComponent } from '././components/catalogos/side-nav-catalogos/side-nav-catalogos.component';
 
 
 // Material
@@ -117,7 +118,8 @@ import * as Cloudinary from 'cloudinary-core';
     IsAdminPipe,
     IsUserPipe,
     UserMensajeComponent,
-    MainSideBarComponent
+    MainSideBarComponent,
+    SideNavCatalogosComponent
   ],
   imports: [
     BrowserModule,

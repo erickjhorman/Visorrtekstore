@@ -6,3 +6,9 @@
 #container-principal{
   height:500px
 }
+
+#side-bar-catalogos{
+  position: absolute;
+  left: 200px;
+  top: 100px;
+}

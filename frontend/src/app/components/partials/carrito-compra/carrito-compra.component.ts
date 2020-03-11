@@ -1,19 +1,19 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject } from '@angular/core';
 import {
   MatDialog,
   MatDialogRef,
   MatDialogConfig,
   MAT_DIALOG_DATA
-} from "@angular/material/dialog";
-import { SharedService } from "../../../services/shared/shared.service";
-import { MatTableDataSource } from "@angular/material"; //To get the information to store in the table
-import { ProcesoCompraComponent } from "../../../components/partials/carrito-compra/proceso-compra/proceso-compra.component";
-import { NotificationService } from "../../../services/shared/notification.service";
+} from '@angular/material/dialog';
+import { SharedService } from '../../../services/shared/shared.service';
+import { MatTableDataSource } from '@angular/material'; //To get the information to store in the table
+import { ProcesoCompraComponent } from '../../../components/partials/carrito-compra/proceso-compra/proceso-compra.component';
+import { NotificationService } from '../../../services/shared/notification.service';
 
 @Component({
-  selector: "app-carrito-compra",
-  templateUrl: "./carrito-compra.component.html",
-  styleUrls: ["./carrito-compra.component.css"]
+  selector: 'app-carrito-compra',
+  templateUrl: './carrito-compra.component.html',
+  styleUrls: ['./carrito-compra.component.css']
 })
 export class CarritoCompraComponent implements OnInit {
   productoSeleccionado: any;
@@ -55,11 +55,11 @@ export class CarritoCompraComponent implements OnInit {
 
   listData: MatTableDataSource<any>;
   displayedColumns: string[] = [
-    "id",
-    "Nombre",
-    "cantidad",
-    "valorventa",
-    "actions"
+    'id',
+    'Nombre',
+    'cantidad',
+    'valorventa',
+    'actions'
   ];
 
   ngOnInit() {
@@ -69,18 +69,18 @@ export class CarritoCompraComponent implements OnInit {
   }
 
   isProductos() {
-    const shoppingKartEmpty = document.getElementById("imagenShopingCartEmpty");
-    const tbtKrt = document.getElementById("tbtCarrito_Compras");
+    const shoppingKartEmpty = document.getElementById('imagenShopingCartEmpty');
+    const tbtKrt = document.getElementById('tbtCarrito_Compras');
     if (this.listadoCompras.length > 0) {
       this.show = true;
-      shoppingKartEmpty.style.removeProperty("background-image");
+      shoppingKartEmpty.style.removeProperty('background-image');
     } else {
       //this.hide_productos = true
       shoppingKartEmpty.style.backgroundImage =
-        "url('http://woodwork.be/media/wysiwyg/empty-cart.jpg')";
-      shoppingKartEmpty.style.backgroundSize = "180px 180px";
-      shoppingKartEmpty.style.backgroundRepeat = "repeat-y";
-      shoppingKartEmpty.style.backgroundPosition = "center center";
+        'url(\'http://woodwork.be/media/wysiwyg/empty-cart.jpg\')';
+      shoppingKartEmpty.style.backgroundSize = '180px 180px';
+      shoppingKartEmpty.style.backgroundRepeat = 'repeat-y';
+      shoppingKartEmpty.style.backgroundPosition = 'center center';
       //tbtKrt.style.visibility = 'hidden';
       this.show = !this.show;
     }
@@ -99,17 +99,17 @@ export class CarritoCompraComponent implements OnInit {
     console.log(numeroProductos);
     this.listData = new MatTableDataSource(this.listadoCompras);
     console.log(this.listadoCompras);
-    console.log("Dta table " + this.listData);
+    console.log('Dta table ' + this.listData);
 
     this.isProductos();
   }
 
   loadStripe() {
-    if (!window.document.getElementById("stripe-script")) {
-      var s = window.document.createElement("script");
-      s.id = "stripe-script";
-      s.type = "text/javascript";
-      s.src = "https://checkout.stripe.com/checkout.js";
+    if (!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement('script');
+      s.id = 'stripe-script';
+      s.type = 'text/javascript';
+      s.src = 'https://checkout.stripe.com/checkout.js';
       window.document.body.appendChild(s);
     }
   }
@@ -142,14 +142,14 @@ export class CarritoCompraComponent implements OnInit {
 
   getIndice(id: number) {
     const _productoId = id;
-    console.log("id eliminar" + _productoId);
+    console.log('id eliminar' + _productoId);
 
     for (let i = 0; i < this.listadoCompras.length; i++) {
       if (this.listadoCompras[i].idproducto == _productoId) {
         const indice = i;
-        console.log("id proucto" + this.listadoCompras[i].idproducto);
-        console.log("pocisiosn " + indice);
-        console.log("eliminado");
+        console.log('id proucto' + this.listadoCompras[i].idproducto);
+        console.log('pocisiosn ' + indice);
+        console.log('eliminado');
         this.eliminaProducto(indice);
       }
     }
@@ -159,18 +159,18 @@ export class CarritoCompraComponent implements OnInit {
     this.listadoCompras.splice(indice, 1);
     this.listData = new MatTableDataSource(this.listadoCompras);
     console.log(this.listadoCompras);
-    console.log("Dta table " + this.listData);
+    console.log('Dta table ' + this.listData);
     console.log(this.listadoCompras);
     this.isProductos();
   }
 
   procesoComprar(event) {
-    console.log("Comprar");
+    console.log('Comprar');
 
     if (this.listadoCompras.length > 0) {
       this.onCreateDialogProcesoCompra();
     } else {
-      this.notificacionServive.success("Debes añadir un producto primero");
+      this.notificacionServive.success('Debes añadir un producto primero');
     }
   }
 
@@ -196,8 +196,8 @@ export class CarritoCompraComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     //dialogConfig.autoFocus = true;
-    dialogConfig.width = "1600px";
-    dialogConfig.height = "400px";
+    dialogConfig.width = '1600px';
+    dialogConfig.height = '400px';
     dialogConfig.data = finalArrayTotalItem;
 
     this.dialog.open(ProcesoCompraComponent, dialogConfig);

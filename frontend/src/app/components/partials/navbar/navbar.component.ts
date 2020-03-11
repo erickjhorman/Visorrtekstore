@@ -107,6 +107,7 @@ export class NavbarComponent implements OnInit {
     this.sharedService.getValorMostraComponente(false);
   }
 
+  // To show and hide the catalog componenet
   toogleShowCatalogosComponent(event: MouseEvent) {
     event.preventDefault();
     this.sharedService.getValorMostraCatalogoSidebar(false);

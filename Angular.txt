@@ -32,12 +32,13 @@ ng g c components/auth/dashboard/pages/sidebar/datosPersonales  skipTests --skip
 ng g c components/auth/dashboard/pages/chat  --skipTests --skip-import 
 ng g c components/auth/dashboard/pages/chat  --skipTests  --module app
 
-ng g c components/catalogos/mostrarDetalleProducto  --skip-import
+ng g c components/catalogos/mostrarDetalleProducto  --skip-import --module app
+ng g c components/catalogos/SideNavCatalogos --skip-import --module app
 
 
 
 To create routing
-ng g m app-routing --flat --module=app
+ng g m app-routing --flat --module=app 
 
 To create a service --module=app To import when it's  been created at once
 To create a service 
