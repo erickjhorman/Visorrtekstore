@@ -4,6 +4,8 @@ import { TokenService } from '../../../services/token.service';
 import { AuthService } from '../../../services/auth.service';
 import { CatalogoServes } from './../../../services/Catalogos/catalogos.service';
 import { SharedService } from '../../../services/shared/shared.service';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +20,10 @@ export class NavbarComponent implements OnInit {
   private user: any;
   // cliente: any[] = [];
   private cliente: any;
+
+  // Font awsome icon
+  faShoppingCart = faShoppingCart;
+  faBell = faBell;
 
   constructor(
     private Auth: AuthService,

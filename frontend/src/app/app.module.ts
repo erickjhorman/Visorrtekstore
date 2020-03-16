@@ -60,6 +60,8 @@ import { UserMensajeComponent } from './components/auth/dashboard/pages/user-men
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as Cloudinary from 'cloudinary-core';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 // /** Routes */
 // const appRoutesAuth: Route [] = [
@@ -129,7 +131,8 @@ import * as Cloudinary from 'cloudinary-core';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
 
     // MatSidenavModule,
     // MatMenuModule,

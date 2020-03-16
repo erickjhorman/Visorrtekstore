@@ -25,6 +25,7 @@ h2 {
 .container {
     padding-top: 75px;
     padding-left: 200px;
+    height: 480px;
 }
 
 #menu-usuario {
