@@ -23,6 +23,9 @@ use app\despacho;
 
 use Illuminate\Http\Request;
 use DB;
+use \stdClass;
+
+
 
 class HomeController extends Controller
 {
@@ -84,12 +87,82 @@ class HomeController extends Controller
 //         ->select('detalle_ventas.*', 'facturas.*')
 //         ->get();
 
-         $catalogos = DB::table('tipo_productos')->select('id','categoria')->get();
-           return $catalogos;
+
+
+
+          $catalogos = DB::table('tipo_productos')
+          ->select('id','Categoria')
+          ->get();
+
+          $marcas = DB::table('marcas')
+          ->select('id','tipoProducto_id','Marca')
+          ->get();
+
+          $result1 = json_decode($catalogos, true);
+          $result2 = json_decode($marcas, true);
+
+
+
+          $categoria = array();
+          $array2 = array();
+
+
+
+
+            for ($i=0; $i<count($result1); $i++) {
+
+                 $id_producto = $result1[$i]['id'];
+                 $catalogo   =  $result1[$i]['Categoria'];
+
+                //  for ($j=0; $j<count($result2); $j++) {
+
+                //        $producto_id = $result2[$j]['tipoProducto_id'];
+
+                //        if($id_producto == $producto_id){
+
+                //           $marcas->id =  $result2[$j]['id'];
+                //           $marcas->marca = $result2[$j]['Marca'];
+                //           $array2 = [$marcas];
+                //         }
+
+                //  }
+
+                $array2 = [];
+                foreach ($result2 as $r) {
+                if ($r['tipoProducto_id'] ==  $id_producto) {
+
+                       $array2[] = ['id' => $r['id'], 'marca' => $r['Marca']];
+
+                   }
+
+
+                }
+
+
+
+                 //return $array2;
+                  $categoria[] = ['id' => $id_producto, 'catalogo' => $catalogo , 'marca' => $array2];
+                // $categorias->id = $id_producto;
+                // $categorias->categoria = $catalogo;
+                // $categorias->marcas =  $array2;
+
+
+
+
+
+                 //var_dump($categorias);
+
+
+               }
+
+               $json = json_decode(json_encode($categoria, true));
+               return $categoria;
+
+
 
 }
 
-public function getImagenes (){
+public function getImagenes(){
 
     $imagenes = DB::table('imagenes')->select('*')->get();
     return $imagenes;
