@@ -1,3 +1,4 @@
+import { SharedService } from './../../../services/shared/shared.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +10,24 @@ export class MainSideBarComponent implements OnInit {
 
   opened = false;
   sideBarCata = false;
+  openCatalogue = true;
 
-  constructor() { }
+
+  constructor(
+    private sharedService: SharedService,
+  ) { }
 
   ngOnInit() {
 
+    // To open the catalogue component
+    this.sharedService.mostrarSideNavCategorias.subscribe(value => {
+      this.openCatalogue = !this.openCatalogue;
 
+    });
 
   }
 
+
 }
+
+

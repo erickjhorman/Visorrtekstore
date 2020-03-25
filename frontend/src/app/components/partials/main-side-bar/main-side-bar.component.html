@@ -3,14 +3,23 @@
 
     <app-carrito-compra></app-carrito-compra>
   </mat-sidenav>
-  <mat-sidenav id="side-bar-catalogos" mode="over" [(opened)]="sideBarCata" position="rigth">
+  <!-- <mat-sidenav id="side-bar-catalogos" mode="over" [(opened)]="sideBarCata" position="rigth">
     <app-slidebar></app-slidebar>
-  </mat-sidenav>
+  </mat-sidenav> -->
   <mat-sidenav-content>
 
     <app-navbar></app-navbar>
+
+    <!-- To show the Catalogue componenet  -->
+    <div [hidden]="openCatalogue" id="Catalogue">
+      <div style="position: absolute">
+
+        <app-slidebar></app-slidebar>
+      </div>
+
+    </div>
     <router-outlet></router-outlet>
-    <button (click)="sideBarCata=!sideBarCata">Toggle</button>
+
     <button (click)="opened=!opened">Toggle</button>
   </mat-sidenav-content>
 

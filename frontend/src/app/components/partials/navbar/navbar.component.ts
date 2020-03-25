@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token.service';
 import { AuthService } from '../../../services/auth.service';
@@ -6,13 +6,15 @@ import { CatalogoServes } from './../../../services/Catalogos/catalogos.service'
 import { SharedService } from '../../../services/shared/shared.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewInit {
   public loggedin: boolean;
   listadoCompras: string[] = [];
   producto: string;
@@ -21,9 +23,15 @@ export class NavbarComponent implements OnInit {
   // cliente: any[] = [];
   private cliente: any;
 
+
+
   // Font awsome icon
   faShoppingCart = faShoppingCart;
   faBell = faBell;
+
+  @ViewChild('clickHoverMenuTrigger', { static: true }) clickHoverMenuTrigger: MatMenuTrigger;
+
+
 
   constructor(
     private Auth: AuthService,
@@ -31,7 +39,15 @@ export class NavbarComponent implements OnInit {
     private Token: TokenService,
     private sharedService: SharedService,
     private cataloServe: CatalogoServes
-  ) { }
+  ) {
+
+
+  }
+
+
+  ngAfterViewInit(): void {
+
+  }
 
   ngOnInit() {
     // o get the information from  a sessionStorage
@@ -43,12 +59,25 @@ export class NavbarComponent implements OnInit {
     if (this.loggedin != null) {
       this.getClientes(this.user.id);
       console.log('No null' + this.loggedin);
+
+
     }
 
     this.Auth.typeUserStatus.subscribe(value => (this.loggedinAdmin = value));
     // console.log("Login " + this.loggedin);
     // console.log("Login admin" + this.loggedinAdmin);
   }
+
+
+
+  openOnMouseOver(e) {
+    this.clickHoverMenuTrigger.openMenu();
+    e.preventDefault();
+    this.sharedService.getMatMenuValue(this.clickHoverMenuTrigger.openMenu());
+    this.sharedService.getValorMostraCatalogoSidebar(true);
+  }
+
+
 
   getClientes(id: number) {
     this.cataloServe.getCliente(id).subscribe(
@@ -78,30 +107,7 @@ export class NavbarComponent implements OnInit {
     this.loggedinAdmin = false;
   }
 
-  //   openModel(productos:string){
-  //   const dialogConfig = new  MatDialogConfig();
-  //   dialogConfig.disableClose = true;
-  //   //dialogConfig.autoFocus = true;
-  //   dialogConfig.width = "400px";
-  //   dialogConfig.height = "400px";
-  //   let arrayProductos = productos;
-  //   dialogConfig.data = arrayProductos;
-  //   //dialogConfig.data = productoSeleccionado;
-  //   this.dialog.open(CarritoCompraComponent, dialogConfig,)
-  //  }
 
-  //  openModel(event: MouseEvent ){
-  //   event.preventDefault();
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.disableClose = true;
-  //   //dialogConfig.autoFocus = true;
-  //   dialogConfig.width = "400px";
-  //   dialogConfig.height = "400px";
-
-  //  //dialogConfig.data = productoSeleccionado;
-  //   this.dialog.open(CarritoCompraComponent, dialogConfig,)
-
-  //  }
 
   addCarrito(productos: any) {
     this.listadoCompras.push(productos);
@@ -116,11 +122,20 @@ export class NavbarComponent implements OnInit {
   // To show and hide the catalog componenet
   toogleShowCatalogosComponent(event: MouseEvent) {
     event.preventDefault();
+    // this.clickHoverMenuTrigger.openMenu();
     this.sharedService.getValorMostraCatalogoSidebar(false);
+
   }
 
   toogleShowUserSidenav(event: MouseEvent) {
     event.preventDefault();
     this.sharedService.getValorMostraUserSidebar(false);
   }
+
+  toogleHideUserSidenav(event: MouseEvent) {
+    event.preventDefault();
+    this.sharedService.getValorMostraUserSidebar(true);
+  }
+
+
 }

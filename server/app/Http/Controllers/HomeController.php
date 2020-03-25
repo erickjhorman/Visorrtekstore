@@ -24,6 +24,7 @@ use app\despacho;
 use Illuminate\Http\Request;
 use DB;
 use \stdClass;
+use \toArray;
 
 
 
@@ -89,7 +90,7 @@ class HomeController extends Controller
 
 
 
-
+          // i get the information form the database
           $catalogos = DB::table('tipo_productos')
           ->select('id','Categoria')
           ->get();
@@ -98,69 +99,53 @@ class HomeController extends Controller
           ->select('id','tipoProducto_id','Marca')
           ->get();
 
+
+
+          //I converted the collection into an array
           $result1 = json_decode($catalogos, true);
           $result2 = json_decode($marcas, true);
 
 
-
+           //I created two arrays to store my information
           $categoria = array();
           $array2 = array();
 
 
 
+          /*
+             I'm using two for loop to itirate the two arrays to store the inforamtion need
+          */
 
             for ($i=0; $i<count($result1); $i++) {
 
+                //I save some information into two variables
                  $id_producto = $result1[$i]['id'];
                  $catalogo   =  $result1[$i]['Categoria'];
 
-                //  for ($j=0; $j<count($result2); $j++) {
 
-                //        $producto_id = $result2[$j]['tipoProducto_id'];
-
-                //        if($id_producto == $producto_id){
-
-                //           $marcas->id =  $result2[$j]['id'];
-                //           $marcas->marca = $result2[$j]['Marca'];
-                //           $array2 = [$marcas];
-                //         }
-
-                //  }
 
                 $array2 = [];
                 foreach ($result2 as $r) {
                 if ($r['tipoProducto_id'] ==  $id_producto) {
 
-                       $array2[] = ['id' => $r['id'], 'marca' => $r['Marca']];
+
+                       //i create an array with the information which match with the conduition at the top
+                       $array2[] = ['producto_id' => $r['tipoProducto_id'] , 'id' => $r['id'], 'marca' => $r['Marca']];
 
                    }
 
 
                 }
 
+                //I store the informatiuon of my array result 1 and create a property where i push the information of the second array
+                $categoria[] = ['id' => $id_producto, 'categoria' => $catalogo , 'marca' => $array2];
 
+              }
 
-                 //return $array2;
-                  $categoria[] = ['id' => $id_producto, 'catalogo' => $catalogo , 'marca' => $array2];
-                // $categorias->id = $id_producto;
-                // $categorias->categoria = $catalogo;
-                // $categorias->marcas =  $array2;
-
-
-
-
-
-                 //var_dump($categorias);
-
-
-               }
-
-               $json = json_decode(json_encode($categoria, true));
+               //$json = json_decode(json_encode($categoria, true));
                return $categoria;
-
-
-
 }
+
 
 public function getImagenes(){
 

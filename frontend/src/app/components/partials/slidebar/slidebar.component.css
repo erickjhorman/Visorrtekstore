@@ -26,39 +26,9 @@ mat-sidenav-cotainer {
 }
 
 
-/* mat-grid-list{
-  background-color: aqua;
-} */
-
-.mat-list-item {
-    font-size: 15px;
-    margin-bottom: -15px;
-}
-
-.mat-nav-list:hover {
-    background-color: yellow;
-}
-
-
-/* .fa-shopping-cart{
-color: #007bff;
+#marca-catalogo{
 position: absolute;
-bottom: 5em;
-} */
-
-.link_catalogo {
-    background-color: #ddd;
-
-}
-
-.fa-chevron-right {
-    position: absolute;
-    left: 140px;
-}
-
-.marca-catalogo {
-    background-color: white;
-    position: relative;
-    left: 200px;
-    bottom: 290px;
+top: 2px;
+left: 150px;
+height: auto;
 }

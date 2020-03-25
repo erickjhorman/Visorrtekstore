@@ -1,16 +1,16 @@
-import { Injectable, EventEmitter } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Comentario } from "../../models/comentario";
-import { Subject } from "rxjs";
+import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Comentario } from '../../models/comentario';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class SharedService {
-  //To select the comment and save the selected one in my model
+  // To select the comment and save the selected one in my model
   selectedCometario: Comentario;
 
-  //To share the info
+  // To share the info
   productoSeleccionado: any;
 
   // private messageSource = new BehaviorSubject<string>('Default message');
@@ -32,18 +32,20 @@ export class SharedService {
   private UserTogggleAddsource = new Subject();
   mostrarSideNavUsuario = this.UserTogggleAddsource.asObservable();
 
-  //  private productoSele = new BehaviorSubject(0);
-  //  productoActual = this.productoSele.asObservable();
+  private matMenuNavBar = new Subject();
+  openCatalogueMatMenu = this.matMenuNavBar.asObservable();
 
-  //To share the values of the form from direccion form
+  public menuEmitter: EventEmitter<boolean>;
+
+  // To share the values of the form from direccion form
   private formDireccionAddSource = new Subject();
   formValues = this.formDireccionAddSource.asObservable();
 
-  //To share the values of the form from Transportadora form
+  // To share the values of the form from Transportadora form
   private formTransportadoraAddSource = new Subject();
   formValuesTransportadora = this.formTransportadoraAddSource.asObservable();
 
-  //To share the values of the purchase
+  // To share the values of the purchase
   private arrayComprasAddSource = new Subject();
   arrayValuesCompras = this.arrayComprasAddSource.asObservable();
 
@@ -65,7 +67,10 @@ export class SharedService {
   private refreshMessagesAddSource = new Subject();
   refreshMessages = this.refreshMessagesAddSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+  ) {
+    this.menuEmitter = new EventEmitter<boolean>();
+  }
 
   sharingData: EventEmitter<any> = new EventEmitter();
 
@@ -81,66 +86,83 @@ export class SharedService {
 
   getProductoSeleccionado(producto: any) {
     this.productoAddSource.next(producto);
-    console.log("getProducto ya recivido" + producto);
+    console.log('getProducto ya recivido' + producto);
   }
 
   getValorMostraComponente(valor: any) {
     this.carritoTogggleAddsource.next(valor);
-    console.log("get valor " + valor);
+    console.log('get valor ' + valor);
   }
 
   getValorMostraCatalogoSidebar(valor: any) {
     this.categoriasTogggleAddsource.next(valor);
-    console.log("get valor desde navbar para categoria" + valor);
+    console.log('get valor desde navbar para categoria' + valor);
   }
+
+  // To get the value of matMenu from navbar Component
+  getMatMenuValue(value: any) {
+    this.matMenuNavBar.next(value);
+    console.log('get valor desde navbar para MATmENU', value);
+  }
+
 
   getValorMostraUserSidebar(valor: any) {
     this.UserTogggleAddsource.next(valor);
-    console.log("get valor desde navbar para usuario" + valor);
+    console.log('get valor desde navbar para usuario' + valor);
   }
 
   getFormDirecciones(values: any) {
     this.formDireccionAddSource.next(values);
-    console.log("Formulario ya recivido" + values);
+    console.log('Formulario ya recivido' + values);
   }
 
   getFormTransportadora(values: any) {
     this.formTransportadoraAddSource.next(values);
-    console.log("Formulario ya recivido transportadora" + values);
+    console.log('Formulario ya recivido transportadora' + values);
   }
 
   getArrayCompras(values: any) {
     this.arrayComprasAddSource.next(values);
-    console.log("Formulario ya recivido compras" + values);
+    console.log('Formulario ya recivido compras' + values);
   }
 
   getDeshabilitarBtnVer(valor: boolean) {
     this.getDeshabilitarBtnVerAddSource.next(valor);
-    console.log("Variable deshabilitar btn boton " + valor);
+    console.log('Variable deshabilitar btn boton ' + valor);
   }
 
   EmitIdproducto(id: number) {
     this.emitIdproDesdeCatalogosAddSource.next(id);
-    console.log("Variable id btn boton " + id);
+    console.log('Variable id btn boton ' + id);
   }
 
   EmitVer(valor: boolean) {
     this.enableBtnVerAddSource.next(valor);
-    console.log("Variable valor " + valor);
+    console.log('Variable valor ' + valor);
   }
 
   stepcompleted(valor: boolean) {
     this.step2ComplaredAddSource.next(valor);
-    console.log("Variable pago " + valor);
+    console.log('Variable pago ' + valor);
   }
 
   paymentCharge(valor: any) {
     this.payChargeAddSource.next(valor);
-    console.log("Objeto pago " + valor);
+    console.log('Objeto pago ' + valor);
   }
 
   refreshMessage(valor: boolean) {
     this.refreshMessagesAddSource.next(valor);
-    console.log("Mensaje refrrescado " + valor);
+    console.log('Mensaje refrrescado ' + valor);
+  }
+
+  // To get the reference of my MatMenu
+  open(): void {
+    this.menuEmitter.emit(true);
+    console.log('open', open);
+  }
+  close(): void {
+    this.menuEmitter.emit(false);
+    console.log('close', open);
   }
 }
