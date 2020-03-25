@@ -1,5 +1,5 @@
 <div class="link_catalogo">
-  <mat-nav-list style=" padding-left: 30px" *ngFor="let catalogo of catalogos">
+  <mat-nav-list style="padding-left: 30px" *ngFor="let catalogo of catalogos">
     <a mat-list-item routerLinkActive="active current" class="active" class="selected" style="font-size: 15px;" (click)="getMarcas(catalogo.id)" >
       {{catalogo.categoria}}<span class="badge"><i class="fas fa-chevron-right"></i></span></a>
   </mat-nav-list>
@@ -10,7 +10,8 @@
   <mat-nav-list style="height: auto" *ngFor="let marca of marcasFinal">
 
     <a mat-list-item routerLinkActive="active current"
-      [routerLink]="['/catalogos',marca.categoria,marca.marca,marca.id]">
+      [routerLink]="['/catalogos',marca.categoria,marca.marca,marca.id]"
+      (click)="toogleHideUserSidenav($event)">
       <span class="badge"></span>{{marca.marca}}
     </a>
   </mat-nav-list>

@@ -1,7 +1,7 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: "isUser"
+  name: 'isUser'
 })
 export class IsUserPipe implements PipeTransform {
   transform(values: any[], args?: any): any {

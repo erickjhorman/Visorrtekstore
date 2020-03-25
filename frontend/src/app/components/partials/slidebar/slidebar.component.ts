@@ -36,13 +36,10 @@ export class SlidebarComponent implements OnInit {
 
     });
     this.getCatalogos();
-    this.getMarcas(this.id);
+
   }
 
-
-
-
-  getCatalogos() {
+   getCatalogos() {
     this.catalogoService.get().subscribe((data: Categoria[]) => {
       this.catalogos = data;
 
@@ -88,6 +85,15 @@ export class SlidebarComponent implements OnInit {
             }
     }
   }
+
+  toogleHideUserSidenav(event: MouseEvent) {
+    event.preventDefault();
+    this.sharedService.getValorMostraUserSidebar(true);
+  }
+
+
+
+
 }
 
 

@@ -22,9 +22,14 @@ export class MainSideBarComponent implements OnInit {
     // To open the catalogue component
     this.sharedService.mostrarSideNavCategorias.subscribe(value => {
       this.openCatalogue = !this.openCatalogue;
-
+       console.log('valor en main-side', value);
     });
 
+    // To open the shopping kart
+    this.sharedService.mostrarComponente.subscribe(value => {
+         this.opened = !this.opened;
+
+    });
   }
 
 
