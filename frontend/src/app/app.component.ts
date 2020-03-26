@@ -1,3 +1,5 @@
+import { environment } from './../environments/environment';
+
 import { Component, OnInit } from '@angular/core';
 
 
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  // To know in what environment i am
+  envName = environment.name;
 
 
   constructor() { }

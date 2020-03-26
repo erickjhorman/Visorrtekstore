@@ -1,12 +1,18 @@
-import { Injectable } from "@angular/core";
-
+import { Injectable } from '@angular/core';
+import {environment} from '../../environments/environment';
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class TokenService {
+
+  // private iss = {
+  //   login: 'http://localhost:8000/api/login',
+  //   signup: 'http://localhost:8000/api/signup'
+  // };
+
   private iss = {
-    login: "http://localhost:8000/api/login",
-    signup: "http://localhost:8000/api/signup"
+    login: environment.API_URL + 'login',
+    signup: environment.API_URL + '/signup'
   };
 
   typeUser: any;
@@ -17,35 +23,35 @@ export class TokenService {
     this.set(token);
   }
 
-  //To set the token to authenticate user
+  // To set the token to authenticate user
   set(token: any) {
-    localStorage.setItem("token", token);
+    localStorage.setItem('token', token);
     console.log(token);
   }
 
   get() {
-    return localStorage.getItem("token");
+    return localStorage.getItem('token');
   }
 
   remove() {
-    return localStorage.removeItem("token");
+    return localStorage.removeItem('token');
   }
 
   removeSessionStorage() {
-    return sessionStorage.removeItem("userAuth");
+    return sessionStorage.removeItem('userAuth');
   }
 
-  //To set the type of user to authenticate user
+  // To set the type of user to authenticate user
   getUser() {
-    return localStorage.getItem("tipo_usuario");
+    return localStorage.getItem('tipo_usuario');
   }
 
   removeUser() {
-    return localStorage.removeItem("tipo_usuario");
+    return localStorage.removeItem('tipo_usuario');
   }
 
   removeSessionStorageUser() {
-    return localStorage.removeItem("tipo_usuario");
+    return localStorage.removeItem('tipo_usuario');
   }
 
   isValid() {
@@ -60,7 +66,7 @@ export class TokenService {
   }
 
   payload(token: any) {
-    const payload = token.split(".")[1];
+    const payload = token.split('.')[1];
     return this.decode(payload);
   }
 
@@ -80,13 +86,13 @@ export class TokenService {
   // }
 
   loggedIn() {
-    if (localStorage.getItem("token") != null) return true;
+    if  (localStorage.getItem('token') != null) { return true; }
   }
 
   isAdmin() {
-    var user = this.getUser();
+    const  user = this.getUser();
 
-    if (user == "1") return true;
+    if  (user === '1') { return true; }
   }
 
   // isAdmin() {

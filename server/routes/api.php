@@ -41,7 +41,7 @@ Route::group([
     Route::put('/datos-personales/{id}', 'dashboarUsuarioControlador@update');
     Route::post('/datos-personales/addDireccion', 'dashboarUsuarioControlador@store');
     Route::get('/datos-personales/getDireccion/{id}', 'dashboarUsuarioControlador@getDireccion');
-   
+
 
 });
 
@@ -70,7 +70,7 @@ Route::get('catalogos/marca/colores/{id}', 'HomeController@getColorsProducts');
 Route::get('catalogos/marca/show/{id}', 'commentsController@comentarios');
 Route::get('catalogos/marca/show/comentario/{id}', 'commentsController@getComentarios');
 Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentarios');
-Route::post('v1/charges', 'stripePaymentController@saveToken');
+Route::post('charges', 'stripePaymentController@saveToken');
 Route::get('dashboard/compras/{id}', 'stripePaymentController@getCompras');
 Route::post('procesoCompra/addDireccion', 'ProcesoCompraController@addDireccion');
 Route::post('procesoCompra/mensaje', 'ProcesoCompraController@storeFirstMensaje');
