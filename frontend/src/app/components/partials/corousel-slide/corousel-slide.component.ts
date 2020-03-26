@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import  {Imagen} from "../../../models/imagenesSidebar"
-import  {ImagenesService} from "../../../services/imagenes.service"
+import { Imagen} from '../../../models/imagenesSidebar'
+import { ImagenesService} from '../../../services/imagenes.service'
 
 @Component({
   selector: 'app-corousel-slide',
@@ -16,7 +16,9 @@ export class CorouselSlideComponent implements OnInit {
   imagenes: Imagen[];
 
 
-  constructor(config: NgbCarouselConfig, private  imagenesService : ImagenesService) {
+  constructor(
+              config: NgbCarouselConfig,
+             private  imagenesService: ImagenesService) {
 
     this.getImagenes();
 
@@ -27,8 +29,8 @@ export class CorouselSlideComponent implements OnInit {
     // config.pauseOnHover = true;
   }
 
-//To get images from database to the carousel
-  getImagenes(){
+// To get images from database to the carousel
+  getImagenes() {
     this.imagenesService.get().subscribe((data: Imagen[]) => {
       this.imagenes = data;
 

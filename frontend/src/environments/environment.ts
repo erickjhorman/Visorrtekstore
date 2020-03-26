@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   name: '(DEV)',
   stripekey: 'pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC',
-  API_URL: 'http://localhost:8000/api/catalogos'
+  API_URL: 'http://localhost:8000/api/'
 };
 
 /*

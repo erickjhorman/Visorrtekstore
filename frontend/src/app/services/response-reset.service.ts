@@ -11,7 +11,7 @@ export class ResponseResetService {
   constructor(private http: HttpClient) { }
 
 
-  changePassword(signup: Signup){
+  changePassword(signup: Signup) {
     const headers = new HttpHeaders({'content-type': 'application/json'});
 
     return this.http.post(environment.API_URL + 'auth/' + 'resetPassword', signup, {headers: headers});

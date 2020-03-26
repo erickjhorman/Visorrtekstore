@@ -1,8 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
-import { Categoria } from '../../models/categoria';
-import { BehaviorSubject } from 'rxjs/';
 import { Comentario } from '../../models/comentario';
 
 @Injectable({
@@ -27,7 +25,7 @@ export class CatalogoServes {
   // }
 
     get() {
-    return this.http.get(environment.API_URL);
+    return this.http.get(environment.API_URL + 'catalogos');
   }
 
 
