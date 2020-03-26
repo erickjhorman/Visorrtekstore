@@ -22,7 +22,7 @@ export class ImagenesService {
   //  }
 
    get() {
-    return this.http.get(environment.API_URL + 'imagenes');
+    return this.http.get(environment.API_URL + '/imagenes');
    }
 }
 

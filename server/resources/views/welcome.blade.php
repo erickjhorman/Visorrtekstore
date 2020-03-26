@@ -48,17 +48,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-<script src="client/runtime-es2015.js" type="module"></script>
-<script src="client/polyfills-es2015.js" type="module"></script>
-<script src="client/runtime-es5.js" nomodule></script>
-<script src="client/polyfills-es5.js" nomodule></script>
-<script src="client/styles-es2015.js" type="module"></script>
-<script src="client/styles-es5.js" nomodule></script>
-<script src="client/scripts.js"></script>
-<script src="client/vendor-es2015.js" type="module"></script>
-<script src="client/main-es2015.js" type="module"></script>
-<script src="client/vendor-es5.js" nomodule></script>
-<script src="client/main-es5.js" nomodule></script>
-</body>
+<script src="client/runtime-es2015.js" type="module"></script><script src="client/polyfills-es2015.js" type="module"></script><script src="client/runtime-es5.js" nomodule></script><script src="client/polyfills-es5.js" nomodule></script><script src="client/styles-es2015.js" type="module"></script><script src="client/styles-es5.js" nomodule></script><script src="client/scripts.js"></script><script src="client/vendor-es2015.js" type="module"></script><script src="client/main-es2015.js" type="module"></script><script src="client/vendor-es5.js" nomodule></script><script src="client/main-es5.js" nomodule></script></body>
 
 </html>

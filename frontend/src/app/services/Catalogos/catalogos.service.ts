@@ -25,7 +25,7 @@ export class CatalogoServes {
   // }
 
     get() {
-    return this.http.get(environment.API_URL + 'catalogos');
+    return this.http.get(environment.API_URL + '/catalogos');
   }
 
 
@@ -50,7 +50,7 @@ export class CatalogoServes {
   // }
 
   getProductos(id: number) {
-    return this.http.get(`${environment.API_URL}/marca/${id}`);
+    return this.http.get(`${environment.API_URL}/catalogos/marca/${id}`);
   }
 
 
@@ -59,7 +59,7 @@ export class CatalogoServes {
   // }
 
   getProducto(id: number) {
-    return this.http.get(`${environment.API_URL}/marca/show/${id}`);
+    return this.http.get(`${environment.API_URL}/catalogos/marca/show/${id}`);
   }
 
   // getColoresProductos(id: number) {
@@ -67,7 +67,7 @@ export class CatalogoServes {
   // }
 
   getColoresProductos(id: number) {
-    return this.http.get(`${environment.API_URL}/marca/colores/${id}`);
+    return this.http.get(`${environment.API_URL}/catalogos/marca/colores/${id}`);
   }
 
   // To get the all comments
@@ -76,7 +76,7 @@ export class CatalogoServes {
   // }
 
   getComentarios(id: number) {
-    return this.http.get(`${environment.API_URL}/marca/show/comentario/${id}`);
+    return this.http.get(`${environment.API_URL}/catalogos/marca/show/comentario/${id}`);
   }
 
 
@@ -85,7 +85,7 @@ export class CatalogoServes {
   // }
 
   getTransportadoras() {
-    return this.http.get(`${environment.API_URL}/transportadora`);
+    return this.http.get(`${environment.API_URL}/user/transportadora`);
   }
 
 
@@ -94,7 +94,7 @@ export class CatalogoServes {
   // }
 
   getDepartamentos() {
-    return this.http.get(`${environment.API_URL}/departamentos`);
+    return this.http.get(`${environment.API_URL}/user/departamentos`);
   }
 
   // getCiudades(id: number) {
@@ -141,7 +141,7 @@ export class CatalogoServes {
 
   saveComentario(comentario: Comentario) {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    return this.http.post(`${environment.API_URL}/marca/show/comentario`, comentario, {
+    return this.http.post(`${environment.API_URL}catalogos/marca/show/comentario`, comentario, {
       headers: headers
     });
   }

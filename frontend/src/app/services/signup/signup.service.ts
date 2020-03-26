@@ -27,7 +27,7 @@ export class SignupService {
   singUp(signup: Signup) {
     const headers = new HttpHeaders({'content-type': 'application/json'});
 
-    return this.http.post( environment.API_URL +  'auth/' + 'signup', signup, {headers: headers});
+    return this.http.post( environment.API_URL +  '/auth/' + 'signup', signup, {headers: headers});
 
   }
 

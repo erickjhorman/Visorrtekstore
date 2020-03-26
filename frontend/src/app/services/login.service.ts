@@ -29,7 +29,7 @@ export class LoginService {
    loginIn(login: Login) {
     const headers = new HttpHeaders({'content-type': 'application/json'});
 
-    return this.http.post(environment.API_URL + 'auth/' + 'login', login, {headers: headers});
+    return this.http.post(environment.API_URL + '/auth/' + 'login', login, {headers: headers});
    }
 
   //  sendPasswordResetLink(login: Login){
@@ -39,7 +39,7 @@ export class LoginService {
 
    sendPasswordResetLink(login: Login) {
     const headers = new HttpHeaders({'content-type': 'application/json'});
-    return this.http.post(environment.API_URL + 'auth/' + 'sendPasswordResetLink', login, {headers: headers , responseType: 'text'});
+    return this.http.post(environment.API_URL + '/auth/' + 'sendPasswordResetLink', login, {headers: headers , responseType: 'text'});
    }
 
   }
