@@ -10,8 +10,8 @@ import  {Login} from "../models/login";
 export class LoginService {
 
   API_URI = 'http://localhost:8000/api/auth/';
-  
-  //I instanced the module httpClient
+
+  // I instanced the module httpClient
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +26,7 @@ export class LoginService {
    }
 
    sendPasswordResetLink(login: Login){
-    const headers = new HttpHeaders({'content-type': 'application/json'});  
+    const headers = new HttpHeaders({'content-type': 'application/json'});
     return this.http.post(this.API_URI + 'sendPasswordResetLink', login, {headers: headers , responseType:'text'});
    }
 

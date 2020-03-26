@@ -1,18 +1,22 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http"; // this module makes the petition HTTP TO ASK FOR INFO
-import { Categoria } from "../../models/categoria";
-import { BehaviorSubject } from "rxjs/";
-import { Comentario } from "../../models/comentario";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
+import { Categoria } from '../../models/categoria';
+import { BehaviorSubject } from 'rxjs/';
+import { Comentario } from '../../models/comentario';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CatalogoServes {
-  API_URI = "http://localhost:8000/api/catalogos";
-  API_URIUser = "http://localhost:8000/api/user";
-  API_URICliente = "http://localhost:8000/api/dashboard";
+  // API_URI = "http://localhost:8000/api/catalogos";
+  // API_URIUser = "http://localhost:8000/api/user";
+  // API_URICliente = "http://localhost:8000/api/dashboard";
 
-  //API_URIProductos = 'http://localhost:8000/api/catalogos/marca';
+  API_URI = 'api/catalogos';
+  API_URIUser = 'api/user';
+  API_URICliente = 'api/dashboard';
+
+  // API_URIProductos = 'http://localhost:8000/api/catalogos/marca';
   nombre: string = undefined;
 
   constructor(private http: HttpClient) {}
@@ -63,7 +67,7 @@ export class CatalogoServes {
   }
 
   updateCliente(id: number, updatedCliente) {
-    const headers = new HttpHeaders({ "content-type": "application/json" });
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http.put(
       `${this.API_URICliente}/datos-personales/${id}`,
       updatedCliente,
@@ -72,7 +76,7 @@ export class CatalogoServes {
   }
 
   saveComentario(comentario: Comentario) {
-    const headers = new HttpHeaders({ "content-type": "application/json" });
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http.post(`${this.API_URI}/marca/show/comentario`, comentario, {
       headers: headers
     });
