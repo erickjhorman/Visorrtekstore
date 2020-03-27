@@ -5,3 +5,21 @@
 5. To see your  email git config --global user.email  
 6. To set up a color  git config --global color.ui true
 7. To see your configurations git config --global --list
+
+8. to initialize the project  git init
+9. To know the status of the project git status 
+10. To add a specific read file  of the project git add 
+11. To add all the files  git add -A
+12. To save the changes in a message  git  commit -m "Your message"
+13. To see all the commits                         git log
+14. To see all the commits in a txt file                        git log > commits.txt
+15. Back to the time between commits and  branches      git checkout and next paste the sha code of the commit
+16. move me to the last commit    git checkout master 
+17. delete all the commits   git reset  and there are children like git reset --soft(The code is not mofified)  git reset --mixed() git reset --hard (delete all)
+18. To see the all commands git help 
+20. To show the branches  git branch
+21. To create a branch git branch name of the branch   
+22. To move to the specific branch git checkout <name of the branch> 
+23. To delete the branch  git branch -d <the name of the branch>
+24. To merge the commits of the any branch  git checkout master and then git merge <name of the branch to merge>
+
