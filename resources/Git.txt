@@ -1,0 +1,7 @@
+1. to set up a name git config --global user.name "Your name"
+2. To see your name git config --global user.name 
+3. to change a name git config --global user.name "Your new name"
+4. to set up your email git config --global user.email  "Your email"
+5. To see your  email git config --global user.email  
+6. To set up a color  git config --global color.ui true
+7. To see your configurations git config --global --list
