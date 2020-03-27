@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {CatalogoServes} from '../../../../../services/Catalogos/catalogos.service';
 import {NotificationService} from '../../../../../services/shared/notification.service';
-import {DashboardService} from "../../../../../services/shared/dashboard.service";
+import {DashboardService} from '../../../../../services/shared/dashboard.service';
 @Component({
   selector: 'app-add-direccion',
   templateUrl: './add-direccion.component.html',
@@ -10,9 +10,12 @@ import {DashboardService} from "../../../../../services/shared/dashboard.service
 })
 export class AddDireccionComponent implements OnInit {
 
-  private departamentos: any;
-  private ciudades: any;
-  private user : any;
+  public departamentos: any;
+  public ciudades: any;
+  public user: any;
+  public selectedDep: String;
+  selectedCiu: String;
+
 
   formAddress: FormGroup = new FormGroup({
     cliente_id: new FormControl(1),
@@ -26,7 +29,7 @@ export class AddDireccionComponent implements OnInit {
     ciudad_id: new FormControl('', [Validators.required]),
   });
 
-  restartFormGroup(){
+  restartFormGroup() {
     this.formAddress.setValue({
 
       nombre: '',
@@ -35,22 +38,22 @@ export class AddDireccionComponent implements OnInit {
       departamento_id: '',
       ciudad_id: '',
       cliente_id: 0,
-      barrio:'',
-      datos_adicionales:'',
-      direccion:'',
-    })
+      barrio: '',
+      datos_adicionales: '',
+      direccion: '',
+    });
   }
 
 
-  constructor(private cataloServe :CatalogoServes,private dashboardService:DashboardService, private notificacion: NotificationService) { }
+  constructor(private cataloServe: CatalogoServes, private dashboardService: DashboardService, private notificacion: NotificationService) { }
 
 
 
 
   ngOnInit() {
 
-    //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem('userAuth');
+    // To get the information from  a sessionStorage
+    let user = sessionStorage.getItem('userAuth');
     this.user =  JSON.parse(user);
     console.log(this.user);
 
@@ -59,45 +62,45 @@ export class AddDireccionComponent implements OnInit {
 }
 
 
-getDepartamentos(){
+getDepartamentos() {
   this.cataloServe.getDepartamentos().subscribe(
-    res =>{
+    res => {
 
-          this.departamentos= res
+          this.departamentos = res;
           console.log(this.departamentos);
          },
     err => console.log(err)
-  )
+  );
 }
 
- //To get the ciudades for direccion Form
- getCiudades(id:number){
+ // To get the ciudades for direccion Form
+ getCiudades(id: number) {
   this.cataloServe.getCiudades(id).subscribe(
-    res =>{
-         this.ciudades = res
+    res => {
+         this.ciudades = res;
          console.log(res);
     },
     err => console.log(err)
-  )
+  );
 
 }
 
-onClear(){
+onClear() {
   this.formAddress.reset();
   this.restartFormGroup();
 
  }
 
 
-ChangeId(selectedId:number){
+ChangeId(selectedId: number) {
 
   this.getCiudades(selectedId);
-  console.log(selectedId)
+  console.log(selectedId);
 }
 
-onAddAdress(){
+onAddAdress() {
 
-  if(this.formAddress.valid){
+  if (this.formAddress.valid) {
     console.log(this.formAddress.value);
     this.dashboardService.guardarDirecion(this.formAddress.value).subscribe(
 
@@ -108,7 +111,7 @@ onAddAdress(){
         this.notificacion.success('Direccion  guardada satisfactoriamente');
       },
       err => console.log(err)
-     )
+     );
    }
   }
 

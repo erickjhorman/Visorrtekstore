@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import  {Signup} from "../../../models/signup";
-import {SignupService} from "../../../services/signup/signup.service";
-import {ActivatedRoute , Router} from "@angular/router";
+import { Signup} from '../../../models/signup';
+import {SignupService} from '../../../services/signup/signup.service';
+import {ActivatedRoute , Router} from '@angular/router';
 import { TokenService } from '../../../services/token.service';
 import { AuthService } from '../../../services/auth.service';
 
@@ -21,34 +21,42 @@ export class SignupComponent implements OnInit {
    resetToken: null
   };
 
-  user : any;
-  public error = [];
+  user: any;
+  public error = [{
+
+  }
+  ];
+  public nombre: string;
 
 
-  constructor(private signupService :SignupService,  private activateRoute: ActivatedRoute, private router:Router, private Token: TokenService , private Auth: AuthService)  {}
+  constructor(  private signupService: SignupService,
+                private activateRoute: ActivatedRoute,
+                private router: Router,
+                private Token: TokenService ,
+                private Auth: AuthService)  {}
   ngOnInit() {
   }
 
-  singUp(){
+  singUp() {
     this.signupService.singUp(this.signup).subscribe(
       data => {
-      this.handlResponse(data)
+      this.handlResponse(data);
 
     }, (error) => {
-      this.handleError(error)
+      this.handleError(error);
       alert('Querry faild');
     });
    }
 
-   handlResponse(data){
-    this.user = data
+   handlResponse(data) {
+    this.user = data;
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStaus(true);
-    sessionStorage.setItem('userAuth',JSON.stringify(this.user));
-    this.router.navigateByUrl('/dashboard');  //To redirect to another component
+    sessionStorage.setItem('userAuth', JSON.stringify(this.user));
+    this.router.navigateByUrl('/dashboard');  // To redirect to another component
   }
 
-   handleError(error){
+   handleError(error) {
     this.error = error.error.errors;
   }
 

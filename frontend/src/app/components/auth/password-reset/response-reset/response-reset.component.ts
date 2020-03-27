@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import  {Signup} from '../../../../models/signup';
+import { Signup} from '../../../../models/signup';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseResetService} from '../../../../services/response-reset.service';
+
 
 
 
@@ -13,7 +14,10 @@ import { ResponseResetService} from '../../../../services/response-reset.service
 })
 export class ResponseResetComponent implements OnInit {
 
+
+
   public error = [];
+
   signup: Signup = {
     nombre: null,
     email: null,
@@ -24,35 +28,35 @@ export class ResponseResetComponent implements OnInit {
     };
 
   constructor(
-    private route:ActivatedRoute, private respondeReset:ResponseResetService , private router : Router,
+    private route: ActivatedRoute, private respondeReset: ResponseResetService , private router: Router,
 
   ) {
 
 
     route.queryParams.subscribe(params => {
-      this.signup.resetToken = params['token']
+      this.signup.resetToken = params['token'];
     });
   }
 
-  resetPassword(){
+  resetPassword() {
     this.respondeReset.changePassword(this.signup).subscribe(
       data => {
-      this.handlResponse(data)
+      this.handlResponse(data);
 
     }, (error) => {
-      this.handleError(error)
+      this.handleError(error);
 
     });
    }
 
-   handlResponse(data){
+   handlResponse(data) {
 
 
     this.router.navigateByUrl('/login');
   }
 
-  handleError(error){
-
+  handleError(error) {
+       this.error = error.error.error;
   }
 
   ngOnInit() {

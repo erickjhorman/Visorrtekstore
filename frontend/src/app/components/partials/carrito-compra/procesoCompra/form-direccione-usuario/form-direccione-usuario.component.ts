@@ -1,32 +1,32 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from "@angular/core";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { ReactiveFormsModule } from "@angular/forms";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { CatalogoServes } from "../../../../../services/Catalogos/catalogos.service";
-import { SharedService } from "../../../../../services/shared/shared.service";
-import { ProcesoCompra } from "../../../../../services/procesoCompra.service";
-import { NotificationService } from "../../../../../services/shared/notification.service";
-import { DashboardService } from "../../../../../services/shared/dashboard.service";
-import { ProcesoCompraComponent } from "../../proceso-compra/proceso-compra.component";
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CatalogoServes } from '../../../../../services/Catalogos/catalogos.service';
+import { SharedService } from '../../../../../services/shared/shared.service';
+import { ProcesoCompra } from '../../../../../services/procesoCompra.service';
+import { NotificationService } from '../../../../../services/shared/notification.service';
+import { DashboardService } from '../../../../../services/shared/dashboard.service';
+import { ProcesoCompraComponent } from '../../proceso-compra/proceso-compra.component';
 
 @Component({
-  selector: "app-form-direccione-usuario",
-  templateUrl: "./form-direccione-usuario.component.html",
-  styleUrls: ["./form-direccione-usuario.component.css"]
+  selector: 'app-form-direccione-usuario',
+  templateUrl: './form-direccione-usuario.component.html',
+  styleUrls: ['./form-direccione-usuario.component.css']
 })
 export class FormDireccioneUsuarioComponent implements OnInit {
-  private departamentos: any;
-  private ciudades: any;
-  private domicilio: any;
-  private user: any;
+  public departamentos: any;
+  public ciudades: any;
+  public domicilio: any;
+  public user: any;
 
   infoDireccionesForm: any;
   valuesFormDireccione: any;
-  show: boolean = false;
+  show = false;
 
   @Output() viewAdress = new EventEmitter<boolean>();
   activateButtonView = false;
-  //Form
+  // Form
   FormDireccionesUsuario: FormGroup;
 
   constructor(
@@ -40,43 +40,43 @@ export class FormDireccioneUsuarioComponent implements OnInit {
   ) {
     this.departamentos = data;
 
-    //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem("userAuth");
+    // To get the information from  a sessionStorage
+    const  user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
     console.log(this.user.id);
 
     this.FormDireccionesUsuario = new FormGroup({
-      departamento: new FormControl("", [Validators.required]),
-      ciudad: new FormControl("", [Validators.required]),
-      nombre: new FormControl("", [
+      departamento: new FormControl('', [Validators.required]),
+      ciudad: new FormControl('', [Validators.required]),
+      nombre: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30)
       ]),
 
       idCliente: new FormControl(this.user.id),
-      apellido: new FormControl("", [
+      apellido: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30)
       ]),
-      celular: new FormControl("", [
+      celular: new FormControl('', [
         Validators.required,
 
         Validators.minLength(10),
         Validators.maxLength(10)
       ]),
-      barrio: new FormControl("", [
+      barrio: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30)
       ]),
-      direccion: new FormControl("", [
+      direccion: new FormControl('', [
         Validators.required,
         Validators.minLength(13),
         Validators.maxLength(25)
       ]),
-      datosadicionales: new FormControl("", [
+      datosadicionales: new FormControl('', [
         Validators.required,
         Validators.minLength(13),
         Validators.maxLength(75)
@@ -86,20 +86,20 @@ export class FormDireccioneUsuarioComponent implements OnInit {
 
   restartFormGroup() {
     this.FormDireccionesUsuario.setValue({
-      nombre: "",
-      apellido: "",
-      celular: "",
-      departamento: "",
-      ciudad: "",
-      barrio: "",
-      direccion: "",
-      datosadicionales: ""
+      nombre: '',
+      apellido: '',
+      celular: '',
+      departamento: '',
+      ciudad: '',
+      barrio: '',
+      direccion: '',
+      datosadicionales: ''
     });
   }
 
   ngOnInit() {}
 
-  //To get the value of the selected
+  // To get the value of the selected
   changeId($event) {
     console.log($event);
     this.getCiudades($event);
@@ -109,7 +109,7 @@ export class FormDireccioneUsuarioComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  //To get the ciudades for direccion Form
+  // To get the ciudades for direccion Form
   getCiudades(id: number) {
     this.cataloServe.getCiudades(id).subscribe(
       res => {
@@ -127,7 +127,7 @@ export class FormDireccioneUsuarioComponent implements OnInit {
         .subscribe(res => {}, err => {});
       this.sharedService.getFormDirecciones(this.FormDireccionesUsuario.value);
       this.sharedService.EmitVer(true);
-      this.notificationService.success("Direccion almacenada");
+      this.notificationService.success('Direccion almacenada');
       this.onClose();
     }
   }

@@ -12,10 +12,10 @@ import {SharedService} from '../../../services/shared/shared.service';
 
 export class ComentarioDetalleProductoComponent implements OnInit {
 
-  @Input() d: any
- private user : any;
- private comentarios : any;
- constructor( private catalogoserve : CatalogoServes,
+  @Input() d: any;
+ public user: any;
+ public comentarios: any;
+ constructor( private catalogoserve: CatalogoServes,
   private comentarioService: SharedService
   ) {}
 
@@ -32,27 +32,27 @@ export class ComentarioDetalleProductoComponent implements OnInit {
 
   ngOnInit() {
 
-  //To get the information from  a sessionStorage
-  var user = sessionStorage.getItem('userAuth');
+  // To get the information from  a sessionStorage
+  const  user = sessionStorage.getItem('userAuth');
   this.user =  JSON.parse(user);
   console.log(this.user);
-  this.getComentario(this.d.id)
-  console.log(this.d.id)
+  this.getComentario(this.d.id);
+  console.log(this.d.id);
   }
 
 
-   getComentario(id:number){
+   getComentario(id: number) {
     this.catalogoserve.getComentarios(id).subscribe(
       res => {
         console.log(res);
-        this.comentarios= res
+        this.comentarios = res;
       },
       err => console.log(err)
-     )
+     );
    }
 
-  saveComentario(form){
-    console.log("Hola" + form.value);
+  saveComentario(form) {
+    console.log(' Hola' + form.value);
     this.catalogoserve.saveComentario(form.value)
     .subscribe(res => {
         this.getComentario(this.d.id);
@@ -62,15 +62,15 @@ export class ComentarioDetalleProductoComponent implements OnInit {
      err => {
        return console.log(err);
      }
-    )
+    );
     }
 
-    resetForm(form?: NgForm){
-      if(form.value){
+    resetForm(form?: NgForm) {
+      if (form.value) {
 
         form.reset();
 
-        //this.comentarioService.selectedCometario = new Comentario();
+        // this.comentarioService.selectedCometario = new Comentario();
       }
     }
 

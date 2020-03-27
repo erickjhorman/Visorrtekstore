@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   name: '(DEV)',
   stripekey: 'pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC',
-  API_URL: 'http://localhost:8000/api'
+  // API_URL: 'http://localhost:8000/api'
+  API_URL: 'https://visor-tek.herokuapp.com/api',
 };
 
 /*

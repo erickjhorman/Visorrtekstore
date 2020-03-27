@@ -8,7 +8,7 @@
                  <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                  <div class="col-sm-10">
                    <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email" [(ngModel)]="signup.email" required>
-                   <span class="text-danger" [hidden]="!error.email">{{error.email}}</span>
+                   <span class="text-danger" [hidden]="!error">{{error}}</span>
                   </div>
 
                </div>
@@ -17,7 +17,7 @@
                  <label for="inputPassword4" class="col-sm-2 col-form-label">Password</label>
                  <div class="col-sm-10">
                    <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" [(ngModel)]="signup.password" required>
-                   <span class="text-danger" [hidden]="!error.password">{{error.password}}</span>
+                   <span class="text-danger" [hidden]="!error">{{error}}</span>
                   </div>
 
                </div>
@@ -25,7 +25,7 @@
                 <label for="inputPasswordConfirmar" class="col-sm-2 col-form-label">Confirmar Password</label>
                 <div class="col-sm-10">
                   <input type="password" name="password_confirmation" class="form-control" id="inputPasswordConfirmar" placeholder="Confirmar Password" [(ngModel)]="signup.password_confirmation" required>
-                  <span class="text-danger" [hidden]="!error.password_confirmation">{{error.password_confirmation}}</span>
+                  <span class="text-danger" [hidden]="!error">{{error}}</span>
                 </div>
 
               </div>

@@ -1,34 +1,34 @@
-import { Component, OnInit, HostBinding } from "@angular/core";
-import { DashboardAdminService } from "../../../../../services/shared/dashboard-admin.service";
-import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { switchMap, map, ignoreElements } from "rxjs/operators";
-import { Mensaje } from "../../../../../models/mensaje";
-import { identifierModuleUrl } from "@angular/compiler";
-import { CatalogoServes } from "../../../../../services/Catalogos/catalogos.service";
-import { SharedService } from "../../../../../services/shared/shared.service";
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { DashboardAdminService } from '../../../../../services/shared/dashboard-admin.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap, map, ignoreElements } from 'rxjs/operators';
+import { Mensaje } from '../../../../../models/mensaje';
+import { identifierModuleUrl } from '@angular/compiler';
+import { CatalogoServes } from '../../../../../services/Catalogos/catalogos.service';
+import { SharedService } from '../../../../../services/shared/shared.service';
 
 @Component({
-  selector: "app-chat",
-  templateUrl: "./chat.component.html",
-  styleUrls: ["./chat.component.css"]
+  selector: 'app-chat',
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  private mensajes: any;
-  private user: any;
-  private sala: any;
-  private id: String;
-  //mensaje: any = [];
-  //Mensaje: Mensaje;
-  private cliente: any;
-  private sala_id: any;
+  public  mensajes: any;
+  public user: any;
+  public sala: any;
+  public id: String;
+  // mensaje: any = [];
+  // Mensaje: Mensaje;
+  public cliente: any;
+  public sala_id: any;
 
   Mensaje: Mensaje = {
     id: 0,
     sala_id: 0,
     usuario_id: 0,
     tipoMensaje_id: 0,
-    mensaje: "",
-    url: "",
+    mensaje: '',
+    url: '',
     created_at: new Date(),
     update_at: new Date()
   };
@@ -55,15 +55,15 @@ export class ChatComponent implements OnInit {
     // );
 
     //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem("userAuth");
+    var user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
     console.log(this.user);
 
-    var sala = sessionStorage.getItem("sala_id");
+    var sala = sessionStorage.getItem('sala_id');
     this.sala = JSON.parse(sala);
     console.log(this.sala);
 
-    this.id = this.route.snapshot.paramMap.get("id");
+    this.id = this.route.snapshot.paramMap.get('id');
     this.getMensaje(this.id);
 
     this.getClientes(this.user.id);
@@ -90,7 +90,7 @@ export class ChatComponent implements OnInit {
           this.sala_id = this.mensajes[index];
 
           sessionStorage.setItem(
-            "sala_id",
+            'sala_id',
             JSON.stringify(this.sala_id.Sala_id)
           );
         }

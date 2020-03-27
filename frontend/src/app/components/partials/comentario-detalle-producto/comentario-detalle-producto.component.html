@@ -30,13 +30,13 @@
 </div>
 
   <mat-form-field class="example-full-width">
-    <textarea matInput name="comentario"  id="comentario"  [(ngModel)]="name"  placeholder="Leave a comment" required></textarea>
+    <textarea matInput name="comentario"  id="comentario"  [(ngModel)]="user.name"  placeholder="Leave a comment" required></textarea>
   </mat-form-field>
 <!-- <textarea name="comentario" rows="3" id="comentario"  placeholder="comentario"  class="form-control" [(ngModel)]="name" required ></textarea> -->
 <div id="btns-comentario">
     <button class="btn btn-sm btn-sm" >Cancelar</button>
     <button class="btn btn-sm btn-sm" (click)="resetForm(createComentarioForm)">Limpiar</button>
-    <button class="btn btn-sm btn-sm" (click)="getComentario()">Comentarios</button>
+    <!--<button class="btn btn-sm btn-sm" (click)="getComentario()">Comentarios</button> -->
     <button type="submit" class="btn btn-success">Comentar</button>
 
 </div>
