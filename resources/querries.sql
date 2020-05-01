@@ -229,4 +229,17 @@ GROUP BY salas.venta_id)
         return $mensajeSala;
 
 
- 
+   ----------------------------------------
+   To get all the Featured Products
+   select distinct nombre, Cantidad , count(Producto_id) as valor_repetido 
+from detalle__ventas
+group  BY nombre
+ORDER BY valor_repetido DESC LIMIT 0,5;
+
+select distinct nombre, Cantidad, imagen,  count(Producto_id) as valor_repetido 
+from detalle__ventas
+
+inner join productos 
+on detalle__ventas.Producto_id=productos.id
+group  BY nombre
+ORDER BY valor_repetido DESC LIMIT 0,5;

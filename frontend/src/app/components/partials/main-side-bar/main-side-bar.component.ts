@@ -30,6 +30,17 @@ export class MainSideBarComponent implements OnInit {
          this.opened = !this.opened;
 
     });
+
+      // To hide the catalog component
+      this.sharedService.hideCatalog.subscribe(value => {
+        this.openCatalogue = false;
+
+        if (this.openCatalogue = true) {
+        } else {
+          this.openCatalogue = false;
+        }
+        console.log('ocultar catalogo', this.openCatalogue);
+    });
   }
 
 

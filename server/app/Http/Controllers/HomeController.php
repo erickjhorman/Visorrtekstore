@@ -203,11 +203,13 @@ public function getProductos($id){
 
 public function productosDestacados(){
 
-    $productoDestacados  = DB::table('ventas')
-    ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
-
-    ->select('valor_neto', DB::raw('MAX(cliente_id)'))
-    ->groupBy('valor_neto');
+    $productoDestacados  = DB::table('detalle__ventas')
+    ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
+    ->select(DB::raw('count(Producto_id) as valor_repetido,nombre ,cantidad,productos.imagen'))
+    ->groupBy('nombre')
+    ->orderBy('valor_repetido','desc')
+    ->limit(5)
+    ->get();
 
    return  $productoDestacados;
 

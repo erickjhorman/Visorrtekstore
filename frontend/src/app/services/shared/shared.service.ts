@@ -67,6 +67,11 @@ export class SharedService {
   private refreshMessagesAddSource = new Subject();
   refreshMessages = this.refreshMessagesAddSource.asObservable();
 
+
+  // To hide the catalog component
+  private isCatalogHide = new Subject();
+  hideCatalog = this.isCatalogHide.asObservable();
+
   constructor(private http: HttpClient,
   ) {
     this.menuEmitter = new EventEmitter<boolean>();
@@ -74,15 +79,6 @@ export class SharedService {
 
   sharingData: EventEmitter<any> = new EventEmitter();
 
-  // changeMessage(message: string){
-  // this.messageSource.next(message)
-  // console.log("Mensaje recivido" + message)
-  // }
-
-  // getProductoSeleccionado(producto:string){
-  //   this.productoAddSource.next(producto)
-  //   console.log("getProducto ya recivido" + producto);
-  // }
 
   getProductoSeleccionado(producto: any) {
     this.productoAddSource.next(producto);
@@ -165,4 +161,10 @@ export class SharedService {
     this.menuEmitter.emit(false);
     console.log('close', open);
   }
+
+  bHideCatalogComponent() {
+    this.isCatalogHide.next();
+   }
+
+
 }

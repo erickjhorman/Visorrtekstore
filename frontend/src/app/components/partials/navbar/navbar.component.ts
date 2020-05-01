@@ -137,5 +137,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.sharedService.getValorMostraUserSidebar(true);
   }
 
+  hideCatalog(e) {
+    this.sharedService.bHideCatalogComponent();
+  }
 
 }

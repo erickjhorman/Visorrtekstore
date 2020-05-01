@@ -59,7 +59,7 @@ Route::group([
 
 //My Rest API
 Route::get('catalogos', 'HomeController@index');
-Route::get('catalogos/productosDestacados', 'HomeController@productosDestacados');
+Route::get('productosDestacados', 'HomeController@productosDestacados');
 Route::get('imagenes', 'HomeController@getImagenes');
 Route::get('catalogos/{id}', 'HomeController@getMarcas');
 //Route::get('catalogos/{catalogo}/{marca}/{id}','HomeController@getProductos');

@@ -29,25 +29,16 @@ export class CatalogoServes {
   }
 
 
-  // getProductosDestacados() {
-  //   return this.http.get(`${this.API_URI}/productosDestacados`);
-  // }
 
  getProductosDestacados() {
     return this.http.get(`${environment.API_URL}/productosDestacados`);
   }
 
-  // getMarcas(id: number) {
-  //   return this.http.get(`${this.API_URI}/${id}`);
-  // }
 
   getMarcas(id: number) {
     return this.http.get(`${environment.API_URL}/${id}`);
   }
 
-  // getProductos(id: number) {
-  //   return this.http.get(`${this.API_URI}/marca/${id}`);
-  // }
 
   getProductos(id: number) {
     return this.http.get(`${environment.API_URL}/catalogos/marca/${id}`);
