@@ -1,1 +1,32 @@
-<p>ProdudctosDestacados aqui</p>
+<div class="container">
+  <div class="row">
+     <div class="col-md-3"  *ngFor="let producto of productosDestacados">
+      <mat-card class="card">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title>{{producto.nombre}}</mat-card-title>
+
+        </mat-card-header>
+        <img mat-card-image [src]="producto.imagen" alt="Photo of a Shiba Inu" (click)="showImage()"  >
+        <mat-card-content>
+          <p>
+
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

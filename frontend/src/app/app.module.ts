@@ -47,6 +47,7 @@ import { FormDireccioneUsuarioShowComponent } from './components/partials/carrit
 import { ChatComponent } from './components/auth/dashboard/pages/chat/chat.component';
 import { MainSideBarComponent } from './components/partials/main-side-bar/main-side-bar.component';
 import { SideNavCatalogosComponent } from '././components/catalogos/side-nav-catalogos/side-nav-catalogos.component';
+import {ShowGalleryImageComponent} from './components/partials/show-gallery-image/show-gallery-image.component';
 
 
 // Material
@@ -57,27 +58,9 @@ import { AdminMensajeComponent } from './components/auth/dashboard/pages/admin-m
 import { IsAdminPipe } from './pipes/is-admin.pipe';
 import { IsUserPipe } from './pipes/is-user.pipe';
 import { UserMensajeComponent } from './components/auth/dashboard/pages/user-mensaje/user-mensaje.component';
-import { CloudinaryModule } from '@cloudinary/angular-5.x';
-import * as Cloudinary from 'cloudinary-core';
+
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-
-// /** Routes */
-// const appRoutesAuth: Route [] = [
-//   {path:'login', component:LoginComponent,
-//   canActivate: BeforeLoginService},
-//   {path:'signup',component:SignupComponent,
-//    canActivate: AfterLoginService },
-//   {path:'dashboard',component:DashboardComponent},
-//   {path:'request-password-reset',component:RequestResetComponent},
-//   {path:'response-password-reset',component:ResponseResetComponent},
-// ]
-
-// const appHomeRutas: Route [] = [
-//   {path: '', component: HomeComponent},
-//   {path: 'home', component: HomeComponent},
-// ]
 
 @NgModule({
   declarations: [
@@ -121,7 +104,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     IsUserPipe,
     UserMensajeComponent,
     MainSideBarComponent,
-    SideNavCatalogosComponent
+    SideNavCatalogosComponent,
+    ShowGalleryImageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -132,25 +117,23 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgbModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
 
-    // MatSidenavModule,
-    // MatMenuModule,
-    // MatListModule
   ],
   providers: [
     LoginService,
     SignupService,
     AfterLoginService,
     BeforeLoginService,
-    DashboardService
+    DashboardService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     ProcesoCompraComponent,
     FormDireccioneUsuarioComponent,
     FormTransportadoraComponent,
-    FormDireccioneUsuarioShowComponent
+    FormDireccioneUsuarioShowComponent,
+    ShowGalleryImageComponent
   ]
 })
 export class AppModule { }

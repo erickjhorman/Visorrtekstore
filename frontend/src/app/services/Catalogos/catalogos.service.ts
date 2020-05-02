@@ -2,6 +2,9 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
 import { Comentario } from '../../models/comentario';
+import { Observable } from 'rxjs';
+import { VentasDestacadas } from '../../models/ventasDestacadas';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +33,8 @@ export class CatalogoServes {
 
 
 
- getProductosDestacados() {
-    return this.http.get(`${environment.API_URL}/productosDestacados`);
+ getProductosDestacados(): Observable<VentasDestacadas[]> {
+    return this.http.get<VentasDestacadas[]>(`${environment.API_URL}/productosDestacados`);
   }
 
 
