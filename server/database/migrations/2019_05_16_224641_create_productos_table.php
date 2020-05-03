@@ -20,7 +20,7 @@ class CreateProductosTable extends Migration
             $table->string('Producto', 25);
             $table->string('imagen');
             $table->string('Descripcion', 30);
-            $table->timestamps()->useCurrent();
+            $table->timestamps();
         });
     }
 

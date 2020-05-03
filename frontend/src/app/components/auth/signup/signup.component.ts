@@ -22,10 +22,7 @@ export class SignupComponent implements OnInit {
   };
 
   user: any;
-  public error = [{
-
-  }
-  ];
+  public error = [];
   public nombre: string;
 
 
@@ -44,7 +41,9 @@ export class SignupComponent implements OnInit {
 
     }, (error) => {
       this.handleError(error);
-      alert('Querry faild');
+
+
+
     });
    }
 
@@ -58,6 +57,13 @@ export class SignupComponent implements OnInit {
 
    handleError(error) {
     this.error = error.error.errors;
+    this.cleanFields();
+  }
+
+  cleanFields() {
+    this.signup.email = '';
+    this.signup.password = '';
+    this.signup.password_confirmation = '';
   }
 
 }

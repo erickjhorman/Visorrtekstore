@@ -47,27 +47,13 @@ export class CatalogoServes {
     return this.http.get(`${environment.API_URL}/catalogos/marca/${id}`);
   }
 
-
-  // getProducto(id: number) {
-  //   return this.http.get(`${this.API_URI}/marca/show/${id}`);
-  // }
-
   getProducto(id: number) {
-    return this.http.get(`${environment.API_URL}/catalogos/marca/show/${id}`);
+     return this.http.get(`${environment.API_URL}/catalogos/marca/show/${id}`);
   }
-
-  // getColoresProductos(id: number) {
-  //   return this.http.get(`${this.API_URI}/marca/colores/${id}`);
-  // }
 
   getColoresProductos(id: number) {
     return this.http.get(`${environment.API_URL}/catalogos/marca/colores/${id}`);
   }
-
-  // To get the all comments
-  // getComentarios(id: number) {
-  //   return this.http.get(`${this.API_URI}/marca/show/comentario/${id}`);
-  // }
 
   getComentarios(id: number) {
     return this.http.get(`${environment.API_URL}/catalogos/marca/show/comentario/${id}`);

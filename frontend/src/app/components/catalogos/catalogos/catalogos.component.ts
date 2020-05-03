@@ -62,6 +62,7 @@ export class CatalogosComponent implements OnInit {
     this.catalogoService.getProductos(id).subscribe(
       res => {
         this.productos = res;
+        console.log('productos obtenidos catalogos', this.productos);
       },
       err => console.log(err)
     );

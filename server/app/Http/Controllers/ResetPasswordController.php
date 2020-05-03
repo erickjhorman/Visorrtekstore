@@ -33,14 +33,14 @@ public function send($email)
   public function createToken($email)
   {
          $oldToken = DB::table('password_resets')->where('email', $email)->first();
-         //return  $oldToken; 
+         //return  $oldToken;
          if($oldToken){
          return $oldToken;
          }
          $token = str_random(60);
-         
+
          $this->saveToken($token, $email);
-         
+
          return $token;
   }
     public function saveToken($token,$email){
@@ -50,7 +50,7 @@ public function send($email)
         'created_at' => Carbon::now()
       ]);
     }
-  
+
 
     public function validateEmail($email)
     {
@@ -59,18 +59,18 @@ public function send($email)
 
     public function failedResponse()
     {
-      return response()->json([
-         'error ' => 'Email does\'t found on our database'
-      ], Response::HTTP_NOT_FOUND);
-    
+      return response()->json(
+         'Correo no encontrado en nuestra base de datos'
+     , Response::HTTP_NOT_FOUND);
+
     }
 
     public function successResponse()
     {
       return response()->json([
-         'data ' => 'Reset Email is send successfully, please check your inbox '
+         'success' => 'Se ha enviado un correo electronico para restablecer su contraseña '
       ], Response::HTTP_OK);
-    
+
     }
-    
+
 }

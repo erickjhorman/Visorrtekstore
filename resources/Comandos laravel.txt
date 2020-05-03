@@ -18,6 +18,8 @@ php artisan make:model estadoCivil --migration  ok
 php artisan make:model tipoPersona --migration  ok 
 php artisan make:model ocupacion --migration ok 
 php artisan make:model nacionalidad --migration ok
+php artisan make:model ProductosImagenes
+
 <<<<<<< HEAD
 php artisan make:model departamento --migration
 =======
@@ -35,6 +37,7 @@ php artisan make:model medioRespuesta --migration
 php artisan make:model genero --migration 
 php artisan make:model vivienda --migration
 php artisan make:model solicitante --migration
+
 Se crearon las migraciones 
 
 <<<<<<< HEAD
@@ -105,3 +108,7 @@ php artisan make:migration drop_column_hora_to_mensajes_table
 
 Form Request Validation
 php artisan make:request StoreMensajeChat
+
+
+// Migrate specific migration
+php artisan migrate --path=/database/migrations/2020_05_02_115751_create_estado_productos_table.php

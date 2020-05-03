@@ -1,3 +1,4 @@
+<h2 class="text-center">Conoce nuestros productos destacados</h2>
 <div class="container">
   <div class="row">
      <div class="col-md-3"  *ngFor="let producto of productosDestacados">
@@ -7,7 +8,7 @@
           <mat-card-title>{{producto.nombre}}</mat-card-title>
 
         </mat-card-header>
-        <img mat-card-image [src]="producto.imagen" alt="Photo of a Shiba Inu" (click)="showImage()"  >
+        <img mat-card-image [src]="producto.imagen" alt="Photo of a Shiba Inu" (click)="showImage()">
         <mat-card-content>
           <p>
 

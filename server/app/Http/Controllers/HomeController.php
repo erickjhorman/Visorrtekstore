@@ -20,6 +20,7 @@ use app\recibo;
 use app\factura;
 use app\transportadora;
 use app\despacho;
+use app\productosDestacados;
 
 use Illuminate\Http\Request;
 use DB;
@@ -184,6 +185,7 @@ public function getProductos($id){
                  ->join('marcas', 'marcas.id', '=', 'productos.marca_id')
                  ->select('productos.*','description_productos.*')
                  ->where('marca_id', '=', $id)
+                 ->where('color_id', '=', 3)
                  ->get();
 
                  return $Productos;
@@ -203,10 +205,10 @@ public function getProductos($id){
 
 public function productosDestacados(){
 
-    $productoDestacados  = DB::table('detalle__ventas')
+    $productoDestacados = DB::table('detalle__ventas')
     ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
-    ->select(DB::raw('count(Producto_id) as valor_repetido,nombre ,cantidad,productos.imagen'))
-    ->groupBy('nombre')
+    ->select(DB::raw('count(Producto_id) as valor_repetido,cantidad,productos.imagen,productos.producto as nombre'))
+    ->groupBy('producto')
     ->orderBy('valor_repetido','desc')
     ->limit(5)
     ->get();
@@ -214,6 +216,15 @@ public function productosDestacados(){
    return  $productoDestacados;
 
 }
+
+public function imagenesProductos($id)
+{
+     $iProductosDestacados = DB::table('producto_imagenes')
+                            ->get();
+
+     return $iProductosDestacados;
+}
+
 
 public function getColorsProducts($id){
 

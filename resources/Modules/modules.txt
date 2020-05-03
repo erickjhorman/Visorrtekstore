@@ -1,1 +1,3 @@
 ngx-gallery photo 
+1. install hammer.js npm install hammerjs --save
+2  install   npm install ngx-gallery --save

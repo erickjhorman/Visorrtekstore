@@ -31,6 +31,8 @@ export class ProductosDestacadosComponent implements OnInit {
         .subscribe( productos => {
 
               this.productosDestacados = productos;
+              console.log(this.productosDestacados);
+
         },
         err => console.log(err)
       );

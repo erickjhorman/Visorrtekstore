@@ -47,7 +47,7 @@ import { FormDireccioneUsuarioShowComponent } from './components/partials/carrit
 import { ChatComponent } from './components/auth/dashboard/pages/chat/chat.component';
 import { MainSideBarComponent } from './components/partials/main-side-bar/main-side-bar.component';
 import { SideNavCatalogosComponent } from '././components/catalogos/side-nav-catalogos/side-nav-catalogos.component';
-import {ShowGalleryImageComponent} from './components/partials/show-gallery-image/show-gallery-image.component';
+import { ShowGalleryImageComponent} from './components/partials/show-gallery-image/show-gallery-image.component';
 
 
 // Material

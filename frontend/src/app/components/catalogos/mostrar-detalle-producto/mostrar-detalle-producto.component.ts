@@ -69,8 +69,8 @@ export class MostrarDetalleProductoComponent implements OnInit {
     // get the value to disable the button ver in this html
 
     this.route.paramMap.subscribe(params => {
-      const id = +params.get("id");
-      console.log("Tomando la id desde Url " + id);
+      const id = +params.get('id');
+
       this.getProductoShow(id);
       this.getProductoColores(id);
     });
@@ -85,12 +85,11 @@ export class MostrarDetalleProductoComponent implements OnInit {
   getProductoShow(id: number) {
     this.sharedService.EmitIdproducto(id);
 
-    this.catalogoService.getProducto(id).subscribe(
-      res => {
+    this.catalogoService.getProducto(id)
+    .subscribe(
+    res => {
         this.productos = res;
-        console.log(this.productos);
 
-        // this.onCreate(this.productoShow);
       },
       err => console.log(err)
     );

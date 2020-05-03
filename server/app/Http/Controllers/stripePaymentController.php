@@ -88,7 +88,7 @@ class stripePaymentController extends Controller
         }
 
 
-        //To get the purchases of the array
+        //To get the purchases of the array from my shopping kart
 
         for ($i = 0; $i < count($input[3]); $i++) {
 

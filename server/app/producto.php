@@ -50,4 +50,11 @@ class producto extends Model
            return $this->hasMany('app\comentario');
        }
 
+       // Relationship to ProductosImagenes
+       public function productoImagenes()
+       {
+           return $this->hasMany('app\ProductosImagenes');
+       }
+
+
 }

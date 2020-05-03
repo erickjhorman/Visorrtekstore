@@ -31,6 +31,13 @@ php artisan make:model Mensaje --migration
 php artisan make:model UsuarioSala --migration
 
 
+// To add a migration 
+php artisan make:migration create_estado_producto_table
+
+
+// To add a migration 
+php artisan make:migration  add_estado_producto_to_description_product
+
 //To modify a migration
 php artisan make:migration create_profiles_table --create=profiles
 
