@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Login} from "../../../../models/login"
+import {Login} from '../../../../models/login';
 import { LoginService } from '../../../../services/login.service';
+import {NotificationService} from '../../../../services/shared/notification.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class RequestResetComponent implements OnInit {
 
   constructor(
   private loginService: LoginService,
-
+  private notiService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -42,7 +43,10 @@ export class RequestResetComponent implements OnInit {
 
   }
 
-  handlResponse(res){
+  handlResponse(res) {
+    console.log(res);
+    const mensaje = JSON.parse(res);
+    this.notiService.success(mensaje.success);
     this.login.email = null;
   }
 
@@ -51,6 +55,7 @@ export class RequestResetComponent implements OnInit {
     this.error = error.error;
     console.log(this.error);
     this.login.email = '';
+
   }
 }
 

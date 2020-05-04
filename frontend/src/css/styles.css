@@ -80,7 +80,7 @@ mat-grid-tile.ng-star-inserted > figure:nth-child(1) {
 /* notificacion*/
 
 snack-bar-container.success {
-  background-color: aqua;
+  background-color: green;
   color: #fff;
 }
 

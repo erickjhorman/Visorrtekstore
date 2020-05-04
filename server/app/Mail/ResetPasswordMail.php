@@ -11,18 +11,25 @@ class ResetPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    // Variable to send to the email blade component
     public $token;
-    
+    public $user;
+    public $subject = '';
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token,$user)
     {
-        
-       $this->token = $token;
-      
+
+    $this->token = $token->token;
+    $this->nombre = $user->nombre;
+
+    //    var_dump($token);
+    //    var_dump($user);
+    //    var_dump($this->token);
     }
 
     /**
@@ -32,13 +39,17 @@ class ResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('Email.passwordReset')->with([
-            'token' => $this->token
-            ]);
+        return $this->markdown('Email.passwordReset')
+                     ->from('visortek.cali@gmail.com')
+                     ->subject('Recuperar contraseña desde visortek')
+                     ->with([
+                     'token' => $this->token,
+                     'nombre' => $this->nombre
+        ]);
         //  return $this->markdown('Email.passwordReset')->with(['token' => $this->token
 
         //  ]);
-        
-           
+
+
     }
 }

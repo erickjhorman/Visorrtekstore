@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
    resetToken: null
   };
 
+
   user: any;
   public error = [];
   public nombre: string;

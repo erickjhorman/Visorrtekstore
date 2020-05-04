@@ -26,13 +26,22 @@ class ResetPasswordController extends Controller
 public function send($email)
   {
     $token = $this->createToken($email);
-    var_dump($token);
-    Mail::to($email)->send(new ResetPasswordMail($token));
+    $user = $this->userData($email);
+    //var_dump($token->token);
+
+
+    //$arrayToken = (array) $token;
+    Mail::to($email)->send(new ResetPasswordMail($token,$user));
+
+    // To return the instance of the mail
+    //return ResetPasswordMail($token,$user);
+
   }
 
   public function createToken($email)
   {
          $oldToken = DB::table('password_resets')->where('email', $email)->first();
+         //var_dump($oldToken->token);
          //return  $oldToken;
          if($oldToken){
          return $oldToken;
@@ -68,9 +77,20 @@ public function send($email)
     public function successResponse()
     {
       return response()->json([
-         'success' => 'Se ha enviado un correo electronico para restablecer su contraseña '
+         'success' => 'Se ha enviado un correo electronico para restablecer su contraseña'
       ], Response::HTTP_OK);
 
+    }
+
+    public function userData($email)
+    {
+        $userData = DB::table('users')
+        ->join('clientes', 'usuario_id', '=', 'users.id')
+        ->select('users.nombre','clientes.apellido')
+        ->where('users.email', '=', $email)
+        ->first();
+
+        return $userData;
     }
 
 }

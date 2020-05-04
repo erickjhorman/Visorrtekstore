@@ -37,6 +37,14 @@ Route::get('/', function () {
     // ->get();
 
     // return $colores;
+
+    $userData = DB::table('users')
+    ->join('clientes', 'usuario_id', '=', 'users.id')
+    ->select('clientes.nombre','clientes.apellido')
+    ->where('users.email', '=', 'erickjhorman@gmail.com')
+    ->get();
+
+    return $userData;
 });
 
 Auth::routes();

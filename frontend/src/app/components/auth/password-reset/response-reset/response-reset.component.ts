@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Signup} from '../../../../models/signup';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseResetService} from '../../../../services/response-reset.service';
-
+import {NotificationService} from '../../../../services/shared/notification.service';
 
 
 
@@ -28,7 +28,10 @@ export class ResponseResetComponent implements OnInit {
     };
 
   constructor(
-    private route: ActivatedRoute, private respondeReset: ResponseResetService , private router: Router,
+    private route: ActivatedRoute,
+    private respondeReset: ResponseResetService ,
+    private router: Router,
+    private notiService: NotificationService
 
   ) {
 
@@ -42,6 +45,8 @@ export class ResponseResetComponent implements OnInit {
     this.respondeReset.changePassword(this.signup).subscribe(
       data => {
       this.handlResponse(data);
+      console.log(data);
+
 
     }, (error) => {
       this.handleError(error);
@@ -50,8 +55,8 @@ export class ResponseResetComponent implements OnInit {
    }
 
    handlResponse(data) {
-
-
+    // const succesMsg = JSON.parse(data);
+    // this.notiService.success(succesMsg.success);
     this.router.navigateByUrl('/login');
   }
 

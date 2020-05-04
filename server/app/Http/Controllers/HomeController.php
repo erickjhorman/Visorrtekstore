@@ -152,6 +152,7 @@ public function getImagenes(){
 
     $imagenes = DB::table('imagenes')->select('*')->get();
     return $imagenes;
+
 }
 
 public function getMarcas($id){

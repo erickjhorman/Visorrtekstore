@@ -12,6 +12,12 @@ h2{
 
 }
 
+.redes-sociales span{
+  position: relative;
+  left: 175px;
+  padding-right: 20px;
+}
+
 .contactenos{
   position: relative;
   left: 23px;
@@ -69,14 +75,6 @@ ul li a.hoverAcesorios:hover  .fa-broadcast-tower{
   visibility: visible;
   transform: scale(1.1);
   transition: all .1s
-}
-
-nav.redes-sociales a {
-  color: white;
-  margin-right: 20px;
-  position: relative;
-  left: 140px;
-  background-size: 500px;
 }
 
 p{

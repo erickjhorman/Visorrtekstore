@@ -43,7 +43,7 @@ class ChangePasswordController extends Controller
        $user->update(['password'=>$request->password]);
        $this->getPasswordResetTableRow($request)->delete();
        return response()->json([
-        'data '=> 'Password Succesfully Changed'
+        'success '=> 'Contraseña reestablecida satisfactorimente'
     ],Response::HTTP_CREATED);
 
 
