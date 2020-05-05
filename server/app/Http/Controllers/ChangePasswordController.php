@@ -24,7 +24,7 @@ class ChangePasswordController extends Controller
    private function tokenNotFoundResponse()
    {
        return response()->json([
-       'error' => 'Token or Email is incorrect'
+       'error' => 'Correo electronico o token invalido'
     ], Response::HTTP_NOT_FOUND);
 
    }
@@ -42,11 +42,9 @@ class ChangePasswordController extends Controller
        //return $user;
        $user->update(['password'=>$request->password]);
        $this->getPasswordResetTableRow($request)->delete();
-       return response()->json([
-        'success '=> 'Contraseña reestablecida satisfactorimente'
-    ],Response::HTTP_CREATED);
 
-
-
+        return response()->json(
+        'Contrasena reestablecida satisfactorimente',
+        Response::HTTP_OK);
     }
 }

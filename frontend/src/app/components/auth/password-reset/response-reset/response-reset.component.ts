@@ -42,6 +42,7 @@ export class ResponseResetComponent implements OnInit {
   }
 
   resetPassword() {
+   if (this.signup.resetToken != null) {
     this.respondeReset.changePassword(this.signup).subscribe(
       data => {
       this.handlResponse(data);
@@ -52,12 +53,18 @@ export class ResponseResetComponent implements OnInit {
       this.handleError(error);
 
     });
+   } else {
+     this.notiService.warning('Token ya ha expirado');
+   }
+
+
    }
 
    handlResponse(data) {
-    // const succesMsg = JSON.parse(data);
-    // this.notiService.success(succesMsg.success);
-    this.router.navigateByUrl('/login');
+      const succesMsg = data;
+      console.log('handResponse', succesMsg);
+      this.notiService.success(succesMsg);
+      this.router.navigateByUrl('/login');
   }
 
   handleError(error) {

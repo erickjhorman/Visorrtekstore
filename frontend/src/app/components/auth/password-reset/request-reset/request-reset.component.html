@@ -1,4 +1,4 @@
-<div class="mt-5 col-8 offset-2" style="height: 500px;">
+<div class="mt-5 col-8 offset-2" style="height: 500px;"  *ngIf="show; else notShow" >
   <div class="card ">
       <div class="card-header">Restablecer contraseña
         <div class="card-body">
@@ -24,3 +24,21 @@
       </div>
   </div>
 </div>
+
+<ng-template #notShow>
+  <div class="d-flex justify-content-center mt-5" style="height: 300px;" >
+   <mat-card>
+     <mat-card-header>
+       <h1>Recuperar tu contraseña</h1>
+     </mat-card-header>
+     <mat-card-content>
+       <p style="text-align: justify;">Si la cuenta esta en nuestro sistema, te enviaremos un correo electronico con un link para restablecer tu contraseña</p>
+     </mat-card-content>
+     <div class="text-center mt-3">
+       <button mat-raised-button type="submit" isRoundButton="true" [routerLink]="['/login']"  routerLinkActive="active" >Regresar a Login</button>
+      </div>
+    </mat-card>
+
+ </div>
+</ng-template>
+

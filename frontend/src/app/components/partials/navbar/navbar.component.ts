@@ -120,10 +120,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   // To show and hide the catalog componenet
-  toogleShowCatalogosComponent(event: MouseEvent) {
-    event.preventDefault();
-    // this.clickHoverMenuTrigger.openMenu();
-    this.sharedService.getValorMostraCatalogoSidebar(false);
+  ShowCatalogosComponent(event: MouseEvent) {
+    setTimeout(() => {
+      this.sharedService.getValorMostraCatalogoSidebar(false);
+    }, 3000);
+
+
 
   }
 

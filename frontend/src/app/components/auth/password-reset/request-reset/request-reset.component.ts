@@ -17,7 +17,10 @@ export class RequestResetComponent implements OnInit {
     password: null,
     };
 
-    public error: any;
+  public error: any;
+
+   // To show another component  after sending the email to reset the password
+  public show = true;
 
   constructor(
   private loginService: LoginService,
@@ -48,6 +51,7 @@ export class RequestResetComponent implements OnInit {
     const mensaje = JSON.parse(res);
     this.notiService.success(mensaje.success);
     this.login.email = null;
+    this.show = false;
   }
 
 
