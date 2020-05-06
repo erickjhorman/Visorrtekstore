@@ -27,6 +27,9 @@
         <a class="nav-link" routerLink="" (mouseover)="hideCatalog($event)" >Productos destacados</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" routerLink="" (mouseover)="hideCatalog($event)" >Testimonios</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" routerLink="" (mouseover)="hideCatalog($event)">Acerca de nosotros</a>
       </li>
 
@@ -35,22 +38,22 @@
   <div>
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item">
-        <a class="nav-link" routerLink="login" *ngIf="!loggedin">Login
+        <a class="nav-link" routerLink="login" *ngIf="!loggedin" (mouseover)="hideCatalog($event)">Login
           <span><i class="fas fa-sign-in-alt fa-1x"></i></span>
         </a>
       </li>
       <li class="nav-item-style">
-        <a class="nav-link" href="#" (click)=logout($event) *ngIf="loggedin">Logout</a>
+        <a class="nav-link" href="#" (click)=logout($event) *ngIf="loggedin" (mouseover)="hideCatalog($event)" (mouseover)="hideCatalog($event)">Logout</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/signup" *ngIf="!loggedin">Register</a>
+        <a class="nav-link" routerLink="/signup" *ngIf="!loggedin" (mouseover)="hideCatalog($event)">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="admin" *ngIf="loggedin && loggedinAdmin; else notAdmin">Dashboard</a>
+        <a class="nav-link" routerLink="admin" *ngIf="loggedin && loggedinAdmin; else notAdmin" (mouseover)="hideCatalog($event)">Dashboard</a>
       </li>
       <ng-template #notAdmin>
         <li class="nav-item">
-          <a class="nav-link" routerLink="dashboard" *ngIf="loggedin">Dashboard</a>
+          <a class="nav-link" routerLink="dashboard" *ngIf="loggedin" (mouseover)="hideCatalog($event)">Dashboard</a>
         </li>
       </ng-template>
 
@@ -61,13 +64,10 @@
       </li>
       <li class="nav-item">
 
-        <a class="nav-link" *ngIf="loggedin"><span>
-            <fa-icon [icon]="faBell"></fa-icon>
+        <a class="nav-link" *ngIf="loggedin" ><span>
+            <fa-icon [icon]="faBell" (mouseover)="hideCatalog($event)"></fa-icon>
           </span></a>
       </li>
-
-
-
     </ul>
   </div>
 </nav>

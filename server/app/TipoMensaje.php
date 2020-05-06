@@ -12,4 +12,9 @@ class TipoMensaje extends Model
     {
         return $this->hasOne('app\Mensaje', 'foreign_key');
     }
+
+    public function testimonioProducto()
+    {
+        return $this->belongsTo('App\TestimonialesProducto');
+    }
 }

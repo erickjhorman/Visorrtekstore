@@ -218,6 +218,18 @@ public function productosDestacados(){
 
 }
 
+public function testimonioVentas(){
+
+    $testimonios =  DB::table('testimonios_ventas')
+                    ->join('ventas', 'ventas.id', '=', 'testimonios_ventas.venta_id')
+                    ->join('testimonios', 'testimonios.id', '=', 'testimonios_ventas.testimonio_id')
+                    ->join('clientes', 'clientes.id', '=', 'ventas.cliente_id')
+                    ->select('testimonios_ventas.created_at','testimonios.testimonio','clientes.nombre','clientes.apellido')
+                    ->get();
+
+                    return  $testimonios;
+}
+
 public function imagenesProductos($id)
 {
      $iProductosDestacados = DB::table('producto_imagenes')

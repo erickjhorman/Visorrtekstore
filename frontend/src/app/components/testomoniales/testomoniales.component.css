@@ -1,0 +1,16 @@
+.card {
+  max-width: 400px;
+  padding-bottom: 5px;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  height: 100px ;
+  width: 100px;
+  position: relative;
+  left: 100px;
+}

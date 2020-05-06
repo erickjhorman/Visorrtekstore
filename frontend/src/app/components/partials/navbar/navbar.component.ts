@@ -123,7 +123,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ShowCatalogosComponent(event: MouseEvent) {
     setTimeout(() => {
       this.sharedService.getValorMostraCatalogoSidebar(false);
-    }, 3000);
+    }, 1000);
 
 
 

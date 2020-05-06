@@ -29,6 +29,7 @@ php artisan make:model TipoMensaje --migration
 php artisan make:model Sala --migration
 php artisan make:model Mensaje --migration
 php artisan make:model UsuarioSala --migration
+php artisan make:model TestimonialesProducto --migration
 
 
 // To add a migration 

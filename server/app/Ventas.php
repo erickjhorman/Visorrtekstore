@@ -20,9 +20,14 @@ public function clientes()
 {
     return $this->hasMany('app\clientes');
 }
+
 public function domicilios()
 {
     return $this->hasOne('app\clientes');
+}
+
+public function testimonios(){
+    return $this->belongsToMany('app\TestimonialesProducto');
 }
 
 }
