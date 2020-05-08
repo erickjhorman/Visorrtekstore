@@ -6,11 +6,11 @@
   border: none;
 }
 
-.header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-  height: 100px ;
-  width: 100px;
+img{
   position: relative;
-  left: 100px;
+  left: 50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%
+
 }

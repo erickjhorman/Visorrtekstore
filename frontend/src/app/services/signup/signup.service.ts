@@ -1,8 +1,6 @@
-
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
-import { Observable } from 'rxjs';
 import { Signup } from '../../models/signup';
 
 

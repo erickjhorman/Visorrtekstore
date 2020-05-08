@@ -2,20 +2,20 @@
 
 <div class="container">
    <div class="row pb-2">
-      <div class="col-md-4">
+      <div class="col-md-4" *ngFor="let testimonio of testimonios"  >
         <mat-card class="card">
+          <img  *ngIf="testimonio.avatar; else notShow" [src]="testimonio.imagen"  alt="avatar usuario" class="text-center">
+          <ng-template #notShow>
+          <img   src="https://res.cloudinary.com/dequvdgav/image/upload/v1588803057/visorteck/avatars/no_avatar_dwnxix.jpg"
+          alt="avatar usuario" class="text-center"></ng-template>
           <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title style="position: relative; left: 50px;">{{testimonio.nombre}} {{testimonio.apellido}}</mat-card-title>
           </mat-card-header>
 
           <mat-card-content>
-            <p></p>
+            <p>{{testimonio.testimonio}}</p>
+            <span>{{testimonio.created_at}}</span>
           </mat-card-content>
-          <mat-card-footer>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-             </mat-card-footer>
-
         </mat-card>
 
       </div>

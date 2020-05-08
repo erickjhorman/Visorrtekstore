@@ -112,3 +112,7 @@ php artisan make:request StoreMensajeChat
 
 // Migrate specific migration
 php artisan migrate --path=/database/migrations/2020_05_02_115751_create_estado_productos_table.php
+php artisan migrate --path=/database/migrations/2020_05_05_174531_create_testimoniales_productos_table.php
+php artisan migrate --path=/database/migrations/2020_05_05_192621_rename_testimoniales_producto.php
+php artisan migrate --path=/database/migrations/2020_05_05_194330_create_testimoniales_table.php
+php artisan migrate --path=/database/migrations/2020_05_05_194840_remove_testimonio_to_testimoniales_ventas.php

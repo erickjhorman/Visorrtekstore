@@ -1,5 +1,11 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
   padding-top: 100px;
+  position: relative;
+
 }
 
 img {
@@ -29,19 +35,18 @@ p {
 .container {
   position: center;
 }
-img {
-  position: relative;
-  left: 250px;
-}
+
 
 .row {
   position: relative;
   left: 120px;
 }
 
-.fa-whatsapp {
+
+
+.whats-icon{
   position: relative;
-  left: 40px;
+  right: 115px;
 }
 
 .fa-truck {
@@ -55,7 +60,8 @@ img {
 }
 
 #contacto {
-  width: 10rem;
+  position: relative;
+  top: 0.1rem;
 }
 #tienda {
   position: relative;
@@ -64,4 +70,70 @@ img {
 #transporte {
   position: relative;
   left: 100px;
+}
+
+.btn-ubicacion{
+  padding: 1.3rem 5rem;
+  background-color: #0d80fc;
+  align-items: center;
+  justify-content: center;
+  border:  0.1rem solid #0d80fc;
+  cursor: pointer;
+  position: relative;
+  left: 1.6rem;
+  border-radius: .3rem;
+  overflow: hidden;
+}
+
+.btn-ubicacion::before{
+  content: 'Ubicanos';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 1.rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: .3rem;
+  font-weight: 700;
+  text-shadow: .1rem .1rem .1rem #333;
+  transition: .2s ease;
+}
+
+.btn-ubicacion::after{
+  content: 'YA!';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  font-size: 1.rem;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .3rem;
+  font-weight: 700;
+  text-shadow: .1rem .1rem .1rem #333;
+  transition: .2s ease;
+  opacity: 0;
+}
+
+.btn-ubicacion:hover::before{
+  transform: translate(-50%,-50%) scale(3);
+  opacity: 0;
+}
+.btn-ubicacion:hover::after{
+  transform: translate(-50%,-50%) scale(2);
+  opacity: 1;
+}
+
+
+#whatsapp {
+  z-index: 9999;
+  position: fixed !important;
+  top: 500px;
+  right: 15px;
+}
+
+#whatsapp:hover::before{
+
 }

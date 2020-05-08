@@ -222,9 +222,11 @@ public function testimonioVentas(){
 
     $testimonios =  DB::table('testimonios_ventas')
                     ->join('ventas', 'ventas.id', '=', 'testimonios_ventas.venta_id')
+                    ->join('detalle__ventas','detalle__ventas.venta_id', '=' , 'ventas.id')
+                    ->join('Productos','Productos.id', '=' , 'detalle__ventas.Producto_id')
                     ->join('testimonios', 'testimonios.id', '=', 'testimonios_ventas.testimonio_id')
                     ->join('clientes', 'clientes.id', '=', 'ventas.cliente_id')
-                    ->select('testimonios_ventas.created_at','testimonios.testimonio','clientes.nombre','clientes.apellido')
+                    ->select('testimonios_ventas.created_at','testimonios.testimonio','clientes.nombre','clientes.apellido','clientes.avatar','productos.imagen')
                     ->get();
 
                     return  $testimonios;

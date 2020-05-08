@@ -23,6 +23,7 @@ import { MatTreeModule } from "@angular/material/tree";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatTabsModule } from "@angular/material/tabs";
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { MatTabsModule } from "@angular/material/tabs";
     MatTreeModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatBadgeModule
   ],
   exports: [
     MatSidenavModule,
@@ -75,7 +77,8 @@ import { MatTabsModule } from "@angular/material/tabs";
     MatTreeModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatBadgeModule
   ]
 })
 export class MateriaAngularCss {}
