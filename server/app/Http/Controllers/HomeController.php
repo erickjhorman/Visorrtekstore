@@ -208,7 +208,7 @@ public function productosDestacados(){
 
     $productoDestacados = DB::table('detalle__ventas')
     ->join('productos', 'productos.id', '=', 'detalle__ventas.Producto_id')
-    ->select(DB::raw('count(Producto_id) as valor_repetido,cantidad,productos.imagen,productos.producto as nombre'))
+    ->select(DB::raw('count(Producto_id) as valor_repetido,cantidad,productos.imagen,productos.id,productos.producto as nombre'))
     ->groupBy('producto')
     ->orderBy('valor_repetido','desc')
     ->limit(5)
@@ -232,22 +232,24 @@ public function testimonioVentas(){
                     return  $testimonios;
 }
 
-public function imagenesProductos($id)
+public function imagenesProductos()
 {
-     $iProductosDestacados = DB::table('producto_imagenes')
-                            ->get();
+     $imagenesProductosDestacados = DB::table('producto_imagenes')
+                                   ->select('id_producto_imagenes','producto_id','imagen')
+                                   ->get();
 
-     return $iProductosDestacados;
+     return $imagenesProductosDestacados;
 }
 
 
 public function getColorsProducts($id){
 
-     $colores =  DB::table('catalogo_colores_productos')
-    ->leftJoin('productos', 'productos.id', '=', 'catalogo_colores_productos.id')
+     $colores =  DB::table('description_productos')
+    ->Join('productos', 'productos.id', '=', 'description_productos.Producto_id')
+    ->Join('catalogo_colores_productos', 'catalogo_colores_productos.id', '=', 'description_productos.color_id')
     ->select('catalogo_colores_productos.color','catalogo_colores_productos.id')
+    ->where('description_productos.Producto_id', '=', $id)
     ->distinct()
-    ->where('catalogo_colores_productos.producto_id', '=', $id)
     ->get();
 
     return $colores;

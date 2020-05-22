@@ -11,3 +11,8 @@ body {
   position: relative;
   top: 52px;
 }
+
+#agotado {
+  font-size: 40px;
+  color: red;
+}

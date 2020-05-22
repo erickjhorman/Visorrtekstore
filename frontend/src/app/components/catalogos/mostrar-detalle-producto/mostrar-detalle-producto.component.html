@@ -9,7 +9,7 @@
 
           <form novalidate (ngSubmit)="addPseleccionado(carroCompraForm)" #carroCompraForm="ngForm">
 
-            <mat-card>
+            <mat-card class="mb-4">
               <mat-card-title>{{producto.Producto}}</mat-card-title>
               <input name="id" type="hidden" [(ngModel)]="producto.Producto_id">
               <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
@@ -17,30 +17,38 @@
 
                 <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
                 <input name="valorVenta" type="hidden" [(ngModel)]="producto.Valor_Venta">
-                <label id="radio-group-label">Color</label>
-                <div>
 
-                  <mat-radio-group name="color" [(ngModel)]="producto.id" (change)="onChangeColor($event)" required>
+                <ng-template *ngIf="producto.Existencia > 0; then showBlock; else notShowBlock"></ng-template>
 
+                <ng-template #showBlock>
+                  <div>
+                    <label id="radio-group-label">Color</label>
+                    <br>
+                    <mat-radio-group name="color" [(ngModel)]="producto.id" (change)="onChangeColor($event)" required>
+                      <mat-radio-button *ngFor="let cproducto of coloresProductos" name="color" [value]="cproducto.id"
+                        required>
+                        {{cproducto.color}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
+                  <mat-form-field class="example-full-width">
+                    <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
+                  </mat-form-field>
+                </ng-template>
 
-                    <mat-radio-button *ngFor="let cproducto of coloresProductos" name="color" [value]="cproducto.id"
-                      required>
-                      {{cproducto.color}}
-                    </mat-radio-button>
-                  </mat-radio-group>
-
-
-
-                </div>
-                <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
-                <mat-form-field class="example-full-width">
-                  <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
-                </mat-form-field>
+                <ng-template #notShowBlock>
+                  <span id="agotado">Agotado</span>
+                </ng-template>
               </mat-card-content>
             </mat-card>
             <button type="submit" class="btn btn-success" [disabled]="carroCompraForm.invalid">Agregar al
               carrito</button>
           </form>
+
+          <div style="background-color: black; height: 220px;">
+
+          </div>
 
         </mat-tab>
         <mat-tab label="+INFO">

@@ -1,17 +1,18 @@
 <h2 class="text-center">Conoce nuestros productos destacados</h2>
 <div class="container">
   <div class="row">
-     <div class="col-md-3"  *ngFor="let producto of productosDestacados">
+    <div class="col-md-3" *ngFor="let producto of productosDestacados">
       <mat-card class="card">
         <mat-card-header>
           <div mat-card-avatar class="header-image"></div>
           <mat-card-title>{{producto.nombre}}</mat-card-title>
 
         </mat-card-header>
-        <img mat-card-image [src]="producto.imagen" alt="Photo of a Shiba Inu" (click)="showImage()">
+        <img mat-card-image [src]="producto.imagen" alt="Photo of a Shiba Inu" (click)="showImage(producto.id)">
         <mat-card-content>
-        <h6 style="text-align: center;">Ventas completadas</h6>
-        <mat-icon  style="position: relative; left: 75px;top: 20px;" matBadge="{{producto.cantidad}}" matBadgeColor="warn" color="primary">star</mat-icon>
+          <h6 style="text-align: center;">Ventas completadas</h6>
+          <mat-icon style="position: relative; left: 75px;top: 20px;" matBadge="{{producto.cantidad}}"
+            matBadgeColor="warn" color="primary">star</mat-icon>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button>Me gusta</button>
@@ -20,13 +21,4 @@
       </mat-card>
 
     </div>
-</div>
-
-
-
-
-
-
-
-
-
+  </div>

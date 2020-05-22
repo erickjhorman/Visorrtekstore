@@ -57,7 +57,7 @@ ng g s services/shared/dashboard  --spec false
 ng g s services/shared/notification  --spec false
 ng g s services/shared/dashboardAdmin --spec false
 ng g s services/testimonios --module=app
-ng g s services/testimonios --module=app
+ng g s services/home.service --skip-import --module app
 
 To creare a guard
 ng g g auth/guard/Afterlogin

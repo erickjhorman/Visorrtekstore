@@ -1,15 +1,17 @@
-<div>
+<div class="pt-4" style="position: relative; bottom: 23px;">
   <fa-icon [icon]="faWindowClose" (click)="closeDialog()"></fa-icon>
 </div>
 <div>
-  <div class="row pb-3" style="height: 400px;" >
-    <div class="col" style="background-color: crimson;">
-    <p>imagen para mostrar</p>
+  <div class="row pb-3">
+    <div class="col">
+      <img mat-card-image [src]="imagePreview">
     </div>
   </div>
-  <div class="row"  style="height: 150px;">
-    <div class="col-md-3">
-
+  <div class="row" style="height: 150px;">
+    <div class="col-md-3" *ngFor="let ip of imagenesProductos">
+      <mat-card class="gallery-card" (click)="getIdToShow(ip.imagen)">
+        <img mat-card-image [src]="ip.imagen">
+      </mat-card>
     </div>
   </div>
 </div>

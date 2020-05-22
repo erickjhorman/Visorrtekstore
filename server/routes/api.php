@@ -60,7 +60,7 @@ Route::group([
 //My Rest API
 Route::get('catalogos', 'HomeController@index');
 Route::get('productosDestacados', 'HomeController@productosDestacados');
-Route::get('i-productos-destacados/{id?}', 'HomeController@imagenesProductos');
+Route::get('imagenes-productos-destacados/{id?}', 'HomeController@imagenesProductos');
 Route::get('testimonio-ventas', 'HomeController@testimonioVentas');
 Route::get('imagenes', 'HomeController@getImagenes');
 Route::get('catalogos/{id}', 'HomeController@getMarcas');

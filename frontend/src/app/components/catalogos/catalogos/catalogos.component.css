@@ -1,48 +1,46 @@
-.producto-card{
+.producto-card {
   width: 15rem;
   height: 260px;
   text-align: center;
   margin-bottom: 27px;
 }
 
-.btn-info , .btn-success{
+.btn-info,
+.btn-success {
   visibility: hidden;
 }
 
-.producto-card:hover{
+.producto-card:hover {
   height: auto;
   transform: scale(1.1);
-  transition: all .1s;
+  transition: all 0.1s;
   visibility: visible;
 }
 
-.producto-card:hover .btn-success  {
+.producto-card:hover .btn-success {
   visibility: visible;
 }
 
-.producto-card:hover  .btn-info {
+.producto-card:hover .btn-info {
   visibility: visible;
 }
 
-
-.card-img-top{
+.card-img-top {
   width: 8rem;
 }
 
-
-mat-card-title{
+mat-card-title {
   text-align: center;
 }
 
-.container{
+.container {
   padding-top: 75px;
-
+  height: 500px;
 }
 
-#carrito{
+#carrito {
   position: absolute;
   left: 500px;
   top: 130px;
   opacity: 0.8;
-  }
-
+}

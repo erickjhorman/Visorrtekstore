@@ -7,7 +7,7 @@ import {
   MatDialog,
   MatDialogRef,
   MatDialogConfig,
-  MAT_DIALOG_DATA
+  MAT_DIALOG_DATA,
 } from "@angular/material/dialog";
 import { NgForm } from "@angular/forms";
 import { CarritoCompraComponent } from "../../partials/carrito-compra/carrito-compra.component";
@@ -22,7 +22,7 @@ import { MatRadioChange, MatRadioButton } from "@angular/material/radio";
 @Component({
   selector: "app-mostrar-detalle-producto",
   templateUrl: "./mostrar-detalle-producto.component.html",
-  styleUrls: ["./mostrar-detalle-producto.component.css"]
+  styleUrls: ["./mostrar-detalle-producto.component.css"],
 })
 export class MostrarDetalleProductoComponent implements OnInit {
   panelOpenState = false;
@@ -61,15 +61,15 @@ export class MostrarDetalleProductoComponent implements OnInit {
     producto_id: 0,
     valorVenta: 0,
     cantidad: 0,
-    created_at: new Date()
+    created_at: new Date(),
   };
 
   ngOnInit() {
     // this.sharedService.currentMessage.subscribe(message => this.message = message)
     // get the value to disable the button ver in this html
 
-    this.route.paramMap.subscribe(params => {
-      const id = +params.get('id');
+    this.route.paramMap.subscribe((params) => {
+      const id = +params.get("id");
 
       this.getProductoShow(id);
       this.getProductoColores(id);
@@ -77,7 +77,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
 
     // To get the value of the login
 
-    this.authService.authStatus.subscribe(value => (this.loggedin = value));
+    this.authService.authStatus.subscribe((value) => (this.loggedin = value));
     console.log(this.loggedin);
   }
 
@@ -85,29 +85,28 @@ export class MostrarDetalleProductoComponent implements OnInit {
   getProductoShow(id: number) {
     this.sharedService.EmitIdproducto(id);
 
-    this.catalogoService.getProducto(id)
-    .subscribe(
-    res => {
+    this.catalogoService.getProducto(id).subscribe(
+      (res) => {
         this.productos = res;
-
+        console.log(this.productos);
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
   }
 
   getProductoColores(id: number) {
     this.catalogoService.getColoresProductos(id).subscribe(
-      res => {
+      (res) => {
         this.coloresProductos = res;
         console.log(this.coloresProductos);
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
   }
 
   onChangeColor($event: MatRadioChange) {
-    // console.log($event.source.name, $event.value);
-    const color_id = $event.value;
+    console.log($event.source.name, $event.value);
+    const colorId = $event.value;
   }
 
   addPseleccionado(form: NgForm) {
@@ -117,7 +116,7 @@ export class MostrarDetalleProductoComponent implements OnInit {
       console.log("Valid");
 
       if (this.loggedin) {
-        this.sharedService.idProductosCatalogos.subscribe(id => {
+        this.sharedService.idProductosCatalogos.subscribe((id) => {
           this.idProduCata = id;
           console.log(this.idProduCata);
         });

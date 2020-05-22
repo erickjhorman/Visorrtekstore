@@ -30,6 +30,7 @@ php artisan make:model Sala --migration
 php artisan make:model Mensaje --migration
 php artisan make:model UsuarioSala --migration
 php artisan make:model TestimonialesProducto --migration
+php artisan make:model Testimoniales --migration
 
 
 // To add a migration 
@@ -46,8 +47,12 @@ php artisan make:migration add_avatar_to_cliente
 php artisan make:migration add_usuario_id_to_cliente
 php artisan make:migration add_usuario_to_users
 php artisan make:migration add_caracteriticas_to_descripcion_producto
-
+php artisan make:migration remove_testimonio_to_testimoniales_ventas --table=testimoniales_ventas
 
 php artisan make:request SignRequest
 
 php artisan make:migration create_comentarios_table 
+
+Renaiming a table 
+php artisan make:migration testimoniales
+php artisan make:migration rename_testimoniales_producto
