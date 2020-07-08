@@ -23,6 +23,7 @@ import { SlidebarComponent } from './components/partials/slidebar/slidebar.compo
 import { CatalogosComponent } from './components/catalogos/catalogos/catalogos.component';
 import { CorouselSlideCatalogosComponent } from './components/partials/corousel-slide-catalogos/corousel-slide-catalogos.component';
 import { MostrarDetalleProductoComponent } from './components/catalogos/mostrar-detalle-producto/mostrar-detalle-producto.component';
+// tslint:disable-next-line: max-line-length
 import { ExtensionPanelDetalleProductoComponent } from './components/partials/extension-panel-detalle-producto/extension-panel-detalle-producto.component';
 import { ComentarioDetalleProductoComponent } from './components/partials/comentario-detalle-producto/comentario-detalle-producto.component';
 import { CarritoCompraComponent } from './components/partials/carrito-compra/carrito-compra.component';
@@ -43,24 +44,26 @@ import { PersonalizacionSiteComponent } from './components/auth/dashboard/pages/
 import { DashboardService } from './services/shared/dashboard.service';
 import { AddDireccionComponent } from './components/auth/dashboard/pages/add-direccion/add-direccion.component';
 import { SidenavAdminComponent } from './components/auth/dashboard/sidenav-admin/sidenav-admin.component';
+// tslint:disable-next-line: max-line-length
 import { FormDireccioneUsuarioShowComponent } from './components/partials/carrito-compra/procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component';
 import { ChatComponent } from './components/auth/dashboard/pages/chat/chat.component';
 import { MainSideBarComponent } from './components/partials/main-side-bar/main-side-bar.component';
 import { SideNavCatalogosComponent } from '././components/catalogos/side-nav-catalogos/side-nav-catalogos.component';
-import { ShowGalleryImageComponent} from './components/partials/show-gallery-image/show-gallery-image.component';
-
+import { ShowGalleryImageComponent } from './components/partials/show-gallery-image/show-gallery-image.component';
+import { ShowAllCommentsComponent } from './components/partials/show-all-comments/show-all-comments.component';
 
 // Material
 import { MateriaAngularCss } from '../app/material.module';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminMensajeComponent } from './components/auth/dashboard/pages/admin-mensaje/admin-mensaje.component';
 import { IsAdminPipe } from './pipes/is-admin.pipe';
 import { IsUserPipe } from './pipes/is-user.pipe';
 import { UserMensajeComponent } from './components/auth/dashboard/pages/user-mensaje/user-mensaje.component';
 
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { RelativeTimePipe } from './pipes/relative-time.pipe';
 
 @NgModule({
   declarations: [
@@ -105,8 +108,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserMensajeComponent,
     MainSideBarComponent,
     SideNavCatalogosComponent,
-    ShowGalleryImageComponent
-
+    ShowGalleryImageComponent,
+    RelativeTimePipe,
+    ShowAllCommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -126,6 +130,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AfterLoginService,
     BeforeLoginService,
     DashboardService,
+    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } },
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -133,7 +138,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormDireccioneUsuarioComponent,
     FormTransportadoraComponent,
     FormDireccioneUsuarioShowComponent,
-    ShowGalleryImageComponent
-  ]
+    ShowGalleryImageComponent,
+    ShowAllCommentsComponent
+  ],
 })
 export class AppModule { }

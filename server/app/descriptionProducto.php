@@ -26,6 +26,11 @@ class descriptionProducto extends Model
         return $this->hasOne('app\producto');
       }
 
+      public function comentario()
+      {
+          return $this->hasMany('app\comentarios_producto');
+      }
+
         //Relationship HasOne
       public function catalogoColoresProducto()
       {
@@ -40,6 +45,12 @@ class descriptionProducto extends Model
       public function catalogoTallas()
     {
         return $this->hasOne('app\CatalogoTallas');
+    }
+
+
+    public function productoImagenes()
+    {
+      return $this->hasMany('app\ProductosImagenes');
     }
 
 }

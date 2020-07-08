@@ -243,3 +243,18 @@ inner join productos
 on detalle__ventas.Producto_id=productos.id
 group  BY nombre
 ORDER BY valor_repetido DESC LIMIT 0,5;
+
+
+select DISTINCT 
+catalogo_colores_productos.id,
+catalogo_colores_productos.color
+from description_productos 
+inner join productos
+on productos.id=description_productos.Producto_id
+
+inner join catalogo_colores_productos
+on catalogo_colores_productos.id=description_productos.color_id
+where  description_productos.Producto_id="6"
+GROUP BY catalogo_colores_productos.id;
+
+

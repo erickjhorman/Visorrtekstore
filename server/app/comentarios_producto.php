@@ -4,7 +4,7 @@ namespace app;
 
 use Illuminate\Database\Eloquent\Model;
 
-class comentarios extends Model
+class comentarios_producto extends Model
 {
     protected $fillable = [
         'producto_id',
@@ -19,7 +19,7 @@ class comentarios extends Model
 
     public function producto()
     {
-        return $this->belongsTo('app\producto');
+        return $this->belongsTo('app\descriptionProducto');
     }
 
     public function user()

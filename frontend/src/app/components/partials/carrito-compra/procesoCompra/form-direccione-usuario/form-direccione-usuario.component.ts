@@ -41,7 +41,7 @@ export class FormDireccioneUsuarioComponent implements OnInit {
     this.departamentos = data;
 
     // To get the information from  a sessionStorage
-    const  user = sessionStorage.getItem('userAuth');
+    const user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
     console.log(this.user.id);
 
@@ -97,7 +97,7 @@ export class FormDireccioneUsuarioComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // To get the value of the selected
   changeId($event) {
@@ -124,7 +124,7 @@ export class FormDireccioneUsuarioComponent implements OnInit {
     if (this.FormDireccionesUsuario.valid) {
       this.procesoCompra
         .saveDireccion(this.FormDireccionesUsuario.value)
-        .subscribe(res => {}, err => {});
+        .subscribe(res => { }, err => { });
       this.sharedService.getFormDirecciones(this.FormDireccionesUsuario.value);
       this.sharedService.EmitVer(true);
       this.notificationService.success('Direccion almacenada');

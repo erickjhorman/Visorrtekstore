@@ -1,0 +1,29 @@
+<div>
+  <div class="row">
+    <div>
+      <span>
+        <fa-icon [icon]="faDoorClosed" size="lg" (click)="closeAllCommentsModel()"></fa-icon>
+      </span>
+    </div>
+
+  </div>
+  <div class="row">
+    <div *ngIf="comments.length> 0">
+      <div *ngFor="let comment of comments; trackBy:trackByComments">
+        <mat-card class="comments-card">
+          <mat-card-header>
+            <img mat-card-avatar class="comments-header-image" [src]="comment.avatar">
+            <mat-card-title>Erick</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{comment.comentario}}</p>
+            <span>{{comment.createdAt | relativeTime}}</span>
+          </mat-card-content>
+
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+</div>

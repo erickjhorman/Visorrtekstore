@@ -1,20 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { CatalogoServes } from "../../../services/Catalogos/catalogos.service";
-import { Marca } from "../../../models/marcas";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CatalogoServes } from '../../../services/Catalogos/catalogos.service';
 import {
   MatDialog,
-  MatDialogRef,
   MatDialogConfig,
-} from "@angular/material/dialog";
-import { MostrarDetalleProductoComponent } from "../mostrar-detalle-producto/mostrar-detalle-producto.component";
-import { CarritoCompraComponent } from "../../partials/carrito-compra/carrito-compra.component";
-import { SharedService } from "../../../services/shared/shared.service";
+} from '@angular/material/dialog';
+
+import { MostrarDetalleProductoComponent } from '../mostrar-detalle-producto/mostrar-detalle-producto.component';
+import { CarritoCompraComponent } from '../../partials/carrito-compra/carrito-compra.component';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
-  selector: "app-catalogos",
-  templateUrl: "./catalogos.component.html",
-  styleUrls: ["./catalogos.component.css"],
+  selector: 'app-catalogos',
+  templateUrl: './catalogos.component.html',
+  styleUrls: ['./catalogos.component.css'],
 })
 export class CatalogosComponent implements OnInit {
   constructor(
@@ -22,7 +21,7 @@ export class CatalogosComponent implements OnInit {
     private catalogoService: CatalogoServes,
     private dialog: MatDialog,
     private sharedService: SharedService
-  ) {}
+  ) { }
 
   show = false;
   hidden = true;
@@ -41,8 +40,8 @@ export class CatalogosComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      const id = +params.get("id");
-      console.log("Catalogo" + id);
+      const id = +params.get('id');
+      console.log('Catalogo' + id);
       this.getproductos(id);
     });
 
@@ -62,7 +61,7 @@ export class CatalogosComponent implements OnInit {
     this.catalogoService.getProductos(id).subscribe(
       (res) => {
         this.productos = res;
-        console.log("productos obtenidos catalogos", this.productos);
+
       },
       (err) => console.log(err)
     );
@@ -70,19 +69,19 @@ export class CatalogosComponent implements OnInit {
 
   onCreate(productoShow: any) {
     const dialogConfig = new MatDialogConfig();
-    console.log("1 paso" + productoShow);
+    console.log('1 paso' + productoShow);
     const showProductos = productoShow;
-    console.log("Create productos" + showProductos);
+    console.log('Create productos' + showProductos);
     dialogConfig.disableClose = true;
     // dialogConfig.autoFocus = true;
-    dialogConfig.width = "900px";
-    dialogConfig.height = "400px";
+    dialogConfig.width = '900px';
+    dialogConfig.height = '400px';
     // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = showProductos;
     this.dialog.open(MostrarDetalleProductoComponent, dialogConfig);
     this.dialog.afterAllClosed.subscribe((res) => {
       this.ocultarItemSelleccionado = true;
-      console.log("Respuesta" + this.ocultarItemSelleccionado);
+      console.log('Respuesta' + this.ocultarItemSelleccionado);
     });
   }
 
@@ -93,9 +92,6 @@ export class CatalogosComponent implements OnInit {
     this.catalogoService.getProducto(id).subscribe(
       (res) => {
         this.productoShow = res;
-        console.log("Producto a mostrar " + this.productoShow);
-
-        // this.onCreate(this.productoShow);
       },
       (err) => console.log(err)
     );
@@ -108,13 +104,13 @@ export class CatalogosComponent implements OnInit {
 
   addProductoModel(id: any) {
     const dialogConfig = new MatDialogConfig();
-    console.log("1 paso" + id);
+    console.log('1 paso' + id);
     const productoSeleccionado = id;
-    console.log("Producto seleccionado" + productoSeleccionado);
+    console.log('Producto seleccionado' + productoSeleccionado);
     dialogConfig.disableClose = true;
     // dialogConfig.autoFocus = true;
-    dialogConfig.width = "400px";
-    dialogConfig.height = "400px";
+    dialogConfig.width = '400px';
+    dialogConfig.height = '400px';
     // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = productoSeleccionado;
 
@@ -130,11 +126,11 @@ export class CatalogosComponent implements OnInit {
   //  }
 
   toogleHidden(hidden) {
-    console.log("Variable" + hidden);
+    console.log('Variable' + hidden);
     this.hidden = !this.hidden;
   }
 
   ocultarItemSeleccionado() {
-    this.ocultarItemSelleccionado;
+    this.ocultarItemSelleccionado();
   }
 }

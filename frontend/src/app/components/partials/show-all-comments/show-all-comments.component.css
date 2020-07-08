@@ -1,0 +1,10 @@
+.comments-card{
+  width: 575px;
+  max-height: 150px;
+  margin-bottom: 8px;
+}
+
+.comments-header-image{
+  width: 50px;
+  height: 50px;
+}

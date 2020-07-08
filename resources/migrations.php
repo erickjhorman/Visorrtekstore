@@ -39,6 +39,9 @@ php artisan make:migration create_estado_producto_table
 
 // To add a migration 
 php artisan make:migration  add_estado_producto_to_description_product
+php artisan make:migration  add_color_id_to_description_product
+php artisan make:migration  add_description_product_to_productos_imagenes
+
 
 //To modify a migration
 php artisan make:migration create_profiles_table --create=profiles
@@ -47,7 +50,7 @@ php artisan make:migration add_avatar_to_cliente
 php artisan make:migration add_usuario_id_to_cliente
 php artisan make:migration add_usuario_to_users
 php artisan make:migration add_caracteriticas_to_descripcion_producto
-php artisan make:migration remove_testimonio_to_testimoniales_ventas --table=testimoniales_ventas
+php artisan make:migration remove_producto_id_to_catalogo_colores_productos  --table=catalogo_colores_productos
 
 php artisan make:request SignRequest
 

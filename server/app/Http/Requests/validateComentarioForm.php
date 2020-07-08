@@ -24,8 +24,7 @@ class validateComentarioForm extends FormRequest
     public function rules()
     {
         return [
-            'comentario' => 'required', 'string', 'max:30',
-
+            'comments' => 'required', 'string', 'max:30',
         ];
     }
 }

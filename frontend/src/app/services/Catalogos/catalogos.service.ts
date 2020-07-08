@@ -1,13 +1,16 @@
-import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
-import { Comentario } from '../../models/comentario';
-import { Observable } from 'rxjs';
+
+import { Comentario } from './../../models/comentario';
 import { VentasDestacadas } from '../../models/ventasDestacadas';
+import { ShowProducts } from './../../models/ShowProducts';
+import { environment } from './../../../environments/environment';
+
+import { Observable } from 'rxjs';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CatalogoServes {
   // API_URI = "http://localhost:8000/api/catalogos";
@@ -21,87 +24,63 @@ export class CatalogoServes {
   // API_URIProductos = 'http://localhost:8000/api/catalogos/marca';
   nombre: string = undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // get() {
   //   return this.http.get(this.API_URI);
   // }
 
-    get() {
+  get() {
     return this.http.get(environment.API_URL + '/catalogos');
   }
 
-
-
- getProductosDestacados(): Observable<VentasDestacadas[]> {
-    return this.http.get<VentasDestacadas[]>(`${environment.API_URL}/productosDestacados`);
+  getProductosDestacados(): Observable<VentasDestacadas[]> {
+    return this.http.get<VentasDestacadas[]>(
+      `${environment.API_URL}/productosDestacados`
+    );
   }
-
 
   getMarcas(id: number) {
     return this.http.get(`${environment.API_URL}/${id}`);
   }
-
 
   getProductos(id: number) {
     return this.http.get(`${environment.API_URL}/catalogos/marca/${id}`);
   }
 
   getProducto(id: number) {
-     return this.http.get(`${environment.API_URL}/catalogos/marca/show/${id}`);
+    return this.http.get<ShowProducts[]>(
+      `${environment.API_URL}/catalogos/marca/show/${id}`
+    );
   }
 
   getColoresProductos(id: number) {
-    return this.http.get(`${environment.API_URL}/catalogos/marca/colores/${id}`);
+    return this.http.get(
+      `${environment.API_URL}/catalogos/marca/colores/${id}`
+    );
   }
-
-  getComentarios(id: number) {
-    return this.http.get(`${environment.API_URL}/catalogos/marca/show/comentario/${id}`);
-  }
-
-
-  // getTransportadoras() {
-  //   return this.http.get(`${this.API_URIUser}/transportadora`);
-  // }
 
   getTransportadoras() {
     return this.http.get(`${environment.API_URL}/user/transportadora`);
   }
 
 
-  // getDepartamentos() {
-  //   return this.http.get(`${this.API_URIUser}/departamentos`);
-  // }
 
   getDepartamentos() {
     return this.http.get(`${environment.API_URL}/user/departamentos`);
   }
-
-  // getCiudades(id: number) {
-  //   return this.http.get(`${this.API_URIUser}/departamentos/ciudades/${id}`);
-  // }
 
   getCiudades(id: number) {
     return this.http.get(`${environment.API_URL}/departamentos/ciudades/${id}`);
   }
 
 
-  // getCliente(id: number) {
-  //   return this.http.get(`${this.API_URICliente}/datos-personales/${id}`);
-  // }
 
   getCliente(id: number) {
     return this.http.get(`${environment.API_URL}/datos-personales/${id}`);
   }
 
-  // updateCliente(id: number, updatedCliente) {
-  //   const headers = new HttpHeaders({ 'content-type': 'application/json' });
-  //   return this.http.put(
-  //     `${this.API_URICliente}/datos-personales/${id}`,
-  //     updatedCliente,
-  //     { headers: headers }
-  //   );
-  // }
+
 
   updateCliente(id: number, updatedCliente) {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -112,17 +91,21 @@ export class CatalogoServes {
     );
   }
 
-  // saveComentario(comentario: Comentario) {
-  //   const headers = new HttpHeaders({ 'content-type': 'application/json' });
-  //   return this.http.post(`${this.API_URI}/marca/show/comentario`, comentario, {
-  //     headers: headers
-  //   });
-  // }
+
+  getComentario(): Observable<Comentario[]> {
+    return this.http.get<Comentario[]>(
+      `${environment.API_URL}/catalogos/marca/show/comentario/get-comments`
+    );
+  }
 
   saveComentario(comentario: Comentario) {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    return this.http.post(`${environment.API_URL}catalogos/marca/show/comentario`, comentario, {
-      headers: headers
-    });
+    return this.http.post(
+      `${environment.API_URL}/catalogos/marca/show/comentario`,
+      comentario,
+      {
+        headers: headers,
+      }
+    );
   }
 }

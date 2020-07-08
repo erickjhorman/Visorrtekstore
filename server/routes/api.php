@@ -55,8 +55,6 @@ Route::group([
     Route::post('/mensaje', 'ChatController@enviarMensaje');
 });
 
-
-
 //My Rest API
 Route::get('catalogos', 'HomeController@index');
 Route::get('productosDestacados', 'HomeController@productosDestacados');
@@ -67,11 +65,9 @@ Route::get('catalogos/{id}', 'HomeController@getMarcas');
 //Route::get('catalogos/{catalogo}/{marca}/{id}','HomeController@getProductos');
 Route::get('catalogos/marca/{id}', 'HomeController@getProductos');
 Route::get('catalogos/marca/colores/{id}', 'HomeController@getColorsProducts');
-//Route::get('catalogos/{id}','HomeController@getProductos');
-//Route::get('catalogos/marca/show/{id}','commentsController@comentarios');
 Route::get('catalogos/marca/show/{id}', 'catalogosController@showCatalogos');
-Route::get('catalogos/marca/show/comentario/{id}', 'commentsController@getComentarios');
-Route::post('catalogos/marca/show/comentario', 'commentsController@SaveComentarios');
+Route::get('catalogos/marca/show/comentario/get-comments', 'commentsController@getComentarios');
+Route::post('catalogos/marca/show/comentario', 'commentsController@saveComentarios');
 Route::post('charges', 'stripePaymentController@saveToken');
 Route::get('dashboard/compras/{id}', 'stripePaymentController@getCompras');
 Route::post('procesoCompra/addDireccion', 'ProcesoCompraController@addDireccion');

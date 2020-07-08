@@ -21,4 +21,9 @@ class ProductosImagenes extends Model
     {
         return $this->belongsTo('app\producto');
     }
+
+    public function description_producto()
+    {
+        return $this->belongsTo('app\descriptionProducto');
+    }
 }

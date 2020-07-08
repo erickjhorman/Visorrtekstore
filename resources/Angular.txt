@@ -93,3 +93,5 @@ ng g s services/pagos/pago
 Pipes
 ng g p pipes/isAdmin --module=app
 ng g p pipes/isUser --module=app
+ng g p pipes/showOnlyOneImageProducts --skipTests --module=app
+ng g p pipes/relative-time  --skipTests --module=app

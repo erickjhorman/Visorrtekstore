@@ -1,26 +1,26 @@
-<body *ngFor="let producto of productos">
-  <div class="row" style="height: 600px;">
-    <div class="col-md-6">
-      <img [src]="producto.imagen" class="img-fluid" id="producto-imagen">
-    </div>
-    <div class="col-md-6">
-      <mat-tab-group dynamicHeight>
-        <mat-tab label="DESCRIPCIÓN">
+<div *ngFor="let producto of productos; first as isFirst; trackBy:trackByProducts">
 
-          <form novalidate (ngSubmit)="addPseleccionado(carroCompraForm)" #carroCompraForm="ngForm">
+  <div *ngIf="isFirst">
+    <div class="row" style="height: 600px;">
+      <div class="col-md-6">
+        <img [src]="imagePreview" class="img-fluid" id="producto-imagen">
+      </div>
+      <div class="col-md-6">
+        <mat-tab-group dynamicHeight>
+          <mat-tab label="DESCRIPCIÓN">
 
-            <mat-card class="mb-4">
-              <mat-card-title>{{producto.Producto}}</mat-card-title>
-              <input name="id" type="hidden" [(ngModel)]="producto.Producto_id">
-              <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
-              <mat-card-content>
+            <form novalidate (ngSubmit)="addPseleccionado(carroCompraForm)" #carroCompraForm="ngForm">
 
-                <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
-                <input name="valorVenta" type="hidden" [(ngModel)]="producto.Valor_Venta">
+              <mat-card class="mb-4">
+                <mat-card-title>{{producto.Producto}}</mat-card-title>
+                <input name="id" type="hidden" [(ngModel)]="producto.Producto_id">
+                <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
+                <mat-card-content>
 
-                <ng-template *ngIf="producto.Existencia > 0; then showBlock; else notShowBlock"></ng-template>
+                  <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
+                  <input name="valorVenta" type="hidden" [(ngModel)]="producto.Valor_Venta">
 
-                <ng-template #showBlock>
+                  <ng-template *ngIf="producto.Existencia > 0; then showBlock; else notShowBlock"></ng-template>
                   <div>
                     <label id="radio-group-label">Color</label>
                     <br>
@@ -31,41 +31,99 @@
                       </mat-radio-button>
                     </mat-radio-group>
                   </div>
-                  <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
-                  <mat-form-field class="example-full-width">
-                    <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
-                  </mat-form-field>
-                </ng-template>
+                  <ng-template #showBlock>
 
-                <ng-template #notShowBlock>
-                  <span id="agotado">Agotado</span>
-                </ng-template>
-              </mat-card-content>
-            </mat-card>
-            <button type="submit" class="btn btn-success" [disabled]="carroCompraForm.invalid">Agregar al
-              carrito</button>
-          </form>
+                    <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>
+                    <mat-form-field class="example-full-width">
+                      <input matInput name="cantidad" placeholder="Ingrese la cantidad" type="text" required ngModel>
+                    </mat-form-field>
+                  </ng-template>
 
-          <div style="background-color: black; height: 220px;">
+                  <ng-template #notShowBlock>
+                    <span id="agotado">Agotado</span>
+                  </ng-template>
+                </mat-card-content>
+              </mat-card>
+              <button type="submit" class="btn btn-success mb-4" [disabled]="carroCompraForm.invalid">Agregar al
+                carrito</button>
+            </form>
+            <div class="row">
 
-          </div>
+              <div class="col-md-3" *ngFor="let imagen of imagenes; trackBy:trackByImages">
 
-        </mat-tab>
-        <mat-tab label="+INFO">
-          <p><span>Descripcion: </span>{{producto.Descripcion}}</p>
-          <p>{{producto.caracteristicas}}</p>
-        </mat-tab>
+                <mat-card class="gallery-card" (click)="getIdPictureToShowFirst(imagen.imagen)">
+                  <img mat-card-image [src]="imagen.imagen">
+                </mat-card>
+
+              </div>
+
+            </div>
+          </mat-tab>
+          <mat-tab label="+INFO">
+            <p><span>Descripcion: </span>{{producto.Descripcion}}</p>
+            <p>{{producto.caracteristicas}}</p>
+          </mat-tab>
 
 
-        <mat-tab label="PREGUNTAS"> </mat-tab>
-        <mat-tab label="COMENTARIOS"></mat-tab>
-      </mat-tab-group>
+          <mat-tab label="PREGUNTAS"> </mat-tab>
+          <mat-tab label="COMENTARIOS">
+
+
+
+            <ng-template *ngIf="comentarios.length > 0; then commentsBtn; else showMessage"></ng-template>
+
+            <div *ngFor="let comentario of comentarios; trackBy:trackByComments">
+              <mat-card class="comments-card">
+                <mat-card-header>
+                  <img mat-card-avatar class="comments-header-image" [src]="comentario.avatar">
+                  <mat-card-title>Erick</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <p>{{comentario.comentario}}</p>
+                  <span>{{comentario.createdAt | relativeTime}}</span>
+                </mat-card-content>
+
+              </mat-card>
+            </div>
+            <ng-template #showMessage>
+              <span style="font-size: x-large;">No hay comentarios</span>
+            </ng-template>
+            <div>
+              <h4>Deja tu comentario aqui</h4>
+
+              <ng-template #commentsBtn>
+                <button id="btn-all-comments" mat-raised-button color="second" (click)="openAllCommentsDialog()">Ver
+                  todos
+                  los comentarios</button>
+              </ng-template>
+
+              <form [formGroup]="formSendCommensts" (ngSubmit)="saveComments()" class="form-comments">
+                <input type="hidden" formControlName="ProductoId">
+                <mat-form-field class="comments-full-width">
+                  <mat-label>Deja tu comentario</mat-label>
+                  <textarea matInput placeholder="Me encanta ir protegido" formControlName="comments"></textarea>
+                </mat-form-field>
+                <div class="text-center">
+                  <button #formComments mat-raised-button color="primary"
+                    [disabled]="formSendCommensts.invalid">Comentar</button>
+
+                </div>
+              </form>
+            </div>
+          </mat-tab>
+
+        </mat-tab-group>
+
+
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-md-12">
+        <app-footer-home></app-footer-home>
+
+      </div>
     </div>
   </div>
-  <div class="row ">
-    <div class="col-md-12" style="background-color:blue; height: 500px;">
-
-
-    </div>
-  </div>
-</body>
+</div>

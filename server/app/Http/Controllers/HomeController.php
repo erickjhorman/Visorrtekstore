@@ -153,6 +153,7 @@ public function getImagenes(){
     $imagenes = DB::table('imagenes')->select('*')->get();
     return $imagenes;
 
+
 }
 
 public function getMarcas($id){
@@ -256,6 +257,19 @@ public function getColorsProducts($id){
 
 }
 
+public function getComentarios(){
+    $comentarios =  DB::table('comentarios_productos')
+            ->join('users', 'users.id', '=', 'comentarios_productos.usuario_id')
+            ->join('clientes', 'clientes.usuario_id', '=', 'users.id')
+            ->select('comentarios_productos.*')
+            ->orderBy('id','desc')
+            ->limit(5)
+            ->get();
+
+     return $comentarios;
+
+
+  }
 
 
 }

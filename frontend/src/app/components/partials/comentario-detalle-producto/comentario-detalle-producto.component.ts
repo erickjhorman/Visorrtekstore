@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {CatalogoServes} from '../../../services/Catalogos/catalogos.service';
-import {Comentario} from '../../../models/comentario';
+import { CatalogoServes } from '../../../services/Catalogos/catalogos.service';
+import { Comentario } from '../../../models/comentario';
 import { NgForm } from '@angular/forms';
-import {SharedService} from '../../../services/shared/shared.service';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-comentario-detalle-producto',
@@ -13,11 +13,11 @@ import {SharedService} from '../../../services/shared/shared.service';
 export class ComentarioDetalleProductoComponent implements OnInit {
 
   @Input() d: any;
- public user: any;
- public comentarios: any;
- constructor( private catalogoserve: CatalogoServes,
-  private comentarioService: SharedService
-  ) {}
+  public user: any;
+  public comentarios: any;
+  constructor(private catalogoserve: CatalogoServes,
+    private comentarioService: SharedService
+  ) { }
 
   // comentario: Comentario = {
   //   id:'',
@@ -32,50 +32,50 @@ export class ComentarioDetalleProductoComponent implements OnInit {
 
   ngOnInit() {
 
-  // To get the information from  a sessionStorage
-  const  user = sessionStorage.getItem('userAuth');
-  this.user =  JSON.parse(user);
-  console.log(this.user);
-  this.getComentario(this.d.id);
-  console.log(this.d.id);
+    // To get the information from  a sessionStorage
+    const user = sessionStorage.getItem('userAuth');
+    this.user = JSON.parse(user);
+    console.log(this.user);
+    this.getComentario(this.d.id);
+    console.log(this.d.id);
   }
 
 
-   getComentario(id: number) {
-    this.catalogoserve.getComentarios(id).subscribe(
+  getComentario(id: number) {
+    this.catalogoserve.getComentario().subscribe(
       res => {
         console.log(res);
         this.comentarios = res;
       },
       err => console.log(err)
-     );
-   }
+    );
+  }
 
   saveComentario(form) {
     console.log(' Hola' + form.value);
     this.catalogoserve.saveComentario(form.value)
-    .subscribe(res => {
+      .subscribe(res => {
         this.getComentario(this.d.id);
         console.log(res);
       },
 
-     err => {
-       return console.log(err);
-     }
-    );
-    }
-
-    resetForm(form?: NgForm) {
-      if (form.value) {
-
-        form.reset();
-
-        // this.comentarioService.selectedCometario = new Comentario();
-      }
-    }
-
-
+        err => {
+          return console.log(err);
+        }
+      );
   }
+
+  resetForm(form?: NgForm) {
+    if (form.value) {
+
+      form.reset();
+
+      // this.comentarioService.selectedCometario = new Comentario();
+    }
+  }
+
+
+}
 
 
 

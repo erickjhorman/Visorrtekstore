@@ -6,31 +6,31 @@ import {
   AfterViewInit,
   NgZone,
   ViewEncapsulation
-} from "@angular/core";
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormControl
-} from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { MatTableDataSource } from "@angular/material"; //To get the information to store in the table
-import { CatalogoServes } from "../../../../services/Catalogos/catalogos.service";
-import { FormDireccioneUsuarioComponent } from "../procesoCompra/form-direccione-usuario/form-direccione-usuario.component";
-import { FormTransportadoraComponent } from "../procesoCompra/form-transportadora/form-transportadora.component";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { SharedService } from "../../../../services/shared/shared.service";
-import { PagoService } from "../../../../services/pagos/pago.service";
-import { Router } from "@angular/router";
-import { DashboardService } from "../../../../services/shared/dashboard.service";
-import { FormDireccioneUsuarioShowComponent } from "../procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component";
-import { NotificationService } from "../../../../services/shared/notification.service";
-import { map } from "rxjs/operators";
+} from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatTableDataSource } from '@angular/material'; // To get the information to store in the table
+import { CatalogoServes } from '../../../../services/Catalogos/catalogos.service';
+import { FormDireccioneUsuarioComponent } from '../procesoCompra/form-direccione-usuario/form-direccione-usuario.component';
+import { FormTransportadoraComponent } from '../procesoCompra/form-transportadora/form-transportadora.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SharedService } from '../../../../services/shared/shared.service';
+import { PagoService } from '../../../../services/pagos/pago.service';
+import { Router } from '@angular/router';
+import { DashboardService } from '../../../../services/shared/dashboard.service';
+import { FormDireccioneUsuarioShowComponent } from '../procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component';
+import { NotificationService } from '../../../../services/shared/notification.service';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: "app-proceso-compra",
-  templateUrl: "./proceso-compra.component.html",
-  styleUrls: ["./proceso-compra.component.css"],
+  selector: 'app-proceso-compra',
+  templateUrl: './proceso-compra.component.html',
+  styleUrls: ['./proceso-compra.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class ProcesoCompraComponent implements OnInit, AfterViewInit {
@@ -61,7 +61,7 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   forthFormGroup: FormGroup;
   formMensaje: FormGroup;
 
-  @ViewChild("stepper", { static: false }) stepper: any;
+  @ViewChild('stepper', { static: false }) stepper: any;
   totalStepsCount: number;
 
   constructor(
@@ -79,59 +79,59 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   ) {
     console.log(data);
 
-    //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem("userAuth");
+    // To get the information from  a sessionStorage
+    let user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
     console.log(this.user);
 
     this.formMensaje = new FormGroup({
       idCliente: new FormControl(this.user.id),
-      mensaje: new FormControl("", [Validators.required])
+      mensaje: new FormControl('', [Validators.required])
     });
 
-    //To share the form in preceso compra componenet
+    // To share the form in preceso compra componenet
     this.sharedService.formValues.subscribe(valuesForm => {
       this.valuesFormDireccione = valuesForm;
-      console.log("Formulario" + this.valuesFormDireccione);
+      console.log('Formulario' + this.valuesFormDireccione);
       this.stepCompleted = true;
     });
 
-    //To share the response of the payment in preceso compra componenet
+    // To share the response of the payment in preceso compra componenet
     this.sharedService.payCharge.subscribe(res => {
       this.charges = res;
       console.log(this.charges);
     });
 
-    //To share the form in preceso compra componenet
+    // To share the form in preceso compra componenet
     this.sharedService.stepComplared.subscribe(value => {
       this.step2Completed = true;
-      console.log("True step 2 ");
+      console.log('True step 2 ');
       this.stepper.linear = false;
       this.stepper.selectedIndex = 2;
-      this.notificacion.success("Compra Satisfactoria");
+      this.notificacion.success('Compra Satisfactoria');
     });
 
-    //To share a variable from form-direccione to call a method  in here
+    // To share a variable from form-direccione to call a method  in here
     this.sharedService.btnver.subscribe(value => {
       this.btnverFlag = value;
       if (this.btnverFlag) {
         this.getDireccionCliente(this.user.id);
       } else {
-        console.log("I'm not true");
+        console.log('I\'m not true');
       }
     });
   }
 
-  //Code for create the table with information
+  // Code for create the table with information
   listData: MatTableDataSource<any>;
-  displayedColumns: string[] = ["Nombre", "cantidad", "valorventa"];
+  displayedColumns: string[] = ['Nombre', 'cantidad', 'valorventa'];
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ["", Validators.required]
+      firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ["", Validators.required]
+      secondCtrl: ['', Validators.required]
     });
 
     this.createTableToshow();
@@ -142,16 +142,10 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    //To share the form in preceso compra componenet
-    //   this.sharedService.stepComplared.subscribe(value => {
-    //   this.step2Completed = true;
-    //   this.ngZone.run(() => {
-    //     this.stepper.next();
-    //   });
-    // });
+
 
     this.totalStepsCount = this.stepper._steps.length;
-    console.log("TOtal steps" + this.totalStepsCount);
+    console.log('TOtal steps' + this.totalStepsCount);
   }
 
   createTableToshow() {
@@ -188,20 +182,9 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     );
   }
 
-  //To get the deparment for direccion Form
-  // showDomicilio(){
-  //   this.cataServes.getDepartamentos().subscribe(
-  //     res =>{
-
-  //           this.departamentos= res
-  //           this.onCreateDialogDireccionUsuario(this.departamentos,this.domicilio)
-  //        },
-  //     err => console.log(err)
-  //   )
-  // }
 
   showDomicilio() {
-    console.log("Show domicilio" + this.domicilio);
+    console.log('Show domicilio' + this.domicilio);
     this.onCreateShow(this.domicilio);
   }
 
@@ -223,50 +206,50 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     );
   }
 
-  //Dialog para transportadora
+  // Dialog para transportadora
   onCreateDialogTransportadora(transportadora: any) {
     const dialogConfig = new MatDialogConfig();
-    //console.log("1 paso" + productoShow)
-    let t = transportadora;
-    //console.log("Create productos" + showProductos)
+    // console.log("1 paso" + productoShow)
+    const t = transportadora;
+    // console.log("Create productos" + showProductos)
     dialogConfig.disableClose = true;
-    //dialogConfig.autoFocus = true;
-    dialogConfig.width = "400px";
-    dialogConfig.height = "400px";
+    // dialogConfig.autoFocus = true;
+    dialogConfig.width = '400px';
+    dialogConfig.height = '400px';
     // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = t;
     this.dialog.open(FormTransportadoraComponent, dialogConfig);
     this.dialog.afterAllClosed.subscribe(res => {
-      //this.ocultarItemSelleccionado = true;
-      //console.log("Respuesta" + this.ocultarItemSelleccionado);
+      // this.ocultarItemSelleccionado = true;
+      // console.log("Respuesta" + this.ocultarItemSelleccionado);
     });
   }
 
-  //Dialog para direccion usuario
+  // Dialog para direccion usuario
   onCreateShow(data) {
     const dialogConfig = new MatDialogConfig();
-    let d = data;
+    const d = data;
     dialogConfig.disableClose = true;
-    //dialogConfig.autoFocus = true;
-    dialogConfig.width = "600px";
-    dialogConfig.height = "400px";
+    // dialogConfig.autoFocus = true;
+    dialogConfig.width = '600px';
+    dialogConfig.height = '400px';
     // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = d;
     this.dialog.open(FormDireccioneUsuarioShowComponent, dialogConfig);
-    console.log("Ver domicilio");
+    console.log('Ver domicilio');
   }
 
   onCreateDomicilio(data) {
     const dialogConfig = new MatDialogConfig();
-    let d = data;
+    const d = data;
     dialogConfig.disableClose = true;
-    //dialogConfig.autoFocus = true;
-    dialogConfig.width = "750px";
-    dialogConfig.height = "400px";
+    // dialogConfig.autoFocus = true;
+    dialogConfig.width = '750px';
+    dialogConfig.height = '400px';
     // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = d;
     this.dialog.open(FormDireccioneUsuarioComponent, dialogConfig);
-    console.log("Añadir direccion");
+    console.log('Añadir direccion');
   }
 
   onClose() {
@@ -275,7 +258,7 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
 
   redirigeDashboard() {
     this.dialogRef.close();
-    this.router.navigateByUrl("/dashboard"); //To redirect to another component
+    this.router.navigateByUrl('/dashboard'); // To redirect to another component
   }
 
   enviarMensajeVendedor() {
@@ -286,7 +269,7 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     this.stepper.previous();
   }
   goForward() {
-    //console.log(this.stepper);
+    // console.log(this.stepper);
     this.stepper.next();
   }
 
@@ -294,7 +277,7 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     if (this.formMensaje.valid) {
       this.pagosServices.saveMensaje(this.formMensaje.value).subscribe(
         res => {
-          this.notificacion.success("Mensaje enviado satisfactoriamente");
+          this.notificacion.success('Mensaje enviado satisfactoriamente');
         },
         err => console.log(err)
       );

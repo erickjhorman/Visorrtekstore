@@ -1,5 +1,6 @@
 export interface ImagenesProductos {
-  id?: number;
-  producto_id: number;
+  id_producto_imagenes?: number;
+  producto_id?: number;
+  description_product?: number;
   imagen: string;
 }

@@ -44,7 +44,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function comentario()
     {
-        return $this->hasMany('app\comentario');
+        return $this->hasMany('app\comentarios_producto');
     }
 
 

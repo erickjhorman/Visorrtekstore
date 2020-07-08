@@ -47,7 +47,7 @@ class producto extends Model
 
        public function comentario()
        {
-           return $this->hasMany('app\comentario');
+           return $this->hasMany('app\comentarios_producto');
        }
 
        // Relationship to ProductosImagenes
