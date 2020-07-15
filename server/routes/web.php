@@ -12,11 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
 
-    // $user = app\User::findOrfail(1);
+    $user = app\Pregunta::findOrfail(1);
+    //$users = app\Pregunta::with('pregunta_respuesta')->get();
 
-    // return $user->Salas;
+
+    foreach ($user->respuestas as $role) {
+        echo $role->pregunta_respuesta->respuesta_id;
+    }
 
     //To save a record
     // $salas = app\Sala::findOrfail(1);
@@ -36,7 +40,11 @@ Route::get('/', function () {
     // ->distinct()
     // ->get();
 
-    // return $colores;
+    //  return $colores;
+
+    //$user = app\Respuesta::find(1);
+
+
 
     $userData = DB::table('users')
     ->join('clientes', 'usuario_id', '=', 'users.id')
@@ -44,7 +52,7 @@ Route::get('/', function () {
     ->where('users.email', '=', 'erickjhorman@gmail.com')
     ->get();
 
-    return $userData;
+    //return $userData;
 });
 
 Auth::routes();

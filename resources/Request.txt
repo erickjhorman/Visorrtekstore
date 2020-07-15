@@ -1,1 +1,2 @@
 php artisan make:request ChangePasswordRequest
+php artisan make:request StoreQuestionProduct

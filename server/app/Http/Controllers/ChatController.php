@@ -37,36 +37,30 @@ class ChatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-  
+
     public function enviarMensaje(Request $request){
-           
-        
-       
-        
+
+
+
+
         $validator = Validator::make($request->all(), [
             'sala_id' => 'required',
             'usuario_id' => 'required',
             'mensaje' => 'required', 'string', 'max:30',
-           
+
         ]);
-
-
-           
-
-     
-
             $mensaje = new Mensaje();
-    
+
             $mensaje->Sala_id =  $request->sala_id;
             $mensaje->usuario_id =$request->usuario_id;
             $mensaje->tipoMensaje_id = null;
             $mensaje->mensaje = $request->mensaje;
-    
+
             $mensaje->save();
 
-             
-        }
-    
 
-        
+        }
+
+
+
 }

@@ -1,4 +1,4 @@
-import { Imagen } from './../../../models/imagenesSidebar';
+
 import { Component, OnInit, AfterViewInit, Input, OnDestroy, ViewChildren, QueryList } from '@angular/core';
 import { } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
@@ -12,16 +12,23 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AuthService } from './../../../services/auth.service';
 import { CatalogoServes } from '../../../services/Catalogos/catalogos.service';
+import { PusherService } from '../../../services/shared/pusher.service';
 
 import { ShowProducts } from './../../../models/ShowProducts';
 import { ImagenesProductos } from '../../../models/ImagenespProductos';
 import { Comentario } from './../../../models/comentario';
+import { Pregunta } from './../../../models/pregunta';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ShowAllCommentsComponent } from '../../partials/show-all-comments/show-all-comments.component';
 
 import { MatDialog } from '@angular/material/dialog';
+
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+import { environment } from '../../../../environments/environment';
+
 
 @Component({
   selector: 'app-mostrar-detalle-producto',
@@ -45,11 +52,14 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
   imagenes: ImagenesProductos[] = [];
   comentarios: Comentario[] = [];
   allcomentarios: Comentario[] = [];
+  preguntas: Pregunta[] = [];
 
   public loggedin: boolean;
   private id: number;
   public user: any;
   comments: any;
+
+  public showFormAnswer = false;
 
 
   @Input() producto: any;
@@ -65,7 +75,9 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
 
   // forms
   formSendCommensts: FormGroup;
-
+  formSendQuestion: FormGroup;
+  formSendReplayQuestion: FormGroup;
+  echo: Echo;
 
   public imagePreview: String;
 
@@ -75,7 +87,8 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     private notificacion: NotificationService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public pusherService: PusherService
 
   ) {
 
@@ -83,12 +96,32 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     const user = sessionStorage.getItem('userAuth');
     user ? this.user = JSON.parse(user) : this.user = 0;
 
+
+
     this.formSendCommensts = new FormGroup({
       ProductoId: new FormControl(1),
       UsuarioId: new FormControl(this.user.id),
       comments: new FormControl('', [
         Validators.required,
         Validators.max(50)
+      ]),
+    });
+
+    this.formSendQuestion = new FormGroup({
+      ProductoId: new FormControl(1),
+      usuario_id: new FormControl(this.user.id),
+      pregunta: new FormControl('', [
+        Validators.required,
+        Validators.max(30)
+      ]),
+    });
+
+    this.formSendReplayQuestion = new FormGroup({
+      ProductoId: new FormControl(1),
+      usuarioId: new FormControl(this.user.id),
+      answer: new FormControl('', [
+        Validators.required,
+        Validators.max(30)
       ]),
     });
   }
@@ -113,9 +146,6 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     });
   }
 
-
-
-
   ngOnInit() {
     // To get the value of the login
     this.authService.authStatus.subscribe((value) => (this.loggedin = value));
@@ -128,6 +158,10 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
       this.getProductoShow(this.id);
       this.getProductoColores(this.id);
     });
+
+    this.getQuestion();
+    // this.pusherService.connectPusherQuestionsChannel();
+    this.pusher();
   }
 
   ngAfterViewInit() { }
@@ -442,6 +476,88 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     });
   }
 
+  getQuestion() {
+    this.catalogoService.getQuestion()
+      .pipe(
+        takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
+      ).subscribe(
+        (res) => {
+          this.preguntas = res;
+
+
+        },
+        (err) => console.log(err)
+      );
+  }
+
+
+  saveQuestion() {
+    const form = this.formSendQuestion.value;
+
+    if (this.formSendQuestion.valid) {
+      if (this.loggedin) {
+        this.catalogoService.saveQuestion(form)
+          .pipe(
+            takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
+          ).subscribe(
+            (res) => {
+              this.notificacion.success(res['status']);
+              this.formSendQuestion.reset();
+              this.formSendQuestion.patchValue({
+                ProductoId: 1,
+                usuario_id: this.user.id,
+                pregunta: ''
+              });
+            },
+            (err) => console.log(err)
+          );
+      } else {
+        this.notificacion.warning('Debes loguerate para añadir productos');
+        this.onClear();
+      }
+    } else {
+      console.log();
+
+    }
+  }
+
+  trackByQuestions(pregunta: Pregunta): number {
+    return pregunta.id;
+  }
+
+  pusher() {
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    const pusher = new Pusher(
+      environment.PUSHER_API_KEY, {
+      cluster: environment.PUSHER_CLUSTER
+    });
+
+    const channel = pusher.subscribe('questions');
+    channel.bind('QuestionSent', (data) => {
+      console.log(data.question);
+      this.preguntas = [];
+      data.question.forEach(item => {
+
+        this.preguntas.push({
+          usuario_id: item.usuario_id,
+          pregunta_id: item.pregunta_id,
+          respuesta_id: item.respuesta_id,
+          pregunta: item.pregunta,
+          respuesta: item.respuesta,
+          nombre: item.nombre,
+          avatar: item.avatar,
+          created_at: item.created_at
+        });
+      });
+
+    });
+
+  }
+
+  saveAnswer() { }
+
   onClear() {
     this.formSendCommensts.reset();
     this.restartFormComments();
@@ -450,5 +566,6 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+
   }
 }

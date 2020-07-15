@@ -62,7 +62,15 @@ Route::get('imagenes-productos-destacados/{id?}', 'HomeController@imagenesProduc
 Route::get('testimonio-ventas', 'HomeController@testimonioVentas');
 Route::get('imagenes', 'HomeController@getImagenes');
 Route::get('catalogos/{id}', 'HomeController@getMarcas');
-//Route::get('catalogos/{catalogo}/{marca}/{id}','HomeController@getProductos');
+
+Route::group([
+    'middleware' => 'api',
+    ], function ($router) {
+    Route::get('catalogos/marca/show/preguntas/get-questions-answers', 'PreguntaController@fetchQuestions');
+    Route::post('catalogos/marca/show/preguntas', 'PreguntaController@sendQuestions');
+    Route::post('catalogos/marca/show/preguntas/{id}', 'PreguntaController@replayQuestions');
+});
+
 Route::get('catalogos/marca/{id}', 'HomeController@getProductos');
 Route::get('catalogos/marca/colores/{id}', 'HomeController@getColorsProducts');
 Route::get('catalogos/marca/show/{id}', 'catalogosController@showCatalogos');

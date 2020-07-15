@@ -1,5 +1,4 @@
 <div *ngFor="let producto of productos; first as isFirst; trackBy:trackByProducts">
-
   <div *ngIf="isFirst">
     <div class="row" style="height: 600px;">
       <div class="col-md-6">
@@ -65,13 +64,70 @@
           </mat-tab>
 
 
-          <mat-tab label="PREGUNTAS"> </mat-tab>
+          <mat-tab label="PREGUNTAS">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="panel-body">
+
+                  <cdk-virtual-scroll-viewport itemSize="50" class="question-viewport">
+                    <div *cdkVirtualFor="let pregunta of preguntas; trackBy:trackByQuestions" class="question-item">
+                      <mat-card class=" question-card">
+                        <mat-card-header>
+                          <img mat-card-avatar class="question-header-image" [src]="pregunta.avatar">
+                          <mat-card-title>{{pregunta.nombre}}</mat-card-title>
+                        </mat-card-header>
+
+                        <mat-card-content>
+                          <p>{{pregunta.pregunta}}</p>
+                          <span>{{pregunta.created_at | relativeTime}}</span>
+                        </mat-card-content>
+
+                        <mat-card-actions *ngIf="showFormAnswer">
+                          <mat-divider></mat-divider>
+                          <div class="replay-question">
+                            <form [formGroup]="formSendReplayQuestion" (ngSubmit)="saveAnswer()">
+                              <input type="hidden" formControlName="ProductoId">
+                              <mat-form-field class="replay-full-width">
+                                <textarea matInput formControlName="answer"></textarea>
+                              </mat-form-field>
+                              <div class="text-center">
+                                <button #formComments mat-raised-button id="btn-replay" color="primary"
+                                  [disabled]="formSendReplayQuestion.invalid">Responder</button>
+
+                              </div>
+                            </form>
+                          </div>
+                        </mat-card-actions>
+                      </mat-card>
+                    </div>
+                  </cdk-virtual-scroll-viewport>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-question">
+                  <form [formGroup]="formSendQuestion" (ngSubmit)="saveQuestion()">
+                    <mat-form-field class="question-full-width">
+                      <mat-label>Deja tu pregunta</mat-label>
+                      <textarea matInput placeholder="¿Que tal es el casco?" formControlName="pregunta"
+                        cdkTextareaAutosize></textarea>
+                    </mat-form-field>
+                    <div class="text-center">
+                      <button mat-raised-button id="btn-send" color="primary"
+                        [disabled]="formSendQuestion.invalid">Preguntar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+          </mat-tab>
           <mat-tab label="COMENTARIOS">
-
-
-
             <ng-template *ngIf="comentarios.length > 0; then commentsBtn; else showMessage"></ng-template>
-
             <div *ngFor="let comentario of comentarios; trackBy:trackByComments">
               <mat-card class="comments-card">
                 <mat-card-header>

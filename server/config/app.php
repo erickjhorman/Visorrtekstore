@@ -172,7 +172,7 @@ return [
          */
         app\Providers\AppServiceProvider::class,
         app\Providers\AuthServiceProvider::class,
-        // app\Providers\BroadcastServiceProvider::class,
+        app\Providers\BroadcastServiceProvider::class,
         app\Providers\EventServiceProvider::class,
         app\Providers\RouteServiceProvider::class,
 

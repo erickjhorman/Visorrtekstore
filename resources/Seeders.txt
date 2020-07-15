@@ -1,0 +1,2 @@
+php artisan tinker
+factory('app\Pregunta',5)->create();

@@ -22,12 +22,17 @@ body {
   max-height: 150px;
   margin-bottom: 8px;
 }
+.question-card{
+  margin: 15px 0 0 10px;
+  width: 600px;
+  max-height: 180px;
+  margin-bottom: 8px;
+}
 
-.comments-header-image{
+.comments-header-image, .comments-header-image{
   width: 50px;
   height: 50px;
 }
-
 
 .form-comments{
   min-width: 150px;
@@ -35,8 +40,24 @@ body {
   width: 100%;
 }
 
-.comments-full-width {
+.form-question{
+  max-width: 600px;
+  height: 150px;
   width: 100%;
+  position: relative;
+  top: 50px;
+}
+.comments-full-width,
+.question-full-width,
+.replay-full-width {
+  width: 100%;
+}
+.replay-question{
+  max-width: 600px;
+  height: 150px;
+  width: 100%;
+  position: relative;
+  bottom: 50px;
 }
 
 #btn-all-comments{
@@ -44,4 +65,33 @@ body {
   left: 285px;
   top: 328px;
   z-index: 2;
+}
+
+#btn-send{
+  position: relative;
+  bottom: 12px;
+  }
+
+#btn-replay{
+  position: relative;
+  left: 175px;
+  bottom: 125px;;
+}
+
+.panel-body{
+  height: 350px;
+  width: 650px;
+
+}
+
+/* Virtual Scrolling  **/
+.question-viewport {
+  margin-top: 4px;
+  height: 400px;
+  width: 660px;
+
+}
+
+.example-item {
+  height: 50px;
 }

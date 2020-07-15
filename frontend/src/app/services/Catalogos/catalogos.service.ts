@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // this module makes the petition HTTP TO ASK FOR INFO
 
 import { Comentario } from './../../models/comentario';
+import { Pregunta } from './../../models/pregunta';
 import { VentasDestacadas } from '../../models/ventasDestacadas';
 import { ShowProducts } from './../../models/ShowProducts';
 import { environment } from './../../../environments/environment';
@@ -103,6 +104,23 @@ export class CatalogoServes {
     return this.http.post(
       `${environment.API_URL}/catalogos/marca/show/comentario`,
       comentario,
+      {
+        headers: headers,
+      }
+    );
+  }
+
+  getQuestion(): Observable<Pregunta[]> {
+    return this.http.get<Pregunta[]>(
+      `${environment.API_URL}/catalogos/marca/show/preguntas/get-questions-answers`
+    );
+  }
+
+  saveQuestion(pregunta: Pregunta) {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    return this.http.post(
+      `${environment.API_URL}/catalogos/marca/show/preguntas`,
+      pregunta,
       {
         headers: headers,
       }
