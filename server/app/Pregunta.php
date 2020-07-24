@@ -1,7 +1,7 @@
 <?php
 
 namespace app;
-
+use app\Respuesta;
 use Illuminate\Database\Eloquent\Model;
 
 class Pregunta extends Model
@@ -18,7 +18,7 @@ class Pregunta extends Model
     public function respuestas()
     {
         return $this->belongsToMany(Respuesta::class)
-                        ->using('app\PreguntaRespuesta')
+                        ->using(PreguntaRespuesta::class)
                         ->as('pregunta_respuesta')
                         ->withTimestamps()
                         ->withPivot([
@@ -26,8 +26,8 @@ class Pregunta extends Model
                             'respuesta_id',
                             'pregunta_id',
                             'created_at',
-                            'updated_at']
-                        );
+                            'updated_at'
+                        ]);
 
     }
 }

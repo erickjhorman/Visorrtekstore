@@ -70,7 +70,7 @@
                 <div class="panel-body">
 
                   <cdk-virtual-scroll-viewport itemSize="50" class="question-viewport">
-                    <div *cdkVirtualFor="let pregunta of preguntas; trackBy:trackByQuestions" class="question-item">
+                    <div *ngFor="let pregunta of preguntas; trackBy:trackByQuestions" class="question-item">
                       <mat-card class=" question-card">
                         <mat-card-header>
                           <img mat-card-avatar class="question-header-image" [src]="pregunta.avatar">
@@ -80,9 +80,21 @@
                         <mat-card-content>
                           <p>{{pregunta.pregunta}}</p>
                           <span>{{pregunta.created_at | relativeTime}}</span>
+                          <br>
+                          <div *ngIf="pregunta.respuesta">
+                            <mat-divider></mat-divider>
+                            <br>
+
+                            <span class="mr-2 text-bold">
+                              <fa-icon [icon]="faComment" size="lg"></fa-icon>
+                            </span>
+                            <span style="color:#999;">{{pregunta.respuesta}}</span>
+                          </div>
+
+
                         </mat-card-content>
 
-                        <mat-card-actions *ngIf="showFormAnswer">
+                        <mat-card-actions *ngIf="loggedin && loggedinAdmin; else notShowQuestionform">
                           <mat-divider></mat-divider>
                           <div class="replay-question">
                             <form [formGroup]="formSendReplayQuestion" (ngSubmit)="saveAnswer()">
@@ -106,21 +118,24 @@
                 </div>
               </div>
             </div>
+
             <div class="row">
               <div class="col-md-12">
-                <div class="form-question">
-                  <form [formGroup]="formSendQuestion" (ngSubmit)="saveQuestion()">
-                    <mat-form-field class="question-full-width">
-                      <mat-label>Deja tu pregunta</mat-label>
-                      <textarea matInput placeholder="¿Que tal es el casco?" formControlName="pregunta"
-                        cdkTextareaAutosize></textarea>
-                    </mat-form-field>
-                    <div class="text-center">
-                      <button mat-raised-button id="btn-send" color="primary"
-                        [disabled]="formSendQuestion.invalid">Preguntar</button>
-                    </div>
-                  </form>
-                </div>
+                <ng-template #notShowQuestionform>
+                  <div class="form-question">
+                    <form [formGroup]="formSendQuestion" (ngSubmit)="saveQuestion()">
+                      <mat-form-field class="question-full-width">
+                        <mat-label>Deja tu pregunta</mat-label>
+                        <textarea matInput placeholder="¿Que tal es el casco?" formControlName="pregunta"
+                          cdkTextareaAutosize></textarea>
+                      </mat-form-field>
+                      <div class="text-center">
+                        <button mat-raised-button id="btn-send" color="primary"
+                          [disabled]="formSendQuestion.invalid">Preguntar</button>
+                      </div>
+                    </form>
+                  </div>
+                </ng-template>
               </div>
             </div>
 
@@ -178,6 +193,7 @@
     <div class="row ">
       <div class="col-md-12">
         <app-footer-home></app-footer-home>
+
 
       </div>
     </div>

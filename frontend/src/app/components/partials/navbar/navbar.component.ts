@@ -7,14 +7,13 @@ import { SharedService } from '../../../services/shared/shared.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { MatMenu } from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class NavbarComponent implements OnInit {
   public loggedin: boolean;
   listadoCompras: string[] = [];
   producto: string;
@@ -44,11 +43,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   }
 
-
-  ngAfterViewInit(): void {
-
-  }
-
   ngOnInit() {
     // o get the information from  a sessionStorage
     const user = sessionStorage.getItem('userAuth');
@@ -58,14 +52,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.Auth.authStatus.subscribe(value => (this.loggedin = value));
     if (this.loggedin != null) {
       this.getClientes(this.user.id);
-      console.log('No null' + this.loggedin);
-
 
     }
 
     this.Auth.typeUserStatus.subscribe(value => (this.loggedinAdmin = value));
-    // console.log("Login " + this.loggedin);
-    // console.log("Login admin" + this.loggedinAdmin);
+    console.log('Login ' + this.loggedin);
+    console.log('Login admin' + this.loggedinAdmin);
   }
 
 
@@ -124,9 +116,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.sharedService.getValorMostraCatalogoSidebar(false);
     }, 1000);
-
-
-
   }
 
   toogleShowUserSidenav(event: MouseEvent) {

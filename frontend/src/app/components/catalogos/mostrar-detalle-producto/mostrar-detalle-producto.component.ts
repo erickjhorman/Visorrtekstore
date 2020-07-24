@@ -1,6 +1,13 @@
-
-import { Component, OnInit, AfterViewInit, Input, OnDestroy, ViewChildren, QueryList } from '@angular/core';
-import { } from '@angular/material/dialog';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  Input,
+  OnDestroy,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
+import {} from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { SharedService } from '../../../services/shared/shared.service';
 
@@ -29,14 +36,15 @@ import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 import { environment } from '../../../../environments/environment';
 
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-mostrar-detalle-producto',
   templateUrl: './mostrar-detalle-producto.component.html',
   styleUrls: ['./mostrar-detalle-producto.component.css'],
 })
-export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, OnDestroy {
-
+export class MostrarDetalleProductoComponent
+  implements AfterViewInit, OnInit, OnDestroy {
   panelOpenState = false;
   nombre: any;
   productoAdd: any;
@@ -55,19 +63,21 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
   preguntas: Pregunta[] = [];
 
   public loggedin: boolean;
+  public loggedinAdmin: boolean;
   private id: number;
   public user: any;
   comments: any;
 
   public showFormAnswer = false;
 
+  // Icons
+  faComment = faComment;
 
   @Input() producto: any;
   addproducto: any;
 
   @Input()
   required: boolean;
-
 
   @ViewChildren('formComments') formComments: QueryList<HTMLElement>;
   // Variable to unsubscribe my subcription
@@ -89,40 +99,27 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     private route: ActivatedRoute,
     public dialog: MatDialog,
     public pusherService: PusherService
-
   ) {
-
     // To get the information from  a sessionStorage
     const user = sessionStorage.getItem('userAuth');
-    user ? this.user = JSON.parse(user) : this.user = 0;
-
-
+    user ? (this.user = JSON.parse(user)) : (this.user = 0);
 
     this.formSendCommensts = new FormGroup({
       ProductoId: new FormControl(1),
       UsuarioId: new FormControl(this.user.id),
-      comments: new FormControl('', [
-        Validators.required,
-        Validators.max(50)
-      ]),
+      comments: new FormControl('', [Validators.required, Validators.max(50)]),
     });
 
     this.formSendQuestion = new FormGroup({
       ProductoId: new FormControl(1),
       usuario_id: new FormControl(this.user.id),
-      pregunta: new FormControl('', [
-        Validators.required,
-        Validators.max(30)
-      ]),
+      pregunta: new FormControl('', [Validators.required, Validators.max(30)]),
     });
 
     this.formSendReplayQuestion = new FormGroup({
       ProductoId: new FormControl(1),
       usuarioId: new FormControl(this.user.id),
-      answer: new FormControl('', [
-        Validators.required,
-        Validators.max(30)
-      ]),
+      answer: new FormControl('', [Validators.required, Validators.max(30)]),
     });
   }
 
@@ -151,6 +148,14 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     this.authService.authStatus.subscribe((value) => (this.loggedin = value));
     console.log(this.loggedin);
 
+    // get the value to know if the user is an admin or not
+    this.authService.typeUserStatus.subscribe(
+      (value) => (this.loggedinAdmin = value)
+    );
+
+    console.log('Login ' + this.loggedin);
+    console.log('Login admin' + this.loggedinAdmin);
+
     // get the value to disable the button ver in this html
     this.route.paramMap.subscribe((params) => {
       this.id = +params.get('id');
@@ -164,7 +169,7 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     this.pusher();
   }
 
-  ngAfterViewInit() { }
+  ngAfterViewInit() {}
 
   getProductoShow(id: number) {
     this._sharedService.EmitIdproducto(id);
@@ -232,9 +237,7 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
       }
       // To turn  this code in a Map
       for (let k = 0; k < comentarios.length; k++) {
-
         if (comentarios[k]['color_id'] === 3) {
-
           const id = comentarios[k]['id'];
           const comentario = comentarios[k]['comentario'];
           const avatar = comentarios[k]['avatar'];
@@ -246,24 +249,22 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
             comentario: comentario,
             nombre: nombre,
             avatar: avatar,
-            createdAt: createdAt
+            createdAt: createdAt,
           };
 
-
-          this.allcomentarios.push(obj);  /* To store all the comments to show when the user clicks on the showAllComments button  */
+          this.allcomentarios.push(
+            obj
+          ); /* To store all the comments to show when the user clicks on the showAllComments button  */
           this.comentarios.push(obj);
           this.comentarios.splice(2);
-
         }
       }
-
     }
   }
 
   trackByImages(imagesProducts: ImagenesProductos): number {
     return imagesProducts.id_producto_imagenes;
   }
-
 
   onChangeColor($event: MatRadioChange) {
     this.productos = [];
@@ -277,17 +278,17 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
       return productos.color_id === colorId;
     });
 
-
     this.productos = filtrado;
 
-    const id = this.productos.map(producto => producto.id_description_product);
+    const id = this.productos.map(
+      (producto) => producto.id_description_product
+    );
     const idDescription = id[0];
     this.imagenes = [];
 
     this.filterImages(this.productos, colorId);
     this.filterCommentsToShow(this.productos, colorId);
     this.setIdDescriptionToForm(idDescription);
-
   }
 
   filterImages(productos: Array<ShowProducts>, color: number) {
@@ -322,8 +323,6 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     for (let i = 0; i < producto; i++) {
       const comentarios = this.productos[i].comentarios;
 
-
-
       for (let j = 0; j < comentarios.length; j++) {
         const comentarioColorId = comentarios[j]['color_id'];
         const avatar = comentarios[j]['avatar'];
@@ -339,12 +338,11 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
             comentario: comentario,
             nombre: nombre,
             avatar: avatar,
-            createdAt: createdAt
+            createdAt: createdAt,
           };
           this.allcomentarios.push(obj);
           this.comentarios.push(obj);
           this.comentarios.splice(2);
-
         }
       }
     }
@@ -367,10 +365,12 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
   }
 
   getProductoColores(id: number) {
-    this.catalogoService.getColoresProductos(id)
+    this.catalogoService
+      .getColoresProductos(id)
       .pipe(
         takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
-      ).subscribe(
+      )
+      .subscribe(
         (res) => {
           this.coloresProductos = res;
           console.log(this.coloresProductos);
@@ -424,12 +424,13 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     console.log('save', this.formSendCommensts.value);
     const form = this.formSendCommensts;
     if (form.valid) {
-
       if (this.loggedin) {
-        this.catalogoService.saveComentario(form.value)
+        this.catalogoService
+          .saveComentario(form.value)
           .pipe(
             takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
-          ).subscribe(
+          )
+          .subscribe(
             (res) => {
               this.comments = res;
               this.notificacion.success(this.comments.mensaje);
@@ -444,16 +445,14 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
         this.onClear();
       }
     }
-
   }
 
   getCommentsAfterSaveOne() {
-    this.catalogoService.getComentario()
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      ).subscribe(
+    this.catalogoService
+      .getComentario()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
         (res) => {
-
           this.comentarios = res.filter((comentario) => {
             return comentario.descriptionProducto_id === this.idDescription;
           });
@@ -461,7 +460,6 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
         },
         (err) => console.log(err)
       );
-
   }
 
   trackByComments(comentario: Comentario): number {
@@ -472,41 +470,42 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     this.dialog.open(ShowAllCommentsComponent, {
       height: '600px',
       width: '600px',
-      data: this.allcomentarios
+      data: this.allcomentarios,
     });
   }
 
   getQuestion() {
-    this.catalogoService.getQuestion()
+    this.catalogoService
+      .getQuestion()
       .pipe(
         takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
-      ).subscribe(
+      )
+      .subscribe(
         (res) => {
           this.preguntas = res;
-
-
         },
         (err) => console.log(err)
       );
   }
-
 
   saveQuestion() {
     const form = this.formSendQuestion.value;
 
     if (this.formSendQuestion.valid) {
       if (this.loggedin) {
-        this.catalogoService.saveQuestion(form)
+        this.catalogoService
+          .saveQuestion(form)
           .pipe(
             takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
-          ).subscribe(
+          )
+          .subscribe(
             (res) => {
               this.notificacion.success(res['status']);
               this.formSendQuestion.reset();
               this.formSendQuestion.patchValue({
                 ProductoId: 1,
                 usuario_id: this.user.id,
-                pregunta: ''
+                pregunta: '',
               });
             },
             (err) => console.log(err)
@@ -517,7 +516,6 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
       }
     } else {
       console.log();
-
     }
   }
 
@@ -529,17 +527,15 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    const pusher = new Pusher(
-      environment.PUSHER_API_KEY, {
-      cluster: environment.PUSHER_CLUSTER
+    const pusher = new Pusher(environment.PUSHER_API_KEY, {
+      cluster: environment.PUSHER_CLUSTER,
     });
 
     const channel = pusher.subscribe('questions');
     channel.bind('QuestionSent', (data) => {
       console.log(data.question);
       this.preguntas = [];
-      data.question.forEach(item => {
-
+      data.question.forEach((item) => {
         this.preguntas.push({
           usuario_id: item.usuario_id,
           pregunta_id: item.pregunta_id,
@@ -548,15 +544,41 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
           respuesta: item.respuesta,
           nombre: item.nombre,
           avatar: item.avatar,
-          created_at: item.created_at
+          created_at: item.created_at,
         });
       });
-
     });
-
   }
 
-  saveAnswer() { }
+  saveAnswer() {
+    const form = this.formSendReplayQuestion.value;
+
+    if (this.formSendReplayQuestion.valid) {
+      if (this.loggedin) {
+        this.catalogoService
+          .saveQuestionAnswer(form)
+          .pipe(
+            takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
+          )
+          .subscribe(
+            (res) => {
+              // this.notificacion.success(res['status']);
+              // this.formSendQuestion.reset();
+              // this.formSendQuestion.patchValue({
+              //   ProductoId: 1,
+              //   usuario_id: this.user.id,
+              //   pregunta: '',
+              // });
+            },
+            (err) => console.log(err)
+          );
+      } else {
+        this.notificacion.warning('Debes loguerate para añadir productos');
+        // this.onClear();
+      }
+    } else {
+    }
+  }
 
   onClear() {
     this.formSendCommensts.reset();
@@ -566,6 +588,5 @@ export class MostrarDetalleProductoComponent implements AfterViewInit, OnInit, O
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-
   }
 }

@@ -68,7 +68,7 @@ Route::group([
     ], function ($router) {
     Route::get('catalogos/marca/show/preguntas/get-questions-answers', 'PreguntaController@fetchQuestions');
     Route::post('catalogos/marca/show/preguntas', 'PreguntaController@sendQuestions');
-    Route::post('catalogos/marca/show/preguntas/{id}', 'PreguntaController@replayQuestions');
+    Route::post('catalogos/marca/show/preguntas/answers', 'PreguntaController@replayQuestions');
 });
 
 Route::get('catalogos/marca/{id}', 'HomeController@getProductos');

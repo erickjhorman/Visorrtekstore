@@ -8,7 +8,7 @@ import { ShowProducts } from './../../models/ShowProducts';
 import { environment } from './../../../environments/environment';
 
 import { Observable } from 'rxjs';
-
+import { QuestiosAnswers } from '../../models/QuestionsAnswers';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class CatalogoServes {
   // API_URIProductos = 'http://localhost:8000/api/catalogos/marca';
   nombre: string = undefined;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // get() {
   //   return this.http.get(this.API_URI);
@@ -65,8 +65,6 @@ export class CatalogoServes {
     return this.http.get(`${environment.API_URL}/user/transportadora`);
   }
 
-
-
   getDepartamentos() {
     return this.http.get(`${environment.API_URL}/user/departamentos`);
   }
@@ -75,13 +73,9 @@ export class CatalogoServes {
     return this.http.get(`${environment.API_URL}/departamentos/ciudades/${id}`);
   }
 
-
-
   getCliente(id: number) {
     return this.http.get(`${environment.API_URL}/datos-personales/${id}`);
   }
-
-
 
   updateCliente(id: number, updatedCliente) {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -91,7 +85,6 @@ export class CatalogoServes {
       { headers: headers }
     );
   }
-
 
   getComentario(): Observable<Comentario[]> {
     return this.http.get<Comentario[]>(
@@ -121,6 +114,17 @@ export class CatalogoServes {
     return this.http.post(
       `${environment.API_URL}/catalogos/marca/show/preguntas`,
       pregunta,
+      {
+        headers: headers,
+      }
+    );
+  }
+
+  saveQuestionAnswer(questiosnAnswers: QuestiosAnswers) {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    return this.http.post(
+      `${environment.API_URL}/catalogos/marca/show/preguntas/answers`,
+      questiosnAnswers,
       {
         headers: headers,
       }

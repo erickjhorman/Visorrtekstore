@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +17,7 @@ export class TokenService {
 
   typeUser: any;
 
-  constructor() {}
+  constructor() { }
 
   handle(token) {
     this.set(token);
@@ -86,13 +86,12 @@ export class TokenService {
   // }
 
   loggedIn() {
-    if  (localStorage.getItem('token') != null) { return true; }
+    if (localStorage.getItem('token') != null) { return true; }
   }
 
   isAdmin() {
-    const  user = this.getUser();
-
-    if  (user === '1') { return true; }
+    const user = this.getUser();
+    if (user === '1') { return true; }
   }
 
   // isAdmin() {

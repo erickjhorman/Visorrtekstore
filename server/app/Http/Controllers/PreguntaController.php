@@ -4,9 +4,12 @@ namespace app\Http\Controllers;
 
 use Illuminate\Http\Request;
 use app\http\Requests\StoreQuestionProduct;
+use app\http\Requests\StoreAnswerQuestionProduct;
 use app\Pregunta;
 use app\PreguntaRespuesta;
+use app\Respuesta;
 use app\Events\QuestionSent;
+use app\Events\QuestionAnswerSent;
 use DB;
 class PreguntaController extends Controller
 {
@@ -15,7 +18,7 @@ class PreguntaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public $response;
+
 
      public function index()
     {
@@ -29,16 +32,14 @@ class PreguntaController extends Controller
  */
     public function fetchQuestions()
    {
-     return  $this->response = DB::table('pregunta_respuesta')
+     return DB::table('pregunta_respuesta')
       ->LeftJoin('preguntas', 'preguntas.id', '=', 'pregunta_respuesta.pregunta_id')
       ->LeftJoin('respuestas', 'respuestas.id', '=', 'pregunta_respuesta.respuesta_id')
       ->LeftJoin('users', 'users.id', '=', 'preguntas.usuario_id')
       ->LeftJoin('clientes', 'clientes.usuario_id', '=', 'users.id')
-      ->select('pregunta_respuesta.*','preguntas.pregunta','respuestas.respuesta','clientes.avatar','clientes.nombre','users.id')
+      ->select('pregunta_respuesta.*','preguntas.pregunta','respuestas.respuesta','respuestas.created_at','clientes.avatar','clientes.nombre','users.id')
       ->get();
-
-
-   }
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -55,18 +56,8 @@ class PreguntaController extends Controller
         //$Pregunta = new Pregunta(['pregunta' => $validated['pregunta']]);
         $pregunta->respuestas()->attach(0, ['pregunta_id' => $pregunta['id']]);
 
-        // To get valid information of the user to attach with the event
-      $response =  DB::table('pregunta_respuesta')
-      ->LeftJoin('preguntas', 'preguntas.id', '=', 'pregunta_respuesta.pregunta_id')
-      ->LeftJoin('respuestas', 'respuestas.id', '=', 'pregunta_respuesta.respuesta_id')
-      ->LeftJoin('users', 'users.id', '=', 'preguntas.usuario_id')
-      ->LeftJoin('clientes', 'clientes.usuario_id', '=', 'users.id')
-      ->select('pregunta_respuesta.*','preguntas.pregunta','respuestas.respuesta','clientes.avatar','clientes.nombre','clientes.usuario_id')
-      ->get();
-
-
-       // To send an event to the server
-          broadcast(new QuestionSent($response))->toOthers();
+        // To send an event to the server
+        broadcast(new QuestionSent($this->fetchQuestions()))->toOthers();
 
          return ['status' => 'Message Sent!'];
 
@@ -82,6 +73,37 @@ class PreguntaController extends Controller
 
         //return response()->json(['id' => $Pregunta->id]);
     }
+
+    public function replayQuestions(StoreAnswerQuestionProduct $request){
+
+
+
+          $validated = $request->validated();
+          $idPregunta = $validated['pregunta_id'];
+
+          $response = Respuesta::create($validated);
+
+
+          $idRespuesta =  $response->id;
+
+          $attributes = [
+            'respuesta_id' => $idRespuesta,
+            'updated_at' => now()
+        ];
+
+        // update pregunta_respuesta table
+         DB::table('pregunta_respuesta')
+              ->where('pregunta_id', $idPregunta)
+              ->update($attributes);
+
+         // To send an event to the server
+         broadcast(new QuestionAnswerSent($this->fetchQuestions()))->toOthers();
+
+
+
+
+    }
+
 
     /**
      * Display the specified resource.

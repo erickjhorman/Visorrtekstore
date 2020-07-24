@@ -19,7 +19,7 @@ class Respuesta extends Model
     public function preguntas(){
 
         return $this->belongsToMany(Pregunta::class)
-                          ->using('app\PreguntaRespuesta')
+                          ->using(PreguntaRespuesta::class)
                           ->as('pregunta_respuesta')
                           ->withTimestamps()
                           ->withPivot([
