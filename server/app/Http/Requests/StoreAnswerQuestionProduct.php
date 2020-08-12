@@ -24,8 +24,9 @@ class StoreAnswerQuestionProduct extends FormRequest
     public function rules()
     {
         return [
-            'usuario_id' => 'required', 'integer',
-            'pregunta_id' => 'required', 'integer',
+            'productoId' => 'required', 'integer',
+            'usuarioId' => 'required', 'integer',
+            'preguntaId' => 'required', 'integer',
             'respuesta' => 'required', 'string', 'max:30',
          ];
     }

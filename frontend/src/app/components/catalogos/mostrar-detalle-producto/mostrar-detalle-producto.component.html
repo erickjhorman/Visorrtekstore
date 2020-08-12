@@ -8,10 +8,11 @@
         <mat-tab-group dynamicHeight>
           <mat-tab label="DESCRIPCIÓN">
 
-            <form novalidate (ngSubmit)="addPseleccionado(carroCompraForm)" #carroCompraForm="ngForm">
+            <form novalidate (ngSubmit)="addSelectedProduct(carroCompraForm)" #carroCompraForm="ngForm">
 
               <mat-card class="mb-4">
                 <mat-card-title>{{producto.Producto}}</mat-card-title>
+
                 <input name="id" type="hidden" [(ngModel)]="producto.Producto_id">
                 <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
                 <mat-card-content>
@@ -89,53 +90,95 @@
                               <fa-icon [icon]="faComment" size="lg"></fa-icon>
                             </span>
                             <span style="color:#999;">{{pregunta.respuesta}}</span>
+
                           </div>
 
 
                         </mat-card-content>
 
-                        <mat-card-actions *ngIf="loggedin && loggedinAdmin; else notShowQuestionform">
-                          <mat-divider></mat-divider>
+                        <mat-card-content *ngIf="loggedin && loggedinAdmin">
+
+                          <app-question-answers [question]="pregunta"></app-question-answers>
+                        </mat-card-content>
+                      </mat-card>
+                    </div>
+
+                    <!-- <div *ngFor="let pregunta of preguntas; trackBy:trackByQuestions" class="question-item">
+                      <mat-card class=" question-card">
+                        <mat-card-header>
+                          <img mat-card-avatar class="question-header-image" [src]="pregunta.avatar">
+                          <mat-card-title>{{pregunta.nombre}}</mat-card-title>
+                        </mat-card-header>
+
+                        <mat-card-content>
+                          <p>{{pregunta.pregunta}}</p>
+                          <span>{{pregunta.created_at | relativeTime}}</span>
+                          <br>
+                          <div *ngIf="pregunta.respuesta">
+                            <mat-divider></mat-divider>
+                            <br>
+
+                            <span class="mr-2 text-bold">
+                              <fa-icon [icon]="faComment" size="lg"></fa-icon>
+                            </span>
+                            <span style="color:#999;">{{pregunta.respuesta}}</span>
+
+                          </div>
+
+
+                        </mat-card-content>
+                        <mat-card-content *ngIf="loggedin && loggedinAdmin">
                           <div class="replay-question">
                             <form [formGroup]="formSendReplayQuestion" (ngSubmit)="saveAnswer()">
-                              <input type="hidden" formControlName="ProductoId">
+                              <ng-container formArrayName="replies"
+                                *ngFor="let c of repliesControl.controls; let i = index ">
+                                <ng-container [formGroupName]="i">
+
+                                  <mat-form-field class="replay-full-width">
+                                    <textarea matInput placeholder="Escribe tu respuesta"
+                                      formControlName="respuesta"></textarea>
+                                  </mat-form-field>
+                                </ng-container>
+                              </ng-container>
+
+                              <input matInput type="text" formControlName="productoId" [value]="pregunta.pregunta_id">
+                              <input matInput type="text" formControlName="preguntaId" [value]="pregunta.pregunta_id">
+
                               <mat-form-field class="replay-full-width">
-                                <textarea matInput formControlName="answer"></textarea>
+                                <textarea matInput formControlName="respuesta"></textarea>
                               </mat-form-field>
                               <div class="text-center">
                                 <button #formComments mat-raised-button id="btn-replay" color="primary"
                                   [disabled]="formSendReplayQuestion.invalid">Responder</button>
-
                               </div>
                             </form>
                           </div>
-                        </mat-card-actions>
+                        </mat-card-content>
                       </mat-card>
-                    </div>
+                    </div> -->
+
                   </cdk-virtual-scroll-viewport>
-
-
                 </div>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-12">
-                <ng-template #notShowQuestionform>
-                  <div class="form-question">
-                    <form [formGroup]="formSendQuestion" (ngSubmit)="saveQuestion()">
-                      <mat-form-field class="question-full-width">
-                        <mat-label>Deja tu pregunta</mat-label>
-                        <textarea matInput placeholder="¿Que tal es el casco?" formControlName="pregunta"
-                          cdkTextareaAutosize></textarea>
-                      </mat-form-field>
-                      <div class="text-center">
-                        <button mat-raised-button id="btn-send" color="primary"
-                          [disabled]="formSendQuestion.invalid">Preguntar</button>
-                      </div>
-                    </form>
-                  </div>
-                </ng-template>
+
+                <div class="form-question" *ngIf="loggedin && !loggedinAdmin">
+                  <form [formGroup]="formSendQuestion" (ngSubmit)="saveQuestion()">
+                    <mat-form-field class="question-full-width">
+                      <mat-label>Deja tu pregunta</mat-label>
+                      <textarea matInput placeholder="¿Que tal es el casco?" formControlName="pregunta"
+                        cdkTextareaAutosize></textarea>
+                    </mat-form-field>
+                    <div class="text-center">
+                      <button mat-raised-button id="btn-send" color="primary"
+                        [disabled]="formSendQuestion.invalid">Preguntar</button>
+                    </div>
+                  </form>
+                </div>
+
               </div>
             </div>
 

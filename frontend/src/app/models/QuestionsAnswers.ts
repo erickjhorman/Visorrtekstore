@@ -1,5 +1,8 @@
 export interface QuestiosAnswers {
-  id: string;
-  idPregunta: string;
-  idRespuesta: string;
+  id?: string;
+  UsuarioId: string;
+  productId?: string;
+  pregunta_id: number;
+  idRespuesta?: string;
+  respuesta?: String;
 }

@@ -1,0 +1,9 @@
+#btn-replay {
+  position: absolute;
+  right: 45px;
+  bottom: 120px;
+}
+
+.replay-full-width {
+  width: 100%;
+}

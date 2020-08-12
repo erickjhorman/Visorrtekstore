@@ -67,7 +67,7 @@ Route::group([
     'middleware' => 'api',
     ], function ($router) {
     Route::get('catalogos/marca/show/preguntas/get-questions-answers', 'PreguntaController@fetchQuestions');
-    Route::post('catalogos/marca/show/preguntas', 'PreguntaController@sendQuestions');
+    Route::post('catalogos/marca/show/preguntas', 'PreguntaController@saveQuestions');
     Route::post('catalogos/marca/show/preguntas/answers', 'PreguntaController@replayQuestions');
 });
 

@@ -51,6 +51,7 @@ import { MainSideBarComponent } from './components/partials/main-side-bar/main-s
 import { SideNavCatalogosComponent } from '././components/catalogos/side-nav-catalogos/side-nav-catalogos.component';
 import { ShowGalleryImageComponent } from './components/partials/show-gallery-image/show-gallery-image.component';
 import { ShowAllCommentsComponent } from './components/partials/show-all-comments/show-all-comments.component';
+import { QuestionAnswersComponent } from './components/catalogos/question-answers/question-answers.component';
 
 // Material
 import { MateriaAngularCss } from '../app/material.module';
@@ -110,7 +111,8 @@ import { RelativeTimePipe } from './pipes/relative-time.pipe';
     SideNavCatalogosComponent,
     ShowGalleryImageComponent,
     RelativeTimePipe,
-    ShowAllCommentsComponent
+    ShowAllCommentsComponent,
+    QuestionAnswersComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,7 +124,6 @@ import { RelativeTimePipe } from './pipes/relative-time.pipe';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-
   ],
   providers: [
     LoginService,
@@ -139,7 +140,7 @@ import { RelativeTimePipe } from './pipes/relative-time.pipe';
     FormTransportadoraComponent,
     FormDireccioneUsuarioShowComponent,
     ShowGalleryImageComponent,
-    ShowAllCommentsComponent
+    ShowAllCommentsComponent,
   ],
 })
-export class AppModule { }
+export class AppModule {}

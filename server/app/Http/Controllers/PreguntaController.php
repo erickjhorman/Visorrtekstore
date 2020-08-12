@@ -32,14 +32,24 @@ class PreguntaController extends Controller
  */
     public function fetchQuestions()
    {
-     return DB::table('pregunta_respuesta')
-      ->LeftJoin('preguntas', 'preguntas.id', '=', 'pregunta_respuesta.pregunta_id')
-      ->LeftJoin('respuestas', 'respuestas.id', '=', 'pregunta_respuesta.respuesta_id')
-      ->LeftJoin('users', 'users.id', '=', 'preguntas.usuario_id')
-      ->LeftJoin('clientes', 'clientes.usuario_id', '=', 'users.id')
-      ->select('pregunta_respuesta.*','preguntas.pregunta','respuestas.respuesta','respuestas.created_at','clientes.avatar','clientes.nombre','users.id')
-      ->get();
-     }
+
+
+   return   DB::transaction(function () {
+
+     $result =  DB::table('pregunta_respuesta')
+        ->LeftJoin('preguntas', 'preguntas.id', '=', 'pregunta_respuesta.pregunta_id')
+        ->LeftJoin('respuestas', 'respuestas.id', '=', 'pregunta_respuesta.respuesta_id')
+        ->LeftJoin('users', 'users.id', '=', 'preguntas.usuario_id')
+        ->LeftJoin('clientes', 'clientes.usuario_id', '=', 'users.id')
+        ->where('respuesta_id',0)
+        ->select('pregunta_respuesta.*','preguntas.pregunta','respuestas.respuesta','respuestas.created_at','clientes.avatar','clientes.nombre','users.id','pregunta_respuesta.created_at')
+        ->latest('pregunta_respuesta.created_at')
+        ->get();
+
+        return  $result;
+
+     });
+}
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +57,7 @@ class PreguntaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function sendQuestions(StoreQuestionProduct $request)
+    public function saveQuestions(StoreQuestionProduct $request)
     {
         //return $request->all();
         $validated = $request->validated();
@@ -79,13 +89,14 @@ class PreguntaController extends Controller
 
 
           $validated = $request->validated();
-          $idPregunta = $validated['pregunta_id'];
+          $idPregunta = $validated['preguntaId'];
 
           $response = Respuesta::create($validated);
 
 
           $idRespuesta =  $response->id;
 
+          // These are the atributes to update
           $attributes = [
             'respuesta_id' => $idRespuesta,
             'updated_at' => now()

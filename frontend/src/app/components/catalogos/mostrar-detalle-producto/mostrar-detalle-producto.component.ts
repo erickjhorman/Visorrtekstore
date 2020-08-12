@@ -31,11 +31,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ShowAllCommentsComponent } from '../../partials/show-all-comments/show-all-comments.component';
 
 import { MatDialog } from '@angular/material/dialog';
-
-import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
-import { environment } from '../../../../environments/environment';
-
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -68,6 +64,9 @@ export class MostrarDetalleProductoComponent
   public user: any;
   comments: any;
 
+  pusher: Pusher;
+  channel: Pusher;
+
   public showFormAnswer = false;
 
   // Icons
@@ -87,7 +86,6 @@ export class MostrarDetalleProductoComponent
   formSendCommensts: FormGroup;
   formSendQuestion: FormGroup;
   formSendReplayQuestion: FormGroup;
-  echo: Echo;
 
   public imagePreview: String;
 
@@ -117,9 +115,10 @@ export class MostrarDetalleProductoComponent
     });
 
     this.formSendReplayQuestion = new FormGroup({
-      ProductoId: new FormControl(1),
+      productoId: new FormControl(this.user.id),
       usuarioId: new FormControl(this.user.id),
-      answer: new FormControl('', [Validators.required, Validators.max(30)]),
+      preguntaId: new FormControl(''),
+      respuesta: new FormControl(''),
     });
   }
 
@@ -153,9 +152,6 @@ export class MostrarDetalleProductoComponent
       (value) => (this.loggedinAdmin = value)
     );
 
-    console.log('Login ' + this.loggedin);
-    console.log('Login admin' + this.loggedinAdmin);
-
     // get the value to disable the button ver in this html
     this.route.paramMap.subscribe((params) => {
       this.id = +params.get('id');
@@ -165,8 +161,9 @@ export class MostrarDetalleProductoComponent
     });
 
     this.getQuestion();
-    // this.pusherService.connectPusherQuestionsChannel();
-    this.pusher();
+
+    this.pusher = this.pusherService.connectToPusher();
+    this.connectToQuestionChannel();
   }
 
   ngAfterViewInit() {}
@@ -177,7 +174,7 @@ export class MostrarDetalleProductoComponent
     this.catalogoService
       .getProducto(id)
       .pipe(
-        takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
+        takeUntil(this.unsubscribe$) // unsubscribe to prevent memory lSeak
       )
       .subscribe(
         (productos) => {
@@ -213,12 +210,10 @@ export class MostrarDetalleProductoComponent
     const producto = productos.length;
 
     for (let i = 0; i < producto; i++) {
-      const idProducto = productos[i]['id_producto'];
+      // const idProducto = productos[i]['id_producto'];
       const imagenes = this.productos[i].imagenes;
       this.allImages = this.productos[i].imagenes;
       const comentarios = this.productos[i].comentarios;
-
-      console.log('todos los comentarios', this.allcomentarios);
 
       for (let j = 0; j < imagenes.length; j++) {
         const imagenColorId = imagenes[j]['color_id'];
@@ -379,33 +374,25 @@ export class MostrarDetalleProductoComponent
       );
   }
 
-  addPseleccionado(form: NgForm) {
+  addSelectedProduct(form: NgForm) {
     console.log(form.value);
 
     if (form.valid) {
-      console.log('Valid');
-
       if (this.loggedin) {
         this._sharedService.idProductosCatalogos.subscribe((id) => {
           this.idProduCata = id;
           console.log(this.idProduCata);
         });
 
-        // const inputTag = document.getElementsByName('idproducto') as HTMLInputElement;
         const id_producto = (<HTMLScriptElement[]>(
           (<any>document.getElementsByName('idproducto'))
         ))[0];
 
-        // const value = inputTag.value;
-
         this.addproducto = form;
         this._sharedService.getProductoSeleccionado(this.addproducto);
-        console.log('detalle producto' + this.addproducto);
+
         this._sharedService.sharingData.emit(this.addproducto);
         this.notificacion.success('Añadiste un producto');
-
-        console.log(this.idProduCata);
-        console.log(id_producto);
 
         this._sharedService.getDeshabilitarBtnVer(true);
       } else {
@@ -416,12 +403,11 @@ export class MostrarDetalleProductoComponent
 
   enviarVariable(producto: any) {
     this._sharedService.getProductoSeleccionado(producto);
-    console.log('variable enviada producto');
   }
 
   saveComments() {
     // this.renderer.listen('document', 'click', () => console.log('click'));
-    console.log('save', this.formSendCommensts.value);
+
     const form = this.formSendCommensts;
     if (form.valid) {
       if (this.loggedin) {
@@ -483,10 +469,44 @@ export class MostrarDetalleProductoComponent
       .subscribe(
         (res) => {
           this.preguntas = res;
+          console.log(this.preguntas);
         },
         (err) => console.log(err)
       );
   }
+
+  // getQuestion() {
+  //   this.catalogoService
+  //     .getQuestion()
+  //     .pipe(
+  //       takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
+  //     )
+  //     .subscribe(
+  //       (res) => {
+  //         this.preguntas = res;
+  //         console.log(this.preguntas);
+
+  //         // const controls = this.preguntas.map((p) =>
+  //         //   this.fb.group({
+  //         //     productoId: this.user.id,
+  //         //     usuarioId: this.user.id,
+  //         //     preguntaId: p.pregunta_id,
+  //         //     respuesta: new FormControl(''),
+  //         //   })
+  //         // );
+
+  //         // this.formSendReplayQuestion = this.fb.group({
+  //         //   replies: this.fb.array(controls),
+  //         // });
+  //       },
+
+  //       (err) => console.log(err)
+  //     );
+  // }
+
+  // get repliesControl() {
+  //   return this.formSendReplayQuestion.get('replies');
+  // }
 
   saveQuestion() {
     const form = this.formSendQuestion.value;
@@ -515,7 +535,7 @@ export class MostrarDetalleProductoComponent
         this.onClear();
       }
     } else {
-      console.log();
+      console.log('Invalid Form');
     }
   }
 
@@ -523,17 +543,13 @@ export class MostrarDetalleProductoComponent
     return pregunta.id;
   }
 
-  pusher() {
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+  connectToQuestionChannel() {
+    // const pusher = new Pusher(environment.PUSHER_API_KEY, {
+    //   cluster: environment.PUSHER_CLUSTER,
+    // });
 
-    const pusher = new Pusher(environment.PUSHER_API_KEY, {
-      cluster: environment.PUSHER_CLUSTER,
-    });
-
-    const channel = pusher.subscribe('questions');
+    const channel = this.pusher.subscribe('questions');
     channel.bind('QuestionSent', (data) => {
-      console.log(data.question);
       this.preguntas = [];
       data.question.forEach((item) => {
         this.preguntas.push({
@@ -550,35 +566,42 @@ export class MostrarDetalleProductoComponent
     });
   }
 
-  saveAnswer() {
-    const form = this.formSendReplayQuestion.value;
+  // saveAnswer() {
+  //   const form = this.formSendReplayQuestion.value;
+  //   console.log(form);
 
-    if (this.formSendReplayQuestion.valid) {
-      if (this.loggedin) {
-        this.catalogoService
-          .saveQuestionAnswer(form)
-          .pipe(
-            takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
-          )
-          .subscribe(
-            (res) => {
-              // this.notificacion.success(res['status']);
-              // this.formSendQuestion.reset();
-              // this.formSendQuestion.patchValue({
-              //   ProductoId: 1,
-              //   usuario_id: this.user.id,
-              //   pregunta: '',
-              // });
-            },
-            (err) => console.log(err)
-          );
-      } else {
-        this.notificacion.warning('Debes loguerate para añadir productos');
-        // this.onClear();
-      }
-    } else {
-    }
-  }
+  //   this.formSendReplayQuestion.patchValue({
+  //     respuesta: '',
+  //   });
+
+  //   //const form: [] = data.replies;
+
+  //   //console.dir(form);
+
+  //   // if (this.formSendReplayQuestion.valid) {
+  //   //   if (this.loggedin) {
+  //   //     this.catalogoService
+  //   //       .saveQuestionAnswer(form)
+  //   //       .pipe(
+  //   //         takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
+  //   //       )
+  //   //       .subscribe(
+  //   //         (res) => {
+  //   //           // this.notificacion.success(res['status']);
+  //   //           // this.formSendQuestion.reset();
+  //   //           this.pusher();
+  //   //         },
+  //   //         (err) => console.log(err)
+  //   //       );
+  //   //   } else {
+  //   //     this.notificacion.warning('Debes loguerate para responder  preguntas');
+  //   //     this.formSendReplayQuestion.reset({
+  //   //       respuesta: '',
+  //   //     });
+  //   //   }
+  //   // } else {
+  //   // }
+  // }
 
   onClear() {
     this.formSendCommensts.reset();

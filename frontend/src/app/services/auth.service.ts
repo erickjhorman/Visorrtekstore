@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/';
 import { TokenService } from './token.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private loggeIn = new BehaviorSubject<boolean>(this.Token.loggedIn());

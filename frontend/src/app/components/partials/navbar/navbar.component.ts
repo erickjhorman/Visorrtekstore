@@ -1,4 +1,11 @@
-import { Component, OnInit, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token.service';
 import { AuthService } from '../../../services/auth.service';
@@ -11,7 +18,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
   public loggedin: boolean;
@@ -22,15 +29,12 @@ export class NavbarComponent implements OnInit {
   // cliente: any[] = [];
   private cliente: any;
 
-
-
   // Font awsome icon
   faShoppingCart = faShoppingCart;
   faBell = faBell;
 
-  @ViewChild('clickHoverMenuTrigger', { static: true }) clickHoverMenuTrigger: MatMenuTrigger;
-
-
+  @ViewChild('clickHoverMenuTrigger', { static: true })
+  clickHoverMenuTrigger: MatMenuTrigger;
 
   constructor(
     private Auth: AuthService,
@@ -38,10 +42,7 @@ export class NavbarComponent implements OnInit {
     private Token: TokenService,
     private sharedService: SharedService,
     private cataloServe: CatalogoServes
-  ) {
-
-
-  }
+  ) {}
 
   ngOnInit() {
     // o get the information from  a sessionStorage
@@ -49,18 +50,13 @@ export class NavbarComponent implements OnInit {
     this.user = JSON.parse(user);
     console.log(this.user);
     // this.getClientes(this.user.id);
-    this.Auth.authStatus.subscribe(value => (this.loggedin = value));
+    this.Auth.authStatus.subscribe((value) => (this.loggedin = value));
     if (this.loggedin != null) {
       this.getClientes(this.user.id);
-
     }
 
-    this.Auth.typeUserStatus.subscribe(value => (this.loggedinAdmin = value));
-    console.log('Login ' + this.loggedin);
-    console.log('Login admin' + this.loggedinAdmin);
+    this.Auth.typeUserStatus.subscribe((value) => (this.loggedinAdmin = value));
   }
-
-
 
   openOnMouseOver(e) {
     this.clickHoverMenuTrigger.openMenu();
@@ -69,18 +65,16 @@ export class NavbarComponent implements OnInit {
     this.sharedService.getValorMostraCatalogoSidebar(true);
   }
 
-
-
   getClientes(id: number) {
     this.cataloServe.getCliente(id).subscribe(
-      res => {
+      (res) => {
         this.cliente = res;
 
         // this.cliente.reduce((prev , current) => {prev[current] =  current; return prev;}, {});
 
         // this.cliente = JSON.parse(this.cliente);
       },
-      err => { }
+      (err) => {}
     );
   }
 
@@ -98,8 +92,6 @@ export class NavbarComponent implements OnInit {
     this.loggedin = false;
     this.loggedinAdmin = false;
   }
-
-
 
   addCarrito(productos: any) {
     this.listadoCompras.push(productos);
@@ -131,5 +123,4 @@ export class NavbarComponent implements OnInit {
   hideCatalog(e) {
     this.sharedService.bHideCatalogComponent();
   }
-
 }

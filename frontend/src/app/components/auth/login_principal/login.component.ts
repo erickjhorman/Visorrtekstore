@@ -10,7 +10,7 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   // public form = {
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   login: Login = {
     email: null,
-    password: null
+    password: null,
   };
 
   user: any;
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private Token: TokenService,
     private Auth: AuthService
-  ) { }
+  ) {}
 
   // To create methods
   // onSubmit(){
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   public error = null;
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   LoginIn() {
     let data = this.login;
@@ -58,12 +58,12 @@ export class LoginComponent implements OnInit {
     password.toLowerCase;
 
     this.loginService.loginIn(this.login).subscribe(
-      data => {
+      (data) => {
         this.handlResponse(data);
         //Here i get the data from login page and i send to a function to hand it
         console.log(data);
       },
-      error => {
+      (error) => {
         this.handleError(error);
         //alert('Querry faild');
       }
@@ -74,13 +74,14 @@ export class LoginComponent implements OnInit {
     this.user = data;
 
     this.Token.handle(data.access_token);
+
     sessionStorage.setItem('userAuth', JSON.stringify(this.user));
     localStorage.setItem('tipo_usuario', this.user.user);
     this.Auth.changeAuthStaus(true);
-    var admin = sessionStorage.getItem('userAuth');
+    const admin = sessionStorage.getItem('userAuth');
     this.admin = JSON.parse(admin);
 
-    if (this.admin.user == 1) {
+    if (this.admin.user === 1) {
       this.router.navigateByUrl('/admin'); //To redirect to another component
       this.Auth.changeTypeUserStatus(true);
     } else {

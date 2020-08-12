@@ -52,6 +52,7 @@ php artisan make:migration add_usuario_to_users
 php artisan make:migration add_caracteriticas_to_descripcion_producto
 php artisan make:migration remove_producto_id_to_catalogo_colores_productos  --table=catalogo_colores_productos
 php artisan make:migration drop_pregunta_respuestas_table
+php artisan make:migration create_pregunta_respuestas_table
 
 php artisan make:request SignRequest
 

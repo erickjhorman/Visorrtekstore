@@ -1,0 +1,12 @@
+<div class="replay-question">
+  <form [formGroup]="formSendReplayQuestion" (ngSubmit)="saveAnswer()">
+    <mat-form-field class="replay-full-width">
+      <textarea matInput formControlName="respuesta" placeholder="tu respuesta aqui"></textarea>
+    </mat-form-field>
+    <div class="text-center">
+      <button mat-raised-button id="btn-replay" color="primary"
+        [disabled]="formSendReplayQuestion.invalid">Responder</button>
+    </div>
+  </form>
+
+</div>

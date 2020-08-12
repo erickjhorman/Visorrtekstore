@@ -35,7 +35,7 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Email o password'], 401);
         }
 
@@ -90,7 +90,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        return response()->json(['message' => 'Sesion satisfactoriamente cerrada']);
+        return response()->json(['message' => 'Seccion satisfactoriamente cerrada']);
     }
 
     /**
