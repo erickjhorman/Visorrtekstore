@@ -1,9 +1,10 @@
 export interface CarroCompra {
   id?: number;
-  producto: string;
+  producto_name: string;
   color: number;
   talla: number;
   existencia: number;
+  imagen: string;
   precio: number;
   producto_id: number;
   valorVenta: number;

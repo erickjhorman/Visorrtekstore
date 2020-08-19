@@ -2,9 +2,10 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Comentario } from '../../models/comentario';
 import { Subject } from 'rxjs';
+import { ListPurchase } from '../../models/ListPurchase';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SharedService {
   // To select the comment and save the selected one in my model
@@ -12,15 +13,7 @@ export class SharedService {
 
   // To share the info
   productoSeleccionado: any;
-
-  // private messageSource = new BehaviorSubject<string>('Default message');
-  // currentMessage = this.messageSource.asObservable();
-
-  // private productoAddSource = new Subject<any>();
-  // productoSel = this.productoAddSource.asObservable();
-
-  // private productoAddSource = new BehaviorSubject<string>('');
-  private productoAddSource = new Subject();
+  private productoAddSource = new Subject<ListPurchase>();
   productoSel = this.productoAddSource.asObservable();
 
   private carritoTogggleAddsource = new Subject();
@@ -67,20 +60,15 @@ export class SharedService {
   private refreshMessagesAddSource = new Subject();
   refreshMessages = this.refreshMessagesAddSource.asObservable();
 
-
   // To hide the catalog component
   private isCatalogHide = new Subject();
   hideCatalog = this.isCatalogHide.asObservable();
 
-  constructor(private http: HttpClient,
-  ) {
+  constructor(private http: HttpClient) {
     this.menuEmitter = new EventEmitter<boolean>();
   }
 
-  sharingData: EventEmitter<any> = new EventEmitter();
-
-
-  getProductoSeleccionado(producto: any) {
+  getProductoSeleccionado(producto: ListPurchase) {
     this.productoAddSource.next(producto);
     console.log('getProducto ya recivido' + producto);
   }
@@ -100,7 +88,6 @@ export class SharedService {
     this.matMenuNavBar.next(value);
     console.log('get valor desde navbar para MATmENU', value);
   }
-
 
   getValorMostraUserSidebar(valor: any) {
     this.UserTogggleAddsource.next(valor);
@@ -164,7 +151,5 @@ export class SharedService {
 
   bHideCatalogComponent() {
     this.isCatalogHide.next();
-   }
-
-
+  }
 }

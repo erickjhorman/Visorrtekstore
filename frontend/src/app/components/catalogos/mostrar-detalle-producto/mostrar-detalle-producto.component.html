@@ -11,10 +11,10 @@
             <form novalidate (ngSubmit)="addSelectedProduct(carroCompraForm)" #carroCompraForm="ngForm">
 
               <mat-card class="mb-4">
-                <mat-card-title>{{producto.Producto}}</mat-card-title>
-
-                <input name="id" type="hidden" [(ngModel)]="producto.Producto_id">
-                <input name="producto" type="hidden" [(ngModel)]="producto.Producto">
+                <mat-card-title>{{producto.producto_name}}</mat-card-title>
+                <input name="producto_name" type="hidden" [(ngModel)]="producto.producto_name">
+                <input name="id" type="hidden" [(ngModel)]="producto.id_producto">
+                <img name="imagen" type="hidden" [(ngModel)]="producto.imagen">
                 <mat-card-content>
 
                   <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  "COP"}}</p>
@@ -98,64 +98,11 @@
 
                         <mat-card-content *ngIf="loggedin && loggedinAdmin">
 
-                          <app-question-answers [question]="pregunta"></app-question-answers>
+                          <app-question-answers [question]="pregunta" (answersEvent)="(connectoToAnswerChannel())">
+                          </app-question-answers>
                         </mat-card-content>
                       </mat-card>
                     </div>
-
-                    <!-- <div *ngFor="let pregunta of preguntas; trackBy:trackByQuestions" class="question-item">
-                      <mat-card class=" question-card">
-                        <mat-card-header>
-                          <img mat-card-avatar class="question-header-image" [src]="pregunta.avatar">
-                          <mat-card-title>{{pregunta.nombre}}</mat-card-title>
-                        </mat-card-header>
-
-                        <mat-card-content>
-                          <p>{{pregunta.pregunta}}</p>
-                          <span>{{pregunta.created_at | relativeTime}}</span>
-                          <br>
-                          <div *ngIf="pregunta.respuesta">
-                            <mat-divider></mat-divider>
-                            <br>
-
-                            <span class="mr-2 text-bold">
-                              <fa-icon [icon]="faComment" size="lg"></fa-icon>
-                            </span>
-                            <span style="color:#999;">{{pregunta.respuesta}}</span>
-
-                          </div>
-
-
-                        </mat-card-content>
-                        <mat-card-content *ngIf="loggedin && loggedinAdmin">
-                          <div class="replay-question">
-                            <form [formGroup]="formSendReplayQuestion" (ngSubmit)="saveAnswer()">
-                              <ng-container formArrayName="replies"
-                                *ngFor="let c of repliesControl.controls; let i = index ">
-                                <ng-container [formGroupName]="i">
-
-                                  <mat-form-field class="replay-full-width">
-                                    <textarea matInput placeholder="Escribe tu respuesta"
-                                      formControlName="respuesta"></textarea>
-                                  </mat-form-field>
-                                </ng-container>
-                              </ng-container>
-
-                              <input matInput type="text" formControlName="productoId" [value]="pregunta.pregunta_id">
-                              <input matInput type="text" formControlName="preguntaId" [value]="pregunta.pregunta_id">
-
-                              <mat-form-field class="replay-full-width">
-                                <textarea matInput formControlName="respuesta"></textarea>
-                              </mat-form-field>
-                              <div class="text-center">
-                                <button #formComments mat-raised-button id="btn-replay" color="primary"
-                                  [disabled]="formSendReplayQuestion.invalid">Responder</button>
-                              </div>
-                            </form>
-                          </div>
-                        </mat-card-content>
-                      </mat-card>
-                    </div> -->
 
                   </cdk-virtual-scroll-viewport>
                 </div>

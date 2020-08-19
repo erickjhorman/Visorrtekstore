@@ -30,9 +30,8 @@ export class TokenService {
   getUserData(): UserData {
     if (this.loggedIn()) {
       return this.payload(this.get());
-    } else {
-      return null;
     }
+    return null;
   }
 
   removeSessionStorage() {

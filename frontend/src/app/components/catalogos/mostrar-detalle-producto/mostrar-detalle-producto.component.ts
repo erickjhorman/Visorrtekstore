@@ -33,14 +33,14 @@ import { ShowAllCommentsComponent } from '../../partials/show-all-comments/show-
 import { MatDialog } from '@angular/material/dialog';
 import Pusher from 'pusher-js';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { ListPurchase } from '../../../models/ListPurchase';
 
 @Component({
   selector: 'app-mostrar-detalle-producto',
   templateUrl: './mostrar-detalle-producto.component.html',
   styleUrls: ['./mostrar-detalle-producto.component.css'],
 })
-export class MostrarDetalleProductoComponent
-  implements AfterViewInit, OnInit, OnDestroy {
+export class MostrarDetalleProductoComponent implements OnInit, OnDestroy {
   panelOpenState = false;
   nombre: any;
   productoAdd: any;
@@ -64,8 +64,8 @@ export class MostrarDetalleProductoComponent
   public user: any;
   comments: any;
 
-  pusher: Pusher;
-  channel: Pusher;
+  pusher: any;
+  channel: any;
 
   public showFormAnswer = false;
 
@@ -73,7 +73,6 @@ export class MostrarDetalleProductoComponent
   faComment = faComment;
 
   @Input() producto: any;
-  addproducto: any;
 
   @Input()
   required: boolean;
@@ -83,6 +82,7 @@ export class MostrarDetalleProductoComponent
   private unsubscribe$ = new Subject<void>();
 
   // forms
+
   formSendCommensts: FormGroup;
   formSendQuestion: FormGroup;
   formSendReplayQuestion: FormGroup;
@@ -123,9 +123,10 @@ export class MostrarDetalleProductoComponent
   }
 
   carroCompra: CarroCompra = {
-    producto: '',
+    producto_name: '',
     color: 0,
     existencia: 0,
+    imagen: '',
     precio: 0,
     talla: 0,
     producto_id: 0,
@@ -164,9 +165,8 @@ export class MostrarDetalleProductoComponent
 
     this.pusher = this.pusherService.connectToPusher();
     this.connectToQuestionChannel();
+    this.connectoToAnswerChannel();
   }
-
-  ngAfterViewInit() {}
 
   getProductoShow(id: number) {
     this._sharedService.EmitIdproducto(id);
@@ -180,6 +180,8 @@ export class MostrarDetalleProductoComponent
         (productos) => {
           this.productos2 = productos;
           this.productos = productos;
+          console.log('my product', this.productos);
+
           this.setIdDesciption(this.productos);
           this.showImagenes(productos);
         },
@@ -375,34 +377,16 @@ export class MostrarDetalleProductoComponent
   }
 
   addSelectedProduct(form: NgForm) {
-    console.log(form.value);
-
+    const product = form.value;
     if (form.valid) {
       if (this.loggedin) {
-        this._sharedService.idProductosCatalogos.subscribe((id) => {
-          this.idProduCata = id;
-          console.log(this.idProduCata);
-        });
-
-        const id_producto = (<HTMLScriptElement[]>(
-          (<any>document.getElementsByName('idproducto'))
-        ))[0];
-
-        this.addproducto = form;
-        this._sharedService.getProductoSeleccionado(this.addproducto);
-
-        this._sharedService.sharingData.emit(this.addproducto);
+        this._sharedService.getProductoSeleccionado(product);
         this.notificacion.success('Añadiste un producto');
-
         this._sharedService.getDeshabilitarBtnVer(true);
       } else {
         this.notificacion.warning('Debes loguerate para añadir productos');
       }
     }
-  }
-
-  enviarVariable(producto: any) {
-    this._sharedService.getProductoSeleccionado(producto);
   }
 
   saveComments() {
@@ -469,44 +453,10 @@ export class MostrarDetalleProductoComponent
       .subscribe(
         (res) => {
           this.preguntas = res;
-          console.log(this.preguntas);
         },
         (err) => console.log(err)
       );
   }
-
-  // getQuestion() {
-  //   this.catalogoService
-  //     .getQuestion()
-  //     .pipe(
-  //       takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
-  //     )
-  //     .subscribe(
-  //       (res) => {
-  //         this.preguntas = res;
-  //         console.log(this.preguntas);
-
-  //         // const controls = this.preguntas.map((p) =>
-  //         //   this.fb.group({
-  //         //     productoId: this.user.id,
-  //         //     usuarioId: this.user.id,
-  //         //     preguntaId: p.pregunta_id,
-  //         //     respuesta: new FormControl(''),
-  //         //   })
-  //         // );
-
-  //         // this.formSendReplayQuestion = this.fb.group({
-  //         //   replies: this.fb.array(controls),
-  //         // });
-  //       },
-
-  //       (err) => console.log(err)
-  //     );
-  // }
-
-  // get repliesControl() {
-  //   return this.formSendReplayQuestion.get('replies');
-  // }
 
   saveQuestion() {
     const form = this.formSendQuestion.value;
@@ -566,42 +516,15 @@ export class MostrarDetalleProductoComponent
     });
   }
 
-  // saveAnswer() {
-  //   const form = this.formSendReplayQuestion.value;
-  //   console.log(form);
+  connectoToAnswerChannel() {
+    const channel = this.pusherService
+      .connectToPusher()
+      .subscribe('questionAnswers');
 
-  //   this.formSendReplayQuestion.patchValue({
-  //     respuesta: '',
-  //   });
-
-  //   //const form: [] = data.replies;
-
-  //   //console.dir(form);
-
-  //   // if (this.formSendReplayQuestion.valid) {
-  //   //   if (this.loggedin) {
-  //   //     this.catalogoService
-  //   //       .saveQuestionAnswer(form)
-  //   //       .pipe(
-  //   //         takeUntil(this.unsubscribe$) // unsubscribe to prevent memory leak
-  //   //       )
-  //   //       .subscribe(
-  //   //         (res) => {
-  //   //           // this.notificacion.success(res['status']);
-  //   //           // this.formSendQuestion.reset();
-  //   //           this.pusher();
-  //   //         },
-  //   //         (err) => console.log(err)
-  //   //       );
-  //   //   } else {
-  //   //     this.notificacion.warning('Debes loguerate para responder  preguntas');
-  //   //     this.formSendReplayQuestion.reset({
-  //   //       respuesta: '',
-  //   //     });
-  //   //   }
-  //   // } else {
-  //   // }
-  // }
+    channel.bind('QuestionAnswerSent', (data) => {
+      this.getQuestion();
+    });
+  }
 
   onClear() {
     this.formSendCommensts.reset();

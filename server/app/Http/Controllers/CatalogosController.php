@@ -59,6 +59,7 @@ class CatalogosController extends Controller
             //I save some information into two variables
              $id_description_product = $result1[$i]['id'];
              $Producto_id   =  $result1[$i]['Producto_id'];
+             $productoName = $result1[$i]['Producto'];
              $estado_producto_id   =  $result1[$i]['estado_producto_id'];
              $color_id   =  $result1[$i]['color_id'];
              $talla_id   =  $result1[$i]['talla_id'];
@@ -95,7 +96,7 @@ class CatalogosController extends Controller
             }
 
             //I store the informatiuon of my array result 1 and create a property where i push the information of the second array
-            $productos[] = [ 'id_description_product' => $id_description_product, 'id_producto' => $Producto_id, 'estado_producto_id' => $estado_producto_id,
+            $productos[] = [ 'id_description_product' => $id_description_product, 'producto_name' => $productoName, 'id_producto' => $Producto_id, 'estado_producto_id' => $estado_producto_id,
                             'color_id' => $color_id, 'talla_id' => $talla_id,'Forma_id' => $Forma_id, 'caracteristicas' => $caracteristicas, 'imagen' => $imagen,
                             'Existencia' => $Existencia, 'Valor_Venta' => $Valor_Venta, 'ValorMin' => $valor_min,'Iva_Porcentaje' => $Iva_Porcentaje,
                             'created_at' => $created_at,'updated_at' => $updated_at, 'imagenes' => $imagenes,'comentarios' => $comentarios];

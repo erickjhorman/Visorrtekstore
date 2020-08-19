@@ -5,13 +5,13 @@ import {
   ViewChild,
   AfterViewInit,
   NgZone,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl
+  FormControl,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatTableDataSource } from '@angular/material'; // To get the information to store in the table
@@ -25,13 +25,13 @@ import { Router } from '@angular/router';
 import { DashboardService } from '../../../../services/shared/dashboard.service';
 import { FormDireccioneUsuarioShowComponent } from '../procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component';
 import { NotificationService } from '../../../../services/shared/notification.service';
-import { map } from 'rxjs/operators';
+import { ListPurchase } from '../../../../models/ListPurchase';
 
 @Component({
   selector: 'app-proceso-compra',
   templateUrl: './proceso-compra.component.html',
   styleUrls: ['./proceso-compra.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   private user: any;
@@ -43,8 +43,8 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   showBtnDomicilio = true;
   btnverFlag: any;
   charges: any;
+  finalListPurchase: ListPurchase[] = [];
 
-  private transportadora: any;
   private departamentos: any;
   private ciudades: any;
   isLinear = true;
@@ -74,36 +74,35 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     private sharedService: SharedService,
     private pagosServices: PagoService,
     private router: Router,
-    private ngZone: NgZone,
     private notificacion: NotificationService
   ) {
     console.log(data);
 
     // To get the information from  a sessionStorage
-    let user = sessionStorage.getItem('userAuth');
+    const user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
     console.log(this.user);
 
     this.formMensaje = new FormGroup({
       idCliente: new FormControl(this.user.id),
-      mensaje: new FormControl('', [Validators.required])
+      mensaje: new FormControl('', [Validators.required]),
     });
 
     // To share the form in preceso compra componenet
-    this.sharedService.formValues.subscribe(valuesForm => {
+    this.sharedService.formValues.subscribe((valuesForm) => {
       this.valuesFormDireccione = valuesForm;
       console.log('Formulario' + this.valuesFormDireccione);
       this.stepCompleted = true;
     });
 
     // To share the response of the payment in preceso compra componenet
-    this.sharedService.payCharge.subscribe(res => {
+    this.sharedService.payCharge.subscribe((res) => {
       this.charges = res;
       console.log(this.charges);
     });
 
     // To share the form in preceso compra componenet
-    this.sharedService.stepComplared.subscribe(value => {
+    this.sharedService.stepComplared.subscribe((value) => {
       this.step2Completed = true;
       console.log('True step 2 ');
       this.stepper.linear = false;
@@ -112,12 +111,10 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     });
 
     // To share a variable from form-direccione to call a method  in here
-    this.sharedService.btnver.subscribe(value => {
+    this.sharedService.btnver.subscribe((value) => {
       this.btnverFlag = value;
       if (this.btnverFlag) {
         this.getDireccionCliente(this.user.id);
-      } else {
-        console.log('I\'m not true');
       }
     });
   }
@@ -128,36 +125,29 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['', Validators.required],
     });
 
     this.createTableToshow();
-
     this.getDireccionCliente(this.user.id);
-
-    console.log(this.stepper);
   }
 
   ngAfterViewInit() {
-
-
     this.totalStepsCount = this.stepper._steps.length;
-    console.log('TOtal steps' + this.totalStepsCount);
   }
 
   createTableToshow() {
-    const finalArrayTotalItem = this.data;
-    this.listData = new MatTableDataSource(finalArrayTotalItem);
+    this.finalListPurchase = this.data;
+    this.listData = new MatTableDataSource(this.finalListPurchase);
   }
 
   getTotalPrice() {
-    for (let i = 0; i < this.data.length; i++) {
-      this.precio_total = this.data[i].Total;
-      return this.precio_total;
-    }
+    return this.finalListPurchase
+      .map((t) => t.valorVenta * t.cantidad)
+      .reduce((acc, value) => acc + value, 0);
   }
 
   onView(value: boolean) {
@@ -166,7 +156,7 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
 
   getDireccionCliente(id: number) {
     this.dashboardService.getDomiciliosCleinte(id).subscribe(
-      res => {
+      (res) => {
         this.domicilio = res;
 
         if (this.domicilio.length) {
@@ -175,13 +165,11 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
         } else {
           this.showBtnDomicilio = !this.showBtnDomicilio;
         }
-
         console.log(this.domicilio);
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
   }
-
 
   showDomicilio() {
     console.log('Show domicilio' + this.domicilio);
@@ -190,39 +178,33 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
 
   addDomicilio() {
     this.cataServes.getDepartamentos().subscribe(
-      res => {
+      (res) => {
         this.departamentos = res;
         this.onCreateDomicilio(this.departamentos);
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
   }
   getCiudades(id: number) {
     this.cataServes.getCiudades(id).subscribe(
-      res => {
+      (res) => {
         this.ciudades = res;
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
   }
 
   // Dialog para transportadora
   onCreateDialogTransportadora(transportadora: any) {
     const dialogConfig = new MatDialogConfig();
-    // console.log("1 paso" + productoShow)
+
     const t = transportadora;
-    // console.log("Create productos" + showProductos)
+
     dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
     dialogConfig.width = '400px';
     dialogConfig.height = '400px';
-    // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = t;
     this.dialog.open(FormTransportadoraComponent, dialogConfig);
-    this.dialog.afterAllClosed.subscribe(res => {
-      // this.ocultarItemSelleccionado = true;
-      // console.log("Respuesta" + this.ocultarItemSelleccionado);
-    });
   }
 
   // Dialog para direccion usuario
@@ -243,13 +225,10 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     const dialogConfig = new MatDialogConfig();
     const d = data;
     dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
     dialogConfig.width = '750px';
     dialogConfig.height = '400px';
-    // dialogConfig.data = {name : 'Erick'}
     dialogConfig.data = d;
     this.dialog.open(FormDireccioneUsuarioComponent, dialogConfig);
-    console.log('Añadir direccion');
   }
 
   onClose() {
@@ -269,17 +248,16 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     this.stepper.previous();
   }
   goForward() {
-    // console.log(this.stepper);
     this.stepper.next();
   }
 
   onSubmit() {
     if (this.formMensaje.valid) {
       this.pagosServices.saveMensaje(this.formMensaje.value).subscribe(
-        res => {
+        (res) => {
           this.notificacion.success('Mensaje enviado satisfactoriamente');
         },
-        err => console.log(err)
+        (err) => console.log(err)
       );
       this.show = !this.show;
       this.disableMessageBtn = !this.disableMessageBtn;

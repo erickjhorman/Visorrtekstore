@@ -1,40 +1,24 @@
-table {
-    width: 100%;
-}
-
 #carritoCompra {
-    background-color: white;
+  background-color: white;
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
 }
-
 
 /* Style for table */
 
 .example-container {
-    height: 170px;
-    overflow: auto;
+  height: 170px;
+  overflow: auto;
 }
 
-table {
-    width: 100%;
+mat-card {
+  height: 140px;
 }
 
-tr.mat-footer-row {
-    font-weight: bold;
+.remove-btn {
+  position: relative;
+  bottom: 55px;
+  left: 120px;
 }
-
-.mat-table-sticky {
-    border-top: 1px solid #e0e0e0;
-}
-
-
-/* End of  Style for table */
-
-.noFiles {
-    text-align: center;
-}
-
-

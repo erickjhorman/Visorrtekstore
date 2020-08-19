@@ -21,7 +21,7 @@
               <!-- Item Column -->
               <ng-container matColumnDef="Nombre">
                 <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.producto}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.producto_name}} </td>
                 <td mat-footer-cell *matFooterCellDef> Total venta</td>
               </ng-container>
               <!-- quantity Column -->
@@ -34,8 +34,8 @@
               <!-- Cost Column -->
               <ng-container matColumnDef="valorventa">
                 <th mat-header-cell *matHeaderCellDef> valorventa </th>
-                <td mat-cell *matCellDef="let element"> {{element.valorventa}}</td>
-                <td mat-footer-cell *matFooterCellDef="let element">{{getTotalPrice()}}</td>
+                <td mat-cell *matCellDef="let element"> {{element.valorVenta}}</td>
+                <td mat-footer-cell *matFooterCellDef="let element">{{getTotalPrice() | currency : "COP" }}</td>
               </ng-container>
 
 

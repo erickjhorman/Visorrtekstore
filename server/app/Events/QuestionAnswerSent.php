@@ -34,7 +34,7 @@ class QuestionAnswerSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return 'questions';
+        return 'questionAnswers';
     }
 
     public function broadcastAs()

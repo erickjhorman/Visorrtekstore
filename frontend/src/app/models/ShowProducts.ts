@@ -1,5 +1,6 @@
 export interface ShowProducts {
   id?: number;
+  producto_name: string;
   Descripcion: string;
   id_description_product: number;
   color: string;

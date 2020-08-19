@@ -25,7 +25,7 @@ class StoreAnswerQuestionProduct extends FormRequest
     {
         return [
             'productoId' => 'required', 'integer',
-            'usuarioId' => 'required', 'integer',
+            'usuario_id' => 'required', 'integer',
             'preguntaId' => 'required', 'integer',
             'respuesta' => 'required', 'string', 'max:30',
          ];

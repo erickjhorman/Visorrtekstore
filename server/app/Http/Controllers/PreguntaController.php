@@ -41,7 +41,7 @@ class PreguntaController extends Controller
         ->LeftJoin('respuestas', 'respuestas.id', '=', 'pregunta_respuesta.respuesta_id')
         ->LeftJoin('users', 'users.id', '=', 'preguntas.usuario_id')
         ->LeftJoin('clientes', 'clientes.usuario_id', '=', 'users.id')
-        ->where('respuesta_id',0)
+        // ->where('respuesta_id',0)
         ->select('pregunta_respuesta.*','preguntas.pregunta','respuestas.respuesta','respuestas.created_at','clientes.avatar','clientes.nombre','users.id','pregunta_respuesta.created_at')
         ->latest('pregunta_respuesta.created_at')
         ->get();
@@ -107,10 +107,13 @@ class PreguntaController extends Controller
               ->where('pregunta_id', $idPregunta)
               ->update($attributes);
 
+
+
+
          // To send an event to the server
          broadcast(new QuestionAnswerSent($this->fetchQuestions()))->toOthers();
 
-
+         return response()->json(['message' => 'Answer successfully sent']);
 
 
     }
