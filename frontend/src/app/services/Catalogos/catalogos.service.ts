@@ -70,7 +70,9 @@ export class CatalogoServes {
   }
 
   getCiudades(id: number) {
-    return this.http.get(`${environment.API_URL}/departamentos/ciudades/${id}`);
+    return this.http.get(
+      `${environment.API_URL}/user/departamentos/ciudades/${id}`
+    );
   }
 
   getCliente(id: number) {

@@ -1,6 +1,7 @@
 <div>
-  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><span><i
-        class="far fa-window-close fa-3x"></i></span></button>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><span>
+      <fa-icon [icon]="faWindowClose" size="3x"></fa-icon>
+    </span></button>
 </div>
 
 <form [formGroup]="FormDireccionesUsuarioShow" novalidate="">

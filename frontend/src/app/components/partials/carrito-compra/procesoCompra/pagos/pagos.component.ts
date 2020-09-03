@@ -1,14 +1,20 @@
-import { Component, OnInit, HostListener, Input } from "@angular/core";
-import { PagoService } from "../../../../../services/pagos/pago.service";
-import { environment } from "../../../../../../environments/environment";
-import { FormGroup, FormControl, Validators, Form } from "@angular/forms";
-import { SharedService } from "../../../../../services/shared/shared.service";
-import { NotificationService } from "../../../../../services/shared/notification.service";
+import { Component, OnInit, Input } from '@angular/core';
 
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  Form,
+  NgForm,
+} from '@angular/forms';
+
+import { SharedService } from '../../../../../services/shared/shared.service';
+import { NotificationService } from '../../../../../services/shared/notification.service';
+import { PagoService } from '../../../../../services/pagos/pago.service';
 @Component({
-  selector: "app-pagos",
-  templateUrl: "./pagos.component.html",
-  styleUrls: ["./pagos.component.css"]
+  selector: 'app-pagos',
+  templateUrl: './pagos.component.html',
+  styleUrls: ['./pagos.component.css'],
 })
 export class PagosComponent implements OnInit {
   valuesFormDireccione: any;
@@ -16,82 +22,65 @@ export class PagosComponent implements OnInit {
   valuesArrayCompras: any;
 
   private user: any;
-  formArray: any[] = [];
-  formFinal: any[] = [];
-  direcciones: any[] = [];
-  transportadora: any[] = [];
-  dataObjectPagoFinal: any[] = [];
   charge: any;
-
-  @Input() amount: number;
-
   submitted: any;
   formProcess: any;
   manejador: any;
   message: any;
   token: any;
-
   showSpinner = false;
 
-  customStripeForm = new FormGroup({
-    name: new FormControl("", [Validators.required, Validators.maxLength(18)]),
-    lastname: new FormControl("", [
-      Validators.required,
-      Validators.maxLength(18)
-    ]),
-    cardNumber: new FormControl("", [
-      Validators.required,
-      Validators.maxLength(18)
-    ]),
-    email: new FormControl("", [Validators.required, Validators.email]),
-    expMonth: new FormControl("", [Validators.required]),
-    expYear: new FormControl("", [Validators.required]),
-    cvv: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(3)
-    ]),
-    amount: new FormControl()
-  });
+  // Arrays
+  formArray: any[] = [];
+  formFinal: any[] = [];
+  direcciones: any[] = [];
+  transportadora: any[] = [];
+  dataObjectPagoFinal: any[] = [];
+
+  // Forms
+  customStripeForm: FormGroup;
+
+  // Decorators
+  @Input() amount: number;
 
   months = [
-    { id: "1", value: "01" },
-    { id: "1", value: "02" },
-    { id: "1", value: "03" },
-    { id: "1", value: "04" },
-    { id: "1", value: "05" },
-    { id: "1", value: "06" },
-    { id: "1", value: "07" },
-    { id: "1", value: "08" },
-    { id: "1", value: "09" },
-    { id: "1", value: "10" },
-    { id: "1", value: "11" },
-    { id: "1", value: "12" }
+    { id: '1', value: '01' },
+    { id: '1', value: '02' },
+    { id: '1', value: '03' },
+    { id: '1', value: '04' },
+    { id: '1', value: '05' },
+    { id: '1', value: '06' },
+    { id: '1', value: '07' },
+    { id: '1', value: '08' },
+    { id: '1', value: '09' },
+    { id: '1', value: '10' },
+    { id: '1', value: '11' },
+    { id: '1', value: '12' },
   ];
 
   expYears = [
-    { id: "20", value: "01" },
-    { id: "21", value: "02" },
-    { id: "22", value: "03" },
-    { id: "23", value: "04" },
-    { id: "24", value: "05" },
-    { id: "25", value: "06" },
-    { id: "26", value: "07" },
-    { id: "27", value: "08" },
-    { id: "28", value: "09" },
-    { id: "29", value: "10" },
-    { id: "30", value: "11" }
+    { id: '20', value: '01' },
+    { id: '21', value: '02' },
+    { id: '22', value: '03' },
+    { id: '23', value: '04' },
+    { id: '24', value: '05' },
+    { id: '25', value: '06' },
+    { id: '26', value: '07' },
+    { id: '27', value: '08' },
+    { id: '28', value: '09' },
+    { id: '29', value: '10' },
+    { id: '30', value: '11' },
   ];
 
   restartFormGroup() {
     this.customStripeForm.setValue({
-      name: "",
-      lastname: "",
-      cardNumber: "",
-      email: "",
-      expMonth: "",
-      expYear: "",
-      cvv: ""
+      name: '',
+      lastname: '',
+      cardNumber: '',
+      email: '',
+      expMonth: '',
+      expYear: '',
+      cvv: '',
     });
   }
 
@@ -100,20 +89,20 @@ export class PagosComponent implements OnInit {
     private sharedService: SharedService,
     private notificacion: NotificationService
   ) {
-    //To share the form in preceso compra componenet
-    this.sharedService.formValues.subscribe(valuesForm => {
+    // To share the form in preceso compra componenet
+    this.sharedService.formValues.subscribe((valuesForm) => {
       this.valuesFormDireccione = valuesForm;
       console.log(this.valuesFormDireccione);
     });
 
-    //To share the form in preceso compra componenet
-    this.sharedService.formValuesTransportadora.subscribe(valuesForm => {
+    // To share the form in preceso compra componenet
+    this.sharedService.formValuesTransportadora.subscribe((valuesForm) => {
       this.valuesFormTransportadora = valuesForm;
       console.log(this.valuesFormTransportadora);
     });
 
-    //To share the form in preceso compra componenet
-    this.sharedService.arrayValuesCompras.subscribe(valuesArray => {
+    // To share the form in preceso compra componenet
+    this.sharedService.arrayValuesCompras.subscribe((valuesArray) => {
       this.valuesArrayCompras = valuesArray;
       console.log(this.valuesArrayCompras);
     });
@@ -122,21 +111,44 @@ export class PagosComponent implements OnInit {
   ngOnInit() {
     this.loadStripe();
 
-    //To get the information from  a sessionStorage
-    var user = sessionStorage.getItem("userAuth");
+    // To get the information from  a sessionStorage
+    const user = sessionStorage.getItem('userAuth');
     this.user = JSON.parse(user);
-    console.log(this.user);
+
+    this.customStripeForm = new FormGroup({
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(18),
+      ]),
+      lastname: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(18),
+      ]),
+      cardNumber: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(18),
+      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      expMonth: new FormControl('', [Validators.required]),
+      expYear: new FormControl('', [Validators.required]),
+      cvv: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(3),
+      ]),
+      amount: new FormControl(this.amount),
+    });
   }
 
   loadStripe() {
-    if (!window.document.getElementById("stripe-custom-form-script")) {
-      var s = window.document.createElement("script");
-      s.id = "stripe-custom-form-script";
-      s.type = "text/javascript";
-      s.src = "https://js.stripe.com/v2/";
+    if (!window.document.getElementById('stripe-custom-form-script')) {
+      const s = window.document.createElement('script');
+      s.id = 'stripe-custom-form-script';
+      s.type = 'text/javascript';
+      s.src = 'https://js.stripe.com/v2/';
       s.onload = () => {
-        window["Stripe"].setPublishableKey(
-          "pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC"
+        window['Stripe'].setPublishableKey(
+          'pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC'
         );
       };
 
@@ -149,30 +161,9 @@ export class PagosComponent implements OnInit {
     this.restartFormGroup();
   }
 
-  // pay(amount) {
-
-  //   var handler = (<any>window).StripeCheckout.configure({
-  //     key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI',
-  //     locale: 'auto',
-  //     token: function (token: any) {
-  //       // You can access the token ID with `token.id`.
-  //       // Get the token ID to your server-side code for use.
-  //       console.log(token)
-  //       alert('Token Created!!');
-  //     }
-  //   });
-
-  //   handler.open({
-  //     name: 'Demo Site',
-  //     description: '2 widgets',
-  //     amount: amount * 100
-  //   });
-
-  // }
-
   pay(form) {
-    if (!window["Stripe"]) {
-      alert("Oops! Stripe did not initialize properly.");
+    if (!window['Stripe']) {
+      alert('Oops! Stripe did not initialize properly.');
       return;
     }
 
@@ -184,13 +175,12 @@ export class PagosComponent implements OnInit {
 
     this.submitted = true;
 
-    console.log(this.customStripeForm);
     if (this.customStripeForm.invalid) {
       return;
     }
 
     this.formProcess = true;
-    console.log("form");
+    console.log('form');
     console.log(form);
 
     (<any>window).Stripe.card.createToken(
@@ -198,22 +188,21 @@ export class PagosComponent implements OnInit {
         number: form.cardNumber,
         exp_month: form.expMonth,
         exp_year: form.expYear,
-        cvc: form.cvc
+        cvc: form.cvc,
       },
       (status: number, response: any) => {
         this.submitted = false;
         this.formProcess = false;
         if (status === 200) {
           this.message = `Success! Card token ${response.card.id}.`;
-          console.log("Toke generado" + this.message);
+          console.log('Toke generado' + this.message);
           this.token = response.id;
-          console.log("Token server " + this.token);
+          console.log('Token server ' + this.token);
 
-          this.formArray.push(form);
-          console.log(this.formArray);
+          // this.formArray.push(form);
+          console.log('form values', this.formArray);
 
-          this.agregarTokenCardForm();
-          this.chargeMoney(this.formFinal);
+          this.agregarTokenCardForm(form);
         } else {
           this.message = response.error.message;
         }
@@ -221,51 +210,57 @@ export class PagosComponent implements OnInit {
     );
   }
 
-  agregarTokenCardForm() {
+  agregarTokenCardForm(form) {
     const f = this.formArray;
     const tc = this.token;
     const amount = this.amount;
-    console.log(amount);
 
-    for (let index = 0; index < f.length; index++) {
-      this.formFinal.push({
-        clienteId: this.user.id,
-        domicilioId: 1,
-        name: f[index].name,
-        lastname: f[index].lastname,
-        email: f[index].email,
-        tokenCard: tc,
-        amount: amount
-      });
+    this.formFinal.push({
+      clienteId: this.user.id,
+      domicilioId: 1,
+      name: form.name,
+      lastname: form.lastname,
+      email: form.email,
+      tokenCard: tc,
+      amount: amount,
+    });
 
-      console.log(this.valuesArrayCompras);
-      console.log(this.formFinal);
-    }
+    // for (let index = 0; index < f.length; index++) {
+    //   this.formFinal.push({
+    //     clienteId: this.user.id,
+    //     domicilioId: 1,
+    //     name: f[index].name,
+    //     lastname: f[index].lastname,
+    //     email: f[index].email,
+    //     tokenCard: tc,
+    //     amount: amount,
+    //   });
+
+    //   console.log('formFinal agregarTokenCard', this.formArray);
+    // }
 
     // this.direcciones.push(this.valuesFormTransportadora , this.direcciones, this.formFinal);
     // console.log( "Direcine y tranpso" + this.direcciones);
-
-    this.dataObjectPagoFinal = ["Erick", "Javier"];
 
     this.formFinal.push(
       this.valuesFormDireccione,
       this.valuesFormTransportadora,
       this.valuesArrayCompras
     );
-
-    //console.log(this.formFinal);
+    this.chargeMoney(this.formFinal);
+    console.log('form final', this.formFinal);
     return this.formFinal;
   }
 
   chargeMoney(formFinal: any) {
     this.pagosService.chargeMoney(formFinal).subscribe(
-      data => {
+      (data) => {
         this.sharedService.paymentCharge(data);
         this.sharedService.stepcompleted(true);
       },
-      error => {
+      (error) => {
         console.log(error);
-        alert("Querry faild");
+        alert('Querry faild');
       }
     );
   }

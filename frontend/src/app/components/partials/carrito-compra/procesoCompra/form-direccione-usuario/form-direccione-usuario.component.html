@@ -1,11 +1,11 @@
 <div>
-  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><span><i
-        class="far fa-window-close fa-3x"></i></span></button>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+    <fa-icon [icon]="faWindowClose" size="3x"></fa-icon>
+  </button>
 </div>
 
 
-<form class="form-direccion" [formGroup]="FormDireccionesUsuario" (ngSubmit)="onSave()"
-  novalidate="">
+<form class="form-direccion" [formGroup]="FormDireccionesUsuario" (ngSubmit)="onSave()" novalidate="">
   <input type="hidden" formControlName="idCliente" [value]="user.id">
   <table class="example-full-width" cellspacing="0">
     <tr>

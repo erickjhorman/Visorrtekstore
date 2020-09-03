@@ -66,7 +66,6 @@ export class CarritoCompraComponent implements OnInit {
 
   onCreateDialogProcesoCompra(data) {
     const finalArrayTotalItem = data;
-    console.log(finalArrayTotalItem);
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -75,7 +74,7 @@ export class CarritoCompraComponent implements OnInit {
     dialogConfig.height = '400px';
     dialogConfig.data = finalArrayTotalItem;
     this.dialog.open(ProcesoCompraComponent, dialogConfig);
-    // this.sharedService.getArrayCompras(finalArrayTotalItem);
+    this.sharedService.getArrayCompras(finalArrayTotalItem);
   }
 
   /** Gets the total cost of all transactions. */

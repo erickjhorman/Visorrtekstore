@@ -81,4 +81,4 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatBadgeModule,
   ],
 })
-export class MateriaAngularCss { }
+export class MateriaAngularCss {}

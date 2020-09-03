@@ -1,94 +1,103 @@
-<!-- <div class="row">
-    <app-datos-personales-sidebar></app-datos-personales-sidebar>
-</div> -->
-
 <form [formGroup]="formAddress" (ngSubmit)="onAddAdress()" class="normal-form">
-    <mat-grid-list cols="2" rowHeight="500px">
+  <mat-grid-list cols="2" rowHeight="500px">
 
-        <mat-grid-tile>
-            <app-datos-personales-sidebar></app-datos-personales-sidebar>
-        </mat-grid-tile>
+    <mat-grid-tile>
+      <app-datos-personales-sidebar></app-datos-personales-sidebar>
+    </mat-grid-tile>
 
-        <mat-grid-tile>
+    <mat-grid-tile>
 
-            <div class="form-container">
+      <div class="form-container">
 
-                <input type="text" id="cliente_id" value={{user.id}} formControlName="cliente_id">
-                <mat-form-field class="example-full-width">
-                    <input type="text" placeholder="Nombre*" value="" formControlName="nombre" matInput>
-                    <mat-error *ngIf="formAddress.controls['nombre'].errors?.required">Este campo es requerido</mat-error>
-                    <mat-error *ngIf="formAddress.controls['nombre'].errors?.minLength">Minimo caracteres requeridos 3</mat-error>
-                    <mat-error *ngIf="formAddress.controls['nombre'].errors?.maxLength">Maximo caracteres requeridos 30</mat-error>
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <input type="text" placeholder="apellido*" value="" formControlName="apellido" matInput>
-                    <mat-error *ngIf="formAddress.controls['apellido'].errors?.required">Este campo es requerido</mat-error>
-                    <mat-error *ngIf="formAddress.controls['apellido'].errors?.minLength">Minimo caracteres requeridos 3</mat-error>
-                    <mat-error *ngIf="formAddress.controls['apellido'].errors?.maxLength">Maximo caracteres requeridos 30</mat-error>
-                </mat-form-field>
+        <input type="text" id="cliente_id" value={{user.id}} formControlName="cliente_id">
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Nombre*" value="" formControlName="nombre" matInput>
+          <mat-error *ngIf="formAddress.controls['nombre'].errors?.required">Este campo es requerido</mat-error>
+          <mat-error *ngIf="formAddress.controls['nombre'].errors?.minLength">Minimo caracteres requeridos 3</mat-error>
+          <mat-error *ngIf="formAddress.controls['nombre'].errors?.maxLength">Maximo caracteres requeridos 30
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="apellido*" value="" formControlName="apellido" matInput>
+          <mat-error *ngIf="formAddress.controls['apellido'].errors?.required">Este campo es requerido</mat-error>
+          <mat-error *ngIf="formAddress.controls['apellido'].errors?.minLength">Minimo caracteres requeridos 3
+          </mat-error>
+          <mat-error *ngIf="formAddress.controls['apellido'].errors?.maxLength">Maximo caracteres requeridos 30
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <input type="text" placeholder="celular*" value="" formControlName="celular" matInput>
-                    <mat-error *ngIf="formAddress.controls['celular'].errors?.required">Este campo es requerido</mat-error>
-                    <mat-error *ngIf="formAddress.controls['celular'].errors?.minLength">Minimo caracteres requeridos 13</mat-error>
-                    <mat-error *ngIf="formAddress.controls['celular'].errors?.maxLength">Maximo caracteres requeridos 13</mat-error>
-                </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="celular*" value="" formControlName="celular" matInput>
+          <mat-error *ngIf="formAddress.controls['celular'].errors?.required">Este campo es requerido</mat-error>
+          <mat-error *ngIf="formAddress.controls['celular'].errors?.minLength">Minimo caracteres requeridos 13
+          </mat-error>
+          <mat-error *ngIf="formAddress.controls['celular'].errors?.maxLength">Maximo caracteres requeridos 13
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <input type="text" placeholder="barrio*" value="" formControlName="barrio" matInput>
-                    <mat-error *ngIf="formAddress.controls['barrio'].errors?.required">Este campo es requerido</mat-error>
-                    <mat-error *ngIf="formAddress.controls['barrio'].errors?.minLength">Minimo caracteres requeridos 7</mat-error>
-                    <mat-error *ngIf="formAddress.controls['barrio'].errors?.maxLength">Maximo caracteres requeridos 15</mat-error>
-                </mat-form-field>
-                <div class="button-row">
-                    <button mat-raised-button type="submit" [disabled]="formAddress.invalid">Submit</button>
-                    <button mat-raised-button color="warn" (click)="onClear()">Limpiar</button>
-                </div>
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <div class="form-container">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Departamento</mat-label>
-                    <mat-select (selectionChange)="ChangeId($event.value)" placeholder="Departamento*" [(value)]="selectedDep" formControlName="departamento_id">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let d of departamentos" [value]="d.id">{{d.departamento}}</mat-option>
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="barrio*" value="" formControlName="barrio" matInput>
+          <mat-error *ngIf="formAddress.controls['barrio'].errors?.required">Este campo es requerido</mat-error>
+          <mat-error *ngIf="formAddress.controls['barrio'].errors?.minLength">Minimo caracteres requeridos 7</mat-error>
+          <mat-error *ngIf="formAddress.controls['barrio'].errors?.maxLength">Maximo caracteres requeridos 15
+          </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button type="submit" [disabled]="formAddress.invalid">Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Limpiar</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="form-container">
+        <mat-form-field class="example-full-width">
+          <mat-label>Departamento</mat-label>
+          <mat-select (selectionChange)="ChangeId($event.value)" placeholder="Departamento*" [(value)]="selectedDep"
+            formControlName="departamento_id">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let d of departamentos" [value]="d.id">{{d.departamento}}</mat-option>
 
-                    </mat-select>
-                    <mat-error *ngIf="formAddress.controls['departamento_id'].errors?.required">Este campo es requerido</mat-error>
-                    <p>You selected: {{selectedDep}}</p>
+          </mat-select>
+          <mat-error *ngIf="formAddress.controls['departamento_id'].errors?.required">Este campo es requerido
+          </mat-error>
+          <p>You selected: {{selectedDep}}</p>
 
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Seleccione una opcion</mat-label>
-                    <mat-select placeholder="ciudad*" [(value)]="selectedCiu" formControlName="ciudad_id">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let c of ciudades" [value]="c.id">{{c.ciudad}}</mat-option>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccione una opcion</mat-label>
+          <mat-select placeholder="ciudad*" [(value)]="selectedCiu" formControlName="ciudad_id">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let c of ciudades" [value]="c.id">{{c.ciudad}}</mat-option>
 
-                    </mat-select>
+          </mat-select>
 
-                    <p>You selected: {{selectedCiu}}</p>
-                    <mat-error *ngIf="formAddress.controls['ciudad_id'].errors?.required">Este campo es requerido</mat-error>
-                </mat-form-field>
+          <p>You selected: {{selectedCiu}}</p>
+          <mat-error *ngIf="formAddress.controls['ciudad_id'].errors?.required">Este campo es requerido</mat-error>
+        </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <input type="text" placeholder="Direccion*" value="" formControlName="direccion" matInput>
-                    <mat-error *ngIf="formAddress.controls['direccion'].errors?.required">Este campo es requerido</mat-error>
-                    <mat-error *ngIf="formAddress.controls['direccion'].errors?.minLength">Minimo caracteres requeridos 7</mat-error>
-                    <mat-error *ngIf="formAddress.controls['direccion'].errors?.maxLength">Maximo caracteres requeridos 15</mat-error>
-                </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Direccion*" value="" formControlName="direccion" matInput>
+          <mat-error *ngIf="formAddress.controls['direccion'].errors?.required">Este campo es requerido</mat-error>
+          <mat-error *ngIf="formAddress.controls['direccion'].errors?.minLength">Minimo caracteres requeridos 7
+          </mat-error>
+          <mat-error *ngIf="formAddress.controls['direccion'].errors?.maxLength">Maximo caracteres requeridos 15
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Datos personales" value="" formControlName="datos_adicionales"></textarea>
-                    <mat-error *ngIf="formAddress.controls['datos_adicionales'].errors?.required">Este campo es requerido</mat-error>
-                    <mat-error *ngIf="formAddress.controls['datos_adicionales'].errors?.minLength">Minimo caracteres requeridos 10</mat-error>
-                    <mat-error *ngIf="formAddress.controls['datos_adicionales'].errors?.maxLength">Maximo caracteres requeridos 25</mat-error>
-                </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Datos personales" value="" formControlName="datos_adicionales"></textarea>
+          <mat-error *ngIf="formAddress.controls['datos_adicionales'].errors?.required">Este campo es requerido
+          </mat-error>
+          <mat-error *ngIf="formAddress.controls['datos_adicionales'].errors?.minLength">Minimo caracteres requeridos 10
+          </mat-error>
+          <mat-error *ngIf="formAddress.controls['datos_adicionales'].errors?.maxLength">Maximo caracteres requeridos 25
+          </mat-error>
+        </mat-form-field>
 
 
 
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 
 </form>

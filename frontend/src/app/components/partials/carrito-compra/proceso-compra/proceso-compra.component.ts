@@ -27,6 +27,7 @@ import { FormDireccioneUsuarioShowComponent } from '../procesoCompra/form-direcc
 import { NotificationService } from '../../../../services/shared/notification.service';
 import { ListPurchase } from '../../../../models/ListPurchase';
 
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-proceso-compra',
   templateUrl: './proceso-compra.component.html',
@@ -63,6 +64,9 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
 
   @ViewChild('stepper', { static: false }) stepper: any;
   totalStepsCount: number;
+
+  // Icons
+  faWindowClose = faWindowClose;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -172,7 +176,6 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   }
 
   showDomicilio() {
-    console.log('Show domicilio' + this.domicilio);
     this.onCreateShow(this.domicilio);
   }
 
@@ -197,9 +200,7 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
   // Dialog para transportadora
   onCreateDialogTransportadora(transportadora: any) {
     const dialogConfig = new MatDialogConfig();
-
     const t = transportadora;
-
     dialogConfig.disableClose = true;
     dialogConfig.width = '400px';
     dialogConfig.height = '400px';
@@ -212,13 +213,10 @@ export class ProcesoCompraComponent implements OnInit, AfterViewInit {
     const dialogConfig = new MatDialogConfig();
     const d = data;
     dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    dialogConfig.width = '600px';
-    dialogConfig.height = '400px';
-    // dialogConfig.data = {name : 'Erick'}
+    dialogConfig.width = '650px';
+    dialogConfig.height = '425px';
     dialogConfig.data = d;
     this.dialog.open(FormDireccioneUsuarioShowComponent, dialogConfig);
-    console.log('Ver domicilio');
   }
 
   onCreateDomicilio(data) {

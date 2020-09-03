@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
   Input,
   OnDestroy,
   ViewChildren,
@@ -31,9 +30,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ShowAllCommentsComponent } from '../../partials/show-all-comments/show-all-comments.component';
 
 import { MatDialog } from '@angular/material/dialog';
-import Pusher from 'pusher-js';
+
 import { faComment } from '@fortawesome/free-solid-svg-icons';
-import { ListPurchase } from '../../../models/ListPurchase';
 
 @Component({
   selector: 'app-mostrar-detalle-producto',
@@ -146,7 +144,6 @@ export class MostrarDetalleProductoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // To get the value of the login
     this.authService.authStatus.subscribe((value) => (this.loggedin = value));
-    console.log(this.loggedin);
 
     // get the value to know if the user is an admin or not
     this.authService.typeUserStatus.subscribe(
@@ -307,7 +304,6 @@ export class MostrarDetalleProductoComponent implements OnInit, OnDestroy {
           };
 
           this.imagenes.push(obj);
-          console.log(this.imagenes);
 
           this.getFirstImageArray(this.imagenes);
         }
@@ -370,7 +366,6 @@ export class MostrarDetalleProductoComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           this.coloresProductos = res;
-          console.log(this.coloresProductos);
         },
         (err) => console.log(err)
       );
@@ -494,10 +489,6 @@ export class MostrarDetalleProductoComponent implements OnInit, OnDestroy {
   }
 
   connectToQuestionChannel() {
-    // const pusher = new Pusher(environment.PUSHER_API_KEY, {
-    //   cluster: environment.PUSHER_CLUSTER,
-    // });
-
     const channel = this.pusher.subscribe('questions');
     channel.bind('QuestionSent', (data) => {
       this.preguntas = [];
@@ -522,7 +513,20 @@ export class MostrarDetalleProductoComponent implements OnInit, OnDestroy {
       .subscribe('questionAnswers');
 
     channel.bind('QuestionAnswerSent', (data) => {
-      this.getQuestion();
+      this.preguntas = [];
+
+      data.answerQuestion.forEach((item) => {
+        this.preguntas.push({
+          usuario_id: item.usuario_id,
+          pregunta_id: item.pregunta_id,
+          respuesta_id: item.respuesta_id,
+          pregunta: item.pregunta,
+          respuesta: item.respuesta,
+          nombre: item.nombre,
+          avatar: item.avatar,
+          created_at: item.created_at,
+        });
+      });
     });
   }
 

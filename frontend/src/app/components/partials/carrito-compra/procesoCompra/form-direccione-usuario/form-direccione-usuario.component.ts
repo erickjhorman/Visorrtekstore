@@ -1,3 +1,4 @@
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +13,7 @@ import { ProcesoCompraComponent } from '../../proceso-compra/proceso-compra.comp
 @Component({
   selector: 'app-form-direccione-usuario',
   templateUrl: './form-direccione-usuario.component.html',
-  styleUrls: ['./form-direccione-usuario.component.css']
+  styleUrls: ['./form-direccione-usuario.component.css'],
 })
 export class FormDireccioneUsuarioComponent implements OnInit {
   public departamentos: any;
@@ -28,6 +29,9 @@ export class FormDireccioneUsuarioComponent implements OnInit {
   activateButtonView = false;
   // Form
   FormDireccionesUsuario: FormGroup;
+
+  // Icons
+  faWindowClose = faWindowClose;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -51,36 +55,36 @@ export class FormDireccioneUsuarioComponent implements OnInit {
       nombre: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(30)
+        Validators.maxLength(30),
       ]),
 
       idCliente: new FormControl(this.user.id),
       apellido: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(30)
+        Validators.maxLength(30),
       ]),
       celular: new FormControl('', [
         Validators.required,
 
         Validators.minLength(10),
-        Validators.maxLength(10)
+        Validators.maxLength(10),
       ]),
       barrio: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(30)
+        Validators.maxLength(30),
       ]),
       direccion: new FormControl('', [
         Validators.required,
         Validators.minLength(13),
-        Validators.maxLength(25)
+        Validators.maxLength(25),
       ]),
       datosadicionales: new FormControl('', [
         Validators.required,
         Validators.minLength(13),
-        Validators.maxLength(75)
-      ])
+        Validators.maxLength(75),
+      ]),
     });
   }
 
@@ -93,11 +97,11 @@ export class FormDireccioneUsuarioComponent implements OnInit {
       ciudad: '',
       barrio: '',
       direccion: '',
-      datosadicionales: ''
+      datosadicionales: '',
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // To get the value of the selected
   changeId($event) {
@@ -112,11 +116,11 @@ export class FormDireccioneUsuarioComponent implements OnInit {
   // To get the ciudades for direccion Form
   getCiudades(id: number) {
     this.cataloServe.getCiudades(id).subscribe(
-      res => {
+      (res) => {
         this.ciudades = res;
         console.log(res);
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
   }
 
@@ -124,7 +128,10 @@ export class FormDireccioneUsuarioComponent implements OnInit {
     if (this.FormDireccionesUsuario.valid) {
       this.procesoCompra
         .saveDireccion(this.FormDireccionesUsuario.value)
-        .subscribe(res => { }, err => { });
+        .subscribe(
+          (res) => {},
+          (err) => {}
+        );
       this.sharedService.getFormDirecciones(this.FormDireccionesUsuario.value);
       this.sharedService.EmitVer(true);
       this.notificationService.success('Direccion almacenada');

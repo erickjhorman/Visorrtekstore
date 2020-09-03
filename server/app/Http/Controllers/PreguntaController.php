@@ -34,16 +34,16 @@ class PreguntaController extends Controller
    {
 
 
-   return   DB::transaction(function () {
+   return  DB::transaction(function () {
 
      $result =  DB::table('pregunta_respuesta')
         ->LeftJoin('preguntas', 'preguntas.id', '=', 'pregunta_respuesta.pregunta_id')
         ->LeftJoin('respuestas', 'respuestas.id', '=', 'pregunta_respuesta.respuesta_id')
         ->LeftJoin('users', 'users.id', '=', 'preguntas.usuario_id')
         ->LeftJoin('clientes', 'clientes.usuario_id', '=', 'users.id')
-        // ->where('respuesta_id',0)
         ->select('pregunta_respuesta.*','preguntas.pregunta','respuestas.respuesta','respuestas.created_at','clientes.avatar','clientes.nombre','users.id','pregunta_respuesta.created_at')
-        ->latest('pregunta_respuesta.created_at')
+        ->orderBy('pregunta_respuesta.id','asc')
+        ->limit(7)
         ->get();
 
         return  $result;

@@ -1,38 +1,38 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-form-direccione-usuario-show',
   templateUrl: './form-direccione-usuario-show.component.html',
-  styleUrls: ['./form-direccione-usuario-show.component.css']
+  styleUrls: ['./form-direccione-usuario-show.component.css'],
 })
 export class FormDireccioneUsuarioShowComponent implements OnInit {
+  faWindowClose = faWindowClose;
 
-   //Form
-   FormDireccionesUsuarioShow: FormGroup;
+  FormDireccionesUsuarioShow: FormGroup;
 
-   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<FormDireccioneUsuarioShowComponent>,
-    ) {
-
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<FormDireccioneUsuarioShowComponent>
+  ) {
     this.FormDireccionesUsuarioShow = new FormGroup({
-      'departamento': new FormControl(),
-      'ciudad': new FormControl(),
-      'nombre': new FormControl(),
-      'apellido': new FormControl(),
-      'celular': new FormControl(),
-      'barrio': new FormControl(),
-      'direccion': new FormControl(),
-      'datosadicionales': new FormControl()
+      departamento: new FormControl(),
+      ciudad: new FormControl(),
+      nombre: new FormControl(),
+      apellido: new FormControl(),
+      celular: new FormControl(),
+      barrio: new FormControl(),
+      direccion: new FormControl(),
+      datosadicionales: new FormControl(),
     });
-
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onClose(){
+  onClose() {
     this.dialogRef.close();
-   }
+  }
 }

@@ -13,9 +13,8 @@ import { TokenService } from '../../../services/token.service';
 import { UserData } from '../../../models/UserData';
 
 import { Subject } from 'rxjs';
-import { CatalogoServes } from '../../../services/Catalogos/catalogos.service';
 import { takeUntil } from 'rxjs/operators';
-import { PusherService } from '../../../services/shared/pusher.service';
+import { CatalogoServes } from '../../../services/Catalogos/catalogos.service';
 
 @Component({
   selector: 'app-question-answers',
@@ -33,26 +32,23 @@ export class QuestionAnswersComponent implements OnInit, OnDestroy {
 
   user: UserData;
 
-  log = console.log;
+  c = console.log;
 
   private $unsubscribe = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
     private token: TokenService,
-    private catalogoServes: CatalogoServes,
-    private pusherService: PusherService
+    private catalogoServes: CatalogoServes
   ) {}
 
   ngOnInit() {
     this.user = this.token.getUserData();
     this.formSendReplayQuestion = this.createForm();
-    // this.connectoToAnswerChannel();
   }
 
   createForm(): FormGroup {
     return this.fb.group({
-      productoId: [this.question.id],
       usuario_id: [this.user.id],
       preguntaId: [this.question.pregunta_id],
       respuesta: ['', Validators.required],
@@ -67,8 +63,8 @@ export class QuestionAnswersComponent implements OnInit, OnDestroy {
         .saveQuestionAnswer(form)
         .pipe(takeUntil(this.$unsubscribe))
         .subscribe(
-          (data) => {
-            console.log(data);
+          () => {
+            this.answersEvent.emit();
             this.setValuerAfterFormPost();
           },
           (err) => console.log(err)
@@ -81,16 +77,6 @@ export class QuestionAnswersComponent implements OnInit, OnDestroy {
   setValuerAfterFormPost() {
     this.formSendReplayQuestion.patchValue({
       respuesta: '',
-    });
-  }
-
-  connectoToAnswerChannel() {
-    const channel = this.pusherService
-      .connectToPusher()
-      .subscribe('questionAnswers');
-
-    channel.bind('QuestionAnswerSent', (data) => {
-      this.answersEvent.emit();
     });
   }
 
