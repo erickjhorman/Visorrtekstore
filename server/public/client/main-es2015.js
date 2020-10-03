@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span style=\"color: tomato;\">{{envName}}</span>\r\n\r\n<app-main-side-bar></app-main-side-bar>\r\n"
+module.exports = "<app-main-side-bar></app-main-side-bar>\r\n"
 
 /***/ }),
 
@@ -40,7 +40,7 @@ module.exports = "<!--<p>Email : {{user.email}}</p> -->\r\n\r\n<div class=\"row\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"row\">\r\n    <app-datos-personales-sidebar></app-datos-personales-sidebar>\r\n</div> -->\r\n\r\n<form [formGroup]=\"formAddress\" (ngSubmit)=\"onAddAdress()\" class=\"normal-form\">\r\n    <mat-grid-list cols=\"2\" rowHeight=\"500px\">\r\n\r\n        <mat-grid-tile>\r\n            <app-datos-personales-sidebar></app-datos-personales-sidebar>\r\n        </mat-grid-tile>\r\n\r\n        <mat-grid-tile>\r\n\r\n            <div class=\"form-container\">\r\n\r\n                <input type=\"text\" id=\"cliente_id\" value={{user.id}} formControlName=\"cliente_id\">\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <input type=\"text\" placeholder=\"Nombre*\" value=\"\" formControlName=\"nombre\" matInput>\r\n                    <mat-error *ngIf=\"formAddress.controls['nombre'].errors?.required\">Este campo es requerido</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['nombre'].errors?.minLength\">Minimo caracteres requeridos 3</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['nombre'].errors?.maxLength\">Maximo caracteres requeridos 30</mat-error>\r\n                </mat-form-field>\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <input type=\"text\" placeholder=\"apellido*\" value=\"\" formControlName=\"apellido\" matInput>\r\n                    <mat-error *ngIf=\"formAddress.controls['apellido'].errors?.required\">Este campo es requerido</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['apellido'].errors?.minLength\">Minimo caracteres requeridos 3</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['apellido'].errors?.maxLength\">Maximo caracteres requeridos 30</mat-error>\r\n                </mat-form-field>\r\n\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <input type=\"text\" placeholder=\"celular*\" value=\"\" formControlName=\"celular\" matInput>\r\n                    <mat-error *ngIf=\"formAddress.controls['celular'].errors?.required\">Este campo es requerido</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['celular'].errors?.minLength\">Minimo caracteres requeridos 13</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['celular'].errors?.maxLength\">Maximo caracteres requeridos 13</mat-error>\r\n                </mat-form-field>\r\n\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <input type=\"text\" placeholder=\"barrio*\" value=\"\" formControlName=\"barrio\" matInput>\r\n                    <mat-error *ngIf=\"formAddress.controls['barrio'].errors?.required\">Este campo es requerido</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['barrio'].errors?.minLength\">Minimo caracteres requeridos 7</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['barrio'].errors?.maxLength\">Maximo caracteres requeridos 15</mat-error>\r\n                </mat-form-field>\r\n                <div class=\"button-row\">\r\n                    <button mat-raised-button type=\"submit\" [disabled]=\"formAddress.invalid\">Submit</button>\r\n                    <button mat-raised-button color=\"warn\" (click)=\"onClear()\">Limpiar</button>\r\n                </div>\r\n            </div>\r\n        </mat-grid-tile>\r\n        <mat-grid-tile>\r\n            <div class=\"form-container\">\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <mat-label>Departamento</mat-label>\r\n                    <mat-select (selectionChange)=\"ChangeId($event.value)\" placeholder=\"Departamento*\" [(value)]=\"selectedDep\" formControlName=\"departamento_id\">\r\n                        <mat-option>None</mat-option>\r\n                        <mat-option *ngFor=\"let d of departamentos\" [value]=\"d.id\">{{d.departamento}}</mat-option>\r\n\r\n                    </mat-select>\r\n                    <mat-error *ngIf=\"formAddress.controls['departamento_id'].errors?.required\">Este campo es requerido</mat-error>\r\n                    <p>You selected: {{selectedDep}}</p>\r\n\r\n                </mat-form-field>\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <mat-label>Seleccione una opcion</mat-label>\r\n                    <mat-select placeholder=\"ciudad*\" [(value)]=\"selectedCiu\" formControlName=\"ciudad_id\">\r\n                        <mat-option>None</mat-option>\r\n                        <mat-option *ngFor=\"let c of ciudades\" [value]=\"c.id\">{{c.ciudad}}</mat-option>\r\n\r\n                    </mat-select>\r\n\r\n                    <p>You selected: {{selectedCiu}}</p>\r\n                    <mat-error *ngIf=\"formAddress.controls['ciudad_id'].errors?.required\">Este campo es requerido</mat-error>\r\n                </mat-form-field>\r\n\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <input type=\"text\" placeholder=\"Direccion*\" value=\"\" formControlName=\"direccion\" matInput>\r\n                    <mat-error *ngIf=\"formAddress.controls['direccion'].errors?.required\">Este campo es requerido</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['direccion'].errors?.minLength\">Minimo caracteres requeridos 7</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['direccion'].errors?.maxLength\">Maximo caracteres requeridos 15</mat-error>\r\n                </mat-form-field>\r\n\r\n                <mat-form-field class=\"example-full-width\">\r\n                    <textarea matInput placeholder=\"Datos personales\" value=\"\" formControlName=\"datos_adicionales\"></textarea>\r\n                    <mat-error *ngIf=\"formAddress.controls['datos_adicionales'].errors?.required\">Este campo es requerido</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['datos_adicionales'].errors?.minLength\">Minimo caracteres requeridos 10</mat-error>\r\n                    <mat-error *ngIf=\"formAddress.controls['datos_adicionales'].errors?.maxLength\">Maximo caracteres requeridos 25</mat-error>\r\n                </mat-form-field>\r\n\r\n\r\n\r\n            </div>\r\n        </mat-grid-tile>\r\n    </mat-grid-list>\r\n\r\n</form>"
+module.exports = "<form [formGroup]=\"formAddress\" (ngSubmit)=\"onAddAdress()\" class=\"normal-form\">\r\n  <mat-grid-list cols=\"2\" rowHeight=\"500px\">\r\n\r\n    <mat-grid-tile>\r\n      <app-datos-personales-sidebar></app-datos-personales-sidebar>\r\n    </mat-grid-tile>\r\n\r\n    <mat-grid-tile>\r\n\r\n      <div class=\"form-container\">\r\n\r\n        <input type=\"text\" id=\"cliente_id\" value={{user.id}} formControlName=\"cliente_id\">\r\n        <mat-form-field class=\"example-full-width\">\r\n          <input type=\"text\" placeholder=\"Nombre*\" value=\"\" formControlName=\"nombre\" matInput>\r\n          <mat-error *ngIf=\"formAddress.controls['nombre'].errors?.required\">Este campo es requerido</mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['nombre'].errors?.minLength\">Minimo caracteres requeridos 3</mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['nombre'].errors?.maxLength\">Maximo caracteres requeridos 30\r\n          </mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <input type=\"text\" placeholder=\"apellido*\" value=\"\" formControlName=\"apellido\" matInput>\r\n          <mat-error *ngIf=\"formAddress.controls['apellido'].errors?.required\">Este campo es requerido</mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['apellido'].errors?.minLength\">Minimo caracteres requeridos 3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['apellido'].errors?.maxLength\">Maximo caracteres requeridos 30\r\n          </mat-error>\r\n        </mat-form-field>\r\n\r\n        <mat-form-field class=\"example-full-width\">\r\n          <input type=\"text\" placeholder=\"celular*\" value=\"\" formControlName=\"celular\" matInput>\r\n          <mat-error *ngIf=\"formAddress.controls['celular'].errors?.required\">Este campo es requerido</mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['celular'].errors?.minLength\">Minimo caracteres requeridos 13\r\n          </mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['celular'].errors?.maxLength\">Maximo caracteres requeridos 13\r\n          </mat-error>\r\n        </mat-form-field>\r\n\r\n        <mat-form-field class=\"example-full-width\">\r\n          <input type=\"text\" placeholder=\"barrio*\" value=\"\" formControlName=\"barrio\" matInput>\r\n          <mat-error *ngIf=\"formAddress.controls['barrio'].errors?.required\">Este campo es requerido</mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['barrio'].errors?.minLength\">Minimo caracteres requeridos 7</mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['barrio'].errors?.maxLength\">Maximo caracteres requeridos 15\r\n          </mat-error>\r\n        </mat-form-field>\r\n        <div class=\"button-row\">\r\n          <button mat-raised-button type=\"submit\" [disabled]=\"formAddress.invalid\">Submit</button>\r\n          <button mat-raised-button color=\"warn\" (click)=\"onClear()\">Limpiar</button>\r\n        </div>\r\n      </div>\r\n    </mat-grid-tile>\r\n    <mat-grid-tile>\r\n      <div class=\"form-container\">\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Departamento</mat-label>\r\n          <mat-select (selectionChange)=\"ChangeId($event.value)\" placeholder=\"Departamento*\" [(value)]=\"selectedDep\"\r\n            formControlName=\"departamento_id\">\r\n            <mat-option>None</mat-option>\r\n            <mat-option *ngFor=\"let d of departamentos\" [value]=\"d.id\">{{d.departamento}}</mat-option>\r\n\r\n          </mat-select>\r\n          <mat-error *ngIf=\"formAddress.controls['departamento_id'].errors?.required\">Este campo es requerido\r\n          </mat-error>\r\n          <p>You selected: {{selectedDep}}</p>\r\n\r\n        </mat-form-field>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Seleccione una opcion</mat-label>\r\n          <mat-select placeholder=\"ciudad*\" [(value)]=\"selectedCiu\" formControlName=\"ciudad_id\">\r\n            <mat-option>None</mat-option>\r\n            <mat-option *ngFor=\"let c of ciudades\" [value]=\"c.id\">{{c.ciudad}}</mat-option>\r\n\r\n          </mat-select>\r\n\r\n          <p>You selected: {{selectedCiu}}</p>\r\n          <mat-error *ngIf=\"formAddress.controls['ciudad_id'].errors?.required\">Este campo es requerido</mat-error>\r\n        </mat-form-field>\r\n\r\n        <mat-form-field class=\"example-full-width\">\r\n          <input type=\"text\" placeholder=\"Direccion*\" value=\"\" formControlName=\"direccion\" matInput>\r\n          <mat-error *ngIf=\"formAddress.controls['direccion'].errors?.required\">Este campo es requerido</mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['direccion'].errors?.minLength\">Minimo caracteres requeridos 7\r\n          </mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['direccion'].errors?.maxLength\">Maximo caracteres requeridos 15\r\n          </mat-error>\r\n        </mat-form-field>\r\n\r\n        <mat-form-field class=\"example-full-width\">\r\n          <textarea matInput placeholder=\"Datos personales\" value=\"\" formControlName=\"datos_adicionales\"></textarea>\r\n          <mat-error *ngIf=\"formAddress.controls['datos_adicionales'].errors?.required\">Este campo es requerido\r\n          </mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['datos_adicionales'].errors?.minLength\">Minimo caracteres requeridos 10\r\n          </mat-error>\r\n          <mat-error *ngIf=\"formAddress.controls['datos_adicionales'].errors?.maxLength\">Maximo caracteres requeridos 25\r\n          </mat-error>\r\n        </mat-form-field>\r\n\r\n\r\n\r\n      </div>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n\r\n</form>\r\n"
 
 /***/ }),
 
@@ -139,7 +139,7 @@ module.exports = " <!-- <mat-sidenav-container> -->\r\n  <!-- <mat-sidenav mode=
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"form-login\">\r\n  <div class=\"mt-5 col-8 offset-2\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header\">Login In\r\n        <div class=\"card-body\">\r\n          <form #loginForm=ngForm>\r\n\r\n            <div class=\"alert alert-danger\" [hidden]=\"!error\">\r\n              {{error}}\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\"\r\n                  [(ngModel)]=\"login.email\" required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputPassword3\" class=\"col-sm-2 col-form-label\">Password</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"password\" name=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\"\r\n                  [(ngModel)]=\"login.password\" required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <div class=\"col-sm-10 offset-2\">\r\n                <button (click)=\"LoginIn()\" type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!loginForm.valid\">Sign\r\n                  in</button>\r\n                <a routerLink=\"/signup\" class=\"btn btn-info float-right\">Sign up</a>\r\n              </div>\r\n            </div>\r\n          </form>\r\n          <small class=\"float-right\">\r\n            <a routerLink=\"/request-password-reset\"> Reset Password </a>\r\n          </small>\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div id=\"form-login\">\r\n  <div class=\"mt-5 col-8 offset-2\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header\">Iniciar Sesion\r\n        <div class=\"card-body\">\r\n          <form #loginForm=ngForm>\r\n\r\n            <div class=\"alert alert-danger\" [hidden]=\"!error\">\r\n              {{error}}\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\"\r\n                  [(ngModel)]=\"login.email\" required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputPassword3\" class=\"col-sm-2 col-form-label\">Contraseña</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"password\" name=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\"\r\n                  [(ngModel)]=\"login.password\" required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <div class=\"col-sm-10 offset-2\">\r\n                <button (click)=\"LoginIn()\" type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!loginForm.valid\">Iniciar Sesion\r\n                  </button>\r\n                <a routerLink=\"/signup\" class=\"btn btn-info float-right\">Registrarse</a>\r\n              </div>\r\n            </div>\r\n          </form>\r\n          <small class=\"float-right\">\r\n            <a routerLink=\"/request-password-reset\">Reestablecer Contraseña </a>\r\n          </small>\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -150,7 +150,7 @@ module.exports = "<div id=\"form-login\">\r\n  <div class=\"mt-5 col-8 offset-2\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mt-5 col-8 offset-2\">\r\n  <div class=\"card \">\r\n      <div class=\"card-header\">Send Email for Reset password\r\n        <div class=\"card-body\">\r\n           <form #RequestResetForm=ngForm >\r\n               <div class=\"form-group row\">\r\n                 <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n                 <div class=\"col-sm-10\">\r\n                   <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"login.email\" required>\r\n                 </div>\r\n               </div>\r\n               \r\n               <div class=\"form-group row\">\r\n                <div class=\"col-sm-10 offset-2\">\r\n                 <button (click)=\"sendPasswordReset()\" type=\"submit\"  class=\"btn btn-primary\" [disabled]=\"!RequestResetForm.valid\">Send Password Reset Email</button>\r\n                  </div>\r\n              </div>\r\n             </form>\r\n            \r\n        </div>\r\n      </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"mt-5 col-8 offset-2\" style=\"height: 500px;\"  *ngIf=\"show; else notShow\" >\r\n  <div class=\"card \">\r\n      <div class=\"card-header\">Restablecer contraseña\r\n        <div class=\"card-body\">\r\n           <form #RequestResetForm=ngForm >\r\n               <div class=\"form-group row\">\r\n                 <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n                 <div class=\"col-sm-10\">\r\n                   <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"login.email\" required>\r\n                   <div class=\"alert alert-danger\" [hidden]=\"!error\">\r\n                    {{error}}\r\n                  </div>\r\n                 </div>\r\n               </div>\r\n\r\n               <div class=\"form-group row\">\r\n                <div class=\"col-sm-10 offset-2\">\r\n                 <button (click)=\"sendPasswordReset()\" type=\"submit\"  class=\"btn btn-primary\" [disabled]=\"!RequestResetForm.valid\">Enviar correo</button>\r\n                  </div>\r\n              </div>\r\n             </form>\r\n\r\n        </div>\r\n      </div>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #notShow>\r\n  <div class=\"d-flex justify-content-center mt-5\" style=\"height: 300px;\" >\r\n   <mat-card>\r\n     <mat-card-header>\r\n       <h1>Recuperar tu contraseña</h1>\r\n     </mat-card-header>\r\n     <mat-card-content>\r\n       <p style=\"text-align: justify;\">Si la cuenta esta en nuestro sistema, te enviaremos un correo electronico con un link para restablecer tu contraseña</p>\r\n     </mat-card-content>\r\n     <div class=\"text-center mt-3\">\r\n       <button mat-raised-button type=\"submit\" isRoundButton=\"true\" [routerLink]=\"['/login']\"  routerLinkActive=\"active\" >Regresar a Login</button>\r\n      </div>\r\n    </mat-card>\r\n\r\n </div>\r\n</ng-template>\r\n\r\n"
 
 /***/ }),
 
@@ -161,7 +161,7 @@ module.exports = "<div class=\"mt-5 col-8 offset-2\">\r\n  <div class=\"card \">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mt-5 col-8 offset-2\">\r\n  <div class=\"card \">\r\n      <div class=\"card-header\">Reset Password\r\n        <div class=\"card-body\">\r\n           <form #ResetPasswordForm=ngForm >\r\n               {{signup.resetToken}}\r\n            <div class=\"form-group row\">\r\n                 <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n                 <div class=\"col-sm-10\">\r\n                   <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"signup.email\" required>\r\n                   <span class=\"text-danger\" [hidden]=\"!error\">{{error}}</span>\r\n                  </div>\r\n\r\n               </div>\r\n\r\n               <div class=\"form-group row\">\r\n                 <label for=\"inputPassword4\" class=\"col-sm-2 col-form-label\">Password</label>\r\n                 <div class=\"col-sm-10\">\r\n                   <input type=\"password\" name=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\" [(ngModel)]=\"signup.password\" required>\r\n                   <span class=\"text-danger\" [hidden]=\"!error\">{{error}}</span>\r\n                  </div>\r\n\r\n               </div>\r\n               <div class=\"form-group row\">\r\n                <label for=\"inputPasswordConfirmar\" class=\"col-sm-2 col-form-label\">Confirmar Password</label>\r\n                <div class=\"col-sm-10\">\r\n                  <input type=\"password\" name=\"password_confirmation\" class=\"form-control\" id=\"inputPasswordConfirmar\" placeholder=\"Confirmar Password\" [(ngModel)]=\"signup.password_confirmation\" required>\r\n                  <span class=\"text-danger\" [hidden]=\"!error\">{{error}}</span>\r\n                </div>\r\n\r\n              </div>\r\n              <div class=\"form-group row\">\r\n                 <div class=\"col-sm-10 offset-2\">\r\n                  <button (click)=\"resetPassword()\" type=\"submit\"  class=\"btn btn-primary\" [disabled]=\"!ResetPasswordForm.valid\">Change Password</button>\r\n                   <a routerLink=\"/signup\" class=\"btn btn-info float-right\" >Sign up</a>\r\n                  </div>\r\n               </div>\r\n             </form>\r\n\r\n        </div>\r\n      </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"mt-5 col-8 offset-2\" style=\"height: 500px;\">\r\n  <div class=\"card \">\r\n      <div class=\"card-header\">Restablecer Contraseña\r\n        <div class=\"card-body\">\r\n           <form #ResetPasswordForm=ngForm >\r\n\r\n            <div class=\"form-group row\">\r\n                 <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n                 <div class=\"col-sm-10\">\r\n                   <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"signup.email\" required>\r\n                   <span class=\"text-danger\" [hidden]=\"!error\">{{error}}</span>\r\n                  </div>\r\n\r\n               </div>\r\n\r\n               <div class=\"form-group row\">\r\n                 <label for=\"inputPassword4\" class=\"col-sm-2 col-form-label\">Contraseña</label>\r\n                 <div class=\"col-sm-10\">\r\n                   <input type=\"password\" name=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\" [(ngModel)]=\"signup.password\" required>\r\n                   <span class=\"text-danger\" [hidden]=\"!error\">{{error}}</span>\r\n                  </div>\r\n\r\n               </div>\r\n               <div class=\"form-group row\">\r\n                <label for=\"inputPasswordConfirmar\" class=\"col-sm-2 col-form-label\">Confirmar Contraseña</label>\r\n                <div class=\"col-sm-10\">\r\n                  <input type=\"password\" name=\"password_confirmation\" class=\"form-control\" id=\"inputPasswordConfirmar\" placeholder=\"Confirmar Password\" [(ngModel)]=\"signup.password_confirmation\" required>\r\n                  <span class=\"text-danger\" [hidden]=\"!error\">{{error}}</span>\r\n                </div>\r\n\r\n              </div>\r\n              <div class=\"form-group row\">\r\n                 <div class=\"col-sm-10 offset-2\">\r\n                  <button (click)=\"resetPassword()\" type=\"submit\"  class=\"btn btn-primary\" [disabled]=\"!ResetPasswordForm.valid\">Change Password</button>\r\n                   <a routerLink=\"/signup\" class=\"btn btn-info float-right\" >Registrarse</a>\r\n                  </div>\r\n               </div>\r\n             </form>\r\n\r\n        </div>\r\n      </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -172,7 +172,7 @@ module.exports = "<div class=\"mt-5 col-8 offset-2\">\r\n  <div class=\"card \">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"form-register\">\r\n  <div class=\"mt-5 col-8 offset-2\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header\">Register\r\n        <div class=\"card-body\">\r\n          <form #signupForm=ngForm>\r\n\r\n\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Nombre</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"email\" name=\"nombre\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"nombre\"\r\n                  [(ngModel)]=\"signup.nombre\" required>\r\n                <div class=\"alert alert-danger\" [hidden]=\"!error\">\r\n                  {{error}}\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\"\r\n                  [(ngModel)]=\"signup.email\" required>\r\n                <div class=\"alert alert-danger\" [hidden]=\"!error\">\r\n                  {{error}}\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputPassword3\" class=\"col-sm-2 col-form-label\">Password</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"password\" name=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\"\r\n                  [(ngModel)]=\"signup.password\" required>\r\n                <div class=\"alert alert-danger\" [hidden]=\"!error\">\r\n                  {{error}}\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputPasswordConfirmar\" class=\"col-sm-2 col-form-label\">Confirmar Password</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"password\" name=\"password_confirmation\" class=\"form-control\" id=\"inputPasswordConfirmar\"\r\n                  placeholder=\"Confirmar Password\" [(ngModel)]=\"signup.password_confirmation\" required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <div class=\"col-sm-10 offset-2\">\r\n                <button (click)=\"singUp()\" type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!signupForm.valid\">Sign\r\n                  Up</button>\r\n                <a routerLink=\"/login\" class=\"btn btn-info float-right\">Sign in</a>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div id=\"form-register\">\r\n  <div class=\"mt-5 col-8 offset-2\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header\">Register\r\n        <div class=\"card-body\">\r\n          <form #signupForm=ngForm>\r\n\r\n\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Nombre</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"email\" name=\"nombre\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"nombre\"\r\n                  [(ngModel)]=\"signup.nombre\" required>\r\n                <div class=\"alert alert-danger\" [hidden]=\"!error.name\">\r\n                  {{error.name}}\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputEmail3\" class=\"col-sm-2 col-form-label\">Email</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"email\" name=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\"\r\n                  [(ngModel)]=\"signup.email\" required>\r\n                <div class=\"alert alert-danger\" [hidden]=\"!error.email\">\r\n                  {{error.email}}\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputPassword3\" class=\"col-sm-2 col-form-label\">Contraseña</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"password\" name=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\"\r\n                  [(ngModel)]=\"signup.password\" required>\r\n                <div class=\"alert alert-danger\" [hidden]=\"!error.password_confirmation\">\r\n                  {{error.password_confirmation}}\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label for=\"inputPasswordConfirmar\" class=\"col-sm-2 col-form-label\">Confirmar Password</label>\r\n              <div class=\"col-sm-10\">\r\n                <input type=\"password\" name=\"password_confirmation\" class=\"form-control\" id=\"inputPasswordConfirmar\"\r\n                  placeholder=\"Confirmar Password\" [(ngModel)]=\"signup.password_confirmation\" required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <div class=\"col-sm-10 offset-2\">\r\n                <button (click)=\"singUp()\" type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!signupForm.valid\">Registrar\r\n                  </button>\r\n                <a routerLink=\"/login\" class=\"btn btn-info float-right\">Iniciar Sesion</a>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -183,7 +183,7 @@ module.exports = "<div id=\"form-register\">\r\n  <div class=\"mt-5 col-8 offset
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"full-width\">\r\n  <app-corousel-slide-catalogos></app-corousel-slide-catalogos>\r\n\r\n</div>\r\n\r\n<div class=\"container\" pb-4>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-3\" *ngFor=\"let producto of productos\">\r\n      <mat-card class=\"producto-card\">\r\n        <mat-card-header>\r\n          <mat-card-title>{{producto.Producto}}</mat-card-title>\r\n          <mat-card-subtitle></mat-card-subtitle>\r\n        </mat-card-header>\r\n        <img mat-card-image [src]=\"producto.imagen\" class=\"card-img-top justify-content-around\">\r\n        <mat-card-content>\r\n          <p>{{producto.Descripcion}}</p>\r\n          <p>${{producto.Valor_Venta}}</p>\r\n\r\n        </mat-card-content>\r\n\r\n        <mat-card-actions mt-4>\r\n          <!-- <button mat-button class=\"btn btn-info\"  (click)=\"onCreate()\">Ver</button> -->\r\n\r\n          <button mat-button class=\"btn btn-info\" routerLinkActive=\"active current\"\r\n            [routerLink]=\"['/catalogos/show' , producto.id]\">Ver</button>\r\n\r\n\r\n          <!-- <button mat-button class=\"btn btn-success\" (click)=\"addProducto(producto.id)\" style=\"margin-top: 1em;\">Añadir al carrito</button> -->\r\n        </mat-card-actions>\r\n\r\n        <!-- <mat-card-actions mt-4>\r\n\r\n\r\n    <button mat-button class=\"btn btn-info\" (click)=\"getProductoShow(producto.id)\">Ver</button>\r\n    <div *ngFor=\"let show of productoShow\">\r\n\r\n    <button mat-button class=\"btn btn-danger\" (click)=\"onCreate(show)\">Ver</button></div>\r\n     <button mat-button class=\"btn btn-success\">Comprar</button>\r\n     <button mat-button class=\"btn btn-success\" style=\"margin-top: 1em;\">Añadir al carrito</button>\r\n  </mat-card-actions> -->\r\n      </mat-card>\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n</div>\r\n\r\n\r\n<!-- This is the child component to share a variable-->\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\" style=\"height: 200px;\">\r\n    <div class=\"col-md-3\" *ngFor=\"let producto of productos\">\r\n      <mat-card class=\"producto-card\">\r\n        <mat-card-header>\r\n          <mat-card-title>{{producto.Producto}}</mat-card-title>\r\n          <mat-card-subtitle></mat-card-subtitle>\r\n        </mat-card-header>\r\n        <img mat-card-image [src]=\"producto.imagen\" class=\"card-img-top justify-content-around\">\r\n        <mat-card-content>\r\n          <p>{{producto.Descripcion}}</p>\r\n          <p>${{producto.Valor_Venta}}</p>\r\n        </mat-card-content>\r\n        <mat-card-actions mt-4>\r\n          <button mat-button class=\"btn btn-info\" routerLinkActive=\"active current\"\r\n            [routerLink]=\"['/catalogos/show' , producto.Producto_id]\">Ver</button>\r\n          <!-- <button mat-button class=\"btn btn-success\" (click)=\"addProducto(producto.id)\" style=\"margin-top: 1em;\">Añadir\r\n            al carrito</button> -->\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<!-- This is the child component to share a variable-->\r\n"
 
 /***/ }),
 
@@ -194,7 +194,18 @@ module.exports = "<div class=\"full-width\">\r\n  <app-corousel-slide-catalogos>
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body *ngFor=\"let producto of productos\">\r\n  <div class=\"row\" style=\"height: 600px;\">\r\n    <div class=\"col-md-6\">\r\n      <img [src]=\"producto.imagen\" class=\"img-fluid\" id=\"producto-imagen\">\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n      <mat-tab-group dynamicHeight>\r\n        <mat-tab label=\"DESCRIPCIÓN\">\r\n\r\n          <form novalidate (ngSubmit)=\"addPseleccionado(carroCompraForm)\" #carroCompraForm=\"ngForm\">\r\n\r\n            <mat-card>\r\n              <mat-card-title>{{producto.Producto}}</mat-card-title>\r\n              <input name=\"id\" type=\"hidden\" [(ngModel)]=\"producto.Producto_id\">\r\n              <input name=\"producto\" type=\"hidden\" [(ngModel)]=\"producto.Producto\">\r\n              <mat-card-content>\r\n\r\n                <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  \"COP\"}}</p>\r\n                <input name=\"valorVenta\" type=\"hidden\" [(ngModel)]=\"producto.Valor_Venta\">\r\n                <label id=\"radio-group-label\">Color</label>\r\n                <div>\r\n\r\n                  <mat-radio-group name=\"color\" [(ngModel)]=\"producto.id\" (change)=\"onChangeColor($event)\" required>\r\n\r\n\r\n                    <mat-radio-button *ngFor=\"let cproducto of coloresProductos\" name=\"color\" [value]=\"cproducto.id\"\r\n                      required>\r\n                      {{cproducto.color}}\r\n                    </mat-radio-button>\r\n                  </mat-radio-group>\r\n\r\n\r\n\r\n                </div>\r\n                <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>\r\n                <mat-form-field class=\"example-full-width\">\r\n                  <input matInput name=\"cantidad\" placeholder=\"Ingrese la cantidad\" type=\"text\" required ngModel>\r\n                </mat-form-field>\r\n              </mat-card-content>\r\n            </mat-card>\r\n            <button type=\"submit\" class=\"btn btn-success\" [disabled]=\"carroCompraForm.invalid\">Agregar al\r\n              carrito</button>\r\n          </form>\r\n\r\n        </mat-tab>\r\n        <mat-tab label=\"+INFO\">\r\n          <p><span>Descripcion: </span>{{producto.Descripcion}}</p>\r\n          <p>{{producto.caracteristicas}}</p>\r\n        </mat-tab>\r\n\r\n\r\n        <mat-tab label=\"PREGUNTAS\"> </mat-tab>\r\n        <mat-tab label=\"COMENTARIOS\"></mat-tab>\r\n      </mat-tab-group>\r\n    </div>\r\n  </div>\r\n  <div class=\"row \">\r\n    <div class=\"col-md-12\" style=\"background-color:blue; height: 500px;\">\r\n\r\n\r\n    </div>\r\n  </div>\r\n</body>"
+module.exports = "<div *ngFor=\"let producto of productos; first as isFirst; trackBy:trackByProducts\">\r\n  <div *ngIf=\"isFirst\">\r\n    <div class=\"row\" style=\"height: 600px;\">\r\n      <div class=\"col-md-6\">\r\n        <img [src]=\"imagePreview\" class=\"img-fluid\" id=\"producto-imagen\">\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <mat-tab-group dynamicHeight>\r\n          <mat-tab label=\"DESCRIPCIÓN\">\r\n\r\n            <form novalidate (ngSubmit)=\"addSelectedProduct(carroCompraForm)\" #carroCompraForm=\"ngForm\">\r\n              <mat-card class=\"mb-4\">\r\n                <mat-card-title>{{producto.producto_name}}</mat-card-title>\r\n                <input name=\"producto_name\" type=\"hidden\" [(ngModel)]=\"producto.producto_name\">\r\n                <input name=\"id\" type=\"hidden\" [(ngModel)]=\"producto.id_producto\">\r\n                <input name=\"imagen\" type=\"hidden\" [(ngModel)]=\"producto.imagen\">\r\n                <mat-card-content>\r\n\r\n                  <p><span>Precio: $ </span>{{producto.Valor_Venta | currency  :  \"COP\"}}</p>\r\n                  <input name=\"valorVenta\" type=\"hidden\" [(ngModel)]=\"producto.Valor_Venta\">\r\n\r\n                  <ng-template *ngIf=\"producto.Existencia > 0; then showBlock; else notShowBlock\"></ng-template>\r\n                  <div>\r\n                    <label id=\"radio-group-label\">Color</label>\r\n                    <br>\r\n                    <mat-radio-group name=\"color\" [(ngModel)]=\"producto.id\" (change)=\"onChangeColor($event)\" required>\r\n                      <mat-radio-button *ngFor=\"let cproducto of coloresProductos\" name=\"color\" [value]=\"cproducto.id\"\r\n                        required>\r\n                        {{cproducto.color}}\r\n                      </mat-radio-button>\r\n                    </mat-radio-group>\r\n                  </div>\r\n\r\n                  <ng-template #showBlock>\r\n                    <p><span>Cantidades disponibles:</span>{{producto.Existencia}}</p>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <input matInput name=\"cantidad\" placeholder=\"Ingrese la cantidad\" type=\"text\" required ngModel>\r\n                    </mat-form-field>\r\n                  </ng-template>\r\n\r\n                  <ng-template #notShowBlock>\r\n                    <span id=\"agotado\">Agotado</span>\r\n                  </ng-template>\r\n                </mat-card-content>\r\n              </mat-card>\r\n              <button type=\"submit\" class=\"btn btn-success mb-4\" [disabled]=\"carroCompraForm.invalid\">Agregar al\r\n                carrito</button>\r\n            </form>\r\n            <div class=\"row\">\r\n\r\n              <div class=\"col-md-3\" *ngFor=\"let imagen of imagenes; trackBy:trackByImages\">\r\n                <mat-card class=\"gallery-card\" (click)=\"getIdPictureToShowFirst(imagen.imagen)\">\r\n                  <img mat-card-image [src]=\"imagen.imagen\">\r\n                </mat-card>\r\n              </div>\r\n            </div>\r\n          </mat-tab>\r\n          <mat-tab label=\"+INFO\">\r\n            <p><span>Descripcion: </span>{{producto.Descripcion}}</p>\r\n            <p>{{producto.caracteristicas}}</p>\r\n          </mat-tab>\r\n\r\n\r\n          <mat-tab label=\"PREGUNTAS\">\r\n            <div class=\"row\">\r\n              <div class=\"col-md-8 col-md-offset-2\">\r\n                <div class=\"panel-body\">\r\n\r\n                  <div *ngIf=\"preguntas.length > 0; else viewNotQuestions\">\r\n                    <cdk-virtual-scroll-viewport itemSize=\"50\" class=\"question-viewport\">\r\n                      <div *ngFor=\"let pregunta of preguntas; trackBy:trackByQuestions\" class=\"question-item\">\r\n                        <mat-card class=\" question-card\">\r\n                          <mat-card-header>\r\n                            <img mat-card-avatar class=\"question-header-image\" [src]=\"pregunta.avatar\">\r\n                            <mat-card-title>{{pregunta.nombre}}</mat-card-title>\r\n                          </mat-card-header>\r\n\r\n                          <mat-card-content>\r\n                            <p>{{pregunta.pregunta}}</p>\r\n                            <span>{{pregunta.created_at | relativeTime}}</span>\r\n                            <br>\r\n                            <div *ngIf=\"pregunta.respuesta\">\r\n                              <mat-divider></mat-divider>\r\n                              <br>\r\n                              <span class=\"mr-2 text-bold\">\r\n                                <fa-icon [icon]=\"faComment\" size=\"lg\"></fa-icon>\r\n                              </span>\r\n                              <span style=\"color:#999;\">{{pregunta.respuesta}}</span>\r\n                            </div>\r\n                          </mat-card-content>\r\n                          <mat-card-content *ngIf=\"loggedin && loggedinAdmin\">\r\n\r\n                            <app-question-answers [question]=\"pregunta\" (answersEvent)=\"(connectoToAnswerChannel())\">\r\n                            </app-question-answers>\r\n\r\n                          </mat-card-content>\r\n                        </mat-card>\r\n\r\n                      </div>\r\n                    </cdk-virtual-scroll-viewport>\r\n                  </div>\r\n                  <ng-template #viewNotQuestions>\r\n                    No hay pregutas todavia.\r\n                  </ng-template>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"row\">\r\n              <div class=\"col-md-12\">\r\n\r\n                <div class=\"form-question\" *ngIf=\"loggedin && !loggedinAdmin\">\r\n                  <form [formGroup]=\"formSendQuestion\" (ngSubmit)=\"saveQuestion()\">\r\n                    <mat-form-field class=\"question-full-width\">\r\n                      <mat-label>Deja tu pregunta</mat-label>\r\n                      <textarea matInput placeholder=\"¿Que tal es el casco?\" formControlName=\"pregunta\"\r\n                        cdkTextareaAutosize></textarea>\r\n                    </mat-form-field>\r\n                    <div class=\"text-center\">\r\n                      <button mat-raised-button id=\"btn-send\" color=\"primary\"\r\n                        [disabled]=\"formSendQuestion.invalid\">Preguntar</button>\r\n                    </div>\r\n                  </form>\r\n                </div>\r\n\r\n              </div>\r\n            </div>\r\n\r\n\r\n          </mat-tab>\r\n          <mat-tab label=\"COMENTARIOS\">\r\n            <ng-template *ngIf=\"comentarios.length > 0; then commentsBtn; else showMessage\"></ng-template>\r\n            <div *ngFor=\"let comentario of comentarios; trackBy:trackByComments\">\r\n              <mat-card class=\"comments-card\">\r\n                <mat-card-header>\r\n                  <img mat-card-avatar class=\"comments-header-image\" [src]=\"comentario.avatar\">\r\n                  <mat-card-title>Erick</mat-card-title>\r\n                </mat-card-header>\r\n\r\n                <mat-card-content>\r\n                  <p>{{comentario.comentario}}</p>\r\n                  <span>{{comentario.createdAt | relativeTime}}</span>\r\n                </mat-card-content>\r\n\r\n              </mat-card>\r\n            </div>\r\n            <ng-template #showMessage>\r\n              <span style=\"font-size: x-large;\">No hay comentarios</span>\r\n            </ng-template>\r\n            <div>\r\n              <h4>Deja tu comentario aqui</h4>\r\n\r\n              <ng-template #commentsBtn>\r\n                <button id=\"btn-all-comments\" mat-raised-button color=\"second\" (click)=\"openAllCommentsDialog()\">Ver\r\n                  todos\r\n                  los comentarios</button>\r\n              </ng-template>\r\n\r\n              <form [formGroup]=\"formSendCommensts\" (ngSubmit)=\"saveComments()\" class=\"form-comments\">\r\n                <input type=\"hidden\" formControlName=\"ProductoId\">\r\n                <mat-form-field class=\"comments-full-width\">\r\n                  <mat-label>Deja tu comentario</mat-label>\r\n                  <textarea matInput placeholder=\"Me encanta ir protegido\" formControlName=\"comments\"></textarea>\r\n                </mat-form-field>\r\n                <div class=\"text-center\">\r\n                  <button #formComments mat-raised-button color=\"primary\"\r\n                    [disabled]=\"formSendCommensts.invalid\">Comentar</button>\r\n\r\n                </div>\r\n              </form>\r\n            </div>\r\n          </mat-tab>\r\n\r\n        </mat-tab-group>\r\n\r\n\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row \">\r\n      <div class=\"col-md-12\">\r\n        <app-footer-home></app-footer-home>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/catalogos/question-answers/question-answers.component.html":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/catalogos/question-answers/question-answers.component.html ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"replay-question\">\r\n  <form [formGroup]=\"formSendReplayQuestion\" (ngSubmit)=\"saveAnswer()\">\r\n    <mat-form-field class=\"replay-full-width\">\r\n      <textarea matInput formControlName=\"respuesta\" placeholder=\"tu respuesta aqui\"></textarea>\r\n    </mat-form-field>\r\n    <div class=\"text-center\">\r\n      <button mat-raised-button id=\"btn-replay\" color=\"primary\"\r\n        [disabled]=\"formSendReplayQuestion.invalid\">Responder</button>\r\n    </div>\r\n  </form>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -216,7 +227,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"banner\">\r\n  <div class=\"full-width\">\r\n    <app-corousel-slide></app-corousel-slide>\r\n\r\n  </div>\r\n</section>\r\n<section>\r\n\r\n</section>\r\n<section id=\"formasPago\">\r\n  <div class=\"container\">\r\n    <img style=\"width: 600px ; height: 112px;\"\r\n      src=\"https://cortijoespiritusanto.com/wp-content/uploads/2019/04/tarjetas-de-credito-logos-png-3.png\" alt=\"\">\r\n    <div class=\"row\">\r\n      <div class=\"md-8\" id=\"contacto\">\r\n        <span><i class=\"fab fa-whatsapp fa-2x\"></i></span>\r\n        <h2>¿Tienes Dudas?</h2>\r\n        <p>Contamos con un asesor en\r\n          <a href=\"\">Whatsapp</a>\r\n        </p>\r\n      </div>\r\n      <div class=\"md-5\" id=\"transporte\">\r\n        <span><i class=\"fas fa-truck fa-2x\"></i></span>\r\n        <h2>Envis gratis por compras superiores a $200.000</h2>\r\n\r\n      </div>\r\n      <div class=\"md-5\" id=\"tienda\">\r\n        <span><i class=\"fas fa-store-alt fa-2x\"></i></span>\r\n        <h2>Contactanos en nuestra tienda fisica</h2>\r\n        <p>Visitenos en la carrera 15 nª 32-33\r\n          <a style=\"position: relative; top: 23px; right:200px\" href=\"\">Almacen cascos y chalechos\r\n            <span>El mana</span></a>\r\n        </p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</section>\r\n<section id=\"NuestrosProductos\">\r\n  <div class=\"container\">\r\n\r\n  </div>\r\n</section>\r\n<section id=\"productosDestacados\">\r\n  <div class=\"container\">\r\n    <app-productos-destacados></app-productos-destacados>\r\n  </div>\r\n</section>\r\n\r\n\r\n<section>\r\n  <div id=\"Testimonios\">\r\n    <app-testomoniales></app-testomoniales>\r\n  </div>\r\n</section>\r\n<section>\r\n  <app-footer-home></app-footer-home>\r\n</section>\r\n"
+module.exports = "<section id=\"banner\">\r\n  <div class=\"full-width\">\r\n    <app-corousel-slide></app-corousel-slide>\r\n\r\n  </div>\r\n</section>\r\n<section>\r\n\r\n</section>\r\n<section id=\"formasPago\">\r\n  <div class=\"container\">\r\n    <img style=\"position: relative; left:250px;; width: 600px ; height: 112px;\"\r\n      src=\"https://cortijoespiritusanto.com/wp-content/uploads/2019/04/tarjetas-de-credito-logos-png-3.png\" alt=\"\">\r\n    <div class=\"row\" style=\"position: static;\">\r\n      <div class=\"col-md-3 text-center\" id=\"contacto\">\r\n        <span style=\"position: relative; right: 25px; left: 120px;\">\r\n          <fa-icon class=\"whats-icon\" [icon]=\"faWhatsapp\" size=\"lg\" position=\"center\"></fa-icon>\r\n        </span>\r\n        <h2>¿Tienes Dudas?</h2>\r\n        <p>Contamos con un asesor para atenderte en</p><span><strong style=\"position: relative;bottom: 25px;\">Whats\r\n            App</strong></span>\r\n      </div>\r\n      <a id=\"whatsapp\" href=\"https://api.whatsapp.com/send?phone=573128874815&text=Bienvenido%20a%20Visor%20Tek\"\r\n        target=\"_blank\" rel=\"noopener noreferrer\">\r\n        <img\r\n          src=\"https://res.cloudinary.com/dequvdgav/image/upload/v1588808769/visorteck/avatars/whatsapp-icon_ykl7ul.png\"\r\n          style=\"height: 75px;width: 75px;\" alt=\"\">\r\n      </a>\r\n      <P>Contactenos ya</P>\r\n      <div class=\"col-md-3\" id=\"transporte\">\r\n        <span style=\"position: relative; left: 120px;\">\r\n          <fa-icon [icon]=\"faTruck\" size=\"lg\" position=\"center\"></fa-icon>\r\n        </span>\r\n        <h2>Envio gratis por compras superiores a <span\r\n            style=\"position: relative; left: 80px;\"><strong>$200.000</strong></span></h2>\r\n\r\n      </div>\r\n      <div class=\"col-md-3\" id=\"tienda\">\r\n        <span style=\"position: relative; left: 90px;\">\r\n          <fa-icon [icon]=\"faStore\" size=\"lg\" position=\"center\"></fa-icon>\r\n        </span>\r\n        <h2>Contactanos en nuestra tienda fisica</h2>\r\n        <p>Visitenos en la carrera 15 nª 32-33\r\n          <button class=\"btn-ubicacion\" color=\"#007bff\" mat-button></button>\r\n        </p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</section>\r\n<section id=\"productosDestacados\">\r\n  <div class=\"container pt-4  pb-4\">\r\n    <app-productos-destacados></app-productos-destacados>\r\n  </div>\r\n</section>\r\n\r\n\r\n<section>\r\n  <div id=\"Testimonios\">\r\n    <app-testomoniales></app-testomoniales>\r\n  </div>\r\n</section>\r\n<section>\r\n  <app-footer-home></app-footer-home>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -227,7 +238,7 @@ module.exports = "<section id=\"banner\">\r\n  <div class=\"full-width\">\r\n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- {{producto.cantidad}}\r\n{{producto.valorventa}}\r\n{{producto.idProducto}} -->\r\n\r\n\r\n\r\n\r\n<!-- <div id=\"carritoCompra\"> -->\r\n\r\n<!-- <h2>Carrito de compras</h2>\r\n  <span>Lista de compras</span>\r\n  <button mat-raised-button color=\"primary\" (click)=\"procesoComprar()\">Comprar</button>\r\n  <div id=\"imagenShopingCartEmpty\" class=\"example-container mat-elevation-z8\">\r\n    <p class=\"noFiles\" *ngIf=\"!show\">No compras found </p>\r\n    <div id=\"tbtCarrito_Compras\" *ngIf=\"show\">\r\n      <table mat-table [dataSource]=\"listData\"> -->\r\n<!-- Id Column -->\r\n<!-- <ng-container matColumnDef=\"id\">\r\n          <th mat-header-cell *matHeaderCellDef> Id </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.idproducto}} </td>\r\n          <td mat-footer-cell *matFooterCellDef>Total a pagar</td>\r\n        </ng-container> -->\r\n<!-- Item Column -->\r\n<!-- <ng-container matColumnDef=\"Nombre\">\r\n          <th mat-header-cell *matHeaderCellDef> Nombre </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.producto}} </td>\r\n          <td mat-footer-cell *matFooterCellDef></td>\r\n        </ng-container> -->\r\n<!-- quantity Column -->\r\n<!-- <ng-container matColumnDef=\"cantidad\">\r\n          <th mat-header-cell *matHeaderCellDef> Cantidad</th>\r\n          <td mat-cell *matCellDef=\"let element\">{{element.cantidad}}</td>\r\n          <td mat-footer-cell *matFooterCellDef></td>\r\n        </ng-container> -->\r\n\r\n<!-- Cost Column -->\r\n<!-- <ng-container matColumnDef=\"valorventa\">\r\n          <th mat-header-cell *matHeaderCellDef> valorventa </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.valorventa}}</td>\r\n          <td mat-footer-cell *matFooterCellDef>{{getTotalCost()}}</td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"actions\">\r\n          <th mat-header-cell *matHeaderCellDef>Acciones</th>\r\n          <td mat-cell *matCellDef=\"let element\">\r\n            <button mat-icon-button (click)=\"getIndice(element.idproducto)\">\r\n              <mat-icon>delete</mat-icon>\r\n            </button>\r\n          </td>\r\n          <td mat-footer-cell *matFooterCellDef></td>\r\n        </ng-container> -->\r\n\r\n\r\n<!-- <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n        <tr mat-footer-row *matFooterRowDef=\"displayedColumns; sticky: true\"></tr>\r\n      </table>\r\n    </div>\r\n  </div> -->\r\n\r\n<!-- </div> -->\r\n\r\n<div id=\"carrito-compra\">\r\n  <h4>Carrito de compra</h4>\r\n  <mat-card class=\"\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-3\">\r\n\r\n        <img mat-card-image>\r\n      </div>\r\n\r\n      <div class=\"row\">\r\n        <div class=\"col-md-9\">\r\n          <mat-card-content>\r\n            <span>Cantidad </span>\r\n            <span>Precio: </span>\r\n            <br>\r\n            <span>Color: </span>\r\n          </mat-card-content>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </mat-card>\r\n\r\n  <span>TOTAL: </span>\r\n  <mat-divider style=\"margin-bottom: 25px;\"></mat-divider>\r\n  <button mat-raised-button class=\"btn-block\" color=\"primary\">Finalizar compra</button>\r\n</div>\r\n"
+module.exports = "<div id=\"carrito-compra\">\r\n  <h4>Carrito de compra</h4>\r\n  <span>Cantidad de productos {{listadoCompras.length}}</span>\r\n  <div class=\"text-center\" *ngIf=\"listadoCompras.length === 0 ; else showView\">\r\n    <span>No hay compran aún</span>\r\n  </div>\r\n  <ng-template #showView>\r\n    <mat-card *ngFor=\"let listPurchase of listadoCompras\">\r\n      <div class=\"row\" style=\"flex-wrap: initial;\">\r\n        <div class=\"col-md-3 pl-2\">\r\n          <div style=\"position: relative; left: 23px; top: 23px;\">\r\n            <img mat-card-image [src]=\"listPurchase.imagen\">\r\n          </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin-left: 0%;\">\r\n          <div class=\"col-md-6\">\r\n            <div style=\"position: absolute; left: 35px;\">\r\n              <span>{{listPurchase.producto_name}}</span>\r\n              <mat-card-content>\r\n                <span>Cantidad: {{listPurchase.cantidad}} </span>\r\n                <span>Precio: $ {{listPurchase.valorVenta | currency : \"COP\"}} </span>\r\n                <br>\r\n                <span>Color: {{listPurchase.color}}</span>\r\n              </mat-card-content>\r\n              <mat-card-actions>\r\n                <button class=\"remove-btn\" mat-raised-button color=\"primary\"\r\n                  (click)=\"removeItemFromKart(listPurchase.id)\">Quitar</button>\r\n              </mat-card-actions>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </mat-card>\r\n  </ng-template>\r\n  <span>TOTAL: $ {{ getTotalPurchase() | currency : \"COP\"}} </span>\r\n  <mat-divider style=\"margin-bottom: 25px;\"></mat-divider>\r\n  <button mat-raised-button class=\"btn-block\" color=\"primary\" (click)=\"buy()\"> Comprar</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -249,7 +260,7 @@ module.exports = "<p>\r\n  compras-lista works!\r\n</p>\r\n\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-button (click)=\"onClose()\" tabindex=\"-1\"><span><i\r\n        class=\"far fa-window-close fa-3x\"></i></span></button>\r\n</div>\r\n\r\n<div class=\"container\">\r\n  <!-- <button mat-raised-button (click)=\"isLinear = !isLinear\" id=\"toggle-linear\">\r\n        {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}\r\n      </button> -->\r\n  <mat-horizontal-stepper linear #stepper>\r\n    <mat-step [completed]=\"stepCompleted\">\r\n      <form [formGroup]=\"firstFormGroup\">\r\n        <ng-template matStepLabel>Resumen de compra</ng-template>\r\n        <h2>Esta es tu compra final</h2>\r\n        <div id=\"resumenCompra\">\r\n\r\n          <!-- Table to show the purchase summary -->\r\n\r\n          <div class=\"example-container mat-elevation-z8\">\r\n            <table mat-table [dataSource]=\"listData\">\r\n              <!-- Item Column -->\r\n              <ng-container matColumnDef=\"Nombre\">\r\n                <th mat-header-cell *matHeaderCellDef> Nombre </th>\r\n                <td mat-cell *matCellDef=\"let element\"> {{element.producto}} </td>\r\n                <td mat-footer-cell *matFooterCellDef> Total venta</td>\r\n              </ng-container>\r\n              <!-- quantity Column -->\r\n              <ng-container matColumnDef=\"cantidad\">\r\n                <th mat-header-cell *matHeaderCellDef> Cantidad</th>\r\n                <td mat-cell *matCellDef=\"let element\">{{element.cantidad}}</td>\r\n                <td mat-footer-cell *matFooterCellDef></td>\r\n              </ng-container>\r\n\r\n              <!-- Cost Column -->\r\n              <ng-container matColumnDef=\"valorventa\">\r\n                <th mat-header-cell *matHeaderCellDef> valorventa </th>\r\n                <td mat-cell *matCellDef=\"let element\"> {{element.valorventa}}</td>\r\n                <td mat-footer-cell *matFooterCellDef=\"let element\">{{getTotalPrice()}}</td>\r\n              </ng-container>\r\n\r\n\r\n              <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n              <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              <tr mat-footer-row *matFooterRowDef=\"displayedColumns; sticky: true\"></tr>\r\n            </table>\r\n          </div>\r\n        </div>\r\n        <div class=\"actionsResumenCompraButtons\">\r\n          <!--<button mat-raised-button color=\"primary\" (click)=\" getTransportadora()\">Añadir transportadora</button> -->\r\n\r\n          <button mat-raised-button color=\"primary\" *ngIf=\"showBtnDomicilio; else Show\" (click)=\"showDomicilio()\">Ver\r\n            direccion</button>\r\n          <ng-template #Show>\r\n            <button mat-raised-button color=\"primary\" (click)=\"addDomicilio()\">Añadir Dirreccion</button>\r\n          </ng-template>\r\n        </div>\r\n\r\n\r\n      </form>\r\n    </mat-step>\r\n    <mat-step [completed]=\"step2Completed\">\r\n\r\n      <ng-template matStepLabel>Pagar</ng-template>\r\n      <!-- <mat-form-field>\r\n        <input matInput placeholder=\"Address\" formControlName=\"secondCtrl\" required>\r\n      </mat-form-field> -->\r\n      <app-pagos [amount]=\"precio_total\"></app-pagos>\r\n      <!-- <app-pagos ></app-pagos>-->\r\n\r\n\r\n    </mat-step>\r\n\r\n\r\n    <mat-step>\r\n      <ng-template matStepLabel>Datos compra final</ng-template>\r\n      <h1>Gracias por confira en nosotros</h1>\r\n\r\n      <span *ngIf=\"charges\">Su compra ha sido {{charges?.status}}</span>\r\n      <br>\r\n      <span>Productos adquiridos</span>\r\n      <br>\r\n      <span>Valor total de la transaccion {{charges?.amount | currency: 'COP'}}</span>\r\n\r\n      <div>\r\n        <button mat-button (click)=\"enviarMensajeVendedor()\" [disabled]=\"disableMessageBtn\">Enviar mensaje a\r\n          vendedor</button>\r\n        <button mat-button (click)=\"redirigeDashboard()\">Ir a dashboard</button>\r\n\r\n      </div>\r\n      <div *ngIf=\"show\">\r\n        <form [formGroup]=\"formMensaje\" (ngSubmit)=\"onSubmit()\">\r\n          <mat-form-field class=\"mensajeVendedor\">\r\n            <mat-error *ngIf=\"formMensaje.controls['mensaje'].errors?.required\">Este campo es requerido</mat-error>\r\n            <textarea matInput placeholder=\"Leave a comment\" placeholder=\"Mensaje\" formControlName=\"mensaje\"></textarea>\r\n          </mat-form-field>\r\n          <div class=\"button-row\">\r\n            <button mat-raised-button type=\"submit\" [disabled]=\"formMensaje.invalid\">Submit</button>\r\n\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </mat-step>\r\n\r\n  </mat-horizontal-stepper>\r\n  <div>\r\n    <button mat-button (click)=\"goBack() \"\r\n      [disabled]=\"stepper.selectedIndex === 0 || stepper.selectedIndex  === totalStepsCount-1\">Back</button>\r\n    <button mat-button (click)=\"goForward()\" [disabled]=\"stepper.selectedIndex === totalStepsCount-1\">Next</button>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-button (click)=\"onClose()\" tabindex=\"-1\"><span>\r\n      <fa-icon [icon]=\"faWindowClose\" size=\"3x\"></fa-icon>\r\n    </span></button>\r\n</div>\r\n\r\n<div class=\"container\">\r\n  <!-- <button mat-raised-button (click)=\"isLinear = !isLinear\" id=\"toggle-linear\">\r\n        {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}\r\n      </button> -->\r\n  <mat-horizontal-stepper linear #stepper>\r\n    <mat-step [completed]=\"stepCompleted\">\r\n      <form [formGroup]=\"firstFormGroup\">\r\n        <ng-template matStepLabel>Resumen de compra</ng-template>\r\n        <h2>Esta es tu compra final</h2>\r\n        <div id=\"resumenCompra\">\r\n\r\n          <!-- Table to show the purchase summary -->\r\n\r\n          <div class=\"example-container mat-elevation-z8\">\r\n            <table mat-table [dataSource]=\"listData\">\r\n              <!-- Item Column -->\r\n              <ng-container matColumnDef=\"Nombre\">\r\n                <th mat-header-cell *matHeaderCellDef> Nombre </th>\r\n                <td mat-cell *matCellDef=\"let element\"> {{element.producto_name}} </td>\r\n                <td mat-footer-cell *matFooterCellDef> Total venta</td>\r\n              </ng-container>\r\n              <!-- quantity Column -->\r\n              <ng-container matColumnDef=\"cantidad\">\r\n                <th mat-header-cell *matHeaderCellDef> Cantidad</th>\r\n                <td mat-cell *matCellDef=\"let element\">{{element.cantidad}}</td>\r\n                <td mat-footer-cell *matFooterCellDef></td>\r\n              </ng-container>\r\n\r\n              <!-- Cost Column -->\r\n              <ng-container matColumnDef=\"valorventa\">\r\n                <th mat-header-cell *matHeaderCellDef> valorventa </th>\r\n                <td mat-cell *matCellDef=\"let element\"> {{element.valorVenta}}</td>\r\n                <td mat-footer-cell *matFooterCellDef=\"let element\">{{getTotalPrice() | currency : \"COP\" }}</td>\r\n              </ng-container>\r\n\r\n\r\n              <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n              <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              <tr mat-footer-row *matFooterRowDef=\"displayedColumns; sticky: true\"></tr>\r\n            </table>\r\n          </div>\r\n        </div>\r\n        <div class=\"actionsResumenCompraButtons\">\r\n          <!--<button mat-raised-button color=\"primary\" (click)=\" getTransportadora()\">Añadir transportadora</button> -->\r\n\r\n          <button mat-raised-button color=\"primary\" *ngIf=\"showBtnDomicilio; else Show\" (click)=\"showDomicilio()\">Ver\r\n            direccion\r\n          </button>\r\n          <ng-template #Show>\r\n            <button mat-raised-button color=\"primary\" (click)=\"addDomicilio()\">Añadir Dirreccion</button>\r\n          </ng-template>\r\n        </div>\r\n\r\n\r\n      </form>\r\n    </mat-step>\r\n    <mat-step [completed]=\"step2Completed\">\r\n\r\n      <ng-template matStepLabel>Pagar</ng-template>\r\n\r\n      <app-pagos [amount]=\"getTotalPrice()\"></app-pagos>\r\n      <!-- <app-pagos ></app-pagos>-->\r\n\r\n\r\n    </mat-step>\r\n\r\n\r\n    <mat-step>\r\n      <ng-template matStepLabel>Datos compra final</ng-template>\r\n      <h1>Gracias por confiar en nosotros</h1>\r\n\r\n      <span *ngIf=\"charges\">Su compra ha sido {{charges?.status}}</span>\r\n      <br>\r\n      <span>Productos adquiridos</span>\r\n      <br>\r\n      <span>Valor total de la transaccion {{charges?.amount | currency: 'COP'}}</span>\r\n\r\n      <div>\r\n        <button mat-button (click)=\"enviarMensajeVendedor()\" [disabled]=\"disableMessageBtn\">Enviar mensaje a\r\n          vendedor</button>\r\n        <button mat-button (click)=\"redirigeDashboard()\">Ir a dashboard</button>\r\n\r\n      </div>\r\n      <div *ngIf=\"show\">\r\n        <form [formGroup]=\"formMensaje\" (ngSubmit)=\"onSubmit()\">\r\n          <mat-form-field class=\"mensajeVendedor\">\r\n            <mat-error *ngIf=\"formMensaje.controls['mensaje'].errors?.required\">Este campo es requerido</mat-error>\r\n            <textarea matInput placeholder=\"Leave a comment\" placeholder=\"Mensaje\" formControlName=\"mensaje\"></textarea>\r\n          </mat-form-field>\r\n          <div class=\"button-row\">\r\n            <button mat-raised-button type=\"submit\" [disabled]=\"formMensaje.invalid\">Submit</button>\r\n\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </mat-step>\r\n\r\n  </mat-horizontal-stepper>\r\n  <div>\r\n    <button mat-button (click)=\"goBack() \"\r\n      [disabled]=\"stepper.selectedIndex === 0 || stepper.selectedIndex  === totalStepsCount-1\">Back</button>\r\n    <button mat-button (click)=\"goForward()\" [disabled]=\"stepper.selectedIndex === totalStepsCount-1\">Next</button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -260,7 +271,7 @@ module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-butt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-button (click)=\"onClose()\" tabindex=\"-1\"><span><i\r\n        class=\"far fa-window-close fa-3x\"></i></span></button>\r\n</div>\r\n\r\n<form [formGroup]=\"FormDireccionesUsuarioShow\" novalidate=\"\">\r\n  <div class=\"form-row\" *ngFor=\"let d of data\">\r\n    <div class=\" form-group  col\">\r\n      <label for=\"\">Nombre</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.nombre\" placeholder=\"Nombre\" formControlName=\"nombre\" readonly>\r\n    </div>\r\n    <div class=\"form-group col\">\r\n      <label for=\"\">Apellido</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.apellido\" placeholder=\"Apellido\" formControlName=\"apellido\"\r\n        readonly>\r\n    </div>\r\n\r\n    <input class=\"form-control\" type=\"text\" [value]=\"d.celular\" placeholder=\"Celular\" formControlName=\"celular\"\r\n      readonly>\r\n\r\n    <div class=\"form-row\">\r\n      <div class=\"form-group col\">\r\n        <mat-label>Departamento</mat-label>\r\n        <input class=\"form-control\" type=\"text\" [value]=\"d.departamento\" placeholder=\"Celular\"\r\n          formControlName=\"departamento\" readonly>\r\n      </div>\r\n      <div class=\"form-group col\">\r\n        <mat-label>Ciudad</mat-label>\r\n        <input class=\"form-control\" type=\"text\" [value]=\"d.ciudad\" placeholder=\"Celular\" formControlName=\"ciudad\"\r\n          readonly>\r\n\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"form-group col\">\r\n      <label for=\"\">Direccion</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.direccion\" formControlName=\"direccion\" readonly>\r\n    </div>\r\n    <div class=\"form-group col\">\r\n      <label for=\"\">Barrio</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.barrio\" placeholder=\"Barrio\" formControlName=\"barrio\" readonly>\r\n    </div>\r\n\r\n    <textarea class=\"form-control\" type=\"text\" [value]=\"d.datos_adicionales\" placeholder=\"Datos Adicionales\"\r\n      formControlName=\"datosadicionales\" readonly></textarea>\r\n\r\n  </div>\r\n"
+module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-button (click)=\"onClose()\" tabindex=\"-1\"><span>\r\n      <fa-icon [icon]=\"faWindowClose\" size=\"3x\"></fa-icon>\r\n    </span></button>\r\n</div>\r\n\r\n<form [formGroup]=\"FormDireccionesUsuarioShow\" novalidate=\"\">\r\n  <div class=\"form-row\" *ngFor=\"let d of data\">\r\n    <div class=\" form-group  col\">\r\n      <label for=\"\">Nombre</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.nombre\" placeholder=\"Nombre\" formControlName=\"nombre\" readonly>\r\n    </div>\r\n    <div class=\"form-group col\">\r\n      <label for=\"\">Apellido</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.apellido\" placeholder=\"Apellido\" formControlName=\"apellido\"\r\n        readonly>\r\n    </div>\r\n\r\n    <input class=\"form-control\" type=\"text\" [value]=\"d.celular\" placeholder=\"Celular\" formControlName=\"celular\"\r\n      readonly>\r\n\r\n    <div class=\"form-row\">\r\n      <div class=\"form-group col\">\r\n        <mat-label>Departamento</mat-label>\r\n        <input class=\"form-control\" type=\"text\" [value]=\"d.departamento\" placeholder=\"Celular\"\r\n          formControlName=\"departamento\" readonly>\r\n      </div>\r\n      <div class=\"form-group col\">\r\n        <mat-label>Ciudad</mat-label>\r\n        <input class=\"form-control\" type=\"text\" [value]=\"d.ciudad\" placeholder=\"Celular\" formControlName=\"ciudad\"\r\n          readonly>\r\n\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"form-group col\">\r\n      <label for=\"\">Direccion</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.direccion\" formControlName=\"direccion\" readonly>\r\n    </div>\r\n    <div class=\"form-group col\">\r\n      <label for=\"\">Barrio</label>\r\n      <input class=\"form-control\" type=\"text\" [value]=\"d.barrio\" placeholder=\"Barrio\" formControlName=\"barrio\" readonly>\r\n    </div>\r\n\r\n    <textarea class=\"form-control\" type=\"text\" [value]=\"d.datos_adicionales\" placeholder=\"Datos Adicionales\"\r\n      formControlName=\"datosadicionales\" readonly></textarea>\r\n\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -271,7 +282,7 @@ module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-butt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-button (click)=\"onClose()\" tabindex=\"-1\"><span><i\r\n        class=\"far fa-window-close fa-3x\"></i></span></button>\r\n</div>\r\n\r\n\r\n<form class=\"form-direccion\" [formGroup]=\"FormDireccionesUsuario\" (ngSubmit)=\"onSave()\"\r\n  novalidate=\"\">\r\n  <input type=\"hidden\" formControlName=\"idCliente\" [value]=\"user.id\">\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 30 characters\">\r\n\r\n          <input matInput #nombre maxlength=\"30\" placeholder=\"Nombre\" formControlName=\"nombre\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{nombre.value?.length || 0}}/30</mat-hint>\r\n\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['nombre'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['nombre'].errors?.minLength\">Minimo caracteres requeridos 3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['nombre'].errors?.maxLength\">Maximo caracteres requeridos 30\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 30 characters\">\r\n          <input matInput #apellido maxlength=\"30\" placeholder=\"Apellido\" formControlName=\"apellido\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{apellido.value?.length || 0}}/30</mat-hint>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['apellido'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['apellido'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['apellido'].errors?.maxLength\">Maximo caracteres requeridos\r\n            30\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 13 characters\">\r\n          <span matPrefix>+57 &nbsp;</span>\r\n          <input matInput #celular maxlength=\"10\" placeholder=\"celular\" formControlName=\"celular\" type=\"tel\">\r\n\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['celular'].errors?.required\"> Nº de celular is\r\n            <strong>required</strong>\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['celular'].errors?.minLength\">Minimo caracteres\r\n            <strong>requerido</strong> 10</mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['celular'].errors?.maxLength\">Maximo caracteres\r\n            <strong>requerido</strong></mat-error>\r\n\r\n          <mat-icon matSuffix>phone</mat-icon>\r\n          <mat-hint align=\"end\">{{celular.value?.length || 0}}/10</mat-hint>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Departamento</mat-label>\r\n          <mat-select (selectionChange)=\"changeId($event.value)\" placeholder=\"Departamento*\"\r\n            formControlName=\"departamento\">\r\n            <mat-option>None</mat-option>\r\n            <mat-option *ngFor=\"let d of departamentos\" [value]=\"d.id\">{{d.departamento}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['departamento'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>location_city</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Ciudad</mat-label>\r\n          <mat-select placeholder=\"ciudad\" formControlName=\"ciudad\">\r\n            <mat-option *ngFor=\"let c of ciudades\" [value]=\"c.id\">{{c.ciudad}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['ciudad'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>location_city</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n\r\n\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 30 characters\">\r\n          <input matInput #barrio maxlength=\"30\" placeholder=\"Barrio\" formControlName=\"barrio\" type=\"text\">\r\n          <mat-hint align=\"end\">{{barrio.value?.length || 0}}/30</mat-hint>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['barrio'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['barrio'].errors?.minLength\">Minimo caracteres requeridos 3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['barrio'].errors?.maxLength\">Maximo caracteres requeridos 30\r\n          </mat-error>\r\n          <mat-icon matSuffix>location_city</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <table>\r\n    <tr>\r\n      <td>\r\n\r\n        <mat-form-field hintLabel=\"Max 25 characters\">\r\n          <input matInput #direccion maxlength=\"25\" placeholder=\"Direccion\" formControlName=\"direccion\" type=\"text\">\r\n          <mat-hint align=\"end\">{{direccion.value?.length || 0}}/25</mat-hint>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['direccion'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['direccion'].errors?.minLength\">Minimo caracteres requeridos\r\n            13</mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['direccion'].errors?.maxLength\">Maximo caracteres requeridos\r\n            25</mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <p>\r\n    <mat-form-field class=\"example-full-width\">\r\n      <textarea type=\"text\" #datosadicionales maxlength=\"75\" matInput placeholder=\"Textarea\"\r\n        formControlName=\"datosadicionales\"></textarea>\r\n      <mat-hint align=\"start\"><strong>No suministre informacion personal</strong></mat-hint>\r\n      <mat-hint align=\"end\">{{datosadicionales.value.length}} / 75</mat-hint>\r\n      <mat-error *ngIf=\"FormDireccionesUsuario.controls['datosadicionales'].errors?.required\">Este campo es\r\n        <strong> requerido</strong></mat-error>\r\n      <mat-error *ngIf=\"FormDireccionesUsuario.controls['datosadicionales'].errors?.minLength\">Minimo caracteres\r\n        requeridos 13</mat-error>\r\n      <mat-error *ngIf=\"FormDireccionesUsuario.controls['datosadicionales'].errors?.maxLength\">Maximo caracteres\r\n        requeridos 13</mat-error>\r\n      <mat-icon matSuffix>post_add</mat-icon>\r\n    </mat-form-field>\r\n  </p>\r\n\r\n\r\n  <div class=\"button-form\">\r\n    <button mat-raised-button type=\"submit\" [disabled]=\"FormDireccionesUsuario.invalid\">Guardar</button>\r\n    <button mat-raised-button color=\"warn\" (click)=\"onClear()\">Limpiar</button>\r\n  </div>\r\n"
+module.exports = "<div>\r\n  <button class=\"btn-dialog-close\" mat-stroked-button (click)=\"onClose()\" tabindex=\"-1\">\r\n    <fa-icon [icon]=\"faWindowClose\" size=\"3x\"></fa-icon>\r\n  </button>\r\n</div>\r\n\r\n\r\n<form class=\"form-direccion\" [formGroup]=\"FormDireccionesUsuario\" (ngSubmit)=\"onSave()\" novalidate=\"\">\r\n  <input type=\"hidden\" formControlName=\"idCliente\" [value]=\"user.id\">\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 30 characters\">\r\n\r\n          <input matInput #nombre maxlength=\"30\" placeholder=\"Nombre\" formControlName=\"nombre\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{nombre.value?.length || 0}}/30</mat-hint>\r\n\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['nombre'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['nombre'].errors?.minLength\">Minimo caracteres requeridos 3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['nombre'].errors?.maxLength\">Maximo caracteres requeridos 30\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 30 characters\">\r\n          <input matInput #apellido maxlength=\"30\" placeholder=\"Apellido\" formControlName=\"apellido\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{apellido.value?.length || 0}}/30</mat-hint>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['apellido'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['apellido'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['apellido'].errors?.maxLength\">Maximo caracteres requeridos\r\n            30\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 13 characters\">\r\n          <span matPrefix>+57 &nbsp;</span>\r\n          <input matInput #celular maxlength=\"10\" placeholder=\"celular\" formControlName=\"celular\" type=\"tel\">\r\n\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['celular'].errors?.required\"> Nº de celular is\r\n            <strong>required</strong>\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['celular'].errors?.minLength\">Minimo caracteres\r\n            <strong>requerido</strong> 10</mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['celular'].errors?.maxLength\">Maximo caracteres\r\n            <strong>requerido</strong></mat-error>\r\n\r\n          <mat-icon matSuffix>phone</mat-icon>\r\n          <mat-hint align=\"end\">{{celular.value?.length || 0}}/10</mat-hint>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Departamento</mat-label>\r\n          <mat-select (selectionChange)=\"changeId($event.value)\" placeholder=\"Departamento*\"\r\n            formControlName=\"departamento\">\r\n            <mat-option>None</mat-option>\r\n            <mat-option *ngFor=\"let d of departamentos\" [value]=\"d.id\">{{d.departamento}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['departamento'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>location_city</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Ciudad</mat-label>\r\n          <mat-select placeholder=\"ciudad\" formControlName=\"ciudad\">\r\n            <mat-option *ngFor=\"let c of ciudades\" [value]=\"c.id\">{{c.ciudad}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['ciudad'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>location_city</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n\r\n\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 30 characters\">\r\n          <input matInput #barrio maxlength=\"30\" placeholder=\"Barrio\" formControlName=\"barrio\" type=\"text\">\r\n          <mat-hint align=\"end\">{{barrio.value?.length || 0}}/30</mat-hint>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['barrio'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['barrio'].errors?.minLength\">Minimo caracteres requeridos 3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['barrio'].errors?.maxLength\">Maximo caracteres requeridos 30\r\n          </mat-error>\r\n          <mat-icon matSuffix>location_city</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <table>\r\n    <tr>\r\n      <td>\r\n\r\n        <mat-form-field hintLabel=\"Max 25 characters\">\r\n          <input matInput #direccion maxlength=\"25\" placeholder=\"Direccion\" formControlName=\"direccion\" type=\"text\">\r\n          <mat-hint align=\"end\">{{direccion.value?.length || 0}}/25</mat-hint>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['direccion'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['direccion'].errors?.minLength\">Minimo caracteres requeridos\r\n            13</mat-error>\r\n          <mat-error *ngIf=\"FormDireccionesUsuario.controls['direccion'].errors?.maxLength\">Maximo caracteres requeridos\r\n            25</mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <p>\r\n    <mat-form-field class=\"example-full-width\">\r\n      <textarea type=\"text\" #datosadicionales maxlength=\"75\" matInput placeholder=\"Textarea\"\r\n        formControlName=\"datosadicionales\"></textarea>\r\n      <mat-hint align=\"start\"><strong>No suministre informacion personal</strong></mat-hint>\r\n      <mat-hint align=\"end\">{{datosadicionales.value.length}} / 75</mat-hint>\r\n      <mat-error *ngIf=\"FormDireccionesUsuario.controls['datosadicionales'].errors?.required\">Este campo es\r\n        <strong> requerido</strong></mat-error>\r\n      <mat-error *ngIf=\"FormDireccionesUsuario.controls['datosadicionales'].errors?.minLength\">Minimo caracteres\r\n        requeridos 13</mat-error>\r\n      <mat-error *ngIf=\"FormDireccionesUsuario.controls['datosadicionales'].errors?.maxLength\">Maximo caracteres\r\n        requeridos 13</mat-error>\r\n      <mat-icon matSuffix>post_add</mat-icon>\r\n    </mat-form-field>\r\n  </p>\r\n\r\n\r\n  <div class=\"button-form\">\r\n    <button mat-raised-button type=\"submit\" [disabled]=\"FormDireccionesUsuario.invalid\">Guardar</button>\r\n    <button mat-raised-button color=\"warn\" (click)=\"onClear()\">Limpiar</button>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -293,7 +304,7 @@ module.exports = "<div>\r\n<button class=\"btn-dialog-close\"  mat-stroked-butto
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"container mt-5\">\r\n  <h2>Stripe Checkout</h2>\r\n  <div class=\"row mt-5\">\r\n    <div class=\"col-md-4\">\r\n      <button (click)=\"pay(20)\" class=\"btn btn-primary btn-block\">Pay $20</button>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <button (click)=\"pay(30)\" class=\"btn btn-success btn-block\">Pay $30</button>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <button (click)=\"pay(50)\" class=\"btn btn-info btn-block\">Pay $50</button>\r\n    </div>\r\n  </div>\r\n  <p class=\"mt-5\">\r\n      Try it out using the test card number <b>4242 4242 4242 4242</b>, a random three-digit CVC number, any expiration date in the future, and a random five-digit U.S. ZIP code.\r\n  </p>\r\n</div> -->\r\n\r\n\r\n\r\n<!-- <div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xs-12 col-md-8 mr-auto ml-auto\">\r\n      <div class=\"panel panel-default\">\r\n        <form [formGroup]=\"customStripeForm\" (ngSubmit)=\"pay(customStripeForm.value)\">\r\n          <div class=\"panel-body mt-5\">\r\n            <h4>Stripe - Custom form demo</h4>\r\n            <p><b>{{ message }}</b></p>\r\n            <div class=\"row\">\r\n             <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <input type=\"text\" formControlName=\"name\" class=\"form-control\" placeholder=\"Nombre\" name=\"name\"\r\n                    maxlength=\"18\" />\r\n                </div>\r\n              </div>\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <input type=\"text\" formControlName=\"lastname\" class=\"form-control\" placeholder=\"Apellido\"\r\n                    name=\"lastname\" maxlength=\"18\" />\r\n                </div>\r\n              </div>\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <input type=\"email\" formControlName=\"email\" class=\"form-control\" placeholder=\"email\" name=\"email\"\r\n                    maxlength=\"18\" />\r\n                </div>\r\n              </div>\r\n             </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-xs-12 col-md-12\">\r\n                <div class=\"form-group\">\r\n                  <label>CARD NUMBER</label>\r\n                  <div class=\"input-group\">\r\n                    <input type=\"text\" formControlName=\"cardNumber\" class=\"form-control\" placeholder=\"Valid Card Number\"\r\n                      name=\"cardNumber\" maxlength=\"18\" />\r\n                    <span class=\"input-group-addon\">\r\n                      <span class=\"fa fa-credit-card\"></span>\r\n                    </span>\r\n                  </div>\r\n                  <div *ngIf=\"submitted &amp;&amp; customStripeForm.controls.cardNumber.errors\" class=\"text-danger\">\r\n                    <div *ngIf=\"customStripeForm.controls.cardNumber.errors.required\">Card number is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-xs-7 col-md-7\">\r\n                <div class=\"form-group\">\r\n                  <label><span class=\"hidden-xs\">EXPIRATION</span> Date</label>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-md-6\">\r\n                      <div class=\"form-group\">\r\n                        <select formControlName=\"expMonth\" class=\"form-control\">\r\n                          <option value=\"\">Select Month</option>\r\n                          <option value=\"1\">01</option>\r\n                          <option value=\"2\">02</option>\r\n                          <option value=\"3\">03</option>\r\n                          <option value=\"4\">04</option>\r\n                          <option value=\"5\">05</option>\r\n                          <option value=\"6\">06</option>\r\n                          <option value=\"7\">07</option>\r\n                          <option value=\"8\">08</option>\r\n                          <option value=\"9\">09</option>\r\n                          <option value=\"10\">10</option>\r\n                          <option value=\"11\">11</option>\r\n                          <option value=\"12\">12</option>\r\n                        </select>\r\n                      </div>\r\n                    </div>\r\n                    <div class=\"col-md-6 pull-right\">\r\n                      <div class=\"form-group\">\r\n                        <select formControlName=\"expYear\" class=\"form-control\">\r\n                          <option value=\"\">Select Year</option>\r\n                          <option value=\"20\">2020</option>\r\n                          <option value=\"21\">2021</option>\r\n                          <option value=\"22\">2022</option>\r\n                          <option value=\"23\">2023</option>\r\n                          <option value=\"24\">2024</option>\r\n                          <option value=\"25\">2025</option>\r\n                          <option value=\"26\">2026</option>\r\n                          <option value=\"27\">2027</option>\r\n                          <option value=\"28\">2028</option>\r\n                          <option value=\"29\">2029</option>\r\n                          <option value=\"30\">2030</option>\r\n                        </select>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n\r\n                  <div *ngIf=\"submitted &amp;&amp; customStripeForm.controls.expMonth.errors\" class=\"text-danger\">\r\n                    <div *ngIf=\"customStripeForm.controls.expMonth.errors.required\">Expiration month is required</div>\r\n                  </div>\r\n\r\n                  <div *ngIf=\"submitted &amp;&amp; customStripeForm.controls.expYear.errors\" class=\"text-danger\">\r\n                    <div *ngIf=\"customStripeForm.controls.expYear.errors.required\">Expiration year is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"col-xs-5 col-md-5 pull-right\">\r\n                <div class=\"form-group\">\r\n                  <label>CV CODE</label>\r\n                  <input type=\"text\" formControlName=\"cvv\" class=\"form-control\" placeholder=\"CVC\" maxlength=\"4\" />\r\n                </div>\r\n                <div *ngIf=\"submitted &amp;&amp; customStripeForm.controls.cvv.errors\" class=\"text-danger\">\r\n                  <div *ngIf=\"customStripeForm.controls.cvv.errors.required\">CVV is required</div>\r\n                  <div *ngIf=\"customStripeForm.controls.cvv.errors.minlength\">CVV must be at least 3 characters</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"panel-footer\">\r\n            <div class=\"row\">\r\n              <div class=\"col-xs-12 col-md-12\">\r\n                <button class=\"btn btn-warning btn-lg btn-block\" *ngIf=\"!formProcess\">Process payment</button>\r\n                <span class=\"btn btn-warning btn-lg btn-block\" *ngIf=\"formProcess\">Processing please wait...</span>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </form>\r\n        <p class=\"mt-2\">Try it out using the test card number 4242 4242 4242 4242, a random three-digit CVC number and\r\n          any expiration date in the future.</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div> -->\r\n\r\n<div class=\"loading-indicator\">\r\n  <mat-progress-spinner mode=\"indeterminate\" *ngIf=\"showSpinner\"></mat-progress-spinner>\r\n</div>\r\n<!-- <mat-spinner *ngIf=\"showSpinner\"></mat-spinner>-->\r\n<form class=\"form-direccion\" [formGroup]=\"customStripeForm\" (ngSubmit)=\"pay(customStripeForm.value)\" novalidate=\"\">\r\n  <h4>Stripe - Custom form demo</h4>\r\n\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 18 characters\">\r\n\r\n          <input matInput #name maxlength=\"18\" placeholder=\"Nombre\" formControlName=\"name\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{name.value?.length || 0}}/18</mat-hint>\r\n\r\n          <mat-error *ngIf=\"customStripeForm.controls['name'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['name'].errors?.minLength\">Minimo caracteres requeridos 3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['name'].errors?.maxLength\">Maximo caracteres requeridos 18\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 18 characters\">\r\n          <input matInput #lastname maxlength=\"18\" placeholder=\"Apellido\" formControlName=\"lastname\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{lastname.value?.length || 0}}/18</mat-hint>\r\n          <mat-error *ngIf=\"customStripeForm.controls['lastname'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['lastname'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['lastname'].errors?.maxLength\">Maximo caracteres requeridos\r\n            30\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <input matInput placeholder=\"Email\" formControlName=\"email\">\r\n          <mat-icon matSuffix>email</mat-icon>\r\n          <mat-error *ngIf=\"customStripeForm.controls['email'].errors?.email\">\r\n            Please enter a valid email address\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['email'].errors?.required\">\r\n            Email is <strong>required</strong>\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 18 characters\">\r\n          <input matInput #cardNumber maxlength=\"18\" placeholder=\"Valid Card Number\" formControlName=\"cardNumber\"\r\n            type=\"text\">\r\n          <mat-icon matSuffix>credit_card</mat-icon>\r\n          <mat-hint align=\"end\">{{cardNumber.value?.length || 0}}/18</mat-hint>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cardNumber'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cardNumber'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cardNumber'].errors?.maxLength\">Maximo caracteres requeridos\r\n            18\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label><span>Expiation</span> Date</mat-label>\r\n          <mat-select placeholder=\"Expiation date*\" formControlName=\"expMonth\">\r\n            <mat-option>None</mat-option>\r\n            <mat-option *ngFor=\"let month of months\" [value]=\"month.id\">{{month.value}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"customStripeForm.controls['expMonth'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>date_range</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Year</mat-label>\r\n          <mat-select placeholder=\"year\" formControlName=\"expYear\">\r\n            <mat-option *ngFor=\"let exp of expYears\" [value]=\"exp.id\">{{exp.value}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"customStripeForm.controls['expYear'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>date_range</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 3 characters\">\r\n          <input matInput #cvv maxlength=\"3\" placeholder=\"Cv code\" formControlName=\"cvv\" type=\"text\">\r\n          <mat-icon matSuffix>code</mat-icon>\r\n          <mat-hint align=\"end\">{{cvv.value?.length || 0}}/3</mat-hint>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cvv'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cvv'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cvv'].errors?.maxLength\">Maximo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n\r\n\r\n    </tr>\r\n  </table>\r\n  <div class=\"button-form\">\r\n    <button mat-raised-button type=\"submit\" [disabled]=\"customStripeForm.invalid\">Process payment</button>\r\n\r\n  </div>\r\n"
+module.exports = "<div class=\"loading-indicator\">\r\n  <mat-progress-spinner mode=\"indeterminate\" *ngIf=\"showSpinner\"></mat-progress-spinner>\r\n</div>\r\n<!-- <mat-spinner *ngIf=\"showSpinner\"></mat-spinner>-->\r\n<form class=\"form-direccion\" [formGroup]=\"customStripeForm\" (ngSubmit)=\"pay(customStripeForm.value)\" novalidate=\"\">\r\n  <h4>Stripe - Custom form demo</h4>\r\n\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 18 characters\">\r\n\r\n          <input matInput #name maxlength=\"18\" placeholder=\"Nombre\" formControlName=\"name\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{name.value?.length || 0}}/18</mat-hint>\r\n\r\n          <mat-error *ngIf=\"customStripeForm.controls['name'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['name'].errors?.minLength\">Minimo caracteres requeridos 3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['name'].errors?.maxLength\">Maximo caracteres requeridos 18\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 18 characters\">\r\n          <input matInput #lastname maxlength=\"18\" placeholder=\"Apellido\" formControlName=\"lastname\" type=\"text\">\r\n          <mat-icon matSuffix>person</mat-icon>\r\n          <mat-hint align=\"end\">{{lastname.value?.length || 0}}/18</mat-hint>\r\n          <mat-error *ngIf=\"customStripeForm.controls['lastname'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['lastname'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['lastname'].errors?.maxLength\">Maximo caracteres requeridos\r\n            30\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <input matInput placeholder=\"Email\" formControlName=\"email\">\r\n          <mat-icon matSuffix>email</mat-icon>\r\n          <mat-error *ngIf=\"customStripeForm.controls['email'].errors?.email\">\r\n            Please enter a valid email address\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['email'].errors?.required\">\r\n            Email is <strong>required</strong>\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 18 characters\">\r\n          <input matInput #cardNumber maxlength=\"18\" placeholder=\"Valid Card Number\" formControlName=\"cardNumber\"\r\n            type=\"text\">\r\n          <mat-icon matSuffix>credit_card</mat-icon>\r\n          <mat-hint align=\"end\">{{cardNumber.value?.length || 0}}/18</mat-hint>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cardNumber'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cardNumber'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cardNumber'].errors?.maxLength\">Maximo caracteres requeridos\r\n            18\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <table class=\"example-full-width\" cellspacing=\"0\">\r\n    <tr>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label><span>Expiation</span> Date</mat-label>\r\n          <mat-select placeholder=\"Expiation date*\" formControlName=\"expMonth\">\r\n            <mat-option>None</mat-option>\r\n            <mat-option *ngFor=\"let month of months\" [value]=\"month.id\">{{month.value}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"customStripeForm.controls['expMonth'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>date_range</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field class=\"example-full-width\">\r\n          <mat-label>Year</mat-label>\r\n          <mat-select placeholder=\"year\" formControlName=\"expYear\">\r\n            <mat-option *ngFor=\"let exp of expYears\" [value]=\"exp.id\">{{exp.value}}</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"customStripeForm.controls['expYear'].errors?.required\">Este campo es\r\n            <strong>requerido</strong></mat-error>\r\n          <mat-icon matSuffix>date_range</mat-icon>\r\n        </mat-form-field>\r\n      </td>\r\n      <td>\r\n        <mat-form-field hintLabel=\"Max 3 characters\">\r\n          <input matInput #cvv maxlength=\"3\" placeholder=\"Cv code\" formControlName=\"cvv\" type=\"text\">\r\n          <mat-icon matSuffix>code</mat-icon>\r\n          <mat-hint align=\"end\">{{cvv.value?.length || 0}}/3</mat-hint>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cvv'].errors?.required\">Este campo es <strong>\r\n              requerido</strong></mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cvv'].errors?.minLength\">Minimo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n          <mat-error *ngIf=\"customStripeForm.controls['cvv'].errors?.maxLength\">Maximo caracteres requeridos\r\n            3\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </td>\r\n\r\n\r\n    </tr>\r\n  </table>\r\n  <div class=\"button-form\">\r\n    <button mat-raised-button type=\"submit\" [disabled]=\"customStripeForm.invalid\">Process payment</button>\r\n\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -359,7 +370,7 @@ module.exports = "<mat-accordion >\r\n    <mat-expansion-panel>\r\n      <mat-ex
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"footer\">\r\n<div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n          <h2>Nuestras categorias</h2>\r\n             <ul>\r\n                <li><a href=\"\" class=\"hoverCascos\"><span><i class=\"fas fa-motorcycle\"></i></span>Cascos</a></li>\r\n                <li><a href=\"\" class=\"hoverChalecos\"><span><i class=\"fas fa-tshirt\"></i></span>Chalecos</a></li>\r\n                <li><a href=\"\" class=\"hoverVisores\"><span><i class=\"fab fa-tripadvisor\"></i></span>Visores</a></li>\r\n                <li><a href=\"\" class=\"hoverGuantes\"><span><i class=\"fas fa-mitten\"></i></span>Guantes</a></li>\r\n                <li><a href=\"\" class=\"hoverAcesorios\"><span><i class=\"fas fa-broadcast-tower\"></i></span>Acesorios</a></li>\r\n            </ul>\r\n\r\n\r\n          </div>\r\n        <div class=\"col-md-4\">\r\n          <h2>Sigenos</h2>\r\n          <nav class=\"redes-sociales\">\r\n            <a href=\"#\"><i class=\"fab fa-facebook-f\"></i></a>\r\n            <a href=\"#\"><i class=\"fab fa-twitter\"></i></a>\r\n            <a href=\"#\"><i class=\"fab fa-pinterest\"></i></a>\r\n            <a href=\"#\"><i class=\"fab fa-youtube\"></i></a>\r\n            <a href=\"#\"><i class=\"fab fa-instagram\"></i></a>\r\n\r\n          </nav>\r\n          </div>\r\n          <div class=\"col-md-4\">\r\n              <div>\r\n              <h2 class=\"contactenos\">Contactenos\r\n              <span>telefono: 378 12 09 </span>\r\n              <span> correo: visortek@gmail.com</span>\r\n              <span>Celular: 312 887 48 15 </span>\r\n              <span> what's App: +57 320 6293608 </span>\r\n              </h2>\r\n          </div>\r\n        </div>\r\n\r\n\r\n\r\n</div>\r\n<!-- <div class=\"row \">\r\n    <div class=\"col-md-12\" style=\"background-color: black ; height: 100px;\">\r\n   </div>\r\n</div> -->\r\n\r\n\r\n"
+module.exports = "\r\n<div class=\"footer\">\r\n<div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n          <h2>Nuestras categorias</h2>\r\n             <ul>\r\n                <li><a href=\"\" class=\"hoverCascos\"><span><i class=\"fas fa-motorcycle\"></i></span>Cascos</a></li>\r\n                <li><a href=\"\" class=\"hoverChalecos\"><span><i class=\"fas fa-tshirt\"></i></span>Chalecos</a></li>\r\n                <li><a href=\"\" class=\"hoverVisores\"><span><i class=\"fab fa-tripadvisor\"></i></span>Visores</a></li>\r\n                <li><a href=\"\" class=\"hoverGuantes\"><span><i class=\"fas fa-mitten\"></i></span>Guantes</a></li>\r\n                <li><a href=\"\" class=\"hoverAcesorios\"><span><i class=\"fas fa-broadcast-tower\"></i></span>Acesorios</a></li>\r\n            </ul>\r\n\r\n\r\n          </div>\r\n        <div class=\"col-md-4\">\r\n          <h2>Sigenos</h2>\r\n          <nav class=\"redes-sociales\">\r\n            <span><fa-icon [icon]=\"faFacebook\" size=\"lg\"></fa-icon></span>\r\n            <span><fa-icon [icon]=\"faWhatsapp\" size=\"lg\"></fa-icon></span>\r\n            <span> <fa-icon [icon]=\"faInstagram\" size=\"lg\"></fa-icon></span>\r\n\r\n\r\n          </nav>\r\n          </div>\r\n          <div class=\"col-md-4\">\r\n              <div>\r\n              <h2 class=\"contactenos\" >Contactenos\r\n              <span><fa-icon [icon]=\"faPhone\" size=\"lg\"></fa-icon>    telefono: 378 12 09</span>\r\n              <span><fa-icon [icon]=\"faMailBulk\" size=\"lg\"></fa-icon>   correo: visortek@gmail.com</span>\r\n              <span><fa-icon [icon]=\"faPhone\" size=\"lg\"></fa-icon>    Celular: 312 887 48 15</span>\r\n              <span><fa-icon [icon]=\"faWhatsapp\" size=\"lg\"></fa-icon>    what's App: +57 320 6293608</span>\r\n            </h2>\r\n          </div>\r\n        </div>\r\n\r\n\r\n\r\n</div>\r\n<!-- <div class=\"row \">\r\n    <div class=\"col-md-12\" style=\"background-color: black ; height: 100px;\">\r\n   </div>\r\n</div> -->\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -381,7 +392,7 @@ module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav mode=\"push\" [(open
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar  navbar-expand-lg navbar-dark bg-primary \">\r\n  <a class=\"navbar-brand\" routerLink=\"/\">\r\n    <img src=\"\" width=\"30\" height=\"30\" class=\"d-inline-block align-top\" alt=\"\"> C&C El Mana\r\n  </a>\r\n  <div>\r\n    <form class=\"form-inline my-2 my-lg-0\">\r\n      <div class=\"\">\r\n        <input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n        <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n    <ul class=\"navbar-nav\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" routerLink=\"/\">Home<span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" id=\"categorias\" (mouseover)=\"toogleShowCatalogosComponent($event)\"\r\n          (onmouseup)=\"toogleShowCatalogosComponent($event)\">Categorias</a>\r\n        </li>\r\n\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\">Productos destacados</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">Acerca de nosotros</a>\r\n      </li>\r\n\r\n    </ul>\r\n  </div>\r\n  <div>\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"login\" *ngIf=\"!loggedin\">Login\r\n          <span><i class=\"fas fa-sign-in-alt fa-1x\"></i></span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item-style\">\r\n        <a class=\"nav-link\" href=\"#\" (click)=logout($event) *ngIf=\"loggedin\">Logout</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/signup\" *ngIf=\"!loggedin\">Register</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"admin\" *ngIf=\"loggedin && loggedinAdmin; else notAdmin\">Dashboard</a>\r\n      </li>\r\n      <ng-template #notAdmin>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" routerLink=\"dashboard\" *ngIf=\"loggedin\">Dashboard</a>\r\n        </li>\r\n      </ng-template>\r\n\r\n      <li class=\"nav-item\" style=\"font-size: 15px\">\r\n        <a class=\"nav-link\" *ngIf=\"loggedin\" (click)=\"toogleHidden($event)\"><span>\r\n            <fa-icon [icon]=\"faShoppingCart\"></fa-icon>\r\n          </span></a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n\r\n        <a class=\"nav-link\" *ngIf=\"loggedin\"><span>\r\n            <fa-icon [icon]=\"faBell\"></fa-icon>\r\n          </span></a>\r\n      </li>\r\n\r\n\r\n\r\n    </ul>\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar  navbar-expand-lg navbar-dark bg-primary \">\r\n  <a class=\"navbar-brand\" routerLink=\"/\" (click)=\"hideCatalog($event)\" >\r\n    <img src=\"https://res.cloudinary.com/dequvdgav/image/upload/v1588286002/visorteck/assets/logoVisortek_rlaawu.jpg\" width=\"30\" height=\"30\" class=\"d-inline-block align-top rounded-circle \" alt=\"\" >\r\n     VisorTek\r\n  </a>\r\n  <div>\r\n    <form class=\"form-inline my-2 my-lg-0\">\r\n      <div class=\"\">\r\n        <input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n        <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n\r\n\r\n    <ul class=\"navbar-nav\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" routerLink=\"\" (mouseover)=\"hideCatalog($event)\">Home<span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" id=\"categorias\" routerLink=\"\" (mouseover)=\"ShowCatalogosComponent($event)\"\r\n        >Categorias</a>\r\n      </li>\r\n\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"\" (mouseover)=\"hideCatalog($event)\" >Productos destacados</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"\" (mouseover)=\"hideCatalog($event)\" >Testimonios</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"\" (mouseover)=\"hideCatalog($event)\">Acerca de nosotros</a>\r\n      </li>\r\n\r\n    </ul>\r\n  </div>\r\n  <div>\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"login\" *ngIf=\"!loggedin\" (mouseover)=\"hideCatalog($event)\">Login\r\n          <span><i class=\"fas fa-sign-in-alt fa-1x\"></i></span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item-style\">\r\n        <a class=\"nav-link\" href=\"#\" (click)=logout($event) *ngIf=\"loggedin\" (mouseover)=\"hideCatalog($event)\" (mouseover)=\"hideCatalog($event)\">Logout</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/signup\" *ngIf=\"!loggedin\" (mouseover)=\"hideCatalog($event)\">Register</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"admin\" *ngIf=\"loggedin && loggedinAdmin; else notAdmin\" (mouseover)=\"hideCatalog($event)\">Dashboard</a>\r\n      </li>\r\n      <ng-template #notAdmin>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" routerLink=\"dashboard\" *ngIf=\"loggedin\" (mouseover)=\"hideCatalog($event)\">Dashboard</a>\r\n        </li>\r\n      </ng-template>\r\n\r\n      <li class=\"nav-item\" style=\"font-size: 15px\">\r\n        <a class=\"nav-link\" *ngIf=\"loggedin\" (click)=\"toogleHidden($event)\"><span>\r\n            <fa-icon [icon]=\"faShoppingCart\"></fa-icon>\r\n          </span></a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n\r\n        <a class=\"nav-link\" *ngIf=\"loggedin\" ><span>\r\n            <fa-icon [icon]=\"faBell\" (mouseover)=\"hideCatalog($event)\"></fa-icon>\r\n          </span></a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -392,7 +403,29 @@ module.exports = "<nav class=\"navbar  navbar-expand-lg navbar-dark bg-primary \
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>ProdudctosDestacados</p>\n\n<!-- <div class=\"container\">\n    <div id=\"slider-home\" class=\"carousel slide\" data-ride=\"carousel\">\n  <ol class=\"carousel-indicators\">\n <li data-target=\"#slider-home\" data-slide-to=\"0\" class=\"active\"></li>\n <li data-target=\"#slider-home\" data-slide-to=\"1\"></li>\n <li data-target=\"#slider-home\" data-slide-to=\"2\"></li>\n</ol>\n<div class=\"carousel-inner\">\n <div class=\"carousel-item active\">\n   <img src=\"https://cdn1.sefutbol.com/sites/default/files/super-equip-2505.jpg\" class=\"d-block w-100\" alt=\"...\">\n </div>\n <div class=\"carousel-item\">\n   <img src=\"https://cdn.vox-cdn.com/thumbor/FndtehAC7Tf_CgKZyzfKaatH4EE=/0x0:4928x3280/1200x800/filters:focal(2070x1246:2858x2034)/cdn.vox-cdn.com/uploads/chorus_image/image/63900765/1150425486.jpg.0.jpg\" class=\"d-block w-100\" alt=\"...\">\n </div>\n <div class=\"carousel-item\">\n   <img src=\"https://images.beinsports.com/Dj0FdvAcO8N50k2agoltsRY8NuY=/full-fit-in/1000x0/2715616-GettyImages-1058207500-copy.jpg\" class=\"d-block w-100\" alt=\"...\">\n </div>\n</div>\n<a class=\"carousel-control-prev\" href=\"#slider-home\" role=\"button\" data-slide=\"prev\">\n <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n <span class=\"sr-only\">Previous</span>\n</a>\n<a class=\"carousel-control-next\" href=\"#slider-home\" role=\"button\" data-slide=\"next\">\n <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n <span class=\"sr-only\">Next</span>\n</a>\n</div>\n  </div> -->\n\n   <!-- <div class=\"container\">\n      <div id=\"slider-home\" class=\"carousel slide\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n   <li data-target=\"#slider-home\" data-slide-to=\"0\" class=\"active\"></li>\n   <li data-target=\"#slider-home\" data-slide-to=\"1\"></li>\n   <li data-target=\"#slider-home\" data-slide-to=\"2\"></li>\n  </ol>\n  <div class=\"carousel-inner\">\n   <div class=\"carousel-item active\">\n     <img src=\"https://cdn1.sefutbol.com/sites/default/files/super-equip-2505.jpg\" class=\"d-block w-100\" alt=\"...\">\n   </div>\n   <div class=\"carousel-item\">\n     <img src=\"https://cdn.vox-cdn.com/thumbor/FndtehAC7Tf_CgKZyzfKaatH4EE=/0x0:4928x3280/1200x800/filters:focal(2070x1246:2858x2034)/cdn.vox-cdn.com/uploads/chorus_image/image/63900765/1150425486.jpg.0.jpg\" class=\"d-block w-100\" alt=\"...\">\n   </div>\n   <div class=\"carousel-item\">\n     <img src=\"https://images.beinsports.com/Dj0FdvAcO8N50k2agoltsRY8NuY=/full-fit-in/1000x0/2715616-GettyImages-1058207500-copy.jpg\" class=\"d-block w-100\" alt=\"...\">\n   </div>\n  </div>\n\n  <a class=\"carousel-control-prev\" href=\"#slider-home\" role=\"button\" data-slide=\"prev\">\n   <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n   <span class=\"sr-only\">Previous</span>\n  </a>\n  <a class=\"carousel-control-next\" href=\"#slider-home\" role=\"button\" data-slide=\"next\">\n   <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n   <span class=\"sr-only\">Next</span>\n  </a>\n  </div>\n    </div> -->\n\n\n"
+module.exports = "<h2 class=\"text-center\">Conoce nuestros productos destacados</h2>\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-3\" *ngFor=\"let producto of productosDestacados\">\r\n      <mat-card class=\"card\">\r\n        <mat-card-header>\r\n          <div mat-card-avatar class=\"header-image\"></div>\r\n          <mat-card-title>{{producto.nombre}}</mat-card-title>\r\n\r\n        </mat-card-header>\r\n        <img mat-card-image [src]=\"producto.imagen\" alt=\"Photo of a Shiba Inu\" (click)=\"showImage(producto.id)\">\r\n        <mat-card-content>\r\n          <h6 style=\"text-align: center;\">Ventas completadas</h6>\r\n          <mat-icon style=\"position: relative; left: 75px;top: 20px;\" matBadge=\"{{producto.cantidad}}\"\r\n            matBadgeColor=\"warn\" color=\"primary\">star</mat-icon>\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n          <button mat-button>Me gusta</button>\r\n          <button mat-button>Compartir</button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n\r\n    </div>\r\n  </div>\r\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/partials/show-all-comments/show-all-comments.component.html":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/partials/show-all-comments/show-all-comments.component.html ***!
+  \******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <div class=\"row\">\r\n    <div>\r\n      <span>\r\n        <fa-icon [icon]=\"faDoorClosed\" size=\"lg\" (click)=\"closeAllCommentsModel()\"></fa-icon>\r\n      </span>\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"row\">\r\n    <div *ngIf=\"comments.length> 0\">\r\n      <div *ngFor=\"let comment of comments; trackBy:trackByComments\">\r\n        <mat-card class=\"comments-card\">\r\n          <mat-card-header>\r\n            <img mat-card-avatar class=\"comments-header-image\" [src]=\"comment.avatar\">\r\n\r\n            <mat-card-title>Erick</mat-card-title>\r\n          </mat-card-header>\r\n\r\n          <mat-card-content>\r\n            <p>{{comment.comentario}}</p>\r\n            <span>{{comment.createdAt | relativeTime}}</span>\r\n          </mat-card-content>\r\n\r\n        </mat-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/partials/show-gallery-image/show-gallery-image.component.html":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/partials/show-gallery-image/show-gallery-image.component.html ***!
+  \********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"pt-4\" style=\"position: relative; bottom: 23px;\">\r\n  <fa-icon [icon]=\"faWindowClose\" (click)=\"closeDialog()\"></fa-icon>\r\n</div>\r\n<div>\r\n  <div class=\"row pb-3\">\r\n    <div class=\"col\">\r\n      <img mat-card-image [src]=\"imagePreview\">\r\n    </div>\r\n  </div>\r\n  <div class=\"row\" style=\"height: 150px;\">\r\n    <div class=\"col-md-3\" *ngFor=\"let ip of imagenesProductos\">\r\n      <mat-card class=\"gallery-card\" (click)=\"getIdToShow(ip.imagen)\">\r\n        <img mat-card-image [src]=\"ip.imagen\">\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -403,7 +436,7 @@ module.exports = "<p>ProdudctosDestacados</p>\n\n<!-- <div class=\"container\">\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"link_catalogo\">\r\n  <mat-nav-list style=\"padding-left: 30px\" *ngFor=\"let catalogo of catalogos\">\r\n    <a mat-list-item routerLinkActive=\"active current\" class=\"active\" class=\"selected\" style=\"font-size: 15px;\" (click)=\"getMarcas(catalogo.id)\" >\r\n      {{catalogo.categoria}}<span class=\"badge\"><i class=\"fas fa-chevron-right\"></i></span></a>\r\n  </mat-nav-list>\r\n\r\n</div>\r\n\r\n<div id=\"marca-catalogo\">\r\n  <mat-nav-list style=\"height: auto\" *ngFor=\"let marca of marcasFinal\">\r\n\r\n    <a mat-list-item routerLinkActive=\"active current\"\r\n      [routerLink]=\"['/catalogos',marca.categoria,marca.marca,marca.id]\"\r\n      (click)=\"toogleHideUserSidenav($event)\">\r\n      <span class=\"badge\"></span>{{marca.marca}}\r\n    </a>\r\n  </mat-nav-list>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"link_catalogo\"  (onmouseout)=\"onmouseout($event)\">\r\n  <mat-nav-list style=\"padding-left: 30px\" *ngFor=\"let catalogo of catalogos\" (onmouseout)=\"onmouseout($event)\" >\r\n    <a mat-list-item routerLinkActive=\"active current\" class=\"active\" class=\"selected\" style=\"font-size: 15px;\"  (mouseover)=\"getMarcas(catalogo.id)\">\r\n      {{catalogo.categoria}}<span class=\"badge\"><i class=\"fas fa-chevron-right\"></i></span></a>\r\n  </mat-nav-list>\r\n</div>\r\n\r\n<div id=\"marca-catalogo\" (onmouseout)=\"onmouseout($event)\">\r\n  <mat-nav-list style=\"height: auto\" *ngFor=\"let marca of marcasFinal\"  (onmouseout)=\"onmouseout($event)\">\r\n\r\n    <a mat-list-item routerLinkActive=\"active current\"\r\n      [routerLink]=\"['/catalogos',marca.categoria,marca.marca,marca.id]\"\r\n      (click)=\"toogleHideUserSidenav($event)\" (click)=\"hideCatalog($event)\" >\r\n      <span class=\"badge\"></span>{{marca.marca}}\r\n    </a>\r\n  </mat-nav-list>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -414,7 +447,7 @@ module.exports = "<div class=\"link_catalogo\">\r\n  <mat-nav-list style=\"paddi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  testomoniales works!\r\n</p>\r\n"
+module.exports = "<h2 class=\"text-center\">Nuestros testimonios los demuestran</h2>\r\n\r\n<div class=\"container\">\r\n   <div class=\"row pb-2\">\r\n      <div class=\"col-md-4\" *ngFor=\"let testimonio of testimonios\"  >\r\n        <mat-card class=\"card\">\r\n          <img  *ngIf=\"testimonio.avatar; else notShow\" [src]=\"testimonio.imagen\"  alt=\"avatar usuario\" class=\"text-center\">\r\n          <ng-template #notShow>\r\n          <img   src=\"https://res.cloudinary.com/dequvdgav/image/upload/v1588803057/visorteck/avatars/no_avatar_dwnxix.jpg\"\r\n          alt=\"avatar usuario\" class=\"text-center\"></ng-template>\r\n          <mat-card-header>\r\n            <mat-card-title style=\"position: relative; left: 50px;\">{{testimonio.nombre}} {{testimonio.apellido}}</mat-card-title>\r\n          </mat-card-header>\r\n\r\n          <mat-card-content>\r\n            <p>{{testimonio.testimonio}}</p>\r\n            <span>{{testimonio.created_at}}</span>\r\n          </mat-card-content>\r\n        </mat-card>\r\n\r\n      </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -701,13 +734,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_dashboard_pages_chat_chat_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./components/auth/dashboard/pages/chat/chat.component */ "./src/app/components/auth/dashboard/pages/chat/chat.component.ts");
 /* harmony import */ var _components_partials_main_side_bar_main_side_bar_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./components/partials/main-side-bar/main-side-bar.component */ "./src/app/components/partials/main-side-bar/main-side-bar.component.ts");
 /* harmony import */ var _components_catalogos_side_nav_catalogos_side_nav_catalogos_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ././components/catalogos/side-nav-catalogos/side-nav-catalogos.component */ "./src/app/components/catalogos/side-nav-catalogos/side-nav-catalogos.component.ts");
-/* harmony import */ var _app_material_module__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ../app/material.module */ "./src/app/material.module.ts");
-/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var _components_auth_dashboard_pages_admin_mensaje_admin_mensaje_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./components/auth/dashboard/pages/admin-mensaje/admin-mensaje.component */ "./src/app/components/auth/dashboard/pages/admin-mensaje/admin-mensaje.component.ts");
-/* harmony import */ var _pipes_is_admin_pipe__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./pipes/is-admin.pipe */ "./src/app/pipes/is-admin.pipe.ts");
-/* harmony import */ var _pipes_is_user_pipe__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./pipes/is-user.pipe */ "./src/app/pipes/is-user.pipe.ts");
-/* harmony import */ var _components_auth_dashboard_pages_user_mensaje_user_mensaje_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./components/auth/dashboard/pages/user-mensaje/user-mensaje.component */ "./src/app/components/auth/dashboard/pages/user-mensaje/user-mensaje.component.ts");
-/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm2015/angular-fontawesome.js");
+/* harmony import */ var _components_partials_show_gallery_image_show_gallery_image_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./components/partials/show-gallery-image/show-gallery-image.component */ "./src/app/components/partials/show-gallery-image/show-gallery-image.component.ts");
+/* harmony import */ var _components_partials_show_all_comments_show_all_comments_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./components/partials/show-all-comments/show-all-comments.component */ "./src/app/components/partials/show-all-comments/show-all-comments.component.ts");
+/* harmony import */ var _components_catalogos_question_answers_question_answers_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./components/catalogos/question-answers/question-answers.component */ "./src/app/components/catalogos/question-answers/question-answers.component.ts");
+/* harmony import */ var _app_material_module__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ../app/material.module */ "./src/app/material.module.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var _components_auth_dashboard_pages_admin_mensaje_admin_mensaje_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./components/auth/dashboard/pages/admin-mensaje/admin-mensaje.component */ "./src/app/components/auth/dashboard/pages/admin-mensaje/admin-mensaje.component.ts");
+/* harmony import */ var _pipes_is_admin_pipe__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./pipes/is-admin.pipe */ "./src/app/pipes/is-admin.pipe.ts");
+/* harmony import */ var _pipes_is_user_pipe__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./pipes/is-user.pipe */ "./src/app/pipes/is-user.pipe.ts");
+/* harmony import */ var _components_auth_dashboard_pages_user_mensaje_user_mensaje_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./components/auth/dashboard/pages/user-mensaje/user-mensaje.component */ "./src/app/components/auth/dashboard/pages/user-mensaje/user-mensaje.component.ts");
+/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm2015/angular-fontawesome.js");
+/* harmony import */ var _pipes_relative_time_pipe__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./pipes/relative-time.pipe */ "./src/app/pipes/relative-time.pipe.ts");
 
 
 
@@ -733,6 +771,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// tslint:disable-next-line: max-line-length
 
 
 
@@ -750,6 +789,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+// tslint:disable-next-line: max-line-length
 
 
 
@@ -765,20 +808,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// /** Routes */
-// const appRoutesAuth: Route [] = [
-//   {path:'login', component:LoginComponent,
-//   canActivate: BeforeLoginService},
-//   {path:'signup',component:SignupComponent,
-//    canActivate: AfterLoginService },
-//   {path:'dashboard',component:DashboardComponent},
-//   {path:'request-password-reset',component:RequestResetComponent},
-//   {path:'response-password-reset',component:ResponseResetComponent},
-// ]
-// const appHomeRutas: Route [] = [
-//   {path: '', component: HomeComponent},
-//   {path: 'home', component: HomeComponent},
-// ]
+
+
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -818,42 +849,46 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_auth_dashboard_sidenav_admin_sidenav_admin_component__WEBPACK_IMPORTED_MODULE_44__["SidenavAdminComponent"],
             _components_partials_carrito_compra_procesoCompra_form_direccione_usuario_show_form_direccione_usuario_show_component__WEBPACK_IMPORTED_MODULE_45__["FormDireccioneUsuarioShowComponent"],
             _components_auth_dashboard_pages_chat_chat_component__WEBPACK_IMPORTED_MODULE_46__["ChatComponent"],
-            _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_50__["PageNotFoundComponent"],
-            _components_auth_dashboard_pages_admin_mensaje_admin_mensaje_component__WEBPACK_IMPORTED_MODULE_51__["AdminMensajeComponent"],
-            _pipes_is_admin_pipe__WEBPACK_IMPORTED_MODULE_52__["IsAdminPipe"],
-            _pipes_is_user_pipe__WEBPACK_IMPORTED_MODULE_53__["IsUserPipe"],
-            _components_auth_dashboard_pages_user_mensaje_user_mensaje_component__WEBPACK_IMPORTED_MODULE_54__["UserMensajeComponent"],
+            _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_54__["PageNotFoundComponent"],
+            _components_auth_dashboard_pages_admin_mensaje_admin_mensaje_component__WEBPACK_IMPORTED_MODULE_55__["AdminMensajeComponent"],
+            _pipes_is_admin_pipe__WEBPACK_IMPORTED_MODULE_56__["IsAdminPipe"],
+            _pipes_is_user_pipe__WEBPACK_IMPORTED_MODULE_57__["IsUserPipe"],
+            _components_auth_dashboard_pages_user_mensaje_user_mensaje_component__WEBPACK_IMPORTED_MODULE_58__["UserMensajeComponent"],
             _components_partials_main_side_bar_main_side_bar_component__WEBPACK_IMPORTED_MODULE_47__["MainSideBarComponent"],
-            _components_catalogos_side_nav_catalogos_side_nav_catalogos_component__WEBPACK_IMPORTED_MODULE_48__["SideNavCatalogosComponent"]
+            _components_catalogos_side_nav_catalogos_side_nav_catalogos_component__WEBPACK_IMPORTED_MODULE_48__["SideNavCatalogosComponent"],
+            _components_partials_show_gallery_image_show_gallery_image_component__WEBPACK_IMPORTED_MODULE_49__["ShowGalleryImageComponent"],
+            _pipes_relative_time_pipe__WEBPACK_IMPORTED_MODULE_60__["RelativeTimePipe"],
+            _components_partials_show_all_comments_show_all_comments_component__WEBPACK_IMPORTED_MODULE_50__["ShowAllCommentsComponent"],
+            _components_catalogos_question_answers_question_answers_component__WEBPACK_IMPORTED_MODULE_51__["QuestionAnswersComponent"],
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_material_module__WEBPACK_IMPORTED_MODULE_49__["MateriaAngularCss"],
+            _app_material_module__WEBPACK_IMPORTED_MODULE_52__["MateriaAngularCss"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_18__["NgbModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_20__["BrowserAnimationsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-            _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_55__["FontAwesomeModule"]
-            // MatSidenavModule,
-            // MatMenuModule,
-            // MatListModule
+            _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_59__["FontAwesomeModule"],
         ],
         providers: [
             _services_login_service__WEBPACK_IMPORTED_MODULE_13__["LoginService"],
             _services_signup_signup_service__WEBPACK_IMPORTED_MODULE_14__["SignupService"],
             _services_canDeactive_after_login_service__WEBPACK_IMPORTED_MODULE_17__["AfterLoginService"],
             _services_canDeactive_before_login_service__WEBPACK_IMPORTED_MODULE_16__["BeforeLoginService"],
-            _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_42__["DashboardService"]
+            _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_42__["DashboardService"],
+            { provide: _angular_material__WEBPACK_IMPORTED_MODULE_53__["MAT_RADIO_DEFAULT_OPTIONS"], useValue: { color: 'primary' } },
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]],
         entryComponents: [
             _components_partials_carrito_compra_proceso_compra_proceso_compra_component__WEBPACK_IMPORTED_MODULE_34__["ProcesoCompraComponent"],
             _components_partials_carrito_compra_procesoCompra_form_direccione_usuario_form_direccione_usuario_component__WEBPACK_IMPORTED_MODULE_36__["FormDireccioneUsuarioComponent"],
             _components_partials_carrito_compra_procesoCompra_form_transportadora_form_transportadora_component__WEBPACK_IMPORTED_MODULE_35__["FormTransportadoraComponent"],
-            _components_partials_carrito_compra_procesoCompra_form_direccione_usuario_show_form_direccione_usuario_show_component__WEBPACK_IMPORTED_MODULE_45__["FormDireccioneUsuarioShowComponent"]
-        ]
+            _components_partials_carrito_compra_procesoCompra_form_direccione_usuario_show_form_direccione_usuario_show_component__WEBPACK_IMPORTED_MODULE_45__["FormDireccioneUsuarioShowComponent"],
+            _components_partials_show_gallery_image_show_gallery_image_component__WEBPACK_IMPORTED_MODULE_49__["ShowGalleryImageComponent"],
+            _components_partials_show_all_comments_show_all_comments_component__WEBPACK_IMPORTED_MODULE_50__["ShowAllCommentsComponent"],
+        ],
     })
 ], AppModule);
 
@@ -1103,12 +1138,36 @@ let AddDireccionComponent = class AddDireccionComponent {
         this.notificacion = notificacion;
         this.formAddress = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             cliente_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](1),
-            nombre: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(30)]),
-            apellido: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(30)]),
-            barrio: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(30)]),
-            datos_adicionales: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(60)]),
-            celular: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(13), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(13)]),
-            direccion: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(13), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(20)]),
+            nombre: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(30),
+            ]),
+            apellido: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(30),
+            ]),
+            barrio: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(30),
+            ]),
+            datos_adicionales: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(10),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(60),
+            ]),
+            celular: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(13),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(13),
+            ]),
+            direccion: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(13),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(20),
+            ]),
             departamento_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
             ciudad_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
         });
@@ -1128,23 +1187,23 @@ let AddDireccionComponent = class AddDireccionComponent {
     }
     ngOnInit() {
         // To get the information from  a sessionStorage
-        let user = sessionStorage.getItem('userAuth');
+        const user = sessionStorage.getItem('userAuth');
         this.user = JSON.parse(user);
         console.log(this.user);
         this.getDepartamentos();
     }
     getDepartamentos() {
-        this.cataloServe.getDepartamentos().subscribe(res => {
+        this.cataloServe.getDepartamentos().subscribe((res) => {
             this.departamentos = res;
             console.log(this.departamentos);
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
     // To get the ciudades for direccion Form
     getCiudades(id) {
-        this.cataloServe.getCiudades(id).subscribe(res => {
+        this.cataloServe.getCiudades(id).subscribe((res) => {
             this.ciudades = res;
             console.log(res);
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
     onClear() {
         this.formAddress.reset();
@@ -1157,11 +1216,11 @@ let AddDireccionComponent = class AddDireccionComponent {
     onAddAdress() {
         if (this.formAddress.valid) {
             console.log(this.formAddress.value);
-            this.dashboardService.guardarDirecion(this.formAddress.value).subscribe(res => {
+            this.dashboardService.guardarDirecion(this.formAddress.value).subscribe((res) => {
                 this.formAddress.reset();
                 this.restartFormGroup();
                 this.notificacion.success('Direccion  guardada satisfactoriamente');
-            }, err => console.log(err));
+            }, (err) => console.log(err));
         }
     }
 };
@@ -1176,7 +1235,9 @@ AddDireccionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./add-direccion.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/auth/dashboard/pages/add-direccion/add-direccion.component.html"),
         styles: [__webpack_require__(/*! ./add-direccion.component.css */ "./src/app/components/auth/dashboard/pages/add-direccion/add-direccion.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_3__["CatalogoServes"], _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_5__["DashboardService"], _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__["NotificationService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_3__["CatalogoServes"],
+        _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_5__["DashboardService"],
+        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__["NotificationService"]])
 ], AddDireccionComponent);
 
 
@@ -1918,7 +1979,7 @@ let LoginComponent = class LoginComponent {
         // };
         this.login = {
             email: null,
-            password: null
+            password: null,
         };
         // To create methods
         // onSubmit(){
@@ -1937,11 +1998,11 @@ let LoginComponent = class LoginComponent {
         const password = data.password;
         email.toLowerCase;
         password.toLowerCase;
-        this.loginService.loginIn(this.login).subscribe(data => {
+        this.loginService.loginIn(this.login).subscribe((data) => {
             this.handlResponse(data);
             //Here i get the data from login page and i send to a function to hand it
             console.log(data);
-        }, error => {
+        }, (error) => {
             this.handleError(error);
             //alert('Querry faild');
         });
@@ -1952,9 +2013,9 @@ let LoginComponent = class LoginComponent {
         sessionStorage.setItem('userAuth', JSON.stringify(this.user));
         localStorage.setItem('tipo_usuario', this.user.user);
         this.Auth.changeAuthStaus(true);
-        var admin = sessionStorage.getItem('userAuth');
+        const admin = sessionStorage.getItem('userAuth');
         this.admin = JSON.parse(admin);
-        if (this.admin.user == 1) {
+        if (this.admin.user === 1) {
             this.router.navigateByUrl('/admin'); //To redirect to another component
             this.Auth.changeTypeUserStatus(true);
         }
@@ -2017,31 +2078,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_login_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../services/login.service */ "./src/app/services/login.service.ts");
+/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+
 
 
 
 let RequestResetComponent = class RequestResetComponent {
-    constructor(loginService) {
+    constructor(loginService, notiService) {
         this.loginService = loginService;
+        this.notiService = notiService;
         this.login = {
             email: null,
             password: null,
         };
+        // To show another component  after sending the email to reset the password
+        this.show = true;
     }
     ngOnInit() {
+        console.log(this.error);
     }
     sendPasswordReset() {
         this.loginService.sendPasswordResetLink(this.login).subscribe(data => {
             this.handlResponse(data);
         }, (error) => {
+            this.handleError(error);
         });
     }
     handlResponse(res) {
+        console.log(res);
+        const mensaje = JSON.parse(res);
+        this.notiService.success(mensaje.success);
         this.login.email = null;
+        this.show = false;
+    }
+    handleError(error) {
+        this.error = error.error;
+        console.log(this.error);
+        this.login.email = '';
     }
 };
 RequestResetComponent.ctorParameters = () => [
-    { type: _services_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"] }
+    { type: _services_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"] },
+    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_3__["NotificationService"] }
 ];
 RequestResetComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2049,7 +2127,8 @@ RequestResetComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./request-reset.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/auth/password-reset/request-reset/request-reset.component.html"),
         styles: [__webpack_require__(/*! ./request-reset.component.css */ "./src/app/components/auth/password-reset/request-reset/request-reset.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"],
+        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_3__["NotificationService"]])
 ], RequestResetComponent);
 
 
@@ -2081,15 +2160,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _services_response_reset_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../services/response-reset.service */ "./src/app/services/response-reset.service.ts");
+/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+
 
 
 
 
 let ResponseResetComponent = class ResponseResetComponent {
-    constructor(route, respondeReset, router) {
+    constructor(route, respondeReset, router, notiService) {
         this.route = route;
         this.respondeReset = respondeReset;
         this.router = router;
+        this.notiService = notiService;
         this.error = [];
         this.signup = {
             nombre: null,
@@ -2104,13 +2186,22 @@ let ResponseResetComponent = class ResponseResetComponent {
         });
     }
     resetPassword() {
-        this.respondeReset.changePassword(this.signup).subscribe(data => {
-            this.handlResponse(data);
-        }, (error) => {
-            this.handleError(error);
-        });
+        if (this.signup.resetToken != null) {
+            this.respondeReset.changePassword(this.signup).subscribe(data => {
+                this.handlResponse(data);
+                console.log(data);
+            }, (error) => {
+                this.handleError(error);
+            });
+        }
+        else {
+            this.notiService.warning('Token ya ha expirado');
+        }
     }
     handlResponse(data) {
+        const succesMsg = data;
+        console.log('handResponse', succesMsg);
+        this.notiService.success(succesMsg);
         this.router.navigateByUrl('/login');
     }
     handleError(error) {
@@ -2122,7 +2213,8 @@ let ResponseResetComponent = class ResponseResetComponent {
 ResponseResetComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _services_response_reset_service__WEBPACK_IMPORTED_MODULE_3__["ResponseResetService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__["NotificationService"] }
 ];
 ResponseResetComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2130,7 +2222,10 @@ ResponseResetComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./response-reset.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/auth/password-reset/response-reset/response-reset.component.html"),
         styles: [__webpack_require__(/*! ./response-reset.component.css */ "./src/app/components/auth/password-reset/response-reset/response-reset.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _services_response_reset_service__WEBPACK_IMPORTED_MODULE_3__["ResponseResetService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _services_response_reset_service__WEBPACK_IMPORTED_MODULE_3__["ResponseResetService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__["NotificationService"]])
 ], ResponseResetComponent);
 
 
@@ -2171,9 +2266,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SignupComponent = class SignupComponent {
-    constructor(signupService, activateRoute, router, Token, Auth) {
+    constructor(signupService, router, Token, Auth) {
         this.signupService = signupService;
-        this.activateRoute = activateRoute;
         this.router = router;
         this.Token = Token;
         this.Auth = Auth;
@@ -2183,19 +2277,16 @@ let SignupComponent = class SignupComponent {
             email_verified: null,
             password: null,
             password_confirmation: null,
-            resetToken: null
+            resetToken: null,
         };
-        this.error = [{}
-        ];
+        this.error = [];
     }
-    ngOnInit() {
-    }
+    ngOnInit() { }
     singUp() {
-        this.signupService.singUp(this.signup).subscribe(data => {
+        this.signupService.singUp(this.signup).subscribe((data) => {
             this.handlResponse(data);
         }, (error) => {
             this.handleError(error);
-            alert('Querry faild');
         });
     }
     handlResponse(data) {
@@ -2207,11 +2298,16 @@ let SignupComponent = class SignupComponent {
     }
     handleError(error) {
         this.error = error.error.errors;
+        this.cleanFields();
+    }
+    cleanFields() {
+        this.signup.email = '';
+        this.signup.password = '';
+        this.signup.password_confirmation = '';
     }
 };
 SignupComponent.ctorParameters = () => [
     { type: _services_signup_signup_service__WEBPACK_IMPORTED_MODULE_2__["SignupService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
     { type: _services_token_service__WEBPACK_IMPORTED_MODULE_4__["TokenService"] },
     { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }
@@ -2223,7 +2319,6 @@ SignupComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [__webpack_require__(/*! ./signup.component.css */ "./src/app/components/auth/signup/signup.component.css")]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_signup_signup_service__WEBPACK_IMPORTED_MODULE_2__["SignupService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
         _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
         _services_token_service__WEBPACK_IMPORTED_MODULE_4__["TokenService"],
         _services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
@@ -2240,7 +2335,7 @@ SignupComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".producto-card{\r\n  width: 15rem;\r\n  height: 260px;\r\n  text-align: center;\r\n  margin-bottom: 27px;\r\n}\r\n\r\n.btn-info , .btn-success{\r\n  visibility: hidden;\r\n}\r\n\r\n.producto-card:hover{\r\n  height: auto;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s;\r\n  visibility: visible;\r\n}\r\n\r\n.producto-card:hover .btn-success  {\r\n  visibility: visible;\r\n}\r\n\r\n.producto-card:hover  .btn-info {\r\n  visibility: visible;\r\n}\r\n\r\n.card-img-top{\r\n  width: 8rem;\r\n}\r\n\r\nmat-card-title{\r\n  text-align: center;\r\n}\r\n\r\n.container{\r\n  padding-top: 75px;\r\n\r\n}\r\n\r\n#carrito{\r\n  position: absolute;\r\n  left: 500px;\r\n  top: 130px;\r\n  opacity: 0.8;\r\n  }\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXRhbG9nb3MvY2F0YWxvZ29zL2NhdGFsb2dvcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBWTtFQUNaLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsWUFBWTtFQUNaLDZCQUFxQjtVQUFyQixxQkFBcUI7RUFDckIsbUJBQW1CO0VBQ25CLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFHQTtFQUNFLFdBQVc7QUFDYjs7QUFHQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGlCQUFpQjs7QUFFbkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFVBQVU7RUFDVixZQUFZO0VBQ1oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NhdGFsb2dvcy9jYXRhbG9nb3MvY2F0YWxvZ29zLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHJvZHVjdG8tY2FyZHtcclxuICB3aWR0aDogMTVyZW07XHJcbiAgaGVpZ2h0OiAyNjBweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgbWFyZ2luLWJvdHRvbTogMjdweDtcclxufVxyXG5cclxuLmJ0bi1pbmZvICwgLmJ0bi1zdWNjZXNze1xyXG4gIHZpc2liaWxpdHk6IGhpZGRlbjtcclxufVxyXG5cclxuLnByb2R1Y3RvLWNhcmQ6aG92ZXJ7XHJcbiAgaGVpZ2h0OiBhdXRvO1xyXG4gIHRyYW5zZm9ybTogc2NhbGUoMS4xKTtcclxuICB0cmFuc2l0aW9uOiBhbGwgLjFzO1xyXG4gIHZpc2liaWxpdHk6IHZpc2libGU7XHJcbn1cclxuXHJcbi5wcm9kdWN0by1jYXJkOmhvdmVyIC5idG4tc3VjY2VzcyAge1xyXG4gIHZpc2liaWxpdHk6IHZpc2libGU7XHJcbn1cclxuXHJcbi5wcm9kdWN0by1jYXJkOmhvdmVyICAuYnRuLWluZm8ge1xyXG4gIHZpc2liaWxpdHk6IHZpc2libGU7XHJcbn1cclxuXHJcblxyXG4uY2FyZC1pbWctdG9we1xyXG4gIHdpZHRoOiA4cmVtO1xyXG59XHJcblxyXG5cclxubWF0LWNhcmQtdGl0bGV7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY29udGFpbmVye1xyXG4gIHBhZGRpbmctdG9wOiA3NXB4O1xyXG5cclxufVxyXG5cclxuI2NhcnJpdG97XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGxlZnQ6IDUwMHB4O1xyXG4gIHRvcDogMTMwcHg7XHJcbiAgb3BhY2l0eTogMC44O1xyXG4gIH1cclxuXHJcbiJdfQ== */"
+module.exports = ".producto-card {\r\n  width: 15rem;\r\n  height: 260px;\r\n  text-align: center;\r\n  margin-bottom: 27px;\r\n}\r\n\r\n.btn-info,\r\n.btn-success {\r\n  visibility: hidden;\r\n}\r\n\r\n.producto-card:hover {\r\n  height: auto;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all 0.1s;\r\n  visibility: visible;\r\n}\r\n\r\n.producto-card:hover .btn-success {\r\n  visibility: visible;\r\n}\r\n\r\n.producto-card:hover .btn-info {\r\n  visibility: visible;\r\n}\r\n\r\n.card-img-top {\r\n  width: 8rem;\r\n}\r\n\r\nmat-card-title {\r\n  text-align: center;\r\n}\r\n\r\n.container {\r\n  padding-top: 75px;\r\n  height: 500px;\r\n}\r\n\r\n#carrito {\r\n  position: absolute;\r\n  left: 500px;\r\n  top: 130px;\r\n  opacity: 0.8;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXRhbG9nb3MvY2F0YWxvZ29zL2NhdGFsb2dvcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBWTtFQUNaLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsbUJBQW1CO0FBQ3JCOztBQUVBOztFQUVFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWiw2QkFBcUI7VUFBckIscUJBQXFCO0VBQ3JCLG9CQUFvQjtFQUNwQixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsYUFBYTtBQUNmOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxVQUFVO0VBQ1YsWUFBWTtBQUNkIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jYXRhbG9nb3MvY2F0YWxvZ29zL2NhdGFsb2dvcy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2R1Y3RvLWNhcmQge1xyXG4gIHdpZHRoOiAxNXJlbTtcclxuICBoZWlnaHQ6IDI2MHB4O1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBtYXJnaW4tYm90dG9tOiAyN3B4O1xyXG59XHJcblxyXG4uYnRuLWluZm8sXHJcbi5idG4tc3VjY2VzcyB7XHJcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xyXG59XHJcblxyXG4ucHJvZHVjdG8tY2FyZDpob3ZlciB7XHJcbiAgaGVpZ2h0OiBhdXRvO1xyXG4gIHRyYW5zZm9ybTogc2NhbGUoMS4xKTtcclxuICB0cmFuc2l0aW9uOiBhbGwgMC4xcztcclxuICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG59XHJcblxyXG4ucHJvZHVjdG8tY2FyZDpob3ZlciAuYnRuLXN1Y2Nlc3Mge1xyXG4gIHZpc2liaWxpdHk6IHZpc2libGU7XHJcbn1cclxuXHJcbi5wcm9kdWN0by1jYXJkOmhvdmVyIC5idG4taW5mbyB7XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxufVxyXG5cclxuLmNhcmQtaW1nLXRvcCB7XHJcbiAgd2lkdGg6IDhyZW07XHJcbn1cclxuXHJcbm1hdC1jYXJkLXRpdGxlIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5jb250YWluZXIge1xyXG4gIHBhZGRpbmctdG9wOiA3NXB4O1xyXG4gIGhlaWdodDogNTAwcHg7XHJcbn1cclxuXHJcbiNjYXJyaXRvIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogNTAwcHg7XHJcbiAgdG9wOiAxMzBweDtcclxuICBvcGFjaXR5OiAwLjg7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -2280,65 +2375,63 @@ let CatalogosComponent = class CatalogosComponent {
         this.hidden = true;
         this.deshabilitar = false;
     }
-    //public product = "Erick"
+    // public product = "Erick"
     ngOnInit() {
-        this.route.paramMap.subscribe(params => {
-            let id = +params.get('id');
+        this.route.paramMap.subscribe((params) => {
+            const id = +params.get('id');
             console.log('Catalogo' + id);
             this.getproductos(id);
         });
-        //get the value to disable the button ver in this html
-        this.sharedService.valorDeshabilitarBtnVerCatalogos.subscribe(valor => {
+        // get the value to disable the button ver in this html
+        this.sharedService.valorDeshabilitarBtnVerCatalogos.subscribe((valor) => {
             this.deshabilitar = true;
         });
-        //Get the value from shared.service
-        this.sharedService.mostrarComponente.subscribe(hidden2 => {
+        // Get the value from shared.service
+        this.sharedService.mostrarComponente.subscribe((hidden2) => {
             console.log(hidden2);
             this.toogleHidden(hidden2);
         });
     }
     getproductos(id) {
-        this.catalogoService.getProductos(id).subscribe(res => {
+        this.catalogoService.getProductos(id).subscribe((res) => {
             this.productos = res;
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
     onCreate(productoShow) {
         const dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         console.log('1 paso' + productoShow);
-        let showProductos = productoShow;
+        const showProductos = productoShow;
         console.log('Create productos' + showProductos);
         dialogConfig.disableClose = true;
-        //dialogConfig.autoFocus = true;
+        // dialogConfig.autoFocus = true;
         dialogConfig.width = '900px';
         dialogConfig.height = '400px';
         // dialogConfig.data = {name : 'Erick'}
         dialogConfig.data = showProductos;
         this.dialog.open(_mostrar_detalle_producto_mostrar_detalle_producto_component__WEBPACK_IMPORTED_MODULE_5__["MostrarDetalleProductoComponent"], dialogConfig);
-        this.dialog.afterAllClosed.subscribe(res => {
+        this.dialog.afterAllClosed.subscribe((res) => {
             this.ocultarItemSelleccionado = true;
             console.log('Respuesta' + this.ocultarItemSelleccionado);
         });
     }
-    //Function to get only one producto with comments as well.
+    // Function to get only one producto with comments as well.
     getProductoShow(id) {
         this.sharedService.EmitIdproducto(id);
-        this.catalogoService.getProducto(id).subscribe(res => {
+        this.catalogoService.getProducto(id).subscribe((res) => {
             this.productoShow = res;
-            console.log('Producto a mostrar ' + this.productoShow);
-            //this.onCreate(this.productoShow);
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
-    //Añadir producto
+    // Añadir producto
     addProducto(id) {
         this.addProductoModel(id);
     }
     addProductoModel(id) {
         const dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         console.log('1 paso' + id);
-        let productoSeleccionado = id;
+        const productoSeleccionado = id;
         console.log('Producto seleccionado' + productoSeleccionado);
         dialogConfig.disableClose = true;
-        //dialogConfig.autoFocus = true;
+        // dialogConfig.autoFocus = true;
         dialogConfig.width = '400px';
         dialogConfig.height = '400px';
         // dialogConfig.data = {name : 'Erick'}
@@ -2346,7 +2439,7 @@ let CatalogosComponent = class CatalogosComponent {
         this.dialog.open(_partials_carrito_compra_carrito_compra_component__WEBPACK_IMPORTED_MODULE_6__["CarritoCompraComponent"], dialogConfig);
     }
     recibirProducto(producto) {
-        //this.productoAdd = producto;
+        // this.productoAdd = producto;
     }
     //  toogleHidden(){
     //    this.show = !this.show;
@@ -2356,7 +2449,7 @@ let CatalogosComponent = class CatalogosComponent {
         this.hidden = !this.hidden;
     }
     ocultarItemSeleccionado() {
-        this.ocultarItemSelleccionado;
+        this.ocultarItemSelleccionado();
     }
 };
 CatalogosComponent.ctorParameters = () => [
@@ -2388,7 +2481,7 @@ CatalogosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\r\n  padding-top: 5px;\r\n  margin: 35px;\r\n}\r\n.container {\r\n  margin-left: 25px;\r\n  margin-right: 25px;\r\n}\r\n#producto-imagen {\r\n  position: relative;\r\n  top: 52px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXRhbG9nb3MvbW9zdHJhci1kZXRhbGxlLXByb2R1Y3RvL21vc3RyYXItZGV0YWxsZS1wcm9kdWN0by5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFlBQVk7QUFDZDtBQUNBO0VBQ0UsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFNBQVM7QUFDWCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2F0YWxvZ29zL21vc3RyYXItZGV0YWxsZS1wcm9kdWN0by9tb3N0cmFyLWRldGFsbGUtcHJvZHVjdG8uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG4gIHBhZGRpbmctdG9wOiA1cHg7XHJcbiAgbWFyZ2luOiAzNXB4O1xyXG59XHJcbi5jb250YWluZXIge1xyXG4gIG1hcmdpbi1sZWZ0OiAyNXB4O1xyXG4gIG1hcmdpbi1yaWdodDogMjVweDtcclxufVxyXG5cclxuI3Byb2R1Y3RvLWltYWdlbiB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHRvcDogNTJweDtcclxufVxyXG4iXX0= */"
+module.exports = "body {\r\n  padding-top: 5px;\r\n  margin: 35px;\r\n}\r\n.container {\r\n  margin-left: 25px;\r\n  margin-right: 25px;\r\n}\r\n#producto-imagen {\r\n  position: relative;\r\n  top: 52px;\r\n}\r\n#agotado {\r\n  font-size: 40px;\r\n  color: red;\r\n}\r\n.comments-card {\r\n  width: 600px;\r\n  max-height: 150px;\r\n  margin-bottom: 8px;\r\n}\r\n.question-card {\r\n  margin: 15px 0 0 10px;\r\n  width: 600px;\r\n  max-height: 300px;\r\n  margin-bottom: 8px;\r\n  height: 1000px;\r\n}\r\n.comments-header-image,\r\n.comments-header-image {\r\n  width: 50px;\r\n  height: 50px;\r\n}\r\n.form-comments {\r\n  min-width: 150px;\r\n  max-width: 600px;\r\n  width: 100%;\r\n}\r\n.form-question {\r\n  max-width: 600px;\r\n  height: 150px;\r\n  width: 100%;\r\n  position: relative;\r\n  top: 50px;\r\n}\r\n.comments-full-width,\r\n.question-full-width,\r\n.replay-full-width {\r\n  width: 100%;\r\n}\r\n#btn-all-comments {\r\n  position: relative;\r\n  left: 285px;\r\n  top: 328px;\r\n  z-index: 2;\r\n}\r\n#btn-send {\r\n  position: relative;\r\n  bottom: 12px;\r\n}\r\n.panel-body {\r\n  height: 350px;\r\n  width: 650px;\r\n}\r\n/* Virtual Scrolling  **/\r\n.question-viewport {\r\n  margin: 4px 0 4px 0;\r\n  height: 300px;\r\n  width: 660px;\r\n}\r\n.example-item {\r\n  height: 50px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXRhbG9nb3MvbW9zdHJhci1kZXRhbGxlLXByb2R1Y3RvL21vc3RyYXItZGV0YWxsZS1wcm9kdWN0by5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFlBQVk7QUFDZDtBQUNBO0VBQ0UsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFNBQVM7QUFDWDtBQUVBO0VBQ0UsZUFBZTtFQUNmLFVBQVU7QUFDWjtBQUVBO0VBQ0UsWUFBWTtFQUNaLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osaUJBQWlCO0VBQ2pCLGtCQUFrQjtFQUNsQixjQUFjO0FBQ2hCO0FBRUE7O0VBRUUsV0FBVztFQUNYLFlBQVk7QUFDZDtBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixXQUFXO0FBQ2I7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixhQUFhO0VBQ2IsV0FBVztFQUNYLGtCQUFrQjtFQUNsQixTQUFTO0FBQ1g7QUFDQTs7O0VBR0UsV0FBVztBQUNiO0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFVBQVU7RUFDVixVQUFVO0FBQ1o7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0FBQ2Q7QUFFQTtFQUNFLGFBQWE7RUFDYixZQUFZO0FBQ2Q7QUFFQSx3QkFBd0I7QUFDeEI7RUFDRSxtQkFBbUI7RUFDbkIsYUFBYTtFQUNiLFlBQVk7QUFDZDtBQUVBO0VBQ0UsWUFBWTtBQUNkIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jYXRhbG9nb3MvbW9zdHJhci1kZXRhbGxlLXByb2R1Y3RvL21vc3RyYXItZGV0YWxsZS1wcm9kdWN0by5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XHJcbiAgcGFkZGluZy10b3A6IDVweDtcclxuICBtYXJnaW46IDM1cHg7XHJcbn1cclxuLmNvbnRhaW5lciB7XHJcbiAgbWFyZ2luLWxlZnQ6IDI1cHg7XHJcbiAgbWFyZ2luLXJpZ2h0OiAyNXB4O1xyXG59XHJcblxyXG4jcHJvZHVjdG8taW1hZ2VuIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgdG9wOiA1MnB4O1xyXG59XHJcblxyXG4jYWdvdGFkbyB7XHJcbiAgZm9udC1zaXplOiA0MHB4O1xyXG4gIGNvbG9yOiByZWQ7XHJcbn1cclxuXHJcbi5jb21tZW50cy1jYXJkIHtcclxuICB3aWR0aDogNjAwcHg7XHJcbiAgbWF4LWhlaWdodDogMTUwcHg7XHJcbiAgbWFyZ2luLWJvdHRvbTogOHB4O1xyXG59XHJcbi5xdWVzdGlvbi1jYXJkIHtcclxuICBtYXJnaW46IDE1cHggMCAwIDEwcHg7XHJcbiAgd2lkdGg6IDYwMHB4O1xyXG4gIG1heC1oZWlnaHQ6IDMwMHB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDhweDtcclxuICBoZWlnaHQ6IDEwMDBweDtcclxufVxyXG5cclxuLmNvbW1lbnRzLWhlYWRlci1pbWFnZSxcclxuLmNvbW1lbnRzLWhlYWRlci1pbWFnZSB7XHJcbiAgd2lkdGg6IDUwcHg7XHJcbiAgaGVpZ2h0OiA1MHB4O1xyXG59XHJcblxyXG4uZm9ybS1jb21tZW50cyB7XHJcbiAgbWluLXdpZHRoOiAxNTBweDtcclxuICBtYXgtd2lkdGg6IDYwMHB4O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4uZm9ybS1xdWVzdGlvbiB7XHJcbiAgbWF4LXdpZHRoOiA2MDBweDtcclxuICBoZWlnaHQ6IDE1MHB4O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICB0b3A6IDUwcHg7XHJcbn1cclxuLmNvbW1lbnRzLWZ1bGwtd2lkdGgsXHJcbi5xdWVzdGlvbi1mdWxsLXdpZHRoLFxyXG4ucmVwbGF5LWZ1bGwtd2lkdGgge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4jYnRuLWFsbC1jb21tZW50cyB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDI4NXB4O1xyXG4gIHRvcDogMzI4cHg7XHJcbiAgei1pbmRleDogMjtcclxufVxyXG5cclxuI2J0bi1zZW5kIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYm90dG9tOiAxMnB4O1xyXG59XHJcblxyXG4ucGFuZWwtYm9keSB7XHJcbiAgaGVpZ2h0OiAzNTBweDtcclxuICB3aWR0aDogNjUwcHg7XHJcbn1cclxuXHJcbi8qIFZpcnR1YWwgU2Nyb2xsaW5nICAqKi9cclxuLnF1ZXN0aW9uLXZpZXdwb3J0IHtcclxuICBtYXJnaW46IDRweCAwIDRweCAwO1xyXG4gIGhlaWdodDogMzAwcHg7XHJcbiAgd2lkdGg6IDY2MHB4O1xyXG59XHJcblxyXG4uZXhhbXBsZS1pdGVtIHtcclxuICBoZWlnaHQ6IDUwcHg7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -2403,12 +2496,26 @@ module.exports = "body {\r\n  padding-top: 5px;\r\n  margin: 35px;\r\n}\r\n.cont
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MostrarDetalleProductoComponent", function() { return MostrarDetalleProductoComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../services/auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/Catalogos/catalogos.service */ "./src/app/services/Catalogos/catalogos.service.ts");
-/* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
-/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
+/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../services/Catalogos/catalogos.service */ "./src/app/services/Catalogos/catalogos.service.ts");
+/* harmony import */ var _services_shared_pusher_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../services/shared/pusher.service */ "./src/app/services/shared/pusher.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _partials_show_all_comments_show_all_comments_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../partials/show-all-comments/show-all-comments.component */ "./src/app/components/partials/show-all-comments/show-all-comments.component.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
+
+
+
+
+
+
 
 
 
@@ -2417,141 +2524,528 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MostrarDetalleProductoComponent = class MostrarDetalleProductoComponent {
-    constructor(catalogoService, sharedService, notificacion, authService, route) {
+    constructor(catalogoService, _sharedService, notificacion, authService, route, dialog, pusherService) {
         this.catalogoService = catalogoService;
-        this.sharedService = sharedService;
+        this._sharedService = _sharedService;
         this.notificacion = notificacion;
         this.authService = authService;
         this.route = route;
+        this.dialog = dialog;
+        this.pusherService = pusherService;
         this.panelOpenState = false;
+        this.productos = [];
+        this.productos2 = [];
+        this.allImages = [];
+        this.imagenes = [];
+        this.comentarios = [];
+        this.allcomentarios = [];
+        this.preguntas = [];
+        this.showFormAnswer = false;
+        // Icons
+        this.faComment = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__["faComment"];
+        // Variable to unsubscribe my subcription
+        this.unsubscribe$ = new rxjs__WEBPACK_IMPORTED_MODULE_6__["Subject"]();
         this.carroCompra = {
-            producto: "",
+            producto_name: '',
             color: 0,
             existencia: 0,
+            imagen: '',
             precio: 0,
             talla: 0,
             producto_id: 0,
             valorVenta: 0,
             cantidad: 0,
-            created_at: new Date()
+            created_at: new Date(),
         };
-        // this.productoAdd;
+        // To get the information from  a sessionStorage
+        const user = sessionStorage.getItem('userAuth');
+        user ? (this.user = JSON.parse(user)) : (this.user = 0);
+        this.formSendCommensts = new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormGroup"]({
+            ProductoId: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](1),
+            UsuarioId: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](this.user.id),
+            comments: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].max(50)]),
+        });
+        this.formSendQuestion = new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormGroup"]({
+            ProductoId: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](1),
+            usuario_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](this.user.id),
+            pregunta: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["Validators"].max(30)]),
+        });
+        this.formSendReplayQuestion = new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormGroup"]({
+            productoId: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](this.user.id),
+            usuarioId: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](this.user.id),
+            preguntaId: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](''),
+            respuesta: new _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormControl"](''),
+        });
+    }
+    restartFormComments() {
+        this.formSendCommensts.setValue({
+            ProductoId: 1,
+            UsuarioId: this.user.id,
+            comments: '',
+        });
     }
     ngOnInit() {
-        // this.sharedService.currentMessage.subscribe(message => this.message = message)
-        // get the value to disable the button ver in this html
-        this.route.paramMap.subscribe(params => {
-            const id = +params.get("id");
-            console.log("Tomando la id desde Url " + id);
-            this.getProductoShow(id);
-            this.getProductoColores(id);
-        });
         // To get the value of the login
-        this.authService.authStatus.subscribe(value => (this.loggedin = value));
-        console.log(this.loggedin);
+        this.authService.authStatus.subscribe((value) => (this.loggedin = value));
+        // get the value to know if the user is an admin or not
+        this.authService.typeUserStatus.subscribe((value) => (this.loggedinAdmin = value));
+        // get the value to disable the button ver in this html
+        this.route.paramMap.subscribe((params) => {
+            this.id = +params.get('id');
+            this.getProductoShow(this.id);
+            this.getProductoColores(this.id);
+        });
+        this.getQuestion();
+        this.pusher = this.pusherService.connectToPusher();
+        this.connectToQuestionChannel();
+        this.connectoToAnswerChannel();
     }
-    // Function to get only one producto with comments as well.
     getProductoShow(id) {
-        this.sharedService.EmitIdproducto(id);
-        this.catalogoService.getProducto(id).subscribe(res => {
-            this.productos = res;
-            console.log(this.productos);
-            // this.onCreate(this.productoShow);
-        }, err => console.log(err));
+        this._sharedService.EmitIdproducto(id);
+        this.catalogoService
+            .getProducto(id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.unsubscribe$) // unsubscribe to prevent memory lSeak
+        )
+            .subscribe((productos) => {
+            this.productos2 = productos;
+            this.productos = productos;
+            console.log('my product', this.productos);
+            this.setIdDesciption(this.productos);
+            this.showImagenes(productos);
+        }, (err) => console.log(err));
     }
-    getProductoColores(id) {
-        this.catalogoService.getColoresProductos(id).subscribe(res => {
-            this.coloresProductos = res;
-            console.log(this.coloresProductos);
-        }, err => console.log(err));
+    trackByProducts(showProducts) {
+        return showProducts.id_producto;
     }
-    onChangeColor($event) {
-        // console.log($event.source.name, $event.value);
-        const color_id = $event.value;
+    setIdDesciption(productos) {
+        const idProduct = this.id;
+        const filtered = productos.find((producto) => {
+            return producto.id_producto === idProduct;
+        });
+        this.idDescription = filtered.id_description_product;
+        this.formSendCommensts.patchValue({
+            ProductoId: this.idDescription,
+            UsuarioId: this.user.id,
+            comments: '',
+        });
     }
-    addPseleccionado(form) {
-        console.log(form.value);
-        if (form.valid) {
-            console.log("Valid");
-            if (this.loggedin) {
-                this.sharedService.idProductosCatalogos.subscribe(id => {
-                    this.idProduCata = id;
-                    console.log(this.idProduCata);
-                });
-                // const inputTag = document.getElementsByName('idproducto') as HTMLInputElement;
-                const id_producto = document.getElementsByName("idproducto")[0];
-                // const value = inputTag.value;
-                this.addproducto = form;
-                this.sharedService.getProductoSeleccionado(this.addproducto);
-                console.log("detalle producto" + this.addproducto);
-                this.sharedService.sharingData.emit(this.addproducto);
-                this.notificacion.success("Añadiste un producto");
-                console.log(this.idProduCata);
-                console.log(id_producto);
-                this.sharedService.getDeshabilitarBtnVer(true);
+    showImagenes(productos) {
+        const producto = productos.length;
+        for (let i = 0; i < producto; i++) {
+            // const idProducto = productos[i]['id_producto'];
+            const imagenes = this.productos[i].imagenes;
+            this.allImages = this.productos[i].imagenes;
+            const comentarios = this.productos[i].comentarios;
+            for (let j = 0; j < imagenes.length; j++) {
+                const imagenColorId = imagenes[j]['color_id'];
+                if (3 === imagenColorId) {
+                    const description_id = imagenes[j]['description_product_id'];
+                    const imagen = imagenes[j]['imagen'];
+                    const obj = {
+                        descriptionId: description_id,
+                        imagen: imagen,
+                    };
+                    this.imagenes.push(obj);
+                    this.getFirstImageArray(this.imagenes);
+                }
             }
-            else {
-                this.notificacion.warning("Debes loguerate para añadir productos");
+            // To turn  this code in a Map
+            for (let k = 0; k < comentarios.length; k++) {
+                if (comentarios[k]['color_id'] === 3) {
+                    const id = comentarios[k]['id'];
+                    const comentario = comentarios[k]['comentario'];
+                    const avatar = comentarios[k]['avatar'];
+                    const nombre = comentarios[k]['nombre'];
+                    const createdAt = comentarios[k]['created_at'];
+                    const obj = {
+                        idComentario: id,
+                        comentario: comentario,
+                        nombre: nombre,
+                        avatar: avatar,
+                        createdAt: createdAt,
+                    };
+                    this.allcomentarios.push(obj); /* To store all the comments to show when the user clicks on the showAllComments button  */
+                    this.comentarios.push(obj);
+                    this.comentarios.splice(2);
+                }
             }
         }
-        // sessionStorage.setItem('productos',JSON.stringify(this.productoAdd));
-        // this.addProductoModel(this.productoAdd)
-        // To pass an array to the data variable
-        // this.productoSeleccinado.emit({data: this.nombre})
     }
-    // addProductoModel(producto:any){
-    //   const dialogConfig = new  MatDialogConfig();
-    //   console.log("1 paso" + producto)
-    //   let productoSeleccionado = producto
-    //   let p = JSON.stringify(productoSeleccionado)
-    //   console.log("Producto seleccionado" + p)
-    //   dialogConfig.disableClose = true;
-    //   //dialogConfig.autoFocus = true;
-    //   dialogConfig.width = "400px";
-    //   dialogConfig.height = "400px";
-    //  // dialogConfig.data = {name : 'Erick'}
-    //   dialogConfig.data = p;
-    //   this.dialog.open(CarritoCompraComponent, dialogConfig,)
-    //  }
-    //  newMessage(){
-    //    this.sharedService.changeMessage("Hola desde detalle producto");
-    //    console.log("variable enviada mensaje");
-    //  }
-    enviarVariable(producto) {
-        this.sharedService.getProductoSeleccionado(producto);
-        console.log("variable enviada producto");
+    trackByImages(imagesProducts) {
+        return imagesProducts.id_producto_imagenes;
     }
-    meGusta(event) {
-        console.log(event);
+    onChangeColor($event) {
+        this.productos = [];
+        this.productos = this.productos2;
+        this.imagenes = [];
+        this.imagenes = this.allImages;
+        this.comentarios = [];
+        const colorId = $event.value;
+        const filtrado = this.productos.filter((productos) => {
+            return productos.color_id === colorId;
+        });
+        this.productos = filtrado;
+        const id = this.productos.map((producto) => producto.id_description_product);
+        const idDescription = id[0];
+        this.imagenes = [];
+        this.filterImages(this.productos, colorId);
+        this.filterCommentsToShow(this.productos, colorId);
+        this.setIdDescriptionToForm(idDescription);
+    }
+    filterImages(productos, color) {
+        const producto = productos.length;
+        for (let i = 0; i < producto; i++) {
+            const imagenes = this.productos[i].imagenes;
+            this.allImages = this.productos[i].imagenes;
+            for (let j = 0; j < imagenes.length; j++) {
+                const imagenColorId = imagenes[j]['color_id'];
+                if (color === imagenColorId) {
+                    const description_id = imagenes[j]['description_product_id'];
+                    const imagen = imagenes[j]['imagen'];
+                    const obj = {
+                        descriptionId: description_id,
+                        imagen: imagen,
+                    };
+                    this.imagenes.push(obj);
+                    this.getFirstImageArray(this.imagenes);
+                }
+            }
+        }
+    }
+    filterCommentsToShow(productos, color) {
+        const producto = productos.length;
+        for (let i = 0; i < producto; i++) {
+            const comentarios = this.productos[i].comentarios;
+            for (let j = 0; j < comentarios.length; j++) {
+                const comentarioColorId = comentarios[j]['color_id'];
+                const avatar = comentarios[j]['avatar'];
+                const nombre = comentarios[j]['nombre'];
+                const createdAt = comentarios[j]['created_at'];
+                if (color === comentarioColorId) {
+                    const id = comentarios[j]['id'];
+                    const comentario = comentarios[j]['comentario'];
+                    const obj = {
+                        idComentario: id,
+                        comentario: comentario,
+                        nombre: nombre,
+                        avatar: avatar,
+                        createdAt: createdAt,
+                    };
+                    this.allcomentarios.push(obj);
+                    this.comentarios.push(obj);
+                    this.comentarios.splice(2);
+                }
+            }
+        }
+    }
+    setIdDescriptionToForm(id) {
+        this.formSendCommensts.patchValue({
+            ProductoId: id,
+            UsuarioId: this.user.id,
+            comments: '',
+        });
+    }
+    getFirstImageArray(data) {
+        this.imagePreview = data[0].imagen;
+    }
+    getIdPictureToShowFirst(imagen) {
+        this.imagePreview = imagen;
+    }
+    getProductoColores(id) {
+        this.catalogoService
+            .getColoresProductos(id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.unsubscribe$) // unsubscribe to prevent memory leak
+        )
+            .subscribe((res) => {
+            this.coloresProductos = res;
+        }, (err) => console.log(err));
+    }
+    addSelectedProduct(form) {
+        const product = form.value;
+        if (form.valid) {
+            if (this.loggedin) {
+                this._sharedService.getProductoSeleccionado(product);
+                this.notificacion.success('Añadiste un producto');
+                this._sharedService.getDeshabilitarBtnVer(true);
+            }
+            else {
+                this.notificacion.warning('Debes loguerate para añadir productos');
+            }
+        }
+    }
+    saveComments() {
+        // this.renderer.listen('document', 'click', () => console.log('click'));
+        const form = this.formSendCommensts;
+        if (form.valid) {
+            if (this.loggedin) {
+                this.catalogoService
+                    .saveComentario(form.value)
+                    .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.unsubscribe$) // unsubscribe to prevent memory leak
+                )
+                    .subscribe((res) => {
+                    this.comments = res;
+                    this.notificacion.success(this.comments.mensaje);
+                    this.onClear();
+                    this.getCommentsAfterSaveOne();
+                    this.setIdDesciption(this.productos);
+                }, (err) => console.log(err));
+            }
+            else {
+                this.notificacion.warning('Debes loguerate para añadir productos');
+                this.onClear();
+            }
+        }
+    }
+    getCommentsAfterSaveOne() {
+        this.catalogoService
+            .getComentario()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.unsubscribe$))
+            .subscribe((res) => {
+            this.comentarios = res.filter((comentario) => {
+                return comentario.descriptionProducto_id === this.idDescription;
+            });
+            this.comentarios.splice(2);
+        }, (err) => console.log(err));
+    }
+    trackByComments(comentario) {
+        return comentario.idComentario;
+    }
+    openAllCommentsDialog() {
+        this.dialog.open(_partials_show_all_comments_show_all_comments_component__WEBPACK_IMPORTED_MODULE_11__["ShowAllCommentsComponent"], {
+            height: '600px',
+            width: '600px',
+            data: this.allcomentarios,
+        });
+    }
+    getQuestion() {
+        this.catalogoService
+            .getQuestion()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.unsubscribe$) // unsubscribe to prevent memory leak
+        )
+            .subscribe((res) => {
+            this.preguntas = res;
+        }, (err) => console.log(err));
+    }
+    saveQuestion() {
+        const form = this.formSendQuestion.value;
+        if (this.formSendQuestion.valid) {
+            if (this.loggedin) {
+                this.catalogoService
+                    .saveQuestion(form)
+                    .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.unsubscribe$) // unsubscribe to prevent memory leak
+                )
+                    .subscribe((res) => {
+                    this.notificacion.success(res['status']);
+                    this.formSendQuestion.reset();
+                    this.formSendQuestion.patchValue({
+                        ProductoId: 1,
+                        usuario_id: this.user.id,
+                        pregunta: '',
+                    });
+                }, (err) => console.log(err));
+            }
+            else {
+                this.notificacion.warning('Debes loguerate para añadir productos');
+                this.onClear();
+            }
+        }
+        else {
+            console.log('Invalid Form');
+        }
+    }
+    trackByQuestions(pregunta) {
+        return pregunta.id;
+    }
+    connectToQuestionChannel() {
+        const channel = this.pusher.subscribe('questions');
+        channel.bind('QuestionSent', (data) => {
+            this.preguntas = [];
+            data.question.forEach((item) => {
+                this.preguntas.push({
+                    usuario_id: item.usuario_id,
+                    pregunta_id: item.pregunta_id,
+                    respuesta_id: item.respuesta_id,
+                    pregunta: item.pregunta,
+                    respuesta: item.respuesta,
+                    nombre: item.nombre,
+                    avatar: item.avatar,
+                    created_at: item.created_at,
+                });
+            });
+        });
+    }
+    connectoToAnswerChannel() {
+        const channel = this.pusherService
+            .connectToPusher()
+            .subscribe('questionAnswers');
+        channel.bind('QuestionAnswerSent', (data) => {
+            this.preguntas = [];
+            data.answerQuestion.forEach((item) => {
+                this.preguntas.push({
+                    usuario_id: item.usuario_id,
+                    pregunta_id: item.pregunta_id,
+                    respuesta_id: item.respuesta_id,
+                    pregunta: item.pregunta,
+                    respuesta: item.respuesta,
+                    nombre: item.nombre,
+                    avatar: item.avatar,
+                    created_at: item.created_at,
+                });
+            });
+        });
+    }
+    onClear() {
+        this.formSendCommensts.reset();
+        this.restartFormComments();
+    }
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 };
 MostrarDetalleProductoComponent.ctorParameters = () => [
-    { type: _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_3__["CatalogoServes"] },
-    { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"] },
-    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__["NotificationService"] },
-    { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] }
+    { type: _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_8__["CatalogoServes"] },
+    { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_2__["SharedService"] },
+    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_3__["NotificationService"] },
+    { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] },
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_12__["MatDialog"] },
+    { type: _services_shared_pusher_service__WEBPACK_IMPORTED_MODULE_9__["PusherService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])(),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
 ], MostrarDetalleProductoComponent.prototype, "producto", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])(),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
 ], MostrarDetalleProductoComponent.prototype, "required", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])('formComments'),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["QueryList"])
+], MostrarDetalleProductoComponent.prototype, "formComments", void 0);
 MostrarDetalleProductoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
-        selector: "app-mostrar-detalle-producto",
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-mostrar-detalle-producto',
         template: __webpack_require__(/*! raw-loader!./mostrar-detalle-producto.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/catalogos/mostrar-detalle-producto/mostrar-detalle-producto.component.html"),
         styles: [__webpack_require__(/*! ./mostrar-detalle-producto.component.css */ "./src/app/components/catalogos/mostrar-detalle-producto/mostrar-detalle-producto.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_3__["CatalogoServes"],
-        _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"],
-        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__["NotificationService"],
-        _services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_8__["CatalogoServes"],
+        _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_2__["SharedService"],
+        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_3__["NotificationService"],
+        _services_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
+        _angular_material_dialog__WEBPACK_IMPORTED_MODULE_12__["MatDialog"],
+        _services_shared_pusher_service__WEBPACK_IMPORTED_MODULE_9__["PusherService"]])
 ], MostrarDetalleProductoComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/catalogos/question-answers/question-answers.component.css":
+/*!**************************************************************************************!*\
+  !*** ./src/app/components/catalogos/question-answers/question-answers.component.css ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#btn-replay {\r\n  position: absolute;\r\n  right: 45px;\r\n  bottom: 120px;\r\n}\r\n\r\n.replay-full-width {\r\n  width: 100%;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXRhbG9nb3MvcXVlc3Rpb24tYW5zd2Vycy9xdWVzdGlvbi1hbnN3ZXJzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLGFBQWE7QUFDZjs7QUFFQTtFQUNFLFdBQVc7QUFDYiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2F0YWxvZ29zL3F1ZXN0aW9uLWFuc3dlcnMvcXVlc3Rpb24tYW5zd2Vycy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2J0bi1yZXBsYXkge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICByaWdodDogNDVweDtcclxuICBib3R0b206IDEyMHB4O1xyXG59XHJcblxyXG4ucmVwbGF5LWZ1bGwtd2lkdGgge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcbiJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/catalogos/question-answers/question-answers.component.ts":
+/*!*************************************************************************************!*\
+  !*** ./src/app/components/catalogos/question-answers/question-answers.component.ts ***!
+  \*************************************************************************************/
+/*! exports provided: QuestionAnswersComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuestionAnswersComponent", function() { return QuestionAnswersComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/token.service */ "./src/app/services/token.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/Catalogos/catalogos.service */ "./src/app/services/Catalogos/catalogos.service.ts");
+
+
+
+
+
+
+
+let QuestionAnswersComponent = class QuestionAnswersComponent {
+    constructor(fb, token, catalogoServes) {
+        this.fb = fb;
+        this.token = token;
+        this.catalogoServes = catalogoServes;
+        this.answersEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.c = console.log;
+        this.$unsubscribe = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
+    }
+    ngOnInit() {
+        this.user = this.token.getUserData();
+        this.formSendReplayQuestion = this.createForm();
+    }
+    createForm() {
+        return this.fb.group({
+            usuario_id: [this.user.id],
+            preguntaId: [this.question.pregunta_id],
+            respuesta: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+        });
+    }
+    saveAnswer() {
+        const form = this.formSendReplayQuestion.value;
+        if (this.formSendReplayQuestion.valid) {
+            this.catalogoServes
+                .saveQuestionAnswer(form)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.$unsubscribe))
+                .subscribe(() => {
+                this.answersEvent.emit();
+                this.setValuerAfterFormPost();
+            }, (err) => console.log(err));
+        }
+        else {
+            console.log('An error occured');
+        }
+    }
+    setValuerAfterFormPost() {
+        this.formSendReplayQuestion.patchValue({
+            respuesta: '',
+        });
+    }
+    ngOnDestroy() {
+        this.$unsubscribe.next();
+        this.$unsubscribe.complete();
+    }
+};
+QuestionAnswersComponent.ctorParameters = () => [
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+    { type: _services_token_service__WEBPACK_IMPORTED_MODULE_3__["TokenService"] },
+    { type: _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_6__["CatalogoServes"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QuestionAnswersComponent.prototype, "question", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QuestionAnswersComponent.prototype, "answersEvent", void 0);
+QuestionAnswersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-question-answers',
+        template: __webpack_require__(/*! raw-loader!./question-answers.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/catalogos/question-answers/question-answers.component.html"),
+        styles: [__webpack_require__(/*! ./question-answers.component.css */ "./src/app/components/catalogos/question-answers/question-answers.component.css")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+        _services_token_service__WEBPACK_IMPORTED_MODULE_3__["TokenService"],
+        _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_6__["CatalogoServes"]])
+], QuestionAnswersComponent);
 
 
 
@@ -2607,7 +3101,7 @@ SideNavCatalogosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\r\n  padding-top: 100px;\r\n}\r\n\r\nimg {\r\n  height: 400px;\r\n}\r\n\r\n::ng-deep .mat-grid-tile .mat-figure {\r\n  display: none;\r\n}\r\n\r\n.mat-grid-tile {\r\n  background-color: aquamarine;\r\n}\r\n\r\n#formasPago {\r\n  padding-top: 23px;\r\n}\r\n\r\nh2 {\r\n  font-size: 13px;\r\n}\r\n\r\np {\r\n  font-size: 14px;\r\n}\r\n\r\n.container {\r\n  position: center;\r\n}\r\n\r\nimg {\r\n  position: relative;\r\n  left: 250px;\r\n}\r\n\r\n.row {\r\n  position: relative;\r\n  left: 120px;\r\n}\r\n\r\n.fa-whatsapp {\r\n  position: relative;\r\n  left: 40px;\r\n}\r\n\r\n.fa-truck {\r\n  position: relative;\r\n  left: 130px;\r\n}\r\n\r\n.fa-store-alt {\r\n  position: relative;\r\n  left: 100px;\r\n}\r\n\r\n#contacto {\r\n  width: 10rem;\r\n}\r\n\r\n#tienda {\r\n  position: relative;\r\n  left: 250px;\r\n}\r\n\r\n#transporte {\r\n  position: relative;\r\n  left: 100px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZ0JBQWdCO0FBQ2xCOztBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsVUFBVTtBQUNaOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztBQUNiOztBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvaG9tZS9ob21lLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcclxuICBwYWRkaW5nLXRvcDogMTAwcHg7XHJcbn1cclxuXHJcbmltZyB7XHJcbiAgaGVpZ2h0OiA0MDBweDtcclxufVxyXG5cclxuOjpuZy1kZWVwIC5tYXQtZ3JpZC10aWxlIC5tYXQtZmlndXJlIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG4ubWF0LWdyaWQtdGlsZSB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogYXF1YW1hcmluZTtcclxufVxyXG5cclxuI2Zvcm1hc1BhZ28ge1xyXG4gIHBhZGRpbmctdG9wOiAyM3B4O1xyXG59XHJcblxyXG5oMiB7XHJcbiAgZm9udC1zaXplOiAxM3B4O1xyXG59XHJcblxyXG5wIHtcclxuICBmb250LXNpemU6IDE0cHg7XHJcbn1cclxuXHJcbi5jb250YWluZXIge1xyXG4gIHBvc2l0aW9uOiBjZW50ZXI7XHJcbn1cclxuaW1nIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMjUwcHg7XHJcbn1cclxuXHJcbi5yb3cge1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBsZWZ0OiAxMjBweDtcclxufVxyXG5cclxuLmZhLXdoYXRzYXBwIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogNDBweDtcclxufVxyXG5cclxuLmZhLXRydWNrIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTMwcHg7XHJcbn1cclxuXHJcbi5mYS1zdG9yZS1hbHQge1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBsZWZ0OiAxMDBweDtcclxufVxyXG5cclxuI2NvbnRhY3RvIHtcclxuICB3aWR0aDogMTByZW07XHJcbn1cclxuI3RpZW5kYSB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDI1MHB4O1xyXG59XHJcbiN0cmFuc3BvcnRlIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTAwcHg7XHJcbn1cclxuIl19 */"
+module.exports = "*{\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  padding-top: 100px;\r\n  position: relative;\r\n\r\n}\r\n\r\nimg {\r\n  height: 400px;\r\n}\r\n\r\n::ng-deep .mat-grid-tile .mat-figure {\r\n  display: none;\r\n}\r\n\r\n.mat-grid-tile {\r\n  background-color: aquamarine;\r\n}\r\n\r\n#formasPago {\r\n  padding-top: 23px;\r\n}\r\n\r\nh2 {\r\n  font-size: 13px;\r\n}\r\n\r\np {\r\n  font-size: 14px;\r\n}\r\n\r\n.container {\r\n  position: center;\r\n}\r\n\r\n.row {\r\n  position: relative;\r\n  left: 120px;\r\n}\r\n\r\n.whats-icon{\r\n  position: relative;\r\n  right: 115px;\r\n}\r\n\r\n.fa-truck {\r\n  position: relative;\r\n  left: 130px;\r\n}\r\n\r\n.fa-store-alt {\r\n  position: relative;\r\n  left: 100px;\r\n}\r\n\r\n#contacto {\r\n  position: relative;\r\n  top: 0.1rem;\r\n}\r\n\r\n#tienda {\r\n  position: relative;\r\n  left: 250px;\r\n}\r\n\r\n#transporte {\r\n  position: relative;\r\n  left: 100px;\r\n}\r\n\r\n.btn-ubicacion{\r\n  padding: 1.3rem 5rem;\r\n  background-color: #0d80fc;\r\n  align-items: center;\r\n  justify-content: center;\r\n  border:  0.1rem solid #0d80fc;\r\n  cursor: pointer;\r\n  position: relative;\r\n  left: 1.6rem;\r\n  border-radius: .3rem;\r\n  overflow: hidden;\r\n}\r\n\r\n.btn-ubicacion::before{\r\n  content: 'Ubicanos';\r\n  position: absolute;\r\n  top: 50%;\r\n  left: 50%;\r\n  -webkit-transform: translate(-50%,-50%);\r\n          transform: translate(-50%,-50%);\r\n  font-size: 1.rem;\r\n  color: #ffffff;\r\n  text-transform: uppercase;\r\n  letter-spacing: .3rem;\r\n  font-weight: 700;\r\n  text-shadow: .1rem .1rem .1rem #333;\r\n  transition: .2s ease;\r\n}\r\n\r\n.btn-ubicacion::after{\r\n  content: 'YA!';\r\n  position: absolute;\r\n  top: 50%;\r\n  left: 50%;\r\n  -webkit-transform: translate(-50%,-50%) scale(0);\r\n          transform: translate(-50%,-50%) scale(0);\r\n  font-size: 1.rem;\r\n  color: #ffffff;\r\n  text-align: center;\r\n  text-transform: uppercase;\r\n  letter-spacing: .3rem;\r\n  font-weight: 700;\r\n  text-shadow: .1rem .1rem .1rem #333;\r\n  transition: .2s ease;\r\n  opacity: 0;\r\n}\r\n\r\n.btn-ubicacion:hover::before{\r\n  -webkit-transform: translate(-50%,-50%) scale(3);\r\n          transform: translate(-50%,-50%) scale(3);\r\n  opacity: 0;\r\n}\r\n\r\n.btn-ubicacion:hover::after{\r\n  -webkit-transform: translate(-50%,-50%) scale(2);\r\n          transform: translate(-50%,-50%) scale(2);\r\n  opacity: 1;\r\n}\r\n\r\n#whatsapp {\r\n  z-index: 9999;\r\n  position: fixed !important;\r\n  top: 500px;\r\n  right: 15px;\r\n}\r\n\r\n#whatsapp:hover::before{\r\n\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixrQkFBa0I7O0FBRXBCOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsNEJBQTRCO0FBQzlCOztBQUVBO0VBQ0UsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0UsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7O0FBR0E7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztBQUNiOztBQUlBO0VBQ0Usa0JBQWtCO0VBQ2xCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztBQUNiOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYjs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0FBQ2I7O0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztBQUNiOztBQUVBO0VBQ0Usb0JBQW9CO0VBQ3BCLHlCQUF5QjtFQUN6QixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLDZCQUE2QjtFQUM3QixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixvQkFBb0I7RUFDcEIsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztFQUNULHVDQUErQjtVQUEvQiwrQkFBK0I7RUFDL0IsZ0JBQWdCO0VBQ2hCLGNBQWM7RUFDZCx5QkFBeUI7RUFDekIscUJBQXFCO0VBQ3JCLGdCQUFnQjtFQUNoQixtQ0FBbUM7RUFDbkMsb0JBQW9CO0FBQ3RCOztBQUVBO0VBQ0UsY0FBYztFQUNkLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztFQUNULGdEQUF3QztVQUF4Qyx3Q0FBd0M7RUFDeEMsZ0JBQWdCO0VBQ2hCLGNBQWM7RUFDZCxrQkFBa0I7RUFDbEIseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixnQkFBZ0I7RUFDaEIsbUNBQW1DO0VBQ25DLG9CQUFvQjtFQUNwQixVQUFVO0FBQ1o7O0FBRUE7RUFDRSxnREFBd0M7VUFBeEMsd0NBQXdDO0VBQ3hDLFVBQVU7QUFDWjs7QUFDQTtFQUNFLGdEQUF3QztVQUF4Qyx3Q0FBd0M7RUFDeEMsVUFBVTtBQUNaOztBQUdBO0VBQ0UsYUFBYTtFQUNiLDBCQUEwQjtFQUMxQixVQUFVO0VBQ1YsV0FBVztBQUNiOztBQUVBOztBQUVBIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIip7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgcGFkZGluZy10b3A6IDEwMHB4O1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuXHJcbn1cclxuXHJcbmltZyB7XHJcbiAgaGVpZ2h0OiA0MDBweDtcclxufVxyXG5cclxuOjpuZy1kZWVwIC5tYXQtZ3JpZC10aWxlIC5tYXQtZmlndXJlIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG4ubWF0LWdyaWQtdGlsZSB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogYXF1YW1hcmluZTtcclxufVxyXG5cclxuI2Zvcm1hc1BhZ28ge1xyXG4gIHBhZGRpbmctdG9wOiAyM3B4O1xyXG59XHJcblxyXG5oMiB7XHJcbiAgZm9udC1zaXplOiAxM3B4O1xyXG59XHJcblxyXG5wIHtcclxuICBmb250LXNpemU6IDE0cHg7XHJcbn1cclxuXHJcbi5jb250YWluZXIge1xyXG4gIHBvc2l0aW9uOiBjZW50ZXI7XHJcbn1cclxuXHJcblxyXG4ucm93IHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTIwcHg7XHJcbn1cclxuXHJcblxyXG5cclxuLndoYXRzLWljb257XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHJpZ2h0OiAxMTVweDtcclxufVxyXG5cclxuLmZhLXRydWNrIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTMwcHg7XHJcbn1cclxuXHJcbi5mYS1zdG9yZS1hbHQge1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBsZWZ0OiAxMDBweDtcclxufVxyXG5cclxuI2NvbnRhY3RvIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgdG9wOiAwLjFyZW07XHJcbn1cclxuI3RpZW5kYSB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDI1MHB4O1xyXG59XHJcbiN0cmFuc3BvcnRlIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTAwcHg7XHJcbn1cclxuXHJcbi5idG4tdWJpY2FjaW9ue1xyXG4gIHBhZGRpbmc6IDEuM3JlbSA1cmVtO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMwZDgwZmM7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBib3JkZXI6ICAwLjFyZW0gc29saWQgIzBkODBmYztcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDEuNnJlbTtcclxuICBib3JkZXItcmFkaXVzOiAuM3JlbTtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcblxyXG4uYnRuLXViaWNhY2lvbjo6YmVmb3Jle1xyXG4gIGNvbnRlbnQ6ICdVYmljYW5vcyc7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogNTAlO1xyXG4gIGxlZnQ6IDUwJTtcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLC01MCUpO1xyXG4gIGZvbnQtc2l6ZTogMS5yZW07XHJcbiAgY29sb3I6ICNmZmZmZmY7XHJcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICBsZXR0ZXItc3BhY2luZzogLjNyZW07XHJcbiAgZm9udC13ZWlnaHQ6IDcwMDtcclxuICB0ZXh0LXNoYWRvdzogLjFyZW0gLjFyZW0gLjFyZW0gIzMzMztcclxuICB0cmFuc2l0aW9uOiAuMnMgZWFzZTtcclxufVxyXG5cclxuLmJ0bi11YmljYWNpb246OmFmdGVye1xyXG4gIGNvbnRlbnQ6ICdZQSEnO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDUwJTtcclxuICBsZWZ0OiA1MCU7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwtNTAlKSBzY2FsZSgwKTtcclxuICBmb250LXNpemU6IDEucmVtO1xyXG4gIGNvbG9yOiAjZmZmZmZmO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gIGxldHRlci1zcGFjaW5nOiAuM3JlbTtcclxuICBmb250LXdlaWdodDogNzAwO1xyXG4gIHRleHQtc2hhZG93OiAuMXJlbSAuMXJlbSAuMXJlbSAjMzMzO1xyXG4gIHRyYW5zaXRpb246IC4ycyBlYXNlO1xyXG4gIG9wYWNpdHk6IDA7XHJcbn1cclxuXHJcbi5idG4tdWJpY2FjaW9uOmhvdmVyOjpiZWZvcmV7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwtNTAlKSBzY2FsZSgzKTtcclxuICBvcGFjaXR5OiAwO1xyXG59XHJcbi5idG4tdWJpY2FjaW9uOmhvdmVyOjphZnRlcntcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLC01MCUpIHNjYWxlKDIpO1xyXG4gIG9wYWNpdHk6IDE7XHJcbn1cclxuXHJcblxyXG4jd2hhdHNhcHAge1xyXG4gIHotaW5kZXg6IDk5OTk7XHJcbiAgcG9zaXRpb246IGZpeGVkICFpbXBvcnRhbnQ7XHJcbiAgdG9wOiA1MDBweDtcclxuICByaWdodDogMTVweDtcclxufVxyXG5cclxuI3doYXRzYXBwOmhvdmVyOjpiZWZvcmV7XHJcblxyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -2625,6 +3119,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/Catalogos/catalogos.service */ "./src/app/services/Catalogos/catalogos.service.ts");
 /* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! .././../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+
+
 
 
 
@@ -2634,6 +3132,9 @@ let HomeComponent = class HomeComponent {
         this.catalogoService = catalogoService;
         this.sharedService = sharedService;
         this.showShoppingKart = false;
+        this.faTruck = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTruck"];
+        this.faStore = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faStore"];
+        this.faWhatsapp = _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faWhatsapp"];
     }
     ngOnInit() { }
 };
@@ -2662,7 +3163,7 @@ HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\r\n    width: 100%;\r\n}\r\n\r\n#carritoCompra {\r\n    background-color: white;\r\n}\r\n\r\nh2 {\r\n    text-align: center;\r\n}\r\n\r\n/* Style for table */\r\n\r\n.example-container {\r\n    height: 170px;\r\n    overflow: auto;\r\n}\r\n\r\ntable {\r\n    width: 100%;\r\n}\r\n\r\ntr.mat-footer-row {\r\n    font-weight: bold;\r\n}\r\n\r\n.mat-table-sticky {\r\n    border-top: 1px solid #e0e0e0;\r\n}\r\n\r\n/* End of  Style for table */\r\n\r\n.noFiles {\r\n    text-align: center;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9jYXJyaXRvLWNvbXByYS9jYXJyaXRvLWNvbXByYS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksV0FBVztBQUNmOztBQUVBO0lBQ0ksdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksa0JBQWtCO0FBQ3RCOztBQUdBLG9CQUFvQjs7QUFFcEI7SUFDSSxhQUFhO0lBQ2IsY0FBYztBQUNsQjs7QUFFQTtJQUNJLFdBQVc7QUFDZjs7QUFFQTtJQUNJLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLDZCQUE2QjtBQUNqQzs7QUFHQSw0QkFBNEI7O0FBRTVCO0lBQ0ksa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9jYXJyaXRvLWNvbXByYS9jYXJyaXRvLWNvbXByYS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGFibGUge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbiNjYXJyaXRvQ29tcHJhIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG5oMiB7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcblxyXG4vKiBTdHlsZSBmb3IgdGFibGUgKi9cclxuXHJcbi5leGFtcGxlLWNvbnRhaW5lciB7XHJcbiAgICBoZWlnaHQ6IDE3MHB4O1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuXHJcbnRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG50ci5tYXQtZm9vdGVyLXJvdyB7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxufVxyXG5cclxuLm1hdC10YWJsZS1zdGlja3kge1xyXG4gICAgYm9yZGVyLXRvcDogMXB4IHNvbGlkICNlMGUwZTA7XHJcbn1cclxuXHJcblxyXG4vKiBFbmQgb2YgIFN0eWxlIGZvciB0YWJsZSAqL1xyXG5cclxuLm5vRmlsZXMge1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG5cclxuIl19 */"
+module.exports = "#carritoCompra {\r\n  background-color: white;\r\n}\r\n\r\nh2 {\r\n  text-align: center;\r\n}\r\n\r\n/* Style for table */\r\n\r\n.example-container {\r\n  height: 170px;\r\n  overflow: auto;\r\n}\r\n\r\nmat-card {\r\n  height: 140px;\r\n}\r\n\r\n.remove-btn {\r\n  position: relative;\r\n  bottom: 55px;\r\n  left: 120px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9jYXJyaXRvLWNvbXByYS9jYXJyaXRvLWNvbXByYS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsdUJBQXVCO0FBQ3pCOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUVBLG9CQUFvQjs7QUFFcEI7RUFDRSxhQUFhO0VBQ2IsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osV0FBVztBQUNiIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9jYXJyaXRvLWNvbXByYS9jYXJyaXRvLWNvbXByYS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2NhcnJpdG9Db21wcmEge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG5oMiB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4vKiBTdHlsZSBmb3IgdGFibGUgKi9cclxuXHJcbi5leGFtcGxlLWNvbnRhaW5lciB7XHJcbiAgaGVpZ2h0OiAxNzBweDtcclxuICBvdmVyZmxvdzogYXV0bztcclxufVxyXG5cclxubWF0LWNhcmQge1xyXG4gIGhlaWdodDogMTQwcHg7XHJcbn1cclxuXHJcbi5yZW1vdmUtYnRuIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYm90dG9tOiA1NXB4O1xyXG4gIGxlZnQ6IDEyMHB4O1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -2680,19 +3181,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
 /* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
-/* harmony import */ var _components_partials_carrito_compra_proceso_compra_proceso_compra_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/partials/carrito-compra/proceso-compra/proceso-compra.component */ "./src/app/components/partials/carrito-compra/proceso-compra/proceso-compra.component.ts");
-/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+/* harmony import */ var _components_partials_carrito_compra_proceso_compra_proceso_compra_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/partials/carrito-compra/proceso-compra/proceso-compra.component */ "./src/app/components/partials/carrito-compra/proceso-compra/proceso-compra.component.ts");
+/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
 
 
 
 
- //To get the information to store in the table
 
 
 let CarritoCompraComponent = class CarritoCompraComponent {
     constructor(sharedService, dialog, notificacionServive) {
-        //this.sharedService.productoSel.subscribe(producto => this.producto = producto)
+        // this.sharedService.productoSel.subscribe(producto => this.producto = producto)
         this.sharedService = sharedService;
         this.dialog = dialog;
         this.notificacionServive = notificacionServive;
@@ -2700,169 +3199,56 @@ let CarritoCompraComponent = class CarritoCompraComponent {
         this.FinallistadoCompras = [];
         this.TotalItemFinal = [];
         this.show = true;
-        this.displayedColumns = [
-            'id',
-            'Nombre',
-            'cantidad',
-            'valorventa',
-            'actions'
-        ];
-        this.sharedService.productoSel.subscribe(producto => {
-            this.producto = producto;
-            this.addCarrito(this.producto);
+        this.sharedService.productoSel.subscribe((producto) => {
+            console.log('My products', producto);
+            this.listadoCompras.push(producto);
         });
-        // console.log("My array Carrito de compra" + this.data);
-        // this.productoSeleccionado  =  JSON.stringify(this.data);
-        // console.log("Mis productos" + this.productoSeleccionado)
-        // this.producto =  JSON.parse(this.productoSeleccionado);
-        // console.log("Carrito" + this.producto);
-        //console.log("My array Carrito de compra" + this.data);
-        // var producto = this.data;
-        // this.producto = JSON.parse(producto);
-        // console.log(this.producto);
     }
     ngOnInit() {
         this.loadStripe();
-        this.FinallistadoCompras;
-        this.isProductos();
-    }
-    isProductos() {
-        const shoppingKartEmpty = document.getElementById('imagenShopingCartEmpty');
-        const tbtKrt = document.getElementById('tbtCarrito_Compras');
-        if (this.listadoCompras.length > 0) {
-            this.show = true;
-            shoppingKartEmpty.style.removeProperty('background-image');
-        }
-        else {
-            //this.hide_productos = true
-            shoppingKartEmpty.style.backgroundImage =
-                'url(\'http://woodwork.be/media/wysiwyg/empty-cart.jpg\')';
-            shoppingKartEmpty.style.backgroundSize = '180px 180px';
-            shoppingKartEmpty.style.backgroundRepeat = 'repeat-y';
-            shoppingKartEmpty.style.backgroundPosition = 'center center';
-            //tbtKrt.style.visibility = 'hidden';
-            this.show = !this.show;
-        }
-    }
-    addCarrito(productos) {
-        //   if(this.listadoCompras.length){
-        //     this.listadoCompras.push(productos);
-        //     console.log(this.listadoCompras);
-        //   }
-        //     var mensaje = ("No hay productos añadidos");
-        //     console.log("No hay productos añadidos" + mensaje);
-        //     //document.getElementById("content").innerHTML = mensaje;
-        this.listadoCompras.push(productos);
-        let numeroProductos = this.listadoCompras.length;
-        console.log(numeroProductos);
-        this.listData = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.listadoCompras);
-        console.log(this.listadoCompras);
-        console.log('Dta table ' + this.listData);
-        this.isProductos();
     }
     loadStripe() {
         if (!window.document.getElementById('stripe-script')) {
-            var s = window.document.createElement('script');
+            const s = window.document.createElement('script');
             s.id = 'stripe-script';
             s.type = 'text/javascript';
             s.src = 'https://checkout.stripe.com/checkout.js';
             window.document.body.appendChild(s);
         }
     }
-    /** Gets the total cost of all transactions. */
-    getTotalCost() {
-        //  this.costototal = this.listadoCompras.map(l => l.valorventa).reduce((acc, value) => acc + value , 0);
-        //  return this.costototal;
-        this.costototal = this.listadoCompras
-            .map(l => l.valorventa * l.cantidad)
-            .reduce((acc, value) => acc + value, 0);
-        return this.costototal;
-        // for (let i = 0; i < this.listadoCompras.length; i++) {
-        //   let  total = 0;
-        //  const  cantidad = this.listadoCompras[i].valorventa;
-        //  const  valorventa =  this.listadoCompras[i].cantidad;
-        //  console.log("Cantidad" + cantidad);
-        //  console.log("ValorVenta" + valorventa);
-        //   total =  cantidad * valorventa;
-        //  console.log("Total" + total);
-        //  this.costototal += total
-        //  console.log("CostoTotal" + this.costototal);
-        //  }
-        // return this.costototal;
-    }
-    getIndice(id) {
-        const _productoId = id;
-        console.log('id eliminar' + _productoId);
-        for (let i = 0; i < this.listadoCompras.length; i++) {
-            if (this.listadoCompras[i].idproducto == _productoId) {
-                const indice = i;
-                console.log('id proucto' + this.listadoCompras[i].idproducto);
-                console.log('pocisiosn ' + indice);
-                console.log('eliminado');
-                this.eliminaProducto(indice);
-            }
-        }
-    }
-    eliminaProducto(indice) {
-        this.listadoCompras.splice(indice, 1);
-        this.listData = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.listadoCompras);
-        console.log(this.listadoCompras);
-        console.log('Dta table ' + this.listData);
-        console.log(this.listadoCompras);
-        this.isProductos();
-    }
-    procesoComprar(event) {
-        console.log('Comprar');
+    buy() {
         if (this.listadoCompras.length > 0) {
-            this.onCreateDialogProcesoCompra();
+            this.onCreateDialogProcesoCompra(this.listadoCompras);
         }
         else {
-            this.notificacionServive.success('Debes añadir un producto primero');
+            this.notificacionServive.warning('Debes añadir un producto primero');
         }
     }
-    // onCreateDialogProcesoCompra(){
-    //   const finalArrayTotalItem = this.listadoCompras;
-    //   console.log( finalArrayTotalItem)
-    //   const dialogConfig = new  MatDialogConfig();
-    //   dialogConfig.disableClose = true;
-    //   //dialogConfig.autoFocus = true;
-    //   dialogConfig.width = "1600px";
-    //   dialogConfig.height = "400px";
-    //   dialogConfig.data = finalArrayTotalItem
-    //   this.dialog.open(ProcesoCompraComponent, dialogConfig,)
-    //  }
-    onCreateDialogProcesoCompra() {
-        this.PrecioFinalArrayListadocomparas();
-        const finalArrayTotalItem = this.FinallistadoCompras;
-        console.log(finalArrayTotalItem);
+    onCreateDialogProcesoCompra(data) {
+        const finalArrayTotalItem = data;
         const dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogConfig"]();
         dialogConfig.disableClose = true;
-        //dialogConfig.autoFocus = true;
+        // dialogConfig.autoFocus = true;
         dialogConfig.width = '1600px';
         dialogConfig.height = '400px';
         dialogConfig.data = finalArrayTotalItem;
-        this.dialog.open(_components_partials_carrito_compra_proceso_compra_proceso_compra_component__WEBPACK_IMPORTED_MODULE_5__["ProcesoCompraComponent"], dialogConfig);
+        this.dialog.open(_components_partials_carrito_compra_proceso_compra_proceso_compra_component__WEBPACK_IMPORTED_MODULE_4__["ProcesoCompraComponent"], dialogConfig);
         this.sharedService.getArrayCompras(finalArrayTotalItem);
     }
-    PrecioFinalArrayListadocomparas() {
-        const precioFinal = this.costototal;
-        const l = this.listadoCompras;
-        for (let index = 0; index < l.length; index++) {
-            this.FinallistadoCompras.push({
-                id: l[index].idproducto,
-                producto: l[index].producto,
-                cantidad: l[index].cantidad,
-                valorventa: l[index].valorventa,
-                Total: precioFinal
-            });
-        }
-        return this.FinallistadoCompras;
+    /** Gets the total cost of all transactions. */
+    getTotalPurchase() {
+        return this.listadoCompras
+            .map((t) => t.valorVenta * t.cantidad)
+            .reduce((acc, value) => acc + value, 0);
+    }
+    removeItemFromKart(indice) {
+        this.listadoCompras.splice(0, indice);
     }
 };
 CarritoCompraComponent.ctorParameters = () => [
     { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__["SharedService"] },
     { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialog"] },
-    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_6__["NotificationService"] }
+    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__["NotificationService"] }
 ];
 CarritoCompraComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2872,7 +3258,7 @@ CarritoCompraComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__["SharedService"],
         _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialog"],
-        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_6__["NotificationService"]])
+        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__["NotificationService"]])
 ], CarritoCompraComponent);
 
 
@@ -2980,11 +3366,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../services/shared/dashboard.service */ "./src/app/services/shared/dashboard.service.ts");
 /* harmony import */ var _procesoCompra_form_direccione_usuario_show_form_direccione_usuario_show_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component */ "./src/app/components/partials/carrito-compra/procesoCompra/form-direccione-usuario-show/form-direccione-usuario-show.component.ts");
 /* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 
 
 
 
- //To get the information to store in the table
+ // To get the information to store in the table
+
 
 
 
@@ -2996,7 +3384,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProcesoCompraComponent = class ProcesoCompraComponent {
-    constructor(data, _formBuilder, dialogRef, cataServes, dashboardService, dialog, sharedService, pagosServices, router, ngZone, notificacion) {
+    constructor(data, _formBuilder, dialogRef, cataServes, dashboardService, dialog, sharedService, pagosServices, router, notificacion) {
         this.data = data;
         this._formBuilder = _formBuilder;
         this.dialogRef = dialogRef;
@@ -3006,91 +3394,80 @@ let ProcesoCompraComponent = class ProcesoCompraComponent {
         this.sharedService = sharedService;
         this.pagosServices = pagosServices;
         this.router = router;
-        this.ngZone = ngZone;
         this.notificacion = notificacion;
         this.showBtnDomicilio = true;
+        this.finalListPurchase = [];
         this.isLinear = true;
         this.stepCompleted = false;
         this.step2Completed = false;
         this.show = false;
         this.disableMessageBtn = false;
-        this.displayedColumns = ["Nombre", "cantidad", "valorventa"];
+        // Icons
+        this.faWindowClose = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__["faWindowClose"];
+        this.displayedColumns = ['Nombre', 'cantidad', 'valorventa'];
         console.log(data);
-        //To get the information from  a sessionStorage
-        var user = sessionStorage.getItem("userAuth");
+        // To get the information from  a sessionStorage
+        const user = sessionStorage.getItem('userAuth');
         this.user = JSON.parse(user);
         console.log(this.user);
         this.formMensaje = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             idCliente: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.user.id),
-            mensaje: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])
+            mensaje: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
         });
-        //To share the form in preceso compra componenet
-        this.sharedService.formValues.subscribe(valuesForm => {
+        // To share the form in preceso compra componenet
+        this.sharedService.formValues.subscribe((valuesForm) => {
             this.valuesFormDireccione = valuesForm;
-            console.log("Formulario" + this.valuesFormDireccione);
+            console.log('Formulario' + this.valuesFormDireccione);
             this.stepCompleted = true;
         });
-        //To share the response of the payment in preceso compra componenet
-        this.sharedService.payCharge.subscribe(res => {
+        // To share the response of the payment in preceso compra componenet
+        this.sharedService.payCharge.subscribe((res) => {
             this.charges = res;
             console.log(this.charges);
         });
-        //To share the form in preceso compra componenet
-        this.sharedService.stepComplared.subscribe(value => {
+        // To share the form in preceso compra componenet
+        this.sharedService.stepComplared.subscribe((value) => {
             this.step2Completed = true;
-            console.log("True step 2 ");
+            console.log('True step 2 ');
             this.stepper.linear = false;
             this.stepper.selectedIndex = 2;
-            this.notificacion.success("Compra Satisfactoria");
+            this.notificacion.success('Compra Satisfactoria');
         });
-        //To share a variable from form-direccione to call a method  in here
-        this.sharedService.btnver.subscribe(value => {
+        // To share a variable from form-direccione to call a method  in here
+        this.sharedService.btnver.subscribe((value) => {
             this.btnverFlag = value;
             if (this.btnverFlag) {
                 this.getDireccionCliente(this.user.id);
-            }
-            else {
-                console.log("I'm not true");
             }
         });
     }
     ngOnInit() {
         this.firstFormGroup = this._formBuilder.group({
-            firstCtrl: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            firstCtrl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
         });
         this.secondFormGroup = this._formBuilder.group({
-            secondCtrl: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            secondCtrl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
         });
         this.createTableToshow();
         this.getDireccionCliente(this.user.id);
-        console.log(this.stepper);
     }
     ngAfterViewInit() {
-        //To share the form in preceso compra componenet
-        //   this.sharedService.stepComplared.subscribe(value => {
-        //   this.step2Completed = true;
-        //   this.ngZone.run(() => {
-        //     this.stepper.next();
-        //   });
-        // });
         this.totalStepsCount = this.stepper._steps.length;
-        console.log("TOtal steps" + this.totalStepsCount);
     }
     createTableToshow() {
-        const finalArrayTotalItem = this.data;
-        this.listData = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](finalArrayTotalItem);
+        this.finalListPurchase = this.data;
+        this.listData = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](this.finalListPurchase);
     }
     getTotalPrice() {
-        for (let i = 0; i < this.data.length; i++) {
-            this.precio_total = this.data[i].Total;
-            return this.precio_total;
-        }
+        return this.finalListPurchase
+            .map((t) => t.valorVenta * t.cantidad)
+            .reduce((acc, value) => acc + value, 0);
     }
     onView(value) {
         console.log(value);
     }
     getDireccionCliente(id) {
-        this.dashboardService.getDomiciliosCleinte(id).subscribe(res => {
+        this.dashboardService.getDomiciliosCleinte(id).subscribe((res) => {
             this.domicilio = res;
             if (this.domicilio.length) {
                 this.showBtnDomicilio = true;
@@ -3100,82 +3477,57 @@ let ProcesoCompraComponent = class ProcesoCompraComponent {
                 this.showBtnDomicilio = !this.showBtnDomicilio;
             }
             console.log(this.domicilio);
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
-    //To get the deparment for direccion Form
-    // showDomicilio(){
-    //   this.cataServes.getDepartamentos().subscribe(
-    //     res =>{
-    //           this.departamentos= res
-    //           this.onCreateDialogDireccionUsuario(this.departamentos,this.domicilio)
-    //        },
-    //     err => console.log(err)
-    //   )
-    // }
     showDomicilio() {
-        console.log("Show domicilio" + this.domicilio);
         this.onCreateShow(this.domicilio);
     }
     addDomicilio() {
-        this.cataServes.getDepartamentos().subscribe(res => {
+        this.cataServes.getDepartamentos().subscribe((res) => {
             this.departamentos = res;
             this.onCreateDomicilio(this.departamentos);
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
     getCiudades(id) {
-        this.cataServes.getCiudades(id).subscribe(res => {
+        this.cataServes.getCiudades(id).subscribe((res) => {
             this.ciudades = res;
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
-    //Dialog para transportadora
+    // Dialog para transportadora
     onCreateDialogTransportadora(transportadora) {
         const dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialogConfig"]();
-        //console.log("1 paso" + productoShow)
-        let t = transportadora;
-        //console.log("Create productos" + showProductos)
+        const t = transportadora;
         dialogConfig.disableClose = true;
-        //dialogConfig.autoFocus = true;
-        dialogConfig.width = "400px";
-        dialogConfig.height = "400px";
-        // dialogConfig.data = {name : 'Erick'}
+        dialogConfig.width = '400px';
+        dialogConfig.height = '400px';
         dialogConfig.data = t;
         this.dialog.open(_procesoCompra_form_transportadora_form_transportadora_component__WEBPACK_IMPORTED_MODULE_6__["FormTransportadoraComponent"], dialogConfig);
-        this.dialog.afterAllClosed.subscribe(res => {
-            //this.ocultarItemSelleccionado = true;
-            //console.log("Respuesta" + this.ocultarItemSelleccionado);
-        });
     }
-    //Dialog para direccion usuario
+    // Dialog para direccion usuario
     onCreateShow(data) {
         const dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialogConfig"]();
-        let d = data;
+        const d = data;
         dialogConfig.disableClose = true;
-        //dialogConfig.autoFocus = true;
-        dialogConfig.width = "600px";
-        dialogConfig.height = "400px";
-        // dialogConfig.data = {name : 'Erick'}
+        dialogConfig.width = '650px';
+        dialogConfig.height = '425px';
         dialogConfig.data = d;
         this.dialog.open(_procesoCompra_form_direccione_usuario_show_form_direccione_usuario_show_component__WEBPACK_IMPORTED_MODULE_12__["FormDireccioneUsuarioShowComponent"], dialogConfig);
-        console.log("Ver domicilio");
     }
     onCreateDomicilio(data) {
         const dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialogConfig"]();
-        let d = data;
+        const d = data;
         dialogConfig.disableClose = true;
-        //dialogConfig.autoFocus = true;
-        dialogConfig.width = "750px";
-        dialogConfig.height = "400px";
-        // dialogConfig.data = {name : 'Erick'}
+        dialogConfig.width = '750px';
+        dialogConfig.height = '400px';
         dialogConfig.data = d;
         this.dialog.open(_procesoCompra_form_direccione_usuario_form_direccione_usuario_component__WEBPACK_IMPORTED_MODULE_5__["FormDireccioneUsuarioComponent"], dialogConfig);
-        console.log("Añadir direccion");
     }
     onClose() {
         this.dialogRef.close();
     }
     redirigeDashboard() {
         this.dialogRef.close();
-        this.router.navigateByUrl("/dashboard"); //To redirect to another component
+        this.router.navigateByUrl('/dashboard'); // To redirect to another component
     }
     enviarMensajeVendedor() {
         this.show = !this.show;
@@ -3184,14 +3536,13 @@ let ProcesoCompraComponent = class ProcesoCompraComponent {
         this.stepper.previous();
     }
     goForward() {
-        //console.log(this.stepper);
         this.stepper.next();
     }
     onSubmit() {
         if (this.formMensaje.valid) {
-            this.pagosServices.saveMensaje(this.formMensaje.value).subscribe(res => {
-                this.notificacion.success("Mensaje enviado satisfactoriamente");
-            }, err => console.log(err));
+            this.pagosServices.saveMensaje(this.formMensaje.value).subscribe((res) => {
+                this.notificacion.success('Mensaje enviado satisfactoriamente');
+            }, (err) => console.log(err));
             this.show = !this.show;
             this.disableMessageBtn = !this.disableMessageBtn;
         }
@@ -3207,16 +3558,15 @@ ProcesoCompraComponent.ctorParameters = () => [
     { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_8__["SharedService"] },
     { type: _services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_9__["PagoService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"] },
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
     { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_13__["NotificationService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("stepper", { static: false }),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('stepper', { static: false }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
 ], ProcesoCompraComponent.prototype, "stepper", void 0);
 ProcesoCompraComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: "app-proceso-compra",
+        selector: 'app-proceso-compra',
         template: __webpack_require__(/*! raw-loader!./proceso-compra.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/partials/carrito-compra/proceso-compra/proceso-compra.component.html"),
         encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
         styles: [__webpack_require__(/*! ./proceso-compra.component.css */ "./src/app/components/partials/carrito-compra/proceso-compra/proceso-compra.component.css")]
@@ -3230,7 +3580,6 @@ ProcesoCompraComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_8__["SharedService"],
         _services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_9__["PagoService"],
         _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"],
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"],
         _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_13__["NotificationService"]])
 ], ProcesoCompraComponent);
 
@@ -3263,6 +3612,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
 
 
 
@@ -3271,19 +3622,19 @@ let FormDireccioneUsuarioShowComponent = class FormDireccioneUsuarioShowComponen
     constructor(data, dialogRef) {
         this.data = data;
         this.dialogRef = dialogRef;
+        this.faWindowClose = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faWindowClose"];
         this.FormDireccionesUsuarioShow = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'departamento': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            'ciudad': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            'nombre': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            'apellido': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            'celular': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            'barrio': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            'direccion': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            'datosadicionales': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]()
+            departamento: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            ciudad: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            nombre: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            apellido: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            celular: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            barrio: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            direccion: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            datosadicionales: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
         });
     }
-    ngOnInit() {
-    }
+    ngOnInit() { }
     onClose() {
         this.dialogRef.close();
     }
@@ -3328,14 +3679,16 @@ module.exports = ".mat-raised-button {\r\n  margin-top: 18px;\r\n  margin-left: 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormDireccioneUsuarioComponent", function() { return FormDireccioneUsuarioComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../services/Catalogos/catalogos.service */ "./src/app/services/Catalogos/catalogos.service.ts");
-/* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
-/* harmony import */ var _services_procesoCompra_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../services/procesoCompra.service */ "./src/app/services/procesoCompra.service.ts");
-/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
-/* harmony import */ var _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../services/shared/dashboard.service */ "./src/app/services/shared/dashboard.service.ts");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../services/Catalogos/catalogos.service */ "./src/app/services/Catalogos/catalogos.service.ts");
+/* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
+/* harmony import */ var _services_procesoCompra_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../services/procesoCompra.service */ "./src/app/services/procesoCompra.service.ts");
+/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+/* harmony import */ var _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../services/shared/dashboard.service */ "./src/app/services/shared/dashboard.service.ts");
+
 
 
 
@@ -3355,47 +3708,49 @@ let FormDireccioneUsuarioComponent = class FormDireccioneUsuarioComponent {
         this.notificationService = notificationService;
         this.dashboardService = dashboardService;
         this.show = false;
-        this.viewAdress = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.viewAdress = new _angular_core__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"]();
         this.activateButtonView = false;
+        // Icons
+        this.faWindowClose = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faWindowClose"];
         this.departamentos = data;
         // To get the information from  a sessionStorage
         const user = sessionStorage.getItem('userAuth');
         this.user = JSON.parse(user);
         console.log(this.user.id);
-        this.FormDireccionesUsuario = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
-            departamento: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            ciudad: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            nombre: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(30)
+        this.FormDireccionesUsuario = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormGroup"]({
+            departamento: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]),
+            ciudad: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]),
+            nombre: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].maxLength(30),
             ]),
-            idCliente: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](this.user.id),
-            apellido: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(30)
+            idCliente: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](this.user.id),
+            apellido: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].maxLength(30),
             ]),
-            celular: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)
+            celular: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(10),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].maxLength(10),
             ]),
-            barrio: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(30)
+            barrio: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].maxLength(30),
             ]),
-            direccion: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(13),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(25)
+            direccion: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(13),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].maxLength(25),
             ]),
-            datosadicionales: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(13),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(75)
-            ])
+            datosadicionales: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(13),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].maxLength(75),
+            ]),
         });
     }
     restartFormGroup() {
@@ -3407,7 +3762,7 @@ let FormDireccioneUsuarioComponent = class FormDireccioneUsuarioComponent {
             ciudad: '',
             barrio: '',
             direccion: '',
-            datosadicionales: ''
+            datosadicionales: '',
         });
     }
     ngOnInit() { }
@@ -3421,16 +3776,16 @@ let FormDireccioneUsuarioComponent = class FormDireccioneUsuarioComponent {
     }
     // To get the ciudades for direccion Form
     getCiudades(id) {
-        this.cataloServe.getCiudades(id).subscribe(res => {
+        this.cataloServe.getCiudades(id).subscribe((res) => {
             this.ciudades = res;
             console.log(res);
-        }, err => console.log(err));
+        }, (err) => console.log(err));
     }
     onSave() {
         if (this.FormDireccionesUsuario.valid) {
             this.procesoCompra
                 .saveDireccion(this.FormDireccionesUsuario.value)
-                .subscribe(res => { }, err => { });
+                .subscribe((res) => { }, (err) => { });
             this.sharedService.getFormDirecciones(this.FormDireccionesUsuario.value);
             this.sharedService.EmitVer(true);
             this.notificationService.success('Direccion almacenada');
@@ -3446,31 +3801,31 @@ let FormDireccioneUsuarioComponent = class FormDireccioneUsuarioComponent {
     }
 };
 FormDireccioneUsuarioComponent.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"],] }] },
-    { type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"] },
-    { type: _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_4__["CatalogoServes"] },
-    { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_5__["SharedService"] },
-    { type: _services_procesoCompra_service__WEBPACK_IMPORTED_MODULE_6__["ProcesoCompra"] },
-    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_7__["NotificationService"] },
-    { type: _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_8__["DashboardService"] }
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Inject"], args: [_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"],] }] },
+    { type: _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"] },
+    { type: _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_5__["CatalogoServes"] },
+    { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_6__["SharedService"] },
+    { type: _services_procesoCompra_service__WEBPACK_IMPORTED_MODULE_7__["ProcesoCompra"] },
+    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_8__["NotificationService"] },
+    { type: _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_9__["DashboardService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Output"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
 ], FormDireccioneUsuarioComponent.prototype, "viewAdress", void 0);
 FormDireccioneUsuarioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
         selector: 'app-form-direccione-usuario',
         template: __webpack_require__(/*! raw-loader!./form-direccione-usuario.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/partials/carrito-compra/procesoCompra/form-direccione-usuario/form-direccione-usuario.component.html"),
         styles: [__webpack_require__(/*! ./form-direccione-usuario.component.css */ "./src/app/components/partials/carrito-compra/procesoCompra/form-direccione-usuario/form-direccione-usuario.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
-        _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_4__["CatalogoServes"],
-        _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_5__["SharedService"],
-        _services_procesoCompra_service__WEBPACK_IMPORTED_MODULE_6__["ProcesoCompra"],
-        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_7__["NotificationService"],
-        _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_8__["DashboardService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"],
+        _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_5__["CatalogoServes"],
+        _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_6__["SharedService"],
+        _services_procesoCompra_service__WEBPACK_IMPORTED_MODULE_7__["ProcesoCompra"],
+        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_8__["NotificationService"],
+        _services_shared_dashboard_service__WEBPACK_IMPORTED_MODULE_9__["DashboardService"]])
 ], FormDireccioneUsuarioComponent);
 
 
@@ -3571,10 +3926,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagosComponent", function() { return PagosComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../services/pagos/pago.service */ "./src/app/services/pagos/pago.service.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
-/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../services/shared/shared.service */ "./src/app/services/shared/shared.service.ts");
+/* harmony import */ var _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../services/shared/notification.service */ "./src/app/services/shared/notification.service.ts");
+/* harmony import */ var _services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../services/pagos/pago.service */ "./src/app/services/pagos/pago.service.ts");
 
 
 
@@ -3586,101 +3941,104 @@ let PagosComponent = class PagosComponent {
         this.pagosService = pagosService;
         this.sharedService = sharedService;
         this.notificacion = notificacion;
+        this.showSpinner = false;
+        // Arrays
         this.formArray = [];
         this.formFinal = [];
         this.direcciones = [];
         this.transportadora = [];
         this.dataObjectPagoFinal = [];
-        this.showSpinner = false;
-        this.customStripeForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
-            name: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(18)]),
-            lastname: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(18)
-            ]),
-            cardNumber: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(18)
-            ]),
-            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]),
-            expMonth: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            expYear: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            cvv: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(3)
-            ]),
-            amount: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]()
-        });
         this.months = [
-            { id: "1", value: "01" },
-            { id: "1", value: "02" },
-            { id: "1", value: "03" },
-            { id: "1", value: "04" },
-            { id: "1", value: "05" },
-            { id: "1", value: "06" },
-            { id: "1", value: "07" },
-            { id: "1", value: "08" },
-            { id: "1", value: "09" },
-            { id: "1", value: "10" },
-            { id: "1", value: "11" },
-            { id: "1", value: "12" }
+            { id: '1', value: '01' },
+            { id: '1', value: '02' },
+            { id: '1', value: '03' },
+            { id: '1', value: '04' },
+            { id: '1', value: '05' },
+            { id: '1', value: '06' },
+            { id: '1', value: '07' },
+            { id: '1', value: '08' },
+            { id: '1', value: '09' },
+            { id: '1', value: '10' },
+            { id: '1', value: '11' },
+            { id: '1', value: '12' },
         ];
         this.expYears = [
-            { id: "20", value: "01" },
-            { id: "21", value: "02" },
-            { id: "22", value: "03" },
-            { id: "23", value: "04" },
-            { id: "24", value: "05" },
-            { id: "25", value: "06" },
-            { id: "26", value: "07" },
-            { id: "27", value: "08" },
-            { id: "28", value: "09" },
-            { id: "29", value: "10" },
-            { id: "30", value: "11" }
+            { id: '20', value: '01' },
+            { id: '21', value: '02' },
+            { id: '22', value: '03' },
+            { id: '23', value: '04' },
+            { id: '24', value: '05' },
+            { id: '25', value: '06' },
+            { id: '26', value: '07' },
+            { id: '27', value: '08' },
+            { id: '28', value: '09' },
+            { id: '29', value: '10' },
+            { id: '30', value: '11' },
         ];
-        //To share the form in preceso compra componenet
-        this.sharedService.formValues.subscribe(valuesForm => {
+        // To share the form in preceso compra componenet
+        this.sharedService.formValues.subscribe((valuesForm) => {
             this.valuesFormDireccione = valuesForm;
             console.log(this.valuesFormDireccione);
         });
-        //To share the form in preceso compra componenet
-        this.sharedService.formValuesTransportadora.subscribe(valuesForm => {
+        // To share the form in preceso compra componenet
+        this.sharedService.formValuesTransportadora.subscribe((valuesForm) => {
             this.valuesFormTransportadora = valuesForm;
             console.log(this.valuesFormTransportadora);
         });
-        //To share the form in preceso compra componenet
-        this.sharedService.arrayValuesCompras.subscribe(valuesArray => {
+        // To share the form in preceso compra componenet
+        this.sharedService.arrayValuesCompras.subscribe((valuesArray) => {
             this.valuesArrayCompras = valuesArray;
             console.log(this.valuesArrayCompras);
         });
     }
     restartFormGroup() {
         this.customStripeForm.setValue({
-            name: "",
-            lastname: "",
-            cardNumber: "",
-            email: "",
-            expMonth: "",
-            expYear: "",
-            cvv: ""
+            name: '',
+            lastname: '',
+            cardNumber: '',
+            email: '',
+            expMonth: '',
+            expYear: '',
+            cvv: '',
         });
     }
     ngOnInit() {
         this.loadStripe();
-        //To get the information from  a sessionStorage
-        var user = sessionStorage.getItem("userAuth");
+        // To get the information from  a sessionStorage
+        const user = sessionStorage.getItem('userAuth');
         this.user = JSON.parse(user);
-        console.log(this.user);
+        this.customStripeForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(18),
+            ]),
+            lastname: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(18),
+            ]),
+            cardNumber: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(18),
+            ]),
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]),
+            expMonth: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
+            expYear: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
+            cvv: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(3),
+            ]),
+            amount: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.amount),
+        });
     }
     loadStripe() {
-        if (!window.document.getElementById("stripe-custom-form-script")) {
-            var s = window.document.createElement("script");
-            s.id = "stripe-custom-form-script";
-            s.type = "text/javascript";
-            s.src = "https://js.stripe.com/v2/";
+        if (!window.document.getElementById('stripe-custom-form-script')) {
+            const s = window.document.createElement('script');
+            s.id = 'stripe-custom-form-script';
+            s.type = 'text/javascript';
+            s.src = 'https://js.stripe.com/v2/';
             s.onload = () => {
-                window["Stripe"].setPublishableKey("pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC");
+                window['Stripe'].setPublishableKey('pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC');
             };
             window.document.body.appendChild(s);
         }
@@ -3689,26 +4047,9 @@ let PagosComponent = class PagosComponent {
         this.customStripeForm.reset();
         this.restartFormGroup();
     }
-    // pay(amount) {
-    //   var handler = (<any>window).StripeCheckout.configure({
-    //     key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI',
-    //     locale: 'auto',
-    //     token: function (token: any) {
-    //       // You can access the token ID with `token.id`.
-    //       // Get the token ID to your server-side code for use.
-    //       console.log(token)
-    //       alert('Token Created!!');
-    //     }
-    //   });
-    //   handler.open({
-    //     name: 'Demo Site',
-    //     description: '2 widgets',
-    //     amount: amount * 100
-    //   });
-    // }
     pay(form) {
-        if (!window["Stripe"]) {
-            alert("Oops! Stripe did not initialize properly.");
+        if (!window['Stripe']) {
+            alert('Oops! Stripe did not initialize properly.');
             return;
         }
         this.showSpinner = true;
@@ -3716,75 +4057,80 @@ let PagosComponent = class PagosComponent {
             this.showSpinner = false;
         }, 5000);
         this.submitted = true;
-        console.log(this.customStripeForm);
         if (this.customStripeForm.invalid) {
             return;
         }
         this.formProcess = true;
-        console.log("form");
+        console.log('form');
         console.log(form);
         window.Stripe.card.createToken({
             number: form.cardNumber,
             exp_month: form.expMonth,
             exp_year: form.expYear,
-            cvc: form.cvc
+            cvc: form.cvc,
         }, (status, response) => {
             this.submitted = false;
             this.formProcess = false;
             if (status === 200) {
                 this.message = `Success! Card token ${response.card.id}.`;
-                console.log("Toke generado" + this.message);
+                console.log('Toke generado' + this.message);
                 this.token = response.id;
-                console.log("Token server " + this.token);
-                this.formArray.push(form);
-                console.log(this.formArray);
-                this.agregarTokenCardForm();
-                this.chargeMoney(this.formFinal);
+                console.log('Token server ' + this.token);
+                // this.formArray.push(form);
+                console.log('form values', this.formArray);
+                this.agregarTokenCardForm(form);
             }
             else {
                 this.message = response.error.message;
             }
         });
     }
-    agregarTokenCardForm() {
+    agregarTokenCardForm(form) {
         const f = this.formArray;
         const tc = this.token;
         const amount = this.amount;
-        console.log(amount);
-        for (let index = 0; index < f.length; index++) {
-            this.formFinal.push({
-                clienteId: this.user.id,
-                domicilioId: 1,
-                name: f[index].name,
-                lastname: f[index].lastname,
-                email: f[index].email,
-                tokenCard: tc,
-                amount: amount
-            });
-            console.log(this.valuesArrayCompras);
-            console.log(this.formFinal);
-        }
-        // this.direcciones.push(this.valuesFormTransportadora , this.direcciones, this.formFinal);
+        this.formFinal.push({
+            clienteId: this.user.id,
+            domicilioId: 1,
+            name: form.name,
+            lastname: form.lastname,
+            email: form.email,
+            tokenCard: tc,
+            amount: amount,
+        });
+        // for (let index = 0; index < f.length; index++) {
+        //   this.formFinal.push({
+        //     clienteId: this.user.id,
+        //     domicilioId: 1,
+        //     name: f[index].name,
+        //     lastname: f[index].lastname,
+        //     email: f[index].email,
+        //     tokenCard: tc,
+        //     amount: amount,
+        //   });
+        //   console.log('formFinal agregarTokenCard', this.formArray);
+        // }
+        this.direcciones.push(this.valuesFormTransportadora, this.direcciones, this.formFinal);
         // console.log( "Direcine y tranpso" + this.direcciones);
-        this.dataObjectPagoFinal = ["Erick", "Javier"];
         this.formFinal.push(this.valuesFormDireccione, this.valuesFormTransportadora, this.valuesArrayCompras);
-        //console.log(this.formFinal);
+        this.chargeMoney(this.formFinal);
+        console.log('form final', this.formFinal);
         return this.formFinal;
     }
     chargeMoney(formFinal) {
-        this.pagosService.chargeMoney(formFinal).subscribe(data => {
+        this.pagosService.chargeMoney(formFinal).subscribe((data) => {
             this.sharedService.paymentCharge(data);
             this.sharedService.stepcompleted(true);
-        }, error => {
+        }, (error) => {
             console.log(error);
-            alert("Querry faild");
+            alert('Querry faild');
         });
     }
 };
 PagosComponent.ctorParameters = () => [
-    { type: _services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_2__["PagoService"] },
-    { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"] },
-    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__["NotificationService"] }
+    { type: _services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_5__["PagoService"] },
+    { type: _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__["SharedService"] },
+    { type: _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__["NotificationService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -3792,13 +4138,13 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 ], PagosComponent.prototype, "amount", void 0);
 PagosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: "app-pagos",
+        selector: 'app-pagos',
         template: __webpack_require__(/*! raw-loader!./pagos.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/partials/carrito-compra/procesoCompra/pagos/pagos.component.html"),
         styles: [__webpack_require__(/*! ./pagos.component.css */ "./src/app/components/partials/carrito-compra/procesoCompra/pagos/pagos.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_2__["PagoService"],
-        _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"],
-        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_5__["NotificationService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_pagos_pago_service__WEBPACK_IMPORTED_MODULE_5__["PagoService"],
+        _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__["SharedService"],
+        _services_shared_notification_service__WEBPACK_IMPORTED_MODULE_4__["NotificationService"]])
 ], PagosComponent);
 
 
@@ -3927,7 +4273,7 @@ let ComentarioDetalleProductoComponent = class ComentarioDetalleProductoComponen
         console.log(this.d.id);
     }
     getComentario(id) {
-        this.catalogoserve.getComentarios(id).subscribe(res => {
+        this.catalogoserve.getComentario().subscribe(res => {
             console.log(res);
             this.comentarios = res;
         }, err => console.log(err));
@@ -4152,7 +4498,7 @@ ExtensionPanelDetalleProductoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".footer{\r\nbackground-color: #007bff;\r\nheight: 300px;\r\n}\r\n\r\nh2{\r\n  padding-left: 50px;\r\n  padding-top: 25px;\r\n  position: relative;\r\n  left: 130px;\r\n  font-size: 23px;\r\n\r\n}\r\n\r\n.contactenos{\r\n  position: relative;\r\n  left: 23px;\r\n}\r\n\r\nul li a {\r\n  padding-top: 23px;\r\n  list-style: none;\r\n  color: white;\r\n  position: relative;\r\n  left: 115px;\r\n\r\n}\r\n\r\nul li {\r\n list-style: none;\r\n}\r\n\r\nul li i{\r\n  margin: 15px;\r\n}\r\n\r\n.fa-motorcycle , .fa-tshirt, .fa-tripadvisor,\r\n.fa-mitten, .fa-broadcast-tower{\r\n  visibility: hidden;\r\n}\r\n\r\nul li a.hoverCascos:hover  .fa-motorcycle{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverChalecos:hover  .fa-tshirt{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverVisores:hover  .fa-tripadvisor{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverGuantes:hover  .fa-mitten{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverAcesorios:hover  .fa-broadcast-tower{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nnav.redes-sociales a {\r\n  color: white;\r\n  margin-right: 20px;\r\n  position: relative;\r\n  left: 140px;\r\n  background-size: 500px;\r\n}\r\n\r\np{\r\n\r\n  list-style: none;\r\n  color: white;\r\n  position: relative;\r\n  left: 115px;\r\n}\r\n\r\nh2 span{\r\n  display: block;\r\n  font-size: 17px;\r\n  color: white;\r\n  margin-bottom: 5px;\r\n }\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9mb290ZXItaG9tZS9mb290ZXItaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0EseUJBQXlCO0FBQ3pCLGFBQWE7QUFDYjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxlQUFlOztBQUVqQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixVQUFVO0FBQ1o7O0FBQ0E7RUFDRSxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsV0FBVzs7QUFFYjs7QUFHQTtDQUNDLGdCQUFnQjtBQUNqQjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTs7RUFFRSxrQkFBa0I7QUFDcEI7O0FBSUE7RUFDRSxtQkFBbUI7RUFDbkIsNkJBQXFCO1VBQXJCLHFCQUFxQjtFQUNyQjtBQUNGOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLDZCQUFxQjtVQUFyQixxQkFBcUI7RUFDckI7QUFDRjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQiw2QkFBcUI7VUFBckIscUJBQXFCO0VBQ3JCO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBbUI7RUFDbkIsNkJBQXFCO1VBQXJCLHFCQUFxQjtFQUNyQjtBQUNGOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLDZCQUFxQjtVQUFyQixxQkFBcUI7RUFDckI7QUFDRjs7QUFFQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxzQkFBc0I7QUFDeEI7O0FBRUE7O0VBRUUsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsV0FBVztBQUNiOztBQUdBO0VBQ0UsY0FBYztFQUNkLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9mb290ZXItaG9tZS9mb290ZXItaG9tZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmZvb3RlcntcclxuYmFja2dyb3VuZC1jb2xvcjogIzAwN2JmZjtcclxuaGVpZ2h0OiAzMDBweDtcclxufVxyXG5cclxuaDJ7XHJcbiAgcGFkZGluZy1sZWZ0OiA1MHB4O1xyXG4gIHBhZGRpbmctdG9wOiAyNXB4O1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBsZWZ0OiAxMzBweDtcclxuICBmb250LXNpemU6IDIzcHg7XHJcblxyXG59XHJcblxyXG4uY29udGFjdGVub3N7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDIzcHg7XHJcbn1cclxudWwgbGkgYSB7XHJcbiAgcGFkZGluZy10b3A6IDIzcHg7XHJcbiAgbGlzdC1zdHlsZTogbm9uZTtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDExNXB4O1xyXG5cclxufVxyXG5cclxuXHJcbnVsIGxpIHtcclxuIGxpc3Qtc3R5bGU6IG5vbmU7XHJcbn1cclxuXHJcbnVsIGxpIGl7XHJcbiAgbWFyZ2luOiAxNXB4O1xyXG59XHJcblxyXG4uZmEtbW90b3JjeWNsZSAsIC5mYS10c2hpcnQsIC5mYS10cmlwYWR2aXNvcixcclxuLmZhLW1pdHRlbiwgLmZhLWJyb2FkY2FzdC10b3dlcntcclxuICB2aXNpYmlsaXR5OiBoaWRkZW47XHJcbn1cclxuXHJcblxyXG5cclxudWwgbGkgYS5ob3ZlckNhc2Nvczpob3ZlciAgLmZhLW1vdG9yY3ljbGV7XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxuICB0cmFuc2Zvcm06IHNjYWxlKDEuMSk7XHJcbiAgdHJhbnNpdGlvbjogYWxsIC4xc1xyXG59XHJcblxyXG51bCBsaSBhLmhvdmVyQ2hhbGVjb3M6aG92ZXIgIC5mYS10c2hpcnR7XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxuICB0cmFuc2Zvcm06IHNjYWxlKDEuMSk7XHJcbiAgdHJhbnNpdGlvbjogYWxsIC4xc1xyXG59XHJcblxyXG51bCBsaSBhLmhvdmVyVmlzb3Jlczpob3ZlciAgLmZhLXRyaXBhZHZpc29ye1xyXG4gIHZpc2liaWxpdHk6IHZpc2libGU7XHJcbiAgdHJhbnNmb3JtOiBzY2FsZSgxLjEpO1xyXG4gIHRyYW5zaXRpb246IGFsbCAuMXNcclxufVxyXG5cclxudWwgbGkgYS5ob3Zlckd1YW50ZXM6aG92ZXIgIC5mYS1taXR0ZW57XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxuICB0cmFuc2Zvcm06IHNjYWxlKDEuMSk7XHJcbiAgdHJhbnNpdGlvbjogYWxsIC4xc1xyXG59XHJcblxyXG51bCBsaSBhLmhvdmVyQWNlc29yaW9zOmhvdmVyICAuZmEtYnJvYWRjYXN0LXRvd2Vye1xyXG4gIHZpc2liaWxpdHk6IHZpc2libGU7XHJcbiAgdHJhbnNmb3JtOiBzY2FsZSgxLjEpO1xyXG4gIHRyYW5zaXRpb246IGFsbCAuMXNcclxufVxyXG5cclxubmF2LnJlZGVzLXNvY2lhbGVzIGEge1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDE0MHB4O1xyXG4gIGJhY2tncm91bmQtc2l6ZTogNTAwcHg7XHJcbn1cclxuXHJcbnB7XHJcblxyXG4gIGxpc3Qtc3R5bGU6IG5vbmU7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBsZWZ0OiAxMTVweDtcclxufVxyXG5cclxuXHJcbmgyIHNwYW57XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgZm9udC1zaXplOiAxN3B4O1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBtYXJnaW4tYm90dG9tOiA1cHg7XHJcbiB9XHJcblxyXG5cclxuIl19 */"
+module.exports = ".footer{\r\nbackground-color: #007bff;\r\nheight: 300px;\r\n}\r\n\r\nh2{\r\n  padding-left: 50px;\r\n  padding-top: 25px;\r\n  position: relative;\r\n  left: 130px;\r\n  font-size: 23px;\r\n\r\n}\r\n\r\n.redes-sociales span{\r\n  position: relative;\r\n  left: 175px;\r\n  padding-right: 20px;\r\n}\r\n\r\n.contactenos{\r\n  position: relative;\r\n  left: 23px;\r\n}\r\n\r\nul li a {\r\n  padding-top: 23px;\r\n  list-style: none;\r\n  color: white;\r\n  position: relative;\r\n  left: 115px;\r\n\r\n}\r\n\r\nul li {\r\n list-style: none;\r\n}\r\n\r\nul li i{\r\n  margin: 15px;\r\n}\r\n\r\n.fa-motorcycle , .fa-tshirt, .fa-tripadvisor,\r\n.fa-mitten, .fa-broadcast-tower{\r\n  visibility: hidden;\r\n}\r\n\r\nul li a.hoverCascos:hover  .fa-motorcycle{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverChalecos:hover  .fa-tshirt{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverVisores:hover  .fa-tripadvisor{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverGuantes:hover  .fa-mitten{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\nul li a.hoverAcesorios:hover  .fa-broadcast-tower{\r\n  visibility: visible;\r\n  -webkit-transform: scale(1.1);\r\n          transform: scale(1.1);\r\n  transition: all .1s\r\n}\r\n\r\np{\r\n\r\n  list-style: none;\r\n  color: white;\r\n  position: relative;\r\n  left: 115px;\r\n}\r\n\r\nh2 span{\r\n  display: block;\r\n  font-size: 17px;\r\n  color: white;\r\n  margin-bottom: 5px;\r\n }\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9mb290ZXItaG9tZS9mb290ZXItaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0EseUJBQXlCO0FBQ3pCLGFBQWE7QUFDYjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxlQUFlOztBQUVqQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFVBQVU7QUFDWjs7QUFDQTtFQUNFLGlCQUFpQjtFQUNqQixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixXQUFXOztBQUViOztBQUdBO0NBQ0MsZ0JBQWdCO0FBQ2pCOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBOztFQUVFLGtCQUFrQjtBQUNwQjs7QUFJQTtFQUNFLG1CQUFtQjtFQUNuQiw2QkFBcUI7VUFBckIscUJBQXFCO0VBQ3JCO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBbUI7RUFDbkIsNkJBQXFCO1VBQXJCLHFCQUFxQjtFQUNyQjtBQUNGOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLDZCQUFxQjtVQUFyQixxQkFBcUI7RUFDckI7QUFDRjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQiw2QkFBcUI7VUFBckIscUJBQXFCO0VBQ3JCO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBbUI7RUFDbkIsNkJBQXFCO1VBQXJCLHFCQUFxQjtFQUNyQjtBQUNGOztBQUVBOztFQUVFLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYjs7QUFHQTtFQUNFLGNBQWM7RUFDZCxlQUFlO0VBQ2YsWUFBWTtFQUNaLGtCQUFrQjtDQUNuQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcGFydGlhbHMvZm9vdGVyLWhvbWUvZm9vdGVyLWhvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb290ZXJ7XHJcbmJhY2tncm91bmQtY29sb3I6ICMwMDdiZmY7XHJcbmhlaWdodDogMzAwcHg7XHJcbn1cclxuXHJcbmgye1xyXG4gIHBhZGRpbmctbGVmdDogNTBweDtcclxuICBwYWRkaW5nLXRvcDogMjVweDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTMwcHg7XHJcbiAgZm9udC1zaXplOiAyM3B4O1xyXG5cclxufVxyXG5cclxuLnJlZGVzLXNvY2lhbGVzIHNwYW57XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDE3NXB4O1xyXG4gIHBhZGRpbmctcmlnaHQ6IDIwcHg7XHJcbn1cclxuXHJcbi5jb250YWN0ZW5vc3tcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMjNweDtcclxufVxyXG51bCBsaSBhIHtcclxuICBwYWRkaW5nLXRvcDogMjNweDtcclxuICBsaXN0LXN0eWxlOiBub25lO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTE1cHg7XHJcblxyXG59XHJcblxyXG5cclxudWwgbGkge1xyXG4gbGlzdC1zdHlsZTogbm9uZTtcclxufVxyXG5cclxudWwgbGkgaXtcclxuICBtYXJnaW46IDE1cHg7XHJcbn1cclxuXHJcbi5mYS1tb3RvcmN5Y2xlICwgLmZhLXRzaGlydCwgLmZhLXRyaXBhZHZpc29yLFxyXG4uZmEtbWl0dGVuLCAuZmEtYnJvYWRjYXN0LXRvd2Vye1xyXG4gIHZpc2liaWxpdHk6IGhpZGRlbjtcclxufVxyXG5cclxuXHJcblxyXG51bCBsaSBhLmhvdmVyQ2FzY29zOmhvdmVyICAuZmEtbW90b3JjeWNsZXtcclxuICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG4gIHRyYW5zZm9ybTogc2NhbGUoMS4xKTtcclxuICB0cmFuc2l0aW9uOiBhbGwgLjFzXHJcbn1cclxuXHJcbnVsIGxpIGEuaG92ZXJDaGFsZWNvczpob3ZlciAgLmZhLXRzaGlydHtcclxuICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG4gIHRyYW5zZm9ybTogc2NhbGUoMS4xKTtcclxuICB0cmFuc2l0aW9uOiBhbGwgLjFzXHJcbn1cclxuXHJcbnVsIGxpIGEuaG92ZXJWaXNvcmVzOmhvdmVyICAuZmEtdHJpcGFkdmlzb3J7XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxuICB0cmFuc2Zvcm06IHNjYWxlKDEuMSk7XHJcbiAgdHJhbnNpdGlvbjogYWxsIC4xc1xyXG59XHJcblxyXG51bCBsaSBhLmhvdmVyR3VhbnRlczpob3ZlciAgLmZhLW1pdHRlbntcclxuICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG4gIHRyYW5zZm9ybTogc2NhbGUoMS4xKTtcclxuICB0cmFuc2l0aW9uOiBhbGwgLjFzXHJcbn1cclxuXHJcbnVsIGxpIGEuaG92ZXJBY2Vzb3Jpb3M6aG92ZXIgIC5mYS1icm9hZGNhc3QtdG93ZXJ7XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxuICB0cmFuc2Zvcm06IHNjYWxlKDEuMSk7XHJcbiAgdHJhbnNpdGlvbjogYWxsIC4xc1xyXG59XHJcblxyXG5we1xyXG5cclxuICBsaXN0LXN0eWxlOiBub25lO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbGVmdDogMTE1cHg7XHJcbn1cclxuXHJcblxyXG5oMiBzcGFue1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIGZvbnQtc2l6ZTogMTdweDtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgbWFyZ2luLWJvdHRvbTogNXB4O1xyXG4gfVxyXG5cclxuXHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -4168,10 +4514,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterHomeComponent", function() { return FooterHomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
+
 
 
 let FooterHomeComponent = class FooterHomeComponent {
-    constructor() { }
+    constructor() {
+        this.faFacebook = _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faFacebook"];
+        this.faWhatsapp = _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faWhatsapp"];
+        this.faInstagram = _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faInstagram"];
+        this.faPhone = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPhone"];
+        this.faMailBulk = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMailBulk"];
+    }
     ngOnInit() {
     }
 };
@@ -4195,7 +4551,7 @@ FooterHomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-drawer{\r\n  width: 250px;\r\n  position: fixed;\r\n}\r\n\r\n#container-principal{\r\n  height:500px\r\n}\r\n\r\n#side-bar-catalogos{\r\n  position: absolute;\r\n  left: 200px;\r\n  top: 100px;\r\n  height: 500px;\r\n}\r\n\r\n#Catalogue{\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 200px;\r\n  width: 300px;\r\n  height: 500px;\r\n  z-index: 99;\r\n  background-color: grey;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9tYWluLXNpZGUtYmFyL21haW4tc2lkZS1iYXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixlQUFlO0FBQ2pCOztBQUVBO0VBQ0U7QUFDRjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsVUFBVTtFQUNWLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsV0FBVztFQUNYLFlBQVk7RUFDWixhQUFhO0VBQ2IsV0FBVztFQUNYLHNCQUFzQjtBQUN4QiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcGFydGlhbHMvbWFpbi1zaWRlLWJhci9tYWluLXNpZGUtYmFyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LWRyYXdlcntcclxuICB3aWR0aDogMjUwcHg7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG59XHJcblxyXG4jY29udGFpbmVyLXByaW5jaXBhbHtcclxuICBoZWlnaHQ6NTAwcHhcclxufVxyXG5cclxuI3NpZGUtYmFyLWNhdGFsb2dvc3tcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogMjAwcHg7XHJcbiAgdG9wOiAxMDBweDtcclxuICBoZWlnaHQ6IDUwMHB4O1xyXG59XHJcblxyXG4jQ2F0YWxvZ3Vle1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDEwMHB4O1xyXG4gIGxlZnQ6IDIwMHB4O1xyXG4gIHdpZHRoOiAzMDBweDtcclxuICBoZWlnaHQ6IDUwMHB4O1xyXG4gIHotaW5kZXg6IDk5O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGdyZXk7XHJcbn1cclxuIl19 */"
+module.exports = ".mat-drawer {\r\n  width: 315px;\r\n  position: fixed;\r\n}\r\n\r\n#container-principal {\r\n  height: 500px;\r\n}\r\n\r\n#side-bar-catalogos {\r\n  position: absolute;\r\n  left: 200px;\r\n  top: 100px;\r\n  height: 500px;\r\n}\r\n\r\n#Catalogue {\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 200px;\r\n  width: 300px;\r\n  height: 500px;\r\n  z-index: 99;\r\n  background-color: grey;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9tYWluLXNpZGUtYmFyL21haW4tc2lkZS1iYXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxVQUFVO0VBQ1YsYUFBYTtBQUNmOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFVBQVU7RUFDVixXQUFXO0VBQ1gsWUFBWTtFQUNaLGFBQWE7RUFDYixXQUFXO0VBQ1gsc0JBQXNCO0FBQ3hCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9tYWluLXNpZGUtYmFyL21haW4tc2lkZS1iYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtZHJhd2VyIHtcclxuICB3aWR0aDogMzE1cHg7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG59XHJcblxyXG4jY29udGFpbmVyLXByaW5jaXBhbCB7XHJcbiAgaGVpZ2h0OiA1MDBweDtcclxufVxyXG5cclxuI3NpZGUtYmFyLWNhdGFsb2dvcyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGxlZnQ6IDIwMHB4O1xyXG4gIHRvcDogMTAwcHg7XHJcbiAgaGVpZ2h0OiA1MDBweDtcclxufVxyXG5cclxuI0NhdGFsb2d1ZSB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMTAwcHg7XHJcbiAgbGVmdDogMjAwcHg7XHJcbiAgd2lkdGg6IDMwMHB4O1xyXG4gIGhlaWdodDogNTAwcHg7XHJcbiAgei1pbmRleDogOTk7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JleTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -4232,6 +4588,16 @@ let MainSideBarComponent = class MainSideBarComponent {
         this.sharedService.mostrarComponente.subscribe(value => {
             this.opened = !this.opened;
         });
+        // To hide the catalog component
+        this.sharedService.hideCatalog.subscribe(value => {
+            this.openCatalogue = false;
+            if (this.openCatalogue = true) {
+            }
+            else {
+                this.openCatalogue = false;
+            }
+            console.log('ocultar catalogo', this.openCatalogue);
+        });
     }
 };
 MainSideBarComponent.ctorParameters = () => [
@@ -4257,7 +4623,7 @@ MainSideBarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "nav {\r\n  height: 100px;\r\n}\r\n\r\n.navbar-brand,\r\n.form-inline {\r\n  position: relative;\r\n  bottom: 23px;\r\n}\r\n\r\n.navbar-nav {\r\n  position: relative;\r\n  top: 23px;\r\n  right: 480px;\r\n  font-size: 13px;\r\n}\r\n\r\n.navbar-right {\r\n  position: relative;\r\n  top: 23px;\r\n  right: 4rem;\r\n}\r\n\r\n.form-control {\r\n  width: 400px;\r\n}\r\n\r\n.btn-outline-success {\r\n  position: relative;\r\n  left: 17px;\r\n}\r\n\r\n.avatar-header-image {\r\n  background-size: cover;\r\n  position: absolute;\r\n  bottom: 2px;\r\n}\r\n\r\n/* .avatar-header-image{\r\n  background-image: url('https://res.cloudinary.com/dequvdgav/image/upload/v1558927931/ozgtye9pgab5k6q9l3ps.jpg');\r\n  background-size: cover;\r\n  position: absolute;\r\n  bottom: 2px;\r\n} */\r\n\r\n.card-img-top {\r\n  position: absolute;\r\n  left: 210px;\r\n  width: 2.5rem;\r\n  background-size: cover;\r\n  top: 5px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0FBQ2Y7O0FBRUE7O0VBRUUsa0JBQWtCO0VBQ2xCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixTQUFTO0VBQ1QsWUFBWTtFQUNaLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsU0FBUztFQUNULFdBQVc7QUFDYjs7QUFDQTtFQUNFLFlBQVk7QUFDZDs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixVQUFVO0FBQ1o7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYjs7QUFFQTs7Ozs7R0FLRzs7QUFFSDtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsYUFBYTtFQUNiLHNCQUFzQjtFQUN0QixRQUFRO0FBQ1YiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3BhcnRpYWxzL25hdmJhci9uYXZiYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm5hdiB7XHJcbiAgaGVpZ2h0OiAxMDBweDtcclxufVxyXG5cclxuLm5hdmJhci1icmFuZCxcclxuLmZvcm0taW5saW5lIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYm90dG9tOiAyM3B4O1xyXG59XHJcblxyXG4ubmF2YmFyLW5hdiB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHRvcDogMjNweDtcclxuICByaWdodDogNDgwcHg7XHJcbiAgZm9udC1zaXplOiAxM3B4O1xyXG59XHJcblxyXG4ubmF2YmFyLXJpZ2h0IHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgdG9wOiAyM3B4O1xyXG4gIHJpZ2h0OiA0cmVtO1xyXG59XHJcbi5mb3JtLWNvbnRyb2wge1xyXG4gIHdpZHRoOiA0MDBweDtcclxufVxyXG4uYnRuLW91dGxpbmUtc3VjY2VzcyB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDE3cHg7XHJcbn1cclxuXHJcbi5hdmF0YXItaGVhZGVyLWltYWdlIHtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBib3R0b206IDJweDtcclxufVxyXG5cclxuLyogLmF2YXRhci1oZWFkZXItaW1hZ2V7XHJcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCdodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kZXF1dmRnYXYvaW1hZ2UvdXBsb2FkL3YxNTU4OTI3OTMxL296Z3R5ZTlwZ2FiNWs2cTlsM3BzLmpwZycpO1xyXG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGJvdHRvbTogMnB4O1xyXG59ICovXHJcblxyXG4uY2FyZC1pbWctdG9wIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogMjEwcHg7XHJcbiAgd2lkdGg6IDIuNXJlbTtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIHRvcDogNXB4O1xyXG59XHJcbiJdfQ== */"
+module.exports = "nav {\r\n  height: 100px;\r\n}\r\n\r\n.navbar-brand,\r\n.form-inline {\r\n  position: relative;\r\n  bottom: 23px;\r\n}\r\n\r\n.navbar-nav {\r\n  position: relative;\r\n  top: 23px;\r\n  right: 480px;\r\n  font-size: 13px;\r\n}\r\n\r\n.navbar-right {\r\n  position: relative;\r\n  top: 23px;\r\n  right: 4rem;\r\n}\r\n\r\n.form-control {\r\n  width: 400px;\r\n}\r\n\r\n.btn-outline-success {\r\n  position: relative;\r\n  left: 17px;\r\n}\r\n\r\n.avatar-header-image {\r\n  background-size: cover;\r\n  position: absolute;\r\n  bottom: 2px;\r\n}\r\n\r\n/* .avatar-header-image{\r\n  background-image: url('https://res.cloudinary.com/dequvdgav/image/upload/v1558927931/ozgtye9pgab5k6q9l3ps.jpg');\r\n  background-size: cover;\r\n  position: absolute;\r\n  bottom: 2px;\r\n} */\r\n\r\n.card-img-top {\r\n  position: absolute;\r\n  left: 210px;\r\n  width: 2.5rem;\r\n  background-size: cover;\r\n  top: 5px;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0FBQ2Y7O0FBRUE7O0VBRUUsa0JBQWtCO0VBQ2xCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixTQUFTO0VBQ1QsWUFBWTtFQUNaLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsU0FBUztFQUNULFdBQVc7QUFDYjs7QUFDQTtFQUNFLFlBQVk7QUFDZDs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixVQUFVO0FBQ1o7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYjs7QUFFQTs7Ozs7R0FLRzs7QUFFSDtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsYUFBYTtFQUNiLHNCQUFzQjtFQUN0QixRQUFRO0FBQ1YiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3BhcnRpYWxzL25hdmJhci9uYXZiYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm5hdiB7XHJcbiAgaGVpZ2h0OiAxMDBweDtcclxufVxyXG5cclxuLm5hdmJhci1icmFuZCxcclxuLmZvcm0taW5saW5lIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYm90dG9tOiAyM3B4O1xyXG59XHJcblxyXG4ubmF2YmFyLW5hdiB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHRvcDogMjNweDtcclxuICByaWdodDogNDgwcHg7XHJcbiAgZm9udC1zaXplOiAxM3B4O1xyXG59XHJcblxyXG4ubmF2YmFyLXJpZ2h0IHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgdG9wOiAyM3B4O1xyXG4gIHJpZ2h0OiA0cmVtO1xyXG59XHJcbi5mb3JtLWNvbnRyb2wge1xyXG4gIHdpZHRoOiA0MDBweDtcclxufVxyXG4uYnRuLW91dGxpbmUtc3VjY2VzcyB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6IDE3cHg7XHJcbn1cclxuXHJcbi5hdmF0YXItaGVhZGVyLWltYWdlIHtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBib3R0b206IDJweDtcclxufVxyXG5cclxuLyogLmF2YXRhci1oZWFkZXItaW1hZ2V7XHJcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCdodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kZXF1dmRnYXYvaW1hZ2UvdXBsb2FkL3YxNTU4OTI3OTMxL296Z3R5ZTlwZ2FiNWs2cTlsM3BzLmpwZycpO1xyXG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGJvdHRvbTogMnB4O1xyXG59ICovXHJcblxyXG4uY2FyZC1pbWctdG9wIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogMjEwcHg7XHJcbiAgd2lkdGg6IDIuNXJlbTtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIHRvcDogNXB4O1xyXG59XHJcblxyXG4iXX0= */"
 
 /***/ }),
 
@@ -4302,22 +4668,17 @@ let NavbarComponent = class NavbarComponent {
         this.faShoppingCart = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__["faShoppingCart"];
         this.faBell = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__["faBell"];
     }
-    ngAfterViewInit() {
-    }
     ngOnInit() {
         // o get the information from  a sessionStorage
         const user = sessionStorage.getItem('userAuth');
         this.user = JSON.parse(user);
         console.log(this.user);
         // this.getClientes(this.user.id);
-        this.Auth.authStatus.subscribe(value => (this.loggedin = value));
+        this.Auth.authStatus.subscribe((value) => (this.loggedin = value));
         if (this.loggedin != null) {
             this.getClientes(this.user.id);
-            console.log('No null' + this.loggedin);
         }
-        this.Auth.typeUserStatus.subscribe(value => (this.loggedinAdmin = value));
-        // console.log("Login " + this.loggedin);
-        // console.log("Login admin" + this.loggedinAdmin);
+        this.Auth.typeUserStatus.subscribe((value) => (this.loggedinAdmin = value));
     }
     openOnMouseOver(e) {
         this.clickHoverMenuTrigger.openMenu();
@@ -4326,11 +4687,11 @@ let NavbarComponent = class NavbarComponent {
         this.sharedService.getValorMostraCatalogoSidebar(true);
     }
     getClientes(id) {
-        this.cataloServe.getCliente(id).subscribe(res => {
+        this.cataloServe.getCliente(id).subscribe((res) => {
             this.cliente = res;
             // this.cliente.reduce((prev , current) => {prev[current] =  current; return prev;}, {});
             // this.cliente = JSON.parse(this.cliente);
-        }, err => { });
+        }, (err) => { });
     }
     logout(event) {
         // this.sharedService.sharingData.emit("this.addproducto");
@@ -4355,10 +4716,10 @@ let NavbarComponent = class NavbarComponent {
         this.sharedService.getValorMostraComponente(false);
     }
     // To show and hide the catalog componenet
-    toogleShowCatalogosComponent(event) {
-        event.preventDefault();
-        // this.clickHoverMenuTrigger.openMenu();
-        this.sharedService.getValorMostraCatalogoSidebar(false);
+    ShowCatalogosComponent(event) {
+        setTimeout(() => {
+            this.sharedService.getValorMostraCatalogoSidebar(false);
+        }, 1000);
     }
     toogleShowUserSidenav(event) {
         event.preventDefault();
@@ -4367,6 +4728,9 @@ let NavbarComponent = class NavbarComponent {
     toogleHideUserSidenav(event) {
         event.preventDefault();
         this.sharedService.getValorMostraUserSidebar(true);
+    }
+    hideCatalog(e) {
+        this.sharedService.bHideCatalogComponent();
     }
 };
 NavbarComponent.ctorParameters = () => [
@@ -4404,7 +4768,7 @@ NavbarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img{\r\n  height: 300px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9wcm9kdWN0b3MtZGVzdGFjYWRvcy9wcm9kdWN0b3MtZGVzdGFjYWRvcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtBQUNmIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9wcm9kdWN0b3MtZGVzdGFjYWRvcy9wcm9kdWN0b3MtZGVzdGFjYWRvcy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW1ne1xyXG4gIGhlaWdodDogMzAwcHg7XHJcbn1cclxuIl19 */"
+module.exports = ".card {\r\n  max-width: 400px;\r\n\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9wcm9kdWN0b3MtZGVzdGFjYWRvcy9wcm9kdWN0b3MtZGVzdGFjYWRvcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCOztBQUVsQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcGFydGlhbHMvcHJvZHVjdG9zLWRlc3RhY2Fkb3MvcHJvZHVjdG9zLWRlc3RhY2Fkb3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkIHtcclxuICBtYXgtd2lkdGg6IDQwMHB4O1xyXG5cclxufVxyXG5cclxuIl19 */"
 
 /***/ }),
 
@@ -4421,33 +4785,209 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/Catalogos/catalogos.service */ "./src/app/services/Catalogos/catalogos.service.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _show_gallery_image_show_gallery_image_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../show-gallery-image/show-gallery-image.component */ "./src/app/components/partials/show-gallery-image/show-gallery-image.component.ts");
+
+
 
 
 
 let ProductosDestacadosComponent = class ProductosDestacadosComponent {
-    constructor(catalogoserve) {
+    constructor(catalogoserve, dialog) {
         this.catalogoserve = catalogoserve;
+        this.dialog = dialog;
+        this.productosDestacados = [];
     }
     ngOnInit() {
+        this.getProductosDestacados();
     }
     getProductosDestacados() {
-        this.catalogoserve.getProductosDestacados().subscribe(res => {
-            console.log(res);
-            this.productosDestacados = res;
-        }, err => console.log(err));
+        this.catalogoserve.getProductosDestacados().subscribe((productos) => {
+            this.productosDestacados = productos;
+            console.log(this.productosDestacados);
+        }, (err) => console.log(err));
+    }
+    showImage(id) {
+        this.dialog.open(_show_gallery_image_show_gallery_image_component__WEBPACK_IMPORTED_MODULE_4__["ShowGalleryImageComponent"], {
+            height: "600px",
+            width: "800px",
+            data: id,
+        });
     }
 };
 ProductosDestacadosComponent.ctorParameters = () => [
-    { type: _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_2__["CatalogoServes"] }
+    { type: _services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_2__["CatalogoServes"] },
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"] }
 ];
 ProductosDestacadosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-productos-destacados',
+        selector: "app-productos-destacados",
         template: __webpack_require__(/*! raw-loader!./productos-destacados.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/partials/productos-destacados/productos-destacados.component.html"),
         styles: [__webpack_require__(/*! ./productos-destacados.component.css */ "./src/app/components/partials/productos-destacados/productos-destacados.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_2__["CatalogoServes"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_Catalogos_catalogos_service__WEBPACK_IMPORTED_MODULE_2__["CatalogoServes"],
+        _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]])
 ], ProductosDestacadosComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/partials/show-all-comments/show-all-comments.component.css":
+/*!***************************************************************************************!*\
+  !*** ./src/app/components/partials/show-all-comments/show-all-comments.component.css ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".comments-card{\r\n  width: 575px;\r\n  max-height: 150px;\r\n  margin-bottom: 8px;\r\n}\r\n\r\n.comments-header-image{\r\n  width: 50px;\r\n  height: 50px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9zaG93LWFsbC1jb21tZW50cy9zaG93LWFsbC1jb21tZW50cy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBWTtFQUNaLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxXQUFXO0VBQ1gsWUFBWTtBQUNkIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9zaG93LWFsbC1jb21tZW50cy9zaG93LWFsbC1jb21tZW50cy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbW1lbnRzLWNhcmR7XHJcbiAgd2lkdGg6IDU3NXB4O1xyXG4gIG1heC1oZWlnaHQ6IDE1MHB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDhweDtcclxufVxyXG5cclxuLmNvbW1lbnRzLWhlYWRlci1pbWFnZXtcclxuICB3aWR0aDogNTBweDtcclxuICBoZWlnaHQ6IDUwcHg7XHJcbn1cclxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/components/partials/show-all-comments/show-all-comments.component.ts":
+/*!**************************************************************************************!*\
+  !*** ./src/app/components/partials/show-all-comments/show-all-comments.component.ts ***!
+  \**************************************************************************************/
+/*! exports provided: ShowAllCommentsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShowAllCommentsComponent", function() { return ShowAllCommentsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+
+
+
+
+let ShowAllCommentsComponent = class ShowAllCommentsComponent {
+    constructor(dialog, data) {
+        this.dialog = dialog;
+        this.data = data;
+        this.faDoorClosed = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faWindowClose"];
+        this.comments = this.data;
+    }
+    ngOnInit() {
+        console.log(this.comments);
+    }
+    trackByComments(comentario) {
+        return comentario.idComentario;
+    }
+    closeAllCommentsModel() {
+        this.dialog.closeAll();
+    }
+};
+ShowAllCommentsComponent.ctorParameters = () => [
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"] },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"],] }] }
+];
+ShowAllCommentsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-show-all-comments',
+        template: __webpack_require__(/*! raw-loader!./show-all-comments.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/partials/show-all-comments/show-all-comments.component.html"),
+        styles: [__webpack_require__(/*! ./show-all-comments.component.css */ "./src/app/components/partials/show-all-comments/show-all-comments.component.css")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"], Object])
+], ShowAllCommentsComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/partials/show-gallery-image/show-gallery-image.component.css":
+/*!*****************************************************************************************!*\
+  !*** ./src/app/components/partials/show-gallery-image/show-gallery-image.component.css ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcGFydGlhbHMvc2hvdy1nYWxsZXJ5LWltYWdlL3Nob3ctZ2FsbGVyeS1pbWFnZS5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/components/partials/show-gallery-image/show-gallery-image.component.ts":
+/*!****************************************************************************************!*\
+  !*** ./src/app/components/partials/show-gallery-image/show-gallery-image.component.ts ***!
+  \****************************************************************************************/
+/*! exports provided: ShowGalleryImageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShowGalleryImageComponent", function() { return ShowGalleryImageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _services_home_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/home.service */ "./src/app/services/home.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+
+
+
+let ShowGalleryImageComponent = class ShowGalleryImageComponent {
+    constructor(dialogRef, homeService, id) {
+        this.dialogRef = dialogRef;
+        this.homeService = homeService;
+        this.id = id;
+        this.faWindowClose = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faWindowClose"];
+        this.imagenesProductos = [];
+        // Variable to unsubscribe my subcription
+        this.unsubscribe$ = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
+    }
+    ngOnInit() {
+        this.getProductGalleryImages(this.id);
+    }
+    getProductGalleryImages(id) {
+        this.homeService
+            .getImagenesProductso()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.unsubscribe$) // unsubscribe to prevent memory leak
+        )
+            .subscribe((data) => {
+            this.imagenesProductos = data.filter((imagen) => {
+                return imagen.producto_id === id;
+            });
+            this.getFirstImageArray(this.imagenesProductos);
+        });
+    }
+    getFirstImageArray(data) {
+        this.imagePreview = data[0].imagen;
+        console.log(this.imagePreview);
+    }
+    getIdToShow(imagen) {
+        this.imagePreview = imagen;
+    }
+    closeDialog() {
+        this.dialogRef.close();
+        this.imagenesProductos = [];
+    }
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+};
+ShowGalleryImageComponent.ctorParameters = () => [
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"] },
+    { type: _services_home_service__WEBPACK_IMPORTED_MODULE_4__["HomeService"] },
+    { type: Number, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"],] }] }
+];
+ShowGalleryImageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-show-gallery-image",
+        template: __webpack_require__(/*! raw-loader!./show-gallery-image.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/partials/show-gallery-image/show-gallery-image.component.html"),
+        styles: [__webpack_require__(/*! ./show-gallery-image.component.css */ "./src/app/components/partials/show-gallery-image/show-gallery-image.component.css")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+        _services_home_service__WEBPACK_IMPORTED_MODULE_4__["HomeService"], Number])
+], ShowGalleryImageComponent);
 
 
 
@@ -4460,7 +5000,7 @@ ProductosDestacadosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"](
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* .mat-sidenav-container{\r\n  display: flex;\r\n  flex-direction: column;\r\n  position: absolute;\r\n  top: 70px;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 50;;\r\n  height: 600px;\r\n} */\r\n\r\n.mat-drawer-content {\r\n    width: 100px;\r\n}\r\n\r\nmat-sidenav-cotainer {\r\n    padding: 0px;\r\n}\r\n\r\n.marcaContenido {\r\n    width: 100px;\r\n}\r\n\r\n.center {\r\n    position: absolute;\r\n}\r\n\r\n#marca-catalogo{\r\nposition: absolute;\r\ntop: 2px;\r\nleft: 150px;\r\nheight: auto;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9zbGlkZWJhci9zbGlkZWJhci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7R0FTRzs7QUFFSDtJQUNJLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLGtCQUFrQjtBQUN0Qjs7QUFHQTtBQUNBLGtCQUFrQjtBQUNsQixRQUFRO0FBQ1IsV0FBVztBQUNYLFlBQVk7QUFDWiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcGFydGlhbHMvc2xpZGViYXIvc2xpZGViYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIC5tYXQtc2lkZW5hdi1jb250YWluZXJ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDcwcHg7XHJcbiAgYm90dG9tOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcmlnaHQ6IDUwOztcclxuICBoZWlnaHQ6IDYwMHB4O1xyXG59ICovXHJcblxyXG4ubWF0LWRyYXdlci1jb250ZW50IHtcclxuICAgIHdpZHRoOiAxMDBweDtcclxufVxyXG5cclxubWF0LXNpZGVuYXYtY290YWluZXIge1xyXG4gICAgcGFkZGluZzogMHB4O1xyXG59XHJcblxyXG4ubWFyY2FDb250ZW5pZG8ge1xyXG4gICAgd2lkdGg6IDEwMHB4O1xyXG59XHJcblxyXG4uY2VudGVyIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxufVxyXG5cclxuXHJcbiNtYXJjYS1jYXRhbG9nb3tcclxucG9zaXRpb246IGFic29sdXRlO1xyXG50b3A6IDJweDtcclxubGVmdDogMTUwcHg7XHJcbmhlaWdodDogYXV0bztcclxufVxyXG4iXX0= */"
+module.exports = "\r\n\r\n.mat-drawer-content {\r\n    width: 100px;\r\n}\r\n\r\nmat-sidenav-cotainer {\r\n    padding: 0px;\r\n}\r\n\r\nmat-nav-list  a:hover{\r\n  color: white;\r\n}\r\n\r\n.marcaContenido {\r\n    width: 100px;\r\n}\r\n\r\n.center {\r\n    position: absolute;\r\n}\r\n\r\n#marca-catalogo{\r\nposition: absolute;\r\ntop: 2px;\r\nleft: 150px;\r\nheight: auto;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wYXJ0aWFscy9zbGlkZWJhci9zbGlkZWJhci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFHQTtJQUNJLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxrQkFBa0I7QUFDdEI7O0FBR0E7QUFDQSxrQkFBa0I7QUFDbEIsUUFBUTtBQUNSLFdBQVc7QUFDWCxZQUFZO0FBQ1oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3BhcnRpYWxzL3NsaWRlYmFyL3NsaWRlYmFyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuXHJcbi5tYXQtZHJhd2VyLWNvbnRlbnQge1xyXG4gICAgd2lkdGg6IDEwMHB4O1xyXG59XHJcblxyXG5tYXQtc2lkZW5hdi1jb3RhaW5lciB7XHJcbiAgICBwYWRkaW5nOiAwcHg7XHJcbn1cclxuXHJcbm1hdC1uYXYtbGlzdCAgYTpob3ZlcntcclxuICBjb2xvcjogd2hpdGU7XHJcbn1cclxuXHJcblxyXG4ubWFyY2FDb250ZW5pZG8ge1xyXG4gICAgd2lkdGg6IDEwMHB4O1xyXG59XHJcblxyXG4uY2VudGVyIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxufVxyXG5cclxuXHJcbiNtYXJjYS1jYXRhbG9nb3tcclxucG9zaXRpb246IGFic29sdXRlO1xyXG50b3A6IDJweDtcclxubGVmdDogMTUwcHg7XHJcbmhlaWdodDogYXV0bztcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -4504,32 +5044,64 @@ let SlidebarComponent = class SlidebarComponent {
         });
     }
     getMarcas(id) {
-        const id_categoria = id;
-        console.log(id_categoria);
-        const marcaCatalogo = [];
-        const length = this.catalogos.length;
-        for (let i = 0; i < length; i++) {
-            const marcas = this.catalogos[i].marca;
-            const categoria = this.catalogos[i].categoria;
-            // marcaCatalogo.push(this.catalogos[i].marca);
-            for (let i = 0; i < marcas.length; i++) {
-                if (marcas[i]['producto_id'] === id_categoria) {
-                    const Marcas = marcas[i]['marca'];
-                    const id_catalogo = marcas[i]['id'];
-                    const obj = {
-                        marca: Marcas,
-                        id: id_catalogo,
-                        categoria: categoria
-                    };
-                    this.marcasFinal.push(obj);
-                    console.log(this.marcasFinal);
+        if (this.marcasFinal.length > 0) {
+            this.marcasFinal = [];
+        }
+        else {
+            const id_categoria = id;
+            console.log(id_categoria);
+            const marcaCatalogo = [];
+            const length = this.catalogos.length;
+            for (let i = 0; i < length; i++) {
+                const marcas = this.catalogos[i].marca;
+                const categoria = this.catalogos[i].categoria;
+                for (let i = 0; i < marcas.length; i++) {
+                    if (marcas[i]['producto_id'] === id_categoria) {
+                        const Marcas = marcas[i]['marca'];
+                        const id_catalogo = marcas[i]['id'];
+                        const obj = {
+                            marca: Marcas,
+                            id: id_catalogo,
+                            categoria: categoria
+                        };
+                        this.marcasFinal.push(obj);
+                        console.log(this.marcasFinal);
+                    }
                 }
             }
         }
+        // tslint:disable-next-line: no-unused-expression
+        // this.catalogos.map((catalogo => {
+        //   console.log(catalogo.marca);
+        //   return catalogo.marca;
+        //  })).filter((catalogo) => {
+        //   console.log(catalogo);
+        //   return catalogo;
+        //  });
     }
     toogleHideUserSidenav(event) {
         event.preventDefault();
         this.sharedService.getValorMostraUserSidebar(true);
+    }
+    enterCatalog($event) {
+        if ($event != null) {
+            console.log('Estoy entrando');
+            if ($event != null && this.onmouseout(this.e) !== true) {
+                console.log('Estoy saliendo de hide catalog');
+            }
+            else {
+            }
+        }
+        else {
+            if (this.onmouseout(this.e) !== true) { }
+        }
+    }
+    hideCatalog($event) {
+        console.log('Estoy saliendo de hide catalog');
+        this.sharedService.bHideCatalogComponent();
+    }
+    onmouseout($event) {
+        return true;
     }
 };
 SlidebarComponent.ctorParameters = () => [
@@ -4557,7 +5129,7 @@ SlidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvdGVzdG9tb25pYWxlcy90ZXN0b21vbmlhbGVzLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = ".card {\r\n  max-width: 400px;\r\n  padding-bottom: 5px;\r\n  background-color: transparent;\r\n  box-shadow: none;\r\n  border: none;\r\n}\r\n\r\nimg{\r\n  position: relative;\r\n  left: 50px;\r\n  width: 150px;\r\n  height: 150px;\r\n  border-radius: 50%\r\n\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy90ZXN0b21vbmlhbGVzL3Rlc3RvbW9uaWFsZXMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQjtFQUNoQixtQkFBbUI7RUFDbkIsNkJBQTZCO0VBQzdCLGdCQUFnQjtFQUNoQixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLFlBQVk7RUFDWixhQUFhO0VBQ2I7O0FBRUYiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3Rlc3RvbW9uaWFsZXMvdGVzdG9tb25pYWxlcy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNhcmQge1xyXG4gIG1heC13aWR0aDogNDAwcHg7XHJcbiAgcGFkZGluZy1ib3R0b206IDVweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcclxuICBib3gtc2hhZG93OiBub25lO1xyXG4gIGJvcmRlcjogbm9uZTtcclxufVxyXG5cclxuaW1ne1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBsZWZ0OiA1MHB4O1xyXG4gIHdpZHRoOiAxNTBweDtcclxuICBoZWlnaHQ6IDE1MHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJVxyXG5cclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -4573,20 +5145,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TestomonialesComponent", function() { return TestomonialesComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_home_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/home.service */ "./src/app/services/home.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
 
 
 let TestomonialesComponent = class TestomonialesComponent {
-    constructor() { }
+    constructor(homeService) {
+        this.homeService = homeService;
+        this.testimonios = [];
+        // Variable to unsubscribe my subcription
+        this.unsubscribe$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
+    }
     ngOnInit() {
+        this.getTestimonios();
+    }
+    getTestimonios() {
+        this.homeService
+            .getTestimonios()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["takeUntil"])(this.unsubscribe$) // unsubscribe to prevent memory leak
+        )
+            .subscribe((testimonios) => {
+            this.testimonios = testimonios;
+            console.log("testimonios", this.testimonios);
+        });
+    }
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 };
+TestomonialesComponent.ctorParameters = () => [
+    { type: _services_home_service__WEBPACK_IMPORTED_MODULE_2__["HomeService"] }
+];
 TestomonialesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-testomoniales',
+        selector: "app-testomoniales",
         template: __webpack_require__(/*! raw-loader!./testomoniales.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/testomoniales/testomoniales.component.html"),
         styles: [__webpack_require__(/*! ./testomoniales.component.css */ "./src/app/components/testomoniales/testomoniales.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_home_service__WEBPACK_IMPORTED_MODULE_2__["HomeService"]])
 ], TestomonialesComponent);
 
 
@@ -4629,6 +5230,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/esm2015/progress-spinner.js");
 /* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/esm2015/radio.js");
 /* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm2015/tabs.js");
+/* harmony import */ var _angular_material_badge__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/badge */ "./node_modules/@angular/material/esm2015/badge.js");
+
 
 
 
@@ -4683,7 +5286,8 @@ MateriaAngularCss = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material_tree__WEBPACK_IMPORTED_MODULE_22__["MatTreeModule"],
             _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_23__["MatProgressSpinnerModule"],
             _angular_material_radio__WEBPACK_IMPORTED_MODULE_24__["MatRadioModule"],
-            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_25__["MatTabsModule"]
+            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_25__["MatTabsModule"],
+            _angular_material_badge__WEBPACK_IMPORTED_MODULE_26__["MatBadgeModule"],
         ],
         exports: [
             _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
@@ -4709,8 +5313,9 @@ MateriaAngularCss = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material_tree__WEBPACK_IMPORTED_MODULE_22__["MatTreeModule"],
             _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_23__["MatProgressSpinnerModule"],
             _angular_material_radio__WEBPACK_IMPORTED_MODULE_24__["MatRadioModule"],
-            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_25__["MatTabsModule"]
-        ]
+            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_25__["MatTabsModule"],
+            _angular_material_badge__WEBPACK_IMPORTED_MODULE_26__["MatBadgeModule"],
+        ],
     })
 ], MateriaAngularCss);
 
@@ -4819,6 +5424,67 @@ IsUserPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/pipes/relative-time.pipe.ts":
+/*!*********************************************!*\
+  !*** ./src/app/pipes/relative-time.pipe.ts ***!
+  \*********************************************/
+/*! exports provided: RelativeTimePipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RelativeTimePipe", function() { return RelativeTimePipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let RelativeTimePipe = class RelativeTimePipe {
+    transform(value) {
+        if (value) {
+            const differenceInSeconds = Math.floor((+new Date() - +new Date(value)) / 1000);
+            // less than 30 seconds ago will show as 'Just now'
+            if (differenceInSeconds < 30) {
+                return 'Just now';
+            }
+            // All values are in seconds
+            const timeIntervals = {
+                'year': 31536000,
+                'month': 2592000,
+                'week': 604800,
+                'day': 86400,
+                'hour': 3600,
+                'minute': 60,
+                'second': 1,
+            };
+            let counter;
+            // tslint:disable-next-line: forin
+            for (const i in timeIntervals) {
+                counter = Math.floor(differenceInSeconds / timeIntervals[i]);
+                if (counter > 0) {
+                    if (counter === 1) {
+                        // singular (1 day ago)
+                        return counter + ' ' + i + ' ago';
+                    }
+                    else {
+                        // plural (2 days ago)
+                        return counter + ' ' + i + 's ago';
+                    }
+                }
+            }
+        }
+        return value;
+    }
+};
+RelativeTimePipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+        name: 'relativeTime'
+    })
+], RelativeTimePipe);
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/Catalogos/catalogos.service.ts":
 /*!*********************************************************!*\
   !*** ./src/app/services/Catalogos/catalogos.service.ts ***!
@@ -4830,13 +5496,13 @@ IsUserPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CatalogoServes", function() { return CatalogoServes; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../environments/environment */ "./src/environments/environment.ts");
 
 
  // this module makes the petition HTTP TO ASK FOR INFO
+
 let CatalogoServes = class CatalogoServes {
     constructor(http) {
         this.http = http;
@@ -4853,102 +5519,72 @@ let CatalogoServes = class CatalogoServes {
     //   return this.http.get(this.API_URI);
     // }
     get() {
-        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL + '/catalogos');
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + '/catalogos');
     }
-    // getProductosDestacados() {
-    //   return this.http.get(`${this.API_URI}/productosDestacados`);
-    // }
     getProductosDestacados() {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/productosDestacados`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/productosDestacados`);
     }
-    // getMarcas(id: number) {
-    //   return this.http.get(`${this.API_URI}/${id}`);
-    // }
     getMarcas(id) {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/${id}`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/${id}`);
     }
-    // getProductos(id: number) {
-    //   return this.http.get(`${this.API_URI}/marca/${id}`);
-    // }
     getProductos(id) {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/catalogos/marca/${id}`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/${id}`);
     }
-    // getProducto(id: number) {
-    //   return this.http.get(`${this.API_URI}/marca/show/${id}`);
-    // }
     getProducto(id) {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/catalogos/marca/show/${id}`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/show/${id}`);
     }
-    // getColoresProductos(id: number) {
-    //   return this.http.get(`${this.API_URI}/marca/colores/${id}`);
-    // }
     getColoresProductos(id) {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/catalogos/marca/colores/${id}`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/colores/${id}`);
     }
-    // To get the all comments
-    // getComentarios(id: number) {
-    //   return this.http.get(`${this.API_URI}/marca/show/comentario/${id}`);
-    // }
-    getComentarios(id) {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/catalogos/marca/show/comentario/${id}`);
-    }
-    // getTransportadoras() {
-    //   return this.http.get(`${this.API_URIUser}/transportadora`);
-    // }
     getTransportadoras() {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/user/transportadora`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/user/transportadora`);
     }
-    // getDepartamentos() {
-    //   return this.http.get(`${this.API_URIUser}/departamentos`);
-    // }
     getDepartamentos() {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/user/departamentos`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/user/departamentos`);
     }
-    // getCiudades(id: number) {
-    //   return this.http.get(`${this.API_URIUser}/departamentos/ciudades/${id}`);
-    // }
     getCiudades(id) {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/departamentos/ciudades/${id}`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/user/departamentos/ciudades/${id}`);
     }
-    // getCliente(id: number) {
-    //   return this.http.get(`${this.API_URICliente}/datos-personales/${id}`);
-    // }
     getCliente(id) {
-        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/datos-personales/${id}`);
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/datos-personales/${id}`);
     }
-    // updateCliente(id: number, updatedCliente) {
-    //   const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    //   return this.http.put(
-    //     `${this.API_URICliente}/datos-personales/${id}`,
-    //     updatedCliente,
-    //     { headers: headers }
-    //   );
-    // }
     updateCliente(id, updatedCliente) {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ 'content-type': 'application/json' });
-        return this.http.put(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}/datos-personales/${id}`, updatedCliente, { headers: headers });
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' });
+        return this.http.put(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/datos-personales/${id}`, updatedCliente, { headers: headers });
     }
-    // saveComentario(comentario: Comentario) {
-    //   const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    //   return this.http.post(`${this.API_URI}/marca/show/comentario`, comentario, {
-    //     headers: headers
-    //   });
-    // }
+    getComentario() {
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/show/comentario/get-comments`);
+    }
     saveComentario(comentario) {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ 'content-type': 'application/json' });
-        return this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].API_URL}catalogos/marca/show/comentario`, comentario, {
-            headers: headers
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' });
+        return this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/show/comentario`, comentario, {
+            headers: headers,
+        });
+    }
+    getQuestion() {
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/show/preguntas/get-questions-answers`);
+    }
+    saveQuestion(pregunta) {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' });
+        return this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/show/preguntas`, pregunta, {
+            headers: headers,
+        });
+    }
+    saveQuestionAnswer(questiosnAnswers) {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' });
+        return this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL}/catalogos/marca/show/preguntas/answers`, questiosnAnswers, {
+            headers: headers,
         });
     }
 };
 CatalogoServes.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
 ];
 CatalogoServes = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
-        providedIn: 'root'
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root',
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
 ], CatalogoServes);
 
 
@@ -4995,7 +5631,7 @@ AuthService.ctorParameters = () => [
 ];
 AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: 'root',
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_token_service__WEBPACK_IMPORTED_MODULE_3__["TokenService"]])
 ], AuthService);
@@ -5089,6 +5725,49 @@ BeforeLoginService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/services/home.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/home.service.ts ***!
+  \******************************************/
+/*! exports provided: HomeService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeService", function() { return HomeService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+
+
+ // this module makes the petition HTTP TO ASK FOR INFO
+
+let HomeService = class HomeService {
+    constructor(http) {
+        this.http = http;
+    }
+    getTestimonios() {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + "/testimonio-ventas");
+    }
+    getImagenesProductso() {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + "/imagenes-productos-destacados");
+    }
+};
+HomeService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+HomeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: "root",
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+], HomeService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/imagenes.service.ts":
 /*!**********************************************!*\
   !*** ./src/app/services/imagenes.service.ts ***!
@@ -5159,21 +5838,12 @@ let LoginService = class LoginService {
     constructor(http) {
         this.http = http;
     }
-    // loginIn(login: Login){
-    //   return this.http.post(`${this.API_URI}/login`, game);
-    // }
-    // loginIn(login: Login){
-    //   const headers = new HttpHeaders({'content-type': 'application/json'});
-    //   return this.http.post(this.API_URI + 'login', login, {headers: headers});
-    //  }
     loginIn(login) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' });
-        return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + '/auth/' + 'login', login, { headers: headers });
+        return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + '/auth/' + 'login', login, {
+            headers: headers,
+        });
     }
-    //  sendPasswordResetLink(login: Login){
-    //   const headers = new HttpHeaders({'content-type': 'application/json'});
-    //   return this.http.post(this.API_URI + 'sendPasswordResetLink', login, {headers: headers , responseType:'text'});
-    //  }
     sendPasswordResetLink(login) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' });
         return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + '/auth/' + 'sendPasswordResetLink', login, { headers: headers, responseType: 'text' });
@@ -5184,7 +5854,7 @@ LoginService.ctorParameters = () => [
 ];
 LoginService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: 'root',
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
 ], LoginService);
@@ -5333,7 +6003,7 @@ let ResponseResetService = class ResponseResetService {
     }
     changePassword(signup) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' });
-        return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + 'auth/' + 'resetPassword', signup, { headers: headers });
+        return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].API_URL + '/auth/' + 'resetPassword', signup, { headers: headers });
     }
 };
 ResponseResetService.ctorParameters = () => [
@@ -5545,7 +6215,7 @@ let NotificationService = class NotificationService {
     constructor(snackBar) {
         this.snackBar = snackBar;
         this.config = {
-            duration: 1300,
+            duration: 2000,
             horizontalPosition: 'end',
             verticalPosition: 'bottom'
         };
@@ -5573,6 +6243,55 @@ NotificationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/services/shared/pusher.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/services/shared/pusher.service.ts ***!
+  \***************************************************/
+/*! exports provided: PusherService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PusherService", function() { return PusherService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+// declare const Pusher: any;
+let PusherService = class PusherService {
+    constructor() {
+        this.connectToPusher();
+    }
+    static get instance() {
+        return (this._instance ||
+            (this._instance = new pusher_js__WEBPACK_IMPORTED_MODULE_3___default.a(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].PUSHER_API_KEY, {
+                cluster: _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].PUSHER_CLUSTER,
+            })));
+    }
+    connectToPusher() {
+        // Enable pusher logging - don't include this in production
+        // Pusher.logToConsole = true;
+        return new pusher_js__WEBPACK_IMPORTED_MODULE_3___default.a(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].PUSHER_API_KEY, {
+            cluster: _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].PUSHER_CLUSTER,
+        });
+    }
+};
+PusherService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root',
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], PusherService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/shared/shared.service.ts":
 /*!***************************************************!*\
   !*** ./src/app/services/shared/shared.service.ts ***!
@@ -5594,11 +6313,6 @@ __webpack_require__.r(__webpack_exports__);
 let SharedService = class SharedService {
     constructor(http) {
         this.http = http;
-        // private messageSource = new BehaviorSubject<string>('Default message');
-        // currentMessage = this.messageSource.asObservable();
-        // private productoAddSource = new Subject<any>();
-        // productoSel = this.productoAddSource.asObservable();
-        // private productoAddSource = new BehaviorSubject<string>('');
         this.productoAddSource = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.productoSel = this.productoAddSource.asObservable();
         this.carritoTogggleAddsource = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
@@ -5630,17 +6344,11 @@ let SharedService = class SharedService {
         this.payCharge = this.payChargeAddSource.asObservable();
         this.refreshMessagesAddSource = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.refreshMessages = this.refreshMessagesAddSource.asObservable();
-        this.sharingData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        // To hide the catalog component
+        this.isCatalogHide = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
+        this.hideCatalog = this.isCatalogHide.asObservable();
         this.menuEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
-    // changeMessage(message: string){
-    // this.messageSource.next(message)
-    // console.log("Mensaje recivido" + message)
-    // }
-    // getProductoSeleccionado(producto:string){
-    //   this.productoAddSource.next(producto)
-    //   console.log("getProducto ya recivido" + producto);
-    // }
     getProductoSeleccionado(producto) {
         this.productoAddSource.next(producto);
         console.log('getProducto ya recivido' + producto);
@@ -5707,13 +6415,16 @@ let SharedService = class SharedService {
         this.menuEmitter.emit(false);
         console.log('close', open);
     }
+    bHideCatalogComponent() {
+        this.isCatalogHide.next();
+    }
 };
 SharedService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
 ];
 SharedService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: 'root',
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
 ], SharedService);
@@ -5781,23 +6492,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TokenService", function() { return TokenService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-
 
 
 let TokenService = class TokenService {
-    constructor() {
-        // private iss = {
-        //   login: 'http://localhost:8000/api/login',
-        //   signup: 'http://localhost:8000/api/signup'
-        // };
-        this.iss = {
-            login: _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].API_URL + 'login',
-            signup: _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].API_URL + '/signup'
-        };
-    }
+    constructor() { }
     handle(token) {
-        this.set(token);
+        this.token = token;
+        this.set(this.token);
     }
     // To set the token to authenticate user
     set(token) {
@@ -5809,6 +6510,12 @@ let TokenService = class TokenService {
     }
     remove() {
         return localStorage.removeItem('token');
+    }
+    getUserData() {
+        if (this.loggedIn()) {
+            return this.payload(this.get());
+        }
+        return null;
     }
     removeSessionStorage() {
         return sessionStorage.removeItem('userAuth');
@@ -5823,31 +6530,10 @@ let TokenService = class TokenService {
     removeSessionStorageUser() {
         return localStorage.removeItem('tipo_usuario');
     }
-    isValid() {
-        const Token = this.get();
-        console.log(Token);
-        if (Token) {
-            const payload = this.payload(Token);
-            if (payload) {
-                return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
-            }
-        }
-    }
     payload(token) {
         const payload = token.split('.')[1];
-        return this.decode(payload);
-    }
-    decode(payload) {
         return JSON.parse(atob(payload));
     }
-    // loggedIn(){
-    //   if(localStorage.getItem('token') != null )
-    //     return true;
-    //    }
-    // loggedIn() {
-    //   if (localStorage.getItem("token") != null)
-    //   return true;
-    // }
     loggedIn() {
         if (localStorage.getItem('token') != null) {
             return true;
@@ -5862,7 +6548,7 @@ let TokenService = class TokenService {
 };
 TokenService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: 'root',
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
 ], TokenService);
@@ -5888,7 +6574,9 @@ const environment = {
     production: false,
     name: '(DEV)',
     stripekey: 'pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC',
-    // API_URL: 'http://localhost:8000/api'
+    //API_URL: 'http://localhost:8000/api',
+    PUSHER_API_KEY: '3c5c6967326a2c53e2be',
+    PUSHER_CLUSTER: 'us2',
     API_URL: 'https://visor-tek.herokuapp.com/api',
 };
 /*
