@@ -38,6 +38,8 @@ export class CarritoCompraComponent implements OnInit {
     // this.sharedService.productoSel.subscribe(producto => this.producto = producto)
 
     this.sharedService.productoSel.subscribe((producto) => {
+      console.log('My products', producto);
+
       this.listadoCompras.push(producto);
     });
   }
@@ -84,7 +86,7 @@ export class CarritoCompraComponent implements OnInit {
       .reduce((acc, value) => acc + value, 0);
   }
 
-  removeItemKart(indice: number) {
+  removeItemFromKart(indice: number) {
     this.listadoCompras.splice(0, indice);
   }
 }

@@ -4,97 +4,97 @@ namespace app\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use app\http\Requests\StripePaymentRequest;
 use Stripe;
 use Stripe\Charge;
 use app\model\Detalle_Venta;
 use app\model\Venta;
 use DB;
 
-class stripePaymentController extends Controller
+class StripePaymentController extends Controller
 {
 
     public function saveToken(Request $request)
     {
+       Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
+       $data =  $request->all();
 
-        Stripe\Stripe::setApiKey('sk_test_pgKB4yy4Tugr2oPpXwePQTTo00aYwgWTtp');
+       if(empty($data)) {
 
-        $input = $request->all();
-
-
-        for ($i = 0; $i < count($input); $i++) {
-            $name = $input[0]['name'];
-            $token = $input[0]['tokenCard'];
-            $email = $input[0]['email'];
-            $amount =  $input[0]['amount'];
-            $clienteId = $input[0]['clienteId'];
-            $domicilioId = $input[0]['domicilioId'];
+        for ($i = 0; $i < count($data); $i++) {
+            $name = $data[0]['name'];
+            $token = $data[0]['tokenCard'];
+            $email = $data[0]['email'];
+            $amount =  $data[0]['amount'];
+            $clienteId = $data[0]['clienteId'];
+            $domicilioId = $data[0]['domicilioId'];
         }
 
-        //this.createCustomer($email,$token);
-        $customer = \Stripe\Customer::create(array(
-            "name" => $name,
-            "email" => $email,
-            "source" => $token,
+            $customer = \Stripe\Customer::create(array(
+                "name" => $name,
+                "email" => $email,
+                "source" => $token,
 
-        ));
+            ));
 
-        //Stripe\Stripe::setApiKey(env('pk_test_l7iYANEOx13w718rnvfY7wed00HkXGcBvC'));
-        //Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            $charge =  Stripe\Charge::create(array(
+                "amount" => $amount * 100,
+                "currency" => "COP",
+                "description" => "Compras de cascos desde VisorTek.com",
+                "customer" => $customer->id
 
-        $charge =  Stripe\Charge::create(array(
+            ));
 
-            "amount" => $amount * 100,
-            "currency" => "COP",
-            "description" => "Compras de cascos desde VisorTek.com",
-            "customer" => $customer->id
+             /*  To insert the purchases into database */
+            $idLastPurchase = DB::table('ventas')->insertGetId(
+                ['cliente_id' => $clienteId , 'domicilio_id' => $domicilioId,
+                'Forma_Pago_id' => 'Tarjeta de credito', 'valor_neto' => $charge->amount / 10,
+                'valor_iva' => 0, 'valor_a_pagar' => $charge->amount / 100]
+            );
 
-        ));
+            // For testing
 
-        //return $charge;
+            // $venta = new Venta();
+            // /** Se hace una instancia del modelo solicitante*/
 
-        $venta = new Venta();
-        /** Se hace una instancia del modelo solicitante*/
+            // $venta->cliente_id  = $clienteId;
+            // $venta->domicilio_id =  $domicilioId;
+            // $venta->forma_pago_id = "Tarjeta de credito";
+            // $venta->valor_neto =  $charge->amount / 10;
+            // $venta->valor_iva = '';
+            // $venta->valor_a_pagar = $charge->amount / 100;
 
-        $venta->cliente_id  = $clienteId;
-        $venta->domicilio_id =  $domicilioId;
-        $venta->forma_pago_id = "Efectivo";
-        $venta->valor_neto =  $charge->amount / 10;
-        $venta->valor_iva = '';
-        $venta->valor_a_pagar = $charge->amount / 100;
+            // $venta->save();
 
-        $venta->save();
+            //To get the purchases of the array from my shopping kart
 
-        //$ventaId = DB::table('ventas')->select('id')->get();
-        $ventaId =  DB::select('select id from ventas where id =(SELECT max(id) FROM ventas)');
+            for ($i = 0; $i < count($data[3]); $i++) {
 
-        foreach ($ventaId as  $value) {
-            $idVenta = $value->id;
-        }
+                $id = $data[3][$i]['id'];
+                $producto = $data[3][$i]['producto_name'];
+                $cantidad = $data[3][$i]['cantidad'];
+                $valorventa =  $data[3][$i]['valorVenta'];
 
+                $dt = new Detalle_Venta();
+                $dt->venta_id = $idLastPurchase;
+                $dt->Producto_id = $id;
+                $dt->nombre = $producto;
+                $dt->Cantidad = $cantidad;
+                $dt->Valor_Neto = $valorventa;
 
-        //To get the purchases of the array from my shopping kart
-
-        for ($i = 0; $i < count($input[3]); $i++) {
-
-
-            $id = $input[3][$i]['id'];
-            $producto = $input[3][$i]['producto'];
-            $cantidad = $input[3][$i]['cantidad'];
-            $valorventa =  $input[3][$i]['valorventa'];
-
-            $dt = new Detalle_Venta();
-            $dt->venta_id = $idVenta;
-            $dt->Producto_id = $id;
-            $dt->nombre = $producto;
-            $dt->Cantidad = $cantidad;
-            $dt->Valor_Neto = $valorventa;
-
-            $dt->save();
-        }
-
+                $dt->saveOrFail();
+            }
          return $charge;
-    }
+
+       } else {
+
+         return response()->json(['message' => 'Request Null']);
+       }
+
+
+
+        }
 
     public function getCompras($id)
     {

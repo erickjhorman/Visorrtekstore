@@ -76,8 +76,8 @@ Route::get('catalogos/marca/colores/{id}', 'HomeController@getColorsProducts');
 Route::get('catalogos/marca/show/{id}', 'catalogosController@showCatalogos');
 Route::get('catalogos/marca/show/comentario/get-comments', 'commentsController@getComentarios');
 Route::post('catalogos/marca/show/comentario', 'commentsController@saveComentarios');
-Route::post('charges', 'stripePaymentController@saveToken');
-Route::get('dashboard/compras/{id}', 'stripePaymentController@getCompras');
+Route::post('charges', 'StripePaymentController@saveToken');
+Route::get('dashboard/compras/{id}', 'StripePaymentController@getCompras');
 Route::post('procesoCompra/addDireccion', 'ProcesoCompraController@addDireccion');
 Route::post('procesoCompra/mensaje', 'ProcesoCompraController@storeFirstMensaje');
 

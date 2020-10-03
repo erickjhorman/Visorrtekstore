@@ -239,7 +239,11 @@ export class PagosComponent implements OnInit {
     //   console.log('formFinal agregarTokenCard', this.formArray);
     // }
 
-    // this.direcciones.push(this.valuesFormTransportadora , this.direcciones, this.formFinal);
+    this.direcciones.push(
+      this.valuesFormTransportadora,
+      this.direcciones,
+      this.formFinal
+    );
     // console.log( "Direcine y tranpso" + this.direcciones);
 
     this.formFinal.push(
