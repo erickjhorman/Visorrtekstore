@@ -37,7 +37,7 @@
     "laravel-echo": "^1.8.0",
     "pusher-js": "^6.0.3",
     "rxjs": "^6.5.4",
-    "terser": "^3.17.0",
+    "terser": "^4.8.1",
     "tslib": "^1.11.1",
     "zone.js": "~0.9.1"
   },
